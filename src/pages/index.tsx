@@ -5,9 +5,11 @@ import Main from './MainPage/Main'
 
 export default function Home() {
   return (
-    <main>
-      <Header />
-      <Main />
-    </main>
+    <>
+      <main>
+        <Header />
+        <Main />
+      </main>
+    </>
   )
 }
