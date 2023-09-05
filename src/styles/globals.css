@@ -14,8 +14,7 @@ body {
     height: 30px;
 }
 
-input[type=date]{
-    -moz-appearance: textfield;
-    appearance:none;
+[type="data"]::-webkit-search-decoration {
     -webkit-appearance: none;
- }
+    appearance: none;
+}
