@@ -14,7 +14,7 @@ body {
     height: 30px;
 } */
 
-input[type="date"]{
+input[type="date"],[type="time"] {
     background-color: transparent;
     color:black;
     content: "yolo"
