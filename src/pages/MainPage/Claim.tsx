@@ -1,6 +1,7 @@
 import React from 'react'
 
 export default function Claim() {
+  
   return (
     <div className='w-screen h-[50vh] border-red-900 flex flex-col px-[20px] z-10 justify-center'>
         <div className='text-white leading-4 text-[20px]'><b>Safety</b> transport from</div>

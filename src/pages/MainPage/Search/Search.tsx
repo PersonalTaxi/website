@@ -4,6 +4,7 @@ import {BsCalendar3} from 'react-icons/bs'
 import {TbClockHour8} from 'react-icons/tb'
 
 export default function Search() {
+    
   return (
     <div className='w-screen h-[30vh] border border-blue-900 z-10'>
         <div id="search-wraper" className='w-full flex flex-col justify-start items-center'>
