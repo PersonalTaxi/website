@@ -31,7 +31,6 @@ export default function Search() {
         }
     }
 
-
     const CitiesList = list.map((city:string) => {
         return (
             <div key={city}  className='w-full'>
