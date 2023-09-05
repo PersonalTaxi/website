@@ -16,7 +16,8 @@ body {
 
 input[type="date"]{
     background-color: transparent;
-    -webkit-appearance: none;
+    color:black;
+    /* -webkit-appearance: none;
     -moz-appearance:    none;
-    appearance:         none;
+    appearance:         none; */
 }
