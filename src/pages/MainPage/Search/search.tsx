@@ -34,7 +34,7 @@ export default function Search() {
     const CitiesList = list.map((city:string) => {
         return (
             <div key={city}  className='w-full'>
-                <div name="From" value={city} className='w-full text-[20px] py-[2px]' onClick={handleChooseLocalization} onMouseDown={(e) => e.preventDefault()}>{city}</div>
+                <div data-name="From" data-value={city} className='w-full text-[20px] py-[2px]' onClick={handleChooseLocalization} onMouseDown={(e) => e.preventDefault()}>{city}</div>
             </div>
         )
 
