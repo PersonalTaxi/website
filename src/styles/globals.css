@@ -13,3 +13,7 @@ body {
     width: 30px;
     height: 30px;
 }
+
+input{
+    -webkit-appearance: none;
+ }
