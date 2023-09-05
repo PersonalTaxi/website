@@ -2,6 +2,7 @@ import React from 'react'
 import Claim from './claim'
 import Search from './Search/search'
 
+
 export default function Main() {
   return (
     <div className='w-screen h-screen bg-[url("/Main_theme.png")] bg-top bg-cover bg-no-repeat flex flex-col pt-[50px] border'>
