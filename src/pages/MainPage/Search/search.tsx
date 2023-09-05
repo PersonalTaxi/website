@@ -18,8 +18,8 @@ export default function Search() {
 
     const handleChooseLocalization = (e:any) => {
 
-        const name = e.target.getAttribute("name")
-        const value = e.target.getAttribute("value")
+        const name = e.target.getAttribute("data-name")
+        const value = e.target.getAttribute("data-value")
 
         console.log(value)
 
@@ -35,7 +35,7 @@ export default function Search() {
     const CitiesList = list.map((city:string) => {
         return (
             <div key={city}  className='w-full'>
-                <div name:any="From" value={city} className='w-full text-[20px] py-[2px]' onClick={handleChooseLocalization} onMouseDown={(e) => e.preventDefault()}>{city}</div>
+                <div data-name="From" data-value={city} className='w-full text-[20px] py-[2px]' onClick={handleChooseLocalization} onMouseDown={(e) => e.preventDefault()}>{city}</div>
             </div>
         )
 
