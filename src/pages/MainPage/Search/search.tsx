@@ -66,7 +66,7 @@ export default function Search() {
 
     const handleDateFocus = (e:any) => {
         inputDate.current.type = "date"
-        inputDate.current.focus();
+        inputDate.current.focus()
         console.log(inputDate)
     }
 
@@ -97,7 +97,7 @@ export default function Search() {
                             <div className="h-[50px] w-1/2 border-r flex items-center pl-[10px] relative">
                             {/* <Calendar className='absolute bg-white border w-[280px]'/> */}
                                 <BsCalendar3 locale="en_EN" className="w-[30px] h-[30px] text-yellow-500/[0.4]"/>
-                                <input ref={inputDate} id="data" className='w-full h-[45px] pl-[5px] outline-none' placeholder='Date' type="text" onClick={handleDateFocus}></input>
+                                <input ref={inputDate} id="data" className='w-full h-[45px] pl-[5px] outline-none' placeholder='Date' type="text" onFocus={handleDateFocus}></input>
                             </div>
                             <div className="h-[50px] w-1/2 flex items-center justify-center pl-[10px]">
                                 {/* <TbClockHour8 className="w-[30px] h-[30px] text-yellow-500/[0.4]"/> */}
