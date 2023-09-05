@@ -89,8 +89,8 @@ export default function Search() {
                         <div id="schedule-in-calendar" className="rounded-[10px] h-[50px] w-10/12 border flex flex-no-wrap">
                             <div className="h-[50px] w-1/2 border-r flex items-center pl-[10px] relative">
                             {/* <Calendar className='absolute bg-white border w-[280px]'/> */}
+                                <BsCalendar3 locale="en_EN" className="w-[30px] h-[30px] text-yellow-500/[0.4] absolute right-0"/>
                                 <input id="data" className='w-full h-[45px] pl-[5px] outline-none' placeholder='Date' type="date"></input>
-                                {/* <BsCalendar3 locale="en_EN" className="w-[30px] h-[30px] text-yellow-500/[0.4] absolute right-0"/> */}
                             </div>
                             <div className="h-[50px] w-1/2 flex items-center justify-center pl-[10px]">
                                 {/* <TbClockHour8 className="w-[30px] h-[30px] text-yellow-500/[0.4]"/> */}
