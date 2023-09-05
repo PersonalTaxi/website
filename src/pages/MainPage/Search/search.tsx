@@ -63,6 +63,11 @@ export default function Search() {
 
     }
 
+    const handleDateFocus = (e:any) => {
+        e.target.type = "date"
+        console.log(e.target.type)
+    }
+
     
   return (
     <div className='w-screen h-[30vh] border-blue-900 z-10'>
@@ -90,7 +95,7 @@ export default function Search() {
                             <div className="h-[50px] w-1/2 border-r flex items-center pl-[10px] relative">
                             {/* <Calendar className='absolute bg-white border w-[280px]'/> */}
                                 <BsCalendar3 locale="en_EN" className="w-[30px] h-[30px] text-yellow-500/[0.4]"/>
-                                <input id="data" className='w-full h-[45px] pl-[5px] outline-none' placeholder='Date' type="date"></input>
+                                <input id="data" className='w-full h-[45px] pl-[5px] outline-none' placeholder='Date' type="text" onFocus={handleDateFocus}></input>
                             </div>
                             <div className="h-[50px] w-1/2 flex items-center justify-center pl-[10px]">
                                 {/* <TbClockHour8 className="w-[30px] h-[30px] text-yellow-500/[0.4]"/> */}
