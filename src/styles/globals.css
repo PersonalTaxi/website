@@ -14,8 +14,8 @@ body {
     height: 30px;
 }
 
-input{
-    background-color: red;
+input[type="date"]{
+    background-color: transparent;
     -webkit-appearance: none;
     -moz-appearance:    none;
     appearance:         none;
