@@ -21,6 +21,7 @@ export default function Search() {
         const name = e.target.getAttribute("name")
         const value = e.target.getAttribute("value")
 
+        console.log(value)
 
         if(name === "From"){
             setChoosedLocalizationFrom(value)
@@ -34,7 +35,7 @@ export default function Search() {
     const CitiesList = list.map((city:string) => {
         return (
             <div key={city}  className='w-full'>
-                <div data-name="From" data-value={city} className='w-full text-[20px] py-[2px]' onClick={handleChooseLocalization} onMouseDown={(e) => e.preventDefault()}>{city}</div>
+                <div name:any="From" value={city} className='w-full text-[20px] py-[2px]' onClick={handleChooseLocalization} onMouseDown={(e) => e.preventDefault()}>{city}</div>
             </div>
         )
 
