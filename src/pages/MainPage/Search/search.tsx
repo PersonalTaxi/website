@@ -71,7 +71,7 @@ export default function Search() {
     }
 
     const handleHidePlaceholderDivTime = () =>  {
-        DatePlaceholder.current.style.display = "none"
+        TimePlaceholder.current.style.display = "none"
 
     }
     
@@ -107,7 +107,7 @@ export default function Search() {
                             <div className="h-[50px] w-1/2 flex items-center justify-center pl-[10px] relative">
                                 <div ref={TimePlaceholder} className='absolute w-9/12 h-full text-left leading-[50px] text-gray-900/[0.5] right-0 pl-[5px]'>Time</div>
                                 <TbClockHour8 className="w-[30px] h-[30px] text-yellow-500/[0.4]"/>
-                                <input className='w-full h-[45px] pl-[5px] outline-none appearance-none' placeholder='Hour' type="time" onFocus={handleHidePlaceholderDivTime}></input>
+                                <input className='w-full h-[45px] pl-[5px] outline-none appearance-none z-10' placeholder='Hour' type="time" onFocus={handleHidePlaceholderDivTime}></input>
                             </div>
                         </div>
                         <div id="person-and-submit-wraper" className="rounded-[10px] h-[50px] w-10/12 flex justify-between">
