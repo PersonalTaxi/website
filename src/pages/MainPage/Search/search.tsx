@@ -36,10 +36,19 @@ export default function Search() {
         }
     }
 
-    const CitiesList = list.map((city:string) => {
+    const CitiesListFrom = list.map((city:string) => {
         return (
             <div key={city}  className='w-full'>
                 <div data-name="From" data-value={city} className='w-full text-[20px] py-[2px]' onClick={handleChooseLocalization} onMouseDown={(e) => e.preventDefault()}>{city}</div>
+            </div>
+        )
+
+    })
+
+    const CitiesListTo = list.map((city:string) => {
+        return (
+            <div key={city}  className='w-full'>
+                <div data-name="To" data-value={city} className='w-full text-[20px] py-[2px]' onClick={handleChooseLocalization} onMouseDown={(e) => e.preventDefault()}>{city}</div>
             </div>
         )
 
@@ -85,7 +94,7 @@ export default function Search() {
                 <form className='w-full h-[300px] flex flex-col justify-evenly items-center mx-auto border-red-900'>
                     <div id="form-inputs-wraper" className='w-full h-[250px] flex flex-col justify-evenly items-center mx-auto border-red-900'>
                         <div id="from-to" className="rounded-[10px] h-[100px] w-10/12 border relative">
-                            <div ref={dataFrom} className='absolute w-full border h-[150px] top-[50px] bg-white hidden overflow-scroll z-10'>{CitiesList}</div>
+                            <div ref={dataFrom} className='absolute w-full border h-[150px] top-[50px] bg-white hidden overflow-scroll z-10'>{CitiesListFrom}</div>
                                 <div id="icon-input-wraper" className='h-[49%] rounded-[10px] w-full flex items-center pl-[10px]'>
                                     <BiSolidMap className="w-[30px] h-[30px] text-yellow-500/[0.4]" />
                                     <input className='w-full h-full rounded-[10px] pl-[5px] outline-none' placeholder='From:' value={choosedLocalizationFrom} 
@@ -95,7 +104,7 @@ export default function Search() {
                                         readOnly></input>
                                 </div>
                             <div className='h-[1px] bg-gray-400/[0.3] w-11/12 mx-auto relative'></div>
-                                <div ref={dataTo} className='absolute w-full border h-[150px] top-[100px] bg-white hidden overflow-scroll z-10'>{CitiesList}</div>
+                                <div ref={dataTo} className='absolute w-full border h-[150px] top-[100px] bg-white hidden overflow-scroll z-10'>{CitiesListTo}</div>
                                 <div id="icon-input-wraper" className='h-[49%] rounded-[10px] w-full flex items-center pl-[10px]'>
                                     <BiSolidMap className="w-[30px] h-[30px] text-yellow-500/[0.4]" />
                                     <input className='w-full h-full rounded-[10px] pl-[5px] outline-none' placeholder='To:' value={choosedLocalizationTo} onFocus={handleFocusInputTo} onBlur={handleOnBlurInputTo} autoComplete="off" readOnly></input>
