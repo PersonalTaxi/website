@@ -94,10 +94,10 @@ export default function Search() {
                                 </div>
                             </div>
                         <div id="schedule-in-calendar" className="rounded-[10px] h-[50px] w-10/12 border flex flex-no-wrap">
-                            <div className="h-[50px] w-1/2 border-r flex items-center pl-[10px] relative">
+                            <div className="h-[50px] w-1/2 border-r flex items-center pl-[10px] relative" onClick={handleDateFocus}>
                             {/* <Calendar className='absolute bg-white border w-[280px]'/> */}
                                 <BsCalendar3 locale="en_EN" className="w-[30px] h-[30px] text-yellow-500/[0.4]"/>
-                                <input ref={inputDate} id="data" className='w-full h-[45px] pl-[5px] outline-none' placeholder='Date' type="text" onFocus={handleDateFocus}></input>
+                                <input ref={inputDate} id="data" className='w-full h-[45px] pl-[5px] outline-none' placeholder='Date' type="text"></input>
                             </div>
                             <div className="h-[50px] w-1/2 flex items-center justify-center pl-[10px]">
                                 {/* <TbClockHour8 className="w-[30px] h-[30px] text-yellow-500/[0.4]"/> */}
