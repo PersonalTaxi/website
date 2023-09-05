@@ -15,7 +15,7 @@ body {
 }
 
 input[type="date"]{
-    background-color: transparent;
+    background-color: white;
     -webkit-appearance: none;
     -moz-appearance:    none;
     appearance:         none;
