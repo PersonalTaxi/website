@@ -14,7 +14,7 @@ body {
     height: 30px; */
 }
 
-[type="data"]::-webkit-search-decoration {
+input[type="data"]::-webkit-search-decoration {
     -webkit-appearance: none;
     appearance: none;
 }
