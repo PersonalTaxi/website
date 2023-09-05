@@ -17,7 +17,7 @@ body {
 input[type="date"]{
     background-color: transparent;
     color:black;
-    content: attr(placeholder) !important;
+    content: "yolo"
     /* -webkit-appearance: none;
     -moz-appearance:    none;
     appearance:         none; */
