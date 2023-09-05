@@ -5,12 +5,12 @@ import {TbClockHour8} from 'react-icons/tb'
 
 export default function Search() {
   return (
-    <div className='w-screen h-[70vh] border-2 border-blue-900 z-10'>
-        <div id="search-wraper" className='w-full h-full flex flex-col justify-start items-center'>
+    <div className='w-screen h-[30vh] border border-blue-900 z-10'>
+        <div id="search-wraper" className='w-full flex flex-col justify-start items-center'>
             <div id="search-contianer-text" className='w-11/12 px-[30px]'>
                 <div className='w-[100px] bg-white text-center rounded-t-[7px]'>Your drive:</div>
             </div>
-            <div id="search-contianer" className='bg-white w-11/12 rounded-t-[15px] h-full'>
+            <div id="search-contianer" className='bg-white w-11/12 rounded-t-[15px] h-auto'>
                 <form className='w-full h-[300px] flex flex-col justify-evenly items-center mx-auto border border-red-900'>
                     <div id="form-inputs-wraper" className='w-full h-[250px] flex flex-col justify-evenly items-center mx-auto border border-red-900'>
                         <div id="from-to" className="rounded-[10px] h-[100px] w-10/12 border">
