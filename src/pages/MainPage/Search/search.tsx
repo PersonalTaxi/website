@@ -45,7 +45,8 @@ export default function Search() {
 
     })
 
-    const handleFocusInputFrom = () =>  {
+    const handleFocusInputFrom = (e:any) =>  {
+        e.preventDefault();
         dataFrom.current.style.display = "block"
 
     }
@@ -55,7 +56,8 @@ export default function Search() {
 
     }
 
-    const handleFocusInputTo = () =>  {
+    const handleFocusInputTo = (e:any) =>  {
+        e.preventDefault();
         dataTo.current.style.display = "block"
 
     }
@@ -88,7 +90,7 @@ export default function Search() {
                             <div ref={dataFrom} className='absolute w-full border h-[150px] top-[50px] bg-white hidden overflow-scroll z-10'>{CitiesList}</div>
                                 <div id="icon-input-wraper" className='h-[49%] rounded-[10px] w-full flex items-center pl-[10px]'>
                                     <BiSolidMap className="w-[30px] h-[30px] text-yellow-500/[0.4]" />
-                                    <input className='w-full h-full rounded-[10px] pl-[5px] outline-none' placeholder='From:' value={choosedLocalizationFrom}onFocus={handleFocusInputFrom} onBlur={handleOnBlurInputFrom}></input>
+                                    <input className='w-full h-full rounded-[10px] pl-[5px] outline-none' placeholder='From:' value={choosedLocalizationFrom} onFocus={handleFocusInputFrom} onBlur={handleOnBlurInputFrom}></input>
                                 </div>
                             <div className='h-[1px] bg-gray-400/[0.3] w-11/12 mx-auto relative'></div>
                                 <div ref={dataTo} className='absolute w-full border h-[150px] top-[100px] bg-white hidden overflow-scroll z-10'>{CitiesList}</div>
