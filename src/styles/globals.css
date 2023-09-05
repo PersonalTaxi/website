@@ -15,7 +15,6 @@ body {
 } */
 
 input[type="date"]{
-    placeholder:"koo";
     background-color: transparent;
     color:black;
     /* -webkit-appearance: none;
