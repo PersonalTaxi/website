@@ -13,3 +13,9 @@ body {
     width: 30px;
     height: 30px;
 }
+
+input[type=date]{
+    -moz-appearance: textfield;
+    appearance: input;
+    -webkit-appearance: none;
+ }
