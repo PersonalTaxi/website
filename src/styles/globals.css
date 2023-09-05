@@ -17,4 +17,5 @@ body {
 ::-webkit-search-decoration {
     color: transparent;
     background: none;
+    -webkit-appearance: none;
 }
