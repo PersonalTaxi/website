@@ -16,5 +16,5 @@ body {
 
 input[type="data"]::-webkit-search-decoration {
     color: transparent;
-    appearance: none;
+    background: none;
 }
