@@ -65,8 +65,8 @@ export default function Search() {
     }
 
     const handleDateFocus = (e:any) => {
-        inputDate.current.target.type = "date"
-        console.log(e.target.type)
+        inputDate.current.type = "date"
+        console.log(inputDate.current.type)
     }
 
     
