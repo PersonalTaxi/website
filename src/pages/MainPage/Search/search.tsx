@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useCallback } from 'react'
 import {BiSolidMap} from 'react-icons/bi'
 import {BsCalendar3} from 'react-icons/bs'
 import {TbClockHour8} from 'react-icons/tb'
@@ -13,11 +13,11 @@ export default function Search() {
     const dataTo:any = useRef();
     const DatePlaceholder:any = useRef();
     const TimePlaceholder:any = useRef();
-
+    const [PersonsToDrive, setPersonsToDrive] = useState(2);
+    
     const [list, setList] = useState(JSON.parse(JSON.stringify(Cities.cities)))
     const [choosedLocalizationFrom, setChoosedLocalizationFrom] = useState();
     const [choosedLocalizationTo, setChoosedLocalizationTo] = useState();
-
 
 
     const handleChooseLocalization = (e:any) => {
@@ -83,6 +83,20 @@ export default function Search() {
         TimePlaceholder.current.style.display = "none"
 
     }
+
+    const handleDowncreaseNumber = useCallback(() => {
+        if(PersonsToDrive > 0){
+            return [setPersonsToDrive(PersonsToDrive -1)]
+        }
+        
+    }, [PersonsToDrive])
+
+
+    const handleIncreaseNumber = useCallback(() => {
+        if(PersonsToDrive < 7){
+        return [setPersonsToDrive(PersonsToDrive +1)]
+        }
+    }, [PersonsToDrive])
     
   return (
     <div className='w-screen h-[30vh] border-blue-900 z-10'>
@@ -125,15 +139,15 @@ export default function Search() {
                         </div>
                         <div id="person-and-submit-wraper" className="rounded-[10px] h-[50px] w-10/12 flex justify-between">
                             <div id="person-and-submit-wraper" className="rounded-[10px] h-[50px] w-6/12 border flex justify-center items-center">
-                                <div className='border w-[30px] h-[30px]'>
+                                <div className='border-2 w-[30px] h-[30px] rounded-[50%]' onClick={handleDowncreaseNumber}> 
                                     <AiOutlineMinus className="w-full h-full" />
                                 </div>
-                                <div className='border w-[30px] h-[30px]'>
+                                <div className='w-[30px] h-[30px]'>
                                     <BsFillPersonFill className="w-full h-full" />
                                 </div>
-                                <div className='border w-[30px] h-[30px] text-[22px] leading-7 text-center'>2</div>
-                                <div className='border w-[30px] h-[30px]'>
-                                    <AiOutlinePlus className="w-full h-full" />
+                                <div className='w-[30px] h-[30px] text-[22px] leading-7 text-center'>{PersonsToDrive}</div>
+                                <div className='border-2 w-[30px] h-[30px] rounded-[50%]' onClick={handleIncreaseNumber}>
+                                    <AiOutlinePlus className="w-full h-full"/>
                                 </div>
                             </div>
                             <button id="person-and-submit-wraper" className="rounded-[10px] h-[50px] w-5/12 border uppercase bg-black text-yellow-400">See offers</button>
