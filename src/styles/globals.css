@@ -12,11 +12,11 @@ body {
     filter: invert(81%) sepia(62%) saturate(2996%) hue-rotate(351deg) brightness(106%) contrast(84%) opacity(35%);
     width: 30px;
     height: 30px;
-}
+} */
 
 input[type="date"]{
     background-color: white;
     -webkit-appearance: none;
     -moz-appearance:    none;
     appearance:         none;
-} */
+}
