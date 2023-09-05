@@ -8,13 +8,13 @@ body {
     box-sizing: border-box;
 }
 
-::-webkit-calendar-picker-indicator {
-    /* filter: invert(81%) sepia(62%) saturate(2996%) hue-rotate(351deg) brightness(106%) contrast(84%) opacity(35%);
+/* ::-webkit-calendar-picker-indicator {
+    filter: invert(81%) sepia(62%) saturate(2996%) hue-rotate(351deg) brightness(106%) contrast(84%) opacity(35%);
     width: 30px;
-    height: 30px; */
+    height: 30px;
 }
 
 input[type="data"]::-webkit-search-decoration {
     -webkit-appearance: none;
     appearance: none;
-}
+} */
