@@ -16,7 +16,7 @@ export default function Search() {
 
 
 
-    const handleChooseLocalization = (e) => {
+    const handleChooseLocalization = (e:any) => {
 
         const name = e.target.getAttribute("name")
         const value = e.target.getAttribute("value")
