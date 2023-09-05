@@ -14,8 +14,8 @@ body {
     height: 30px;
 } */
 
-::-webkit-search-decoration {
-    color: transparent;
-    background: none;
+input[type="date"]{
     -webkit-appearance: none;
+    -moz-appearance:    none;
+    appearance:         none;
 }
