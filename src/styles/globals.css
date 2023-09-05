@@ -16,6 +16,6 @@ body {
 
 input[type=date]{
     -moz-appearance: textfield;
-    appearance: input;
+    appearance:none;
     -webkit-appearance: none;
  }
