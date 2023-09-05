@@ -15,6 +15,7 @@ body {
 }
 
 input{
+    background-color: red;
     -webkit-appearance: none;
     -moz-appearance:    none;
     appearance:         none;
