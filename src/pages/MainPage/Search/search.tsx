@@ -11,7 +11,7 @@ export default function Search() {
 
     const dataFrom:any = useRef();
     const dataTo:any = useRef();
-    const inputDate:any = useRef();
+    const DatePlaceholder:any = useRef();
 
     const [list, setList] = useState(JSON.parse(JSON.stringify(Cities.cities)))
     const [choosedLocalizationFrom, setChoosedLocalizationFrom] = useState();
@@ -64,12 +64,10 @@ export default function Search() {
 
     }
 
-    const handleDateFocus = (e:any) => {
-        inputDate.current.type = "date"
-        inputDate.current.focus()
-        console.log(inputDate)
-    }
+    const handleHidePlaceholderDiv = () =>  {
+        DatePlaceholder.current.style.display = "none"
 
+    }
     
   return (
     <div className='w-screen h-[30vh] border-blue-900 z-10'>
@@ -94,10 +92,11 @@ export default function Search() {
                                 </div>
                             </div>
                         <div id="schedule-in-calendar" className="rounded-[10px] h-[50px] w-10/12 border flex flex-no-wrap">
-                            <div className="h-[50px] w-1/2 border-r flex items-center pl-[10px] relative" onClick={handleDateFocus}>
+                            <div className="h-[50px] w-1/2 border-r flex items-center pl-[10px] relative">
                             {/* <Calendar className='absolute bg-white border w-[280px]'/> */}
+                                <div ref={DatePlaceholder} className='absolute w-9/12 h-full text-left leading-[50px] text-gray-900/[0.5] right-0'>Date</div>
                                 <BsCalendar3 locale="en_EN" className="w-[30px] h-[30px] text-yellow-500/[0.4]"/>
-                                <input ref={inputDate} id="data" className='w-full h-[45px] pl-[5px] outline-none' placeholder='Date' type="date" value="202" ></input>
+                                <input id="data" className='w-full h-[45px] pl-[5px] outline-none z-10' placeholder='Date' type="date" onFocus={handleHidePlaceholderDiv} ></input>
                             </div>
                             <div className="h-[50px] w-1/2 flex items-center justify-center pl-[10px]">
                                 {/* <TbClockHour8 className="w-[30px] h-[30px] text-yellow-500/[0.4]"/> */}
