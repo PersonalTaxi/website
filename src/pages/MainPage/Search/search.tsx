@@ -130,7 +130,7 @@ function Search() {
                                 <div id="icon-input-wraper" className='h-[49%] rounded-[10px] w-full flex items-center pl-[10px]'>
                                     <BiSolidMap className="w-[30px] h-[30px] text-yellow-500/[0.4]" />
                                     <div className='places-container'>
-                                        <PlacesAutocompletFrom setSelected={setSelected} className="z-30"/>
+                                        <PlacesAutocompletFrom setSelected={setSelected} />
                                     </div>
                                     {/* <input className='w-full h-full rounded-[10px] pl-[5px] outline-none' placeholder='From:'
                                         onFocus={handleFocusInputFrom} 
