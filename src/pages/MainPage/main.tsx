@@ -10,7 +10,7 @@ export default function Main() {
         <div className='h-[100px] bg-gradient-to-b from-black to-transparent border-white'></div>
         <Claim />
         <Search />
-        <div className='absolute w-full h-full top-0 left-0 bg-black/[0.55]'></div>
+        {/* <div className='absolute w-full h-full top-0 left-0 bg-black/[0.55]'></div> */}
     </div>
   )
 }
