@@ -23,8 +23,6 @@ return <Search />;
 
 }
 
-
-
 function Search() {
 
     const [selected, setSelected] = useState(null);
@@ -182,7 +180,9 @@ function Search() {
         </div>
     </div>
   )
-  const PlacesAutocompletFrom = ({setSelected}) => {
+}
+
+const PlacesAutocompletFrom = ({setSelected}) => {
     const {
         ready,
         value,
@@ -215,4 +215,3 @@ function Search() {
                 </ComboboxPopover>
             </Combobox>
     )}
-}
