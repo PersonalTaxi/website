@@ -6,7 +6,7 @@ import Search from './Search/search'
 export default function Main() {
   
   return (
-    <div className='w-screen h-[90v] bg-[url("/Main_theme.png")] bg-top bg-cover bg-no-repeat flex flex-col pt-[48px] border'>
+    <div className='w-screen h-[90v] bg-[url("/Main_theme.png")] bg-top bg-cover bg-no-repeat flex flex-col pt-[48px]'>
         <div className='h-[100px] bg-gradient-to-b from-black to-transparent border-white'></div>
         <Claim />
         <Search />

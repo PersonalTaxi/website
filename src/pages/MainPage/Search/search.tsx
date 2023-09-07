@@ -103,7 +103,7 @@ function Search() {
     }
 
     const handleDowncreaseNumber = useCallback(() => {
-        if(PersonsToDrive > 0){
+        if(PersonsToDrive > 1){
             return [setPersonsToDrive(PersonsToDrive -1)]
         }
         
@@ -155,14 +155,14 @@ function Search() {
                         </div>
                         <div id="person-and-submit-wraper" className="rounded-[10px] h-[50px] w-10/12 flex justify-between">
                             <div id="person-and-submit-wraper" className="rounded-[10px] h-[50px] w-6/12 border flex justify-center items-center">
-                                <div className='border-2 w-[30px] h-[30px] rounded-[50%]' onClick={handleDowncreaseNumber}> 
+                                <div className='w-[25px] h-[25px] rounded-[50%]' onClick={handleDowncreaseNumber}> 
                                     <AiOutlineMinus className="w-full h-full" />
                                 </div>
                                 <div className='w-[30px] h-[30px]'>
-                                    <BsFillPersonFill className="w-full h-full" />
+                                    <BsFillPersonFill className="w-full h-full text-yellow-400/[0.4]" />
                                 </div>
-                                <div className='w-[30px] h-[30px] text-[22px] leading-7 text-center'>{PersonsToDrive}</div>
-                                <div className='border-2 w-[30px] h-[30px] rounded-[50%]' onClick={handleIncreaseNumber}>
+                                <div className='w-[30px] h-[30px] text-[22px] leading-7 text-center duration-200'>{PersonsToDrive}</div>
+                                <div className=' w-[25px] h-[25px] rounded-[50%]' onClick={handleIncreaseNumber}>
                                     <AiOutlinePlus className="w-full h-full"/>
                                 </div>
                             </div>
