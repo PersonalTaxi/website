@@ -182,7 +182,7 @@ function Search() {
   )
 }
 
-const PlacesAutocompletFrom = ({setSelected}) => {
+const PlacesAutocompletFrom = ({setSelected}:{setSelected:any}) => {
     const {
         ready,
         value,
