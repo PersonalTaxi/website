@@ -145,7 +145,7 @@ function Search() {
                             {/* <Calendar className='absolute bg-white border w-[280px]'/> */}
                                 <div ref={DatePlaceholder} className='absolute w-9/12 h-full text-left leading-[50px] text-gray-900/[0.5] right-0 pl-[5px]'>Date</div>
                                 <BsCalendar3 locale="en_EN" className="w-[30px] h-[30px] text-yellow-500/[0.4]"/>
-                                <input id="data" className='w-full h-[45px] pl-[5px] outline-none' placeholder='Date' type="date" onFocus={handleHidePlaceholderDivDate} ></input>
+                                <input id="data" className='w-full h-[45px] pl-[5px] outline-none z-10' placeholder='Date' type="date" onFocus={handleHidePlaceholderDivDate} ></input>
                             </div>
                             <div className="h-[50px] w-1/2 flex items-center justify-center pl-[10px] relative">
                                 <div ref={TimePlaceholder} className='absolute w-9/12 h-full text-left leading-[50px] text-gray-900/[0.5] right-0 pl-[5px]'>Time</div>
