@@ -129,22 +129,17 @@ function Search() {
                             <div ref={dataFrom} className='absolute w-full border h-[150px] top-[50px] bg-white hidden overflow-scroll z-10'>{CitiesListFrom}</div>
                                 <div id="icon-input-wraper" className='h-[49%] rounded-[10px] w-full flex items-center pl-[10px]'>
                                     <BiSolidMap className="w-[30px] h-[30px] text-yellow-500/[0.4]" />
-                                    <div className='places-container'>
+                                    <div className='places-container ml-[10px]'>
                                         <PlacesAutocompletFrom setSelected={setSelected} />
                                     </div>
-                                    {/* <input className='w-full h-full rounded-[10px] pl-[5px] outline-none' placeholder='From:'
-                                        onFocus={handleFocusInputFrom} 
-                                        onBlur={handleOnBlurInputFrom}
-                                        autoComplete="off"
-                                        >
-                                    </input> */}
                                 </div>
                             <div className='h-[1px] bg-gray-400/[0.3] w-11/12 mx-auto relative'></div>
                                 <div ref={dataTo} className='absolute w-full border h-[150px] top-[100px] bg-white hidden overflow-scroll z-10'>{CitiesListTo}</div>
                                 <div id="icon-input-wraper" className='h-[49%] rounded-[10px] w-full flex items-center pl-[10px]'>
                                     <BiSolidMap className="w-[30px] h-[30px] text-yellow-500/[0.4]" />
-                                    <input className='w-full h-full rounded-[10px] pl-[5px] outline-none' placeholder='To:' value={choosedLocalizationTo} onFocus={handleFocusInputTo} onBlur={handleOnBlurInputTo} autoComplete="off" readOnly></input>
-                                </div>
+                                    <div className='places-container ml-[10px]'>
+                                        <PlacesAutocompletTo setSelected={setSelected} />
+                                    </div>                                </div>
                             </div>
                         <div id="schedule-in-calendar" className="rounded-[10px] h-[50px] w-10/12 border flex flex-no-wrap">
                             <div className="h-[50px] w-1/2 border-r flex items-center pl-[10px] relative">
@@ -205,8 +200,8 @@ const PlacesAutocompletFrom = ({setSelected}:{setSelected:any}) => {
                 <ComboboxInput 
                     value={value} 
                     onChange={e => setValue(e.target.value)} 
-                    placeholder='Search address' 
-                    className="combobo-input" 
+                    placeholder='From' 
+                    className="combobo-input outline-none" 
                     disabled={!ready}/>
                 <ComboboxPopover>
                     <ComboboxList>
@@ -215,3 +210,37 @@ const PlacesAutocompletFrom = ({setSelected}:{setSelected:any}) => {
                 </ComboboxPopover>
             </Combobox>
     )}
+
+    const PlacesAutocompletTo = ({setSelected}:{setSelected:any}) => {
+        const {
+            ready,
+            value,
+            setValue,
+            suggestions:{status, data},
+            clearSuggestions,
+        } = usePlacesAutocomplete()
+    
+        const handleSelect = async (address:any) => {
+            clearSuggestions();
+            const results = await getGeocode({address});
+            const {lat, lng} = await getLatLng(results[0])
+            setSelected({lat,lng});
+            setValue(address, false);
+    
+        };
+        
+        return (
+                <Combobox onSelect={handleSelect}>
+                    <ComboboxInput 
+                        value={value} 
+                        onChange={e => setValue(e.target.value)} 
+                        placeholder='To' 
+                        className="combobo-input outline-none" 
+                        disabled={!ready}/>
+                    <ComboboxPopover>
+                        <ComboboxList>
+                            {status === 'OK' && data.map(({place_id, description}) => <ComboboxOption key={place_id} value={description} />)}
+                        </ComboboxList>
+                    </ComboboxPopover>
+                </Combobox>
+        )}
