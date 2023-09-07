@@ -125,21 +125,20 @@ function Search() {
             <div id="search-contianer" className='bg-white w-11/12 rounded-t-[15px] h-auto'>
                 <form className='w-full h-[300px] flex flex-col justify-evenly items-center mx-auto border-red-900'>
                     <div id="form-inputs-wraper" className='w-full h-[250px] flex flex-col justify-evenly items-center mx-auto border-red-900'>
-                        <div id="from-to" className="rounded-[10px] h-[100px] w-10/12 border relative">
-                            <div ref={dataFrom} className='absolute w-full border h-[150px] top-[50px] bg-white hidden overflow-scroll z-10'>{CitiesListFrom}</div>
+                        <div id="from-to" className="rounded-[10px] h-[100px] w-10/12 border">
                                 <div id="icon-input-wraper" className='h-[49%] rounded-[10px] w-full flex items-center pl-[10px]'>
                                     <BiSolidMap className="w-[30px] h-[30px] text-yellow-500/[0.4]" />
-                                    <div className='places-container ml-[10px]'>
+                                    <div className='places-container ml-[10px] w-full'>
                                         <PlacesAutocompletFrom setSelected={setSelected} />
                                     </div>
                                 </div>
-                            <div className='h-[1px] bg-gray-400/[0.3] w-11/12 mx-auto relative'></div>
-                                <div ref={dataTo} className='absolute w-full border h-[150px] top-[100px] bg-white hidden overflow-scroll z-10'>{CitiesListTo}</div>
+                            <div className='h-[1px] bg-gray-400/[0.3] w-11/12 mx-auto'></div>
                                 <div id="icon-input-wraper" className='h-[49%] rounded-[10px] w-full flex items-center pl-[10px]'>
                                     <BiSolidMap className="w-[30px] h-[30px] text-yellow-500/[0.4]" />
-                                    <div className='places-container ml-[10px]'>
+                                    <div className='places-container ml-[10px] w-full'>
                                         <PlacesAutocompletTo setSelected={setSelected} />
-                                    </div>                                </div>
+                                    </div>                                
+                                </div>
                             </div>
                         <div id="schedule-in-calendar" className="rounded-[10px] h-[50px] w-10/12 border flex flex-no-wrap">
                             <div className="h-[50px] w-1/2 border-r flex items-center pl-[10px] relative">
@@ -202,7 +201,7 @@ const PlacesAutocompletFrom = ({setSelected}:{setSelected:any}) => {
                     value={value} 
                     onChange={e => setValue(e.target.value)} 
                     placeholder='From' 
-                    className="combobo-input outline-none" 
+                    className="combobo-input outline-none w-full" 
                     disabled={!ready}/>
                 <ComboboxPopover className='z-20'>
                     <ComboboxList>
@@ -237,7 +236,7 @@ const PlacesAutocompletFrom = ({setSelected}:{setSelected:any}) => {
                         value={value} 
                         onChange={e => setValue(e.target.value)} 
                         placeholder='To' 
-                        className="combobo-input outline-none" 
+                        className="combobo-input outline-none w-full" 
                         disabled={!ready}/>
                     <ComboboxPopover className='z-20'>
                         <ComboboxList>
