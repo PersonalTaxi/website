@@ -117,12 +117,12 @@ function Search() {
     }, [PersonsToDrive])
  
   return (
-    <div className='w-screen h-[30vh] border-blue-900'>
+    <div className='w-screen h-[30vh] border-blue-900 z-20'>
         <div id="search-wraper" className='w-full flex flex-col justify-start items-center'>
             <div id="search-contianer-text" className='w-11/12 px-[30px]'>
                 <div className='w-[120px] bg-white text-center rounded-t-[10px]'>Your drive:</div>
             </div>
-            <div id="search-contianer" className='bg-white w-11/12 rounded-t-[15px] h-auto mt-[50px]'>
+            <div id="search-contianer" className='bg-white w-11/12 rounded-t-[15px] h-auto'>
                 <form className='w-full h-[300px] flex flex-col justify-evenly items-center mx-auto border-red-900'>
                     <div id="form-inputs-wraper" className='w-full h-[250px] flex flex-col justify-evenly items-center mx-auto border-red-900'>
                         <div id="from-to" className="rounded-[10px] h-[100px] w-10/12 border relative">
@@ -198,12 +198,13 @@ const PlacesAutocompletFrom = ({setSelected}:{setSelected:any}) => {
     return (
             <Combobox onSelect={handleSelect}>
                 <ComboboxInput 
+                    autoComplete='off'
                     value={value} 
                     onChange={e => setValue(e.target.value)} 
                     placeholder='From' 
                     className="combobo-input outline-none" 
                     disabled={!ready}/>
-                <ComboboxPopover>
+                <ComboboxPopover className='z-20'>
                     <ComboboxList>
                         {status === 'OK' && data.map(({place_id, description}) => <ComboboxOption key={place_id} value={description} />)}
                     </ComboboxList>
@@ -232,12 +233,13 @@ const PlacesAutocompletFrom = ({setSelected}:{setSelected:any}) => {
         return (
                 <Combobox onSelect={handleSelect}>
                     <ComboboxInput 
+                        autoComplete='off'
                         value={value} 
                         onChange={e => setValue(e.target.value)} 
                         placeholder='To' 
                         className="combobo-input outline-none" 
                         disabled={!ready}/>
-                    <ComboboxPopover>
+                    <ComboboxPopover className='z-20'>
                         <ComboboxList>
                             {status === 'OK' && data.map(({place_id, description}) => <ComboboxOption key={place_id} value={description} />)}
                         </ComboboxList>
