@@ -15,7 +15,7 @@ export default function TomTom() {
 
   const [dataToFetch, setDataToFetch] = useState(null);
   const [queryTo, setQueryTo] = useState("");
-  const [activeQuery, setActiveQuery] = useState()
+  const [activeQuery, setActiveQuery] = useState("")
 
   const FromList:any = useRef();
   const ToList:any = useRef();
