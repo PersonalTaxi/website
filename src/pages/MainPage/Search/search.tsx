@@ -32,18 +32,18 @@ export default function Search() {
 
     const handleChooseLocalization = (e:any) => {
 
-        const name = e.target.getAttribute("data-name")
-        const value = e.target.getAttribute("data-value")
+        // const name = e.target.getAttribute("data-name")
+        // const value = e.target.getAttribute("data-value")
 
-        console.log(name)
+        // console.log(name)
 
-        if(name === "From"){
-            setFromLocalization(value)
-            handleOnBlurInputFrom()
-        } else {
-            setToLocalization(value)
-            handleOnBlurInputTo()
-        }
+        // if(name === "From"){
+        //     setFromLocalization(value)
+        //     handleOnBlurInputFrom()
+        // } else {
+        //     setToLocalization(value)
+        //     handleOnBlurInputTo()
+        // }
     }
 
     const handleFocusInputFrom = (e:any) =>  {
