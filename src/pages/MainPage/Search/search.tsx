@@ -1,4 +1,8 @@
-import React, { useState, useRef, useMemo, useCallback } from 'react'
+import React, { useState, useRef, useMemo, useCallback, useEffect, createContext } from 'react'
+import { AppContext } from '@/pages/_app'
+import Link from 'next/link'
+import TomTom from '@/pages/tomtom'
+import { useContext } from 'react'
 import {BiSolidMap} from 'react-icons/bi'
 import {BsCalendar3} from 'react-icons/bs'
 import {TbClockHour8} from 'react-icons/tb'
@@ -6,26 +10,16 @@ import Cities from '../../../data/cities.json'
 import Calendar  from 'react-calendar'
 import {AiOutlineMinus, AiOutlinePlus} from 'react-icons/ai'
 import {BsFillPersonFill} from 'react-icons/bs'
-import { Autocomplete, GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
-import usePlacesAutocomplete,{getGeocode,getLatLng} from 'use-places-autocomplete'
-import { Combobox, ComboboxInput, ComboboxList, ComboboxPopover, ComboboxOption } from '@reach/combobox'
-import "@reach/combobox/styles.css"
+import Script from 'next/script'
+import Head from 'next/head'
 
-export default function Places() {
-const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyBuxm3C_h_hXOoP7xg0Kh4pq-79AAYAV1I",
-    libraries:['places']
-    });
+export default function Search() {
 
+    //import context with choosed params
+    const {FromLocalization, setFromLocalization} = useContext(AppContext)
+    const {ToLocalization, setToLocalization} = useContext(AppContext)
 
-if (!isLoaded ) return <div>Loading...</div>;
-return <Search />;
-
-}
-
-function Search() {
-
-    const [selected, setSelected] = useState(null);
+    const mapElement:any = useRef();
 
     const dataFrom:any = useRef();
     const dataTo:any = useRef();
@@ -34,8 +28,6 @@ function Search() {
     const [PersonsToDrive, setPersonsToDrive] = useState(2);
 
     const [list, setList] = useState(JSON.parse(JSON.stringify(Cities.cities)))
-    const [choosedLocalizationFrom, setChoosedLocalizationFrom] = useState();
-    const [choosedLocalizationTo, setChoosedLocalizationTo] = useState();
 
 
     const handleChooseLocalization = (e:any) => {
@@ -46,31 +38,13 @@ function Search() {
         console.log(name)
 
         if(name === "From"){
-            setChoosedLocalizationFrom(value)
+            setFromLocalization(value)
             handleOnBlurInputFrom()
         } else {
-            setChoosedLocalizationTo(value)
+            setToLocalization(value)
             handleOnBlurInputTo()
         }
     }
-
-    const CitiesListFrom = list.map((city:string) => {
-        return (
-            <div key={city}  className='w-full'>
-                <div data-name="From" data-value={city} className='w-full text-[20px] py-[2px]' onClick={handleChooseLocalization} onMouseDown={(e) => e.preventDefault()}>{city}</div>
-            </div>
-        )
-
-    })
-
-    const CitiesListTo = list.map((city:string) => {
-        return (
-            <div key={city}  className='w-full'>
-                <div data-name="To" data-value={city} className='w-full text-[20px] py-[2px]' onClick={handleChooseLocalization} onMouseDown={(e) => e.preventDefault()}>{city}</div>
-            </div>
-        )
-
-    })
 
     const handleFocusInputFrom = (e:any) =>  {
         dataFrom.current.style.display = "block"
@@ -109,14 +83,24 @@ function Search() {
         
     }, [PersonsToDrive])
 
-
     const handleIncreaseNumber = useCallback(() => {
         if(PersonsToDrive < 7){
-        return [setPersonsToDrive(PersonsToDrive +1)]
+            return [setPersonsToDrive(PersonsToDrive +1)]
         }
     }, [PersonsToDrive])
- 
+
   return (
+    <>
+        <Head>
+            <meta http-equiv='X-UA-Compatible' content='IE=Edge' ></meta>
+            <title>Your best drive</title>
+            <meta name='viewport'
+                content='width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no'></meta>
+            <link rel='stylesheet' type='text/css' href='/cdn.web-sdk-maps/maps.css'></link>
+            <link rel='stylesheet' type='text/css' href='../assets/ui-library/index.css'></link>
+            <link rel='stylesheet' type='text/css' href='/cdn.web-sdk-plugin-searchbox/SearchBox.css'></link>
+            <link rel='stylesheet' type='text/css' href='../assets/ui-library/icons-css/poi.css'></link>
+        </Head>
     <div className='w-screen h-[30vh] border-blue-900 z-20'>
         <div id="search-wraper" className='w-full flex flex-col justify-start items-center'>
             <div id="search-contianer-text" className='w-11/12 px-[30px]'>
@@ -125,19 +109,9 @@ function Search() {
             <div id="search-contianer" className='bg-white w-11/12 rounded-t-[15px] h-auto'>
                 <form className='w-full h-[300px] flex flex-col justify-evenly items-center mx-auto border-red-900'>
                     <div id="form-inputs-wraper" className='w-full h-[250px] flex flex-col justify-evenly items-center mx-auto border-red-900'>
-                        <div id="from-to" className="rounded-[10px] h-[100px] w-10/12 border">
-                                <div id="icon-input-wraper" className='h-[49%] rounded-[10px] w-full flex items-center pl-[10px]'>
-                                    <BiSolidMap className="w-[30px] h-[30px] text-yellow-500/[0.4]" />
-                                    <div className='places-container ml-[10px] w-full'>
-                                        <PlacesAutocompletFrom setSelected={setSelected} />
-                                    </div>
-                                </div>
-                            <div className='h-[1px] bg-gray-400/[0.3] w-11/12 mx-auto'></div>
-                                <div id="icon-input-wraper" className='h-[49%] rounded-[10px] w-full flex items-center pl-[10px]'>
-                                    <BiSolidMap className="w-[30px] h-[30px] text-yellow-500/[0.4]" />
-                                    <div className='places-container ml-[10px] w-full'>
-                                        <PlacesAutocompletTo setSelected={setSelected} />
-                                    </div>                                
+                        <div id="from-to" className="rounded-[10px] h-[100px] w-10/12 border relative">
+                                <div id="icon-input-wraper" className='h-full rounded-[10px] w-full flex items-center relative'> 
+                                    <TomTom />
                                 </div>
                             </div>
                         <div id="schedule-in-calendar" className="rounded-[10px] h-[50px] w-10/12 border flex flex-no-wrap">
@@ -166,82 +140,15 @@ function Search() {
                                     <AiOutlinePlus className="w-full h-full"/>
                                 </div>
                             </div>
-                            <button id="person-and-submit-wraper" className="rounded-[10px] h-[50px] w-5/12 border uppercase bg-black text-yellow-400">See offers</button>
+                            <Link className="rounded-[10px] h-[50px] w-5/12" href="/ordering/summary" >
+                                <button id="person-and-submit-wraper" className="rounded-[10px] h-[50px] w-full border uppercase bg-black text-yellow-400">See offers</button>
+                            </Link>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+    </>
   )
 }
-
-const PlacesAutocompletFrom = ({setSelected}:{setSelected:any}) => {
-    const {
-        ready,
-        value,
-        setValue,
-        suggestions:{status, data},
-        clearSuggestions,
-    } = usePlacesAutocomplete()
-
-    const handleSelect = async (address:any) => {
-        clearSuggestions();
-        const results = await getGeocode({address});
-        const {lat, lng} = await getLatLng(results[0])
-        setSelected({lat,lng});
-        setValue(address, false);
-
-    };
-    
-    return (
-            <Combobox onSelect={handleSelect}>
-                <ComboboxInput 
-                    autoComplete='off'
-                    value={value} 
-                    onChange={e => setValue(e.target.value)} 
-                    placeholder='From' 
-                    className="combobo-input outline-none w-full" 
-                    disabled={!ready}/>
-                <ComboboxPopover className='z-20'>
-                    <ComboboxList>
-                        {status === 'OK' && data.map(({place_id, description}) => <ComboboxOption key={place_id} value={description} />)}
-                    </ComboboxList>
-                </ComboboxPopover>
-            </Combobox>
-    )}
-
-    const PlacesAutocompletTo = ({setSelected}:{setSelected:any}) => {
-        const {
-            ready,
-            value,
-            setValue,
-            suggestions:{status, data},
-            clearSuggestions,
-        } = usePlacesAutocomplete()
-    
-        const handleSelect = async (address:any) => {
-            clearSuggestions();
-            const results = await getGeocode({address});
-            const {lat, lng} = await getLatLng(results[0])
-            setSelected({lat,lng});
-            setValue(address, false);
-    
-        };
-        
-        return (
-                <Combobox onSelect={handleSelect}>
-                    <ComboboxInput 
-                        autoComplete='off'
-                        value={value} 
-                        onChange={e => setValue(e.target.value)} 
-                        placeholder='To' 
-                        className="combobo-input outline-none w-full" 
-                        disabled={!ready}/>
-                    <ComboboxPopover className='z-20'>
-                        <ComboboxList>
-                            {status === 'OK' && data.map(({place_id, description}) => <ComboboxOption key={place_id} value={description} />)}
-                        </ComboboxList>
-                    </ComboboxPopover>
-                </Combobox>
-        )}
