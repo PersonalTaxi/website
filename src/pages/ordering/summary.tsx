@@ -3,11 +3,11 @@ import { AppContext } from '../_app'
 
 export default function Summary() {
 
-    const {FromLocalization, setFromLocalization} = useContext(AppContext)
-    console.log(FromLocalization)
+    // const {FromLocalization, setFromLocalization} = useContext(AppContext)
+    // console.log(FromLocalization)
 
 
-    
+
 
 
   return (
