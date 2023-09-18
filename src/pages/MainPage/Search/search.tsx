@@ -1,5 +1,5 @@
 import React, { useState, useRef, useMemo, useCallback, useEffect, createContext } from 'react'
-import { AppContext } from '@/pages/_app'
+import AppContext  from '@/pages/_app'
 import Link from 'next/link'
 import TomTom from '@/pages/tomtom'
 import { useContext } from 'react'
