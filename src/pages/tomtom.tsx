@@ -124,6 +124,7 @@ export default function TomTom() {
 
           return (
             <div 
+              key={i}
               ref={suggest}
               id={activeQuery} 
               className='flex w-[99%] border-b bg-white py-[5px] rounded-[2px] px-[10px] m-[0.5%] duration-200 hover:bg-blue-400 hover:text-white cursor-pointer overflow-hidden'
