@@ -16,8 +16,8 @@ import Head from 'next/head'
 export default function Search() {
 
     //import context with choosed params
-    const {FromLocalization, setFromLocalization} = useContext(AppContext)
-    const {ToLocalization, setToLocalization} = useContext(AppContext)
+    // const {FromLocalization, setFromLocalization} = useContext(AppContext)
+    // const {ToLocalization, setToLocalization} = useContext(AppContext)
 
     const mapElement:any = useRef();
 
