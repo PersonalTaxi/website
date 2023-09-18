@@ -13,8 +13,8 @@ export default function App({ Component, pageProps }: AppProps) {
       const [Time, setTime] = useState();
   
   return (
-    <AppContext.Provider value={{FromLocalization, setFromLocalization}}>
+    // <AppContext.Provider>
       <Component {...pageProps} />
-    </AppContext.Provider>
+    // </AppContext.Provider>
     )
 }
