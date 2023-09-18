@@ -2,7 +2,7 @@ import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 import { createContext, useState } from 'react'
 
-export const AppContext = createContext();
+export const AppContext = createContext(null);
 
 export default function App({ Component, pageProps }: AppProps) {
 
