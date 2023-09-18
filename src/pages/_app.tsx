@@ -7,8 +7,8 @@ export const AppContext = createContext(null);
 export default function App({ Component, pageProps }: AppProps) {
 
       //choosed params 
-      // const [FromLocalization, setFromLocalization] = useState("dupa");
-      // const [ToLocalization, setToLocalization] = useState();
+      const [FromLocalization, setFromLocalization] = useState("dupa");
+      const [ToLocalization, setToLocalization] = useState();
       const [Date, setDate] = useState();
       const [Time, setTime] = useState();
   
