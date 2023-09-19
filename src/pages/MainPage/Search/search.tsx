@@ -1,5 +1,6 @@
 import React, { useState, useRef, useMemo, useCallback, useEffect, createContext } from 'react'
 import AppContext  from '@/pages/_app'
+import Router, { useRouter } from 'next/router'
 import Link from 'next/link'
 import TomTom from '@/pages/tomtom'
 import { useContext } from 'react'
@@ -15,9 +16,7 @@ import Head from 'next/head'
 
 export default function Search() {
 
-    //import context with choosed params
-    // const {FromLocalization, setFromLocalization} = useContext(AppContext)
-    // const {ToLocalization, setToLocalization} = useContext(AppContext)
+    const router = useRouter();
 
     const mapElement:any = useRef();
 
@@ -101,12 +100,12 @@ export default function Search() {
             <link rel='stylesheet' type='text/css' href='/cdn.web-sdk-plugin-searchbox/SearchBox.css'></link>
             <link rel='stylesheet' type='text/css' href='../assets/ui-library/icons-css/poi.css'></link>
         </Head>
-    <div className='w-screen h-[30vh] border-blue-900 z-20'>
+    <div className='w-screen h-[40vh] border-blue-900 z-20'>
         <div id="search-wraper" className='w-full flex flex-col justify-start items-center'>
             <div id="search-contianer-text" className='w-11/12 px-[30px]'>
                 <div className='w-[120px] bg-white text-center rounded-t-[10px]'>Your drive:</div>
             </div>
-            <div id="search-contianer" className='bg-white w-11/12 rounded-t-[15px] h-auto'>
+            <div id="search-contianer" className='bg-white w-11/12 rounded-[15px] h-auto'>
                 <form className='w-full h-[300px] flex flex-col justify-evenly items-center mx-auto border-red-900'>
                     <div id="form-inputs-wraper" className='w-full h-[250px] flex flex-col justify-evenly items-center mx-auto border-red-900'>
                         <div id="from-to" className="rounded-[10px] h-[100px] w-10/12 border relative">
@@ -141,7 +140,9 @@ export default function Search() {
                                 </div>
                             </div>
                             <Link className="rounded-[10px] h-[50px] w-5/12" href="/ordering/summary" >
-                                <button id="person-and-submit-wraper" className="rounded-[10px] h-[50px] w-full border uppercase bg-black text-yellow-400">See offers</button>
+                                <button id="person-and-submit-wraper" className="rounded-[10px] h-[50px] w-full border uppercase bg-black text-yellow-400">
+                                    {!router.asPath.includes("ordering") ? <p>See offers</p> : <p>Update road</p>}
+                                </button>
                             </Link>
                         </div>
                     </div>

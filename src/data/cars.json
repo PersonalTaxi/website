@@ -1,0 +1,21 @@
+{
+    "cars":[
+        {
+            "type":"Van",
+            "photo":"/Van.webp",
+            "name": "VW",
+            "model": "Transporter",
+            "passengers":7,
+            "fits": 6
+        },
+        {
+            "type":"Limo",
+            "photo":"/mercedes.jpeg",
+            "name": "Mercedes",
+            "model": "C Class",
+            "passengers":4,
+            "fits": 4
+        }
+    ]
+}
+    
