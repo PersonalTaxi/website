@@ -140,7 +140,7 @@ export default function Search() {
                                 </div>
                             </div>
                             <Link className="rounded-[10px] h-[50px] w-5/12" href="/ordering/summary" >
-                                <button id="person-and-submit-wraper" className="rounded-[10px] h-[50px] w-full border uppercase bg-black text-yellow-400">
+                                <button id="person-and-submit-wraper" className=" border-black rounded-[10px] h-[50px] w-full border-2 bg-black text-yellow-400 hover:text-black hover:bg-yellow-500 hover:border-yellow-500 duration-150">
                                     {!router.asPath.includes("ordering") ? <p>See offer</p> : <p>Update road</p>}
                                 </button>
                             </Link>

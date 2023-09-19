@@ -10,7 +10,7 @@ export default function Carcomponents() {
 
     const Car = cars.cars.map((i:any) => {
         console.log(i)
-        if(i.type === "Van"){
+        if(i.type === "Sedan"){
         return (
             <div key={i} className='flex border-blue-900 w-[90vw] rounded-xl h-[300px] mx-auto flex-wrap'>
             <div id="photo"className='border-red-900 border-red-900 w-5/12 h-[180px] relative'>

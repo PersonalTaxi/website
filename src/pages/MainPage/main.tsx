@@ -1,6 +1,7 @@
 import React from 'react'
 import Claim from './claim'
 import Search from './Search/search'
+import Aboutinmian from './aboutinmian'
 
 
 export default function Main() {
@@ -11,6 +12,7 @@ export default function Main() {
         <Claim />
         <Search />
         <div className='absolute w-full h-full top-0 left-0 bg-black/[0.55]'></div>
+        <Aboutinmian />
     </div>
   )
 }

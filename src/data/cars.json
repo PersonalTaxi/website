@@ -9,8 +9,8 @@
             "fits": 6
         },
         {
-            "type":"Limo",
-            "photo":"/mercedes.jpeg",
+            "type":"Sedan",
+            "photo":"/mercedes.png",
             "name": "Mercedes",
             "model": "C Class",
             "passengers":4,
