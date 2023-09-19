@@ -12,7 +12,7 @@ export default function Carcomponents() {
         console.log(i)
         if(i.type === "Van"){
         return (
-            <div className='flex border-blue-900 w-[90vw] rounded-xl h-[300px] mx-auto flex-wrap'>
+            <div key={i} className='flex border-blue-900 w-[90vw] rounded-xl h-[300px] mx-auto flex-wrap'>
             <div id="photo"className='border-red-900 border-red-900 w-5/12 h-[180px] relative'>
                 <Image className='object-contain'
                     src={i.photo}

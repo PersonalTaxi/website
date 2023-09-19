@@ -3,7 +3,6 @@ import Carcomponents from './carcomponents'
 import Header from '../Header/header'
 import Search from '../MainPage/Search/search'
 import Head from 'next/head'
-import AppContext from '../_app'
 
 export default function Summary() {
 
