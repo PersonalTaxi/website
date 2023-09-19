@@ -5,7 +5,7 @@ import Search from '../MainPage/Search/search'
 import Head from 'next/head'
 import AppContext from '../_app'
 
-export default function Summary() {
+export default function Order() {
 
     // const {FromLocalization, setFromLocalization} = useContext(AppContext)
     // console.log(FromLocalization)
