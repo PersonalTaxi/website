@@ -100,7 +100,7 @@ export default function Search() {
             <link rel='stylesheet' type='text/css' href='/cdn.web-sdk-plugin-searchbox/SearchBox.css'></link>
             <link rel='stylesheet' type='text/css' href='../assets/ui-library/icons-css/poi.css'></link>
         </Head>
-    <div className='w-screen h-[40vh] border-blue-900 z-20'>
+    <div className='w-screen h-[400px] border-blue-900 z-20'>
         <div id="search-wraper" className='w-full flex flex-col justify-start items-center'>
             <div id="search-contianer-text" className='w-11/12 px-[30px]'>
                 <div className='w-[120px] bg-white text-center rounded-t-[10px]'>Your drive:</div>
@@ -141,7 +141,7 @@ export default function Search() {
                             </div>
                             <Link className="rounded-[10px] h-[50px] w-5/12" href="/ordering/summary" >
                                 <button id="person-and-submit-wraper" className="rounded-[10px] h-[50px] w-full border uppercase bg-black text-yellow-400">
-                                    {!router.asPath.includes("ordering") ? <p>See offers</p> : <p>Update road</p>}
+                                    {!router.asPath.includes("ordering") ? <p>See offer</p> : <p>Update road</p>}
                                 </button>
                             </Link>
                         </div>
