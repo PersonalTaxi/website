@@ -1,4 +1,5 @@
 import  React, { useRef, useState, useEffect, Component, useContext } from 'react';
+import { useRouter } from 'next/router';
 
 //icons
 import { MdLocalAirport, MdPlace, MdHotel, MdDirectionsCar, MdAttachMoney, MdLocalParking } from 'react-icons/md'
@@ -9,6 +10,10 @@ import { AiFillCloseSquare } from 'react-icons/ai'
 import { AppContext } from './_app';
 
 export default function TomTom() {
+
+  const router = useRouter();
+
+  console.log(router.query.from)
 
   const [dataFromFetch, setDataFromFetch] = useState(null);
   const {queryFrom, setQueryFrom} = useContext(AppContext)
@@ -219,7 +224,7 @@ export default function TomTom() {
               <input 
                 ref={inputTo}
                 name="to" 
-                onBlur={handleHidingList} 
+                onBlur={handleHidingList}
                 value={queryTo} 
                 onFocus={handleShowingList} 
                 onChange={handleSearchTo} 

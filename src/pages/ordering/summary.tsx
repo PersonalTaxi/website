@@ -3,6 +3,13 @@ import Carcomponents from './carcomponents'
 import Header from '../Header/header'
 import Search from '../MainPage/Search/search'
 import Head from 'next/head'
+import { Ubuntu } from 'next/font/google'
+
+
+const ubuntuFont = Ubuntu({
+  subsets: ['latin'],
+  weight:['300']
+})
 
 export default function Summary() {
 
@@ -10,7 +17,7 @@ export default function Summary() {
     // console.log(FromLocalization)
 
   return (
-    <div className='bg-[url("/Main_theme.png")] w-screen h-screen bg-cover'>
+    <div className={`bg-[url("/Main_theme.png")] w-screen h-screen bg-cover ${ubuntuFont.className}`}>
        <Head>
             <meta http-equiv='X-UA-Compatible' content='IE=Edge' ></meta>
             <title>Your best drive</title>

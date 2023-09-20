@@ -1,14 +1,20 @@
 import Image from 'next/image'
-import { Inter } from 'next/font/google'
+import { Ubuntu } from 'next/font/google'
 import Header from './Header/header'
 import Main from './MainPage/main'
-import { useEffect } from 'react'
+
+
+const rubikFonts = Ubuntu({
+  subsets: ['latin'],
+  weight:['300', '500',]
+})
+
 
 export default function Home() {
 
   return (
     <>
-      <main>
+      <main className={`${rubikFonts.className}`}>
         <Header />
         <Main />
       </main>

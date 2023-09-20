@@ -3,16 +3,20 @@ import cars from "../../data/cars.json"
 import Image from 'next/image'
 import {BsFillPersonFill, BsFillBagFill} from 'react-icons/bs'
 import { AppContext } from '../_app'
+import { useRouter } from 'next/router'
 //icons
 import {MdFlightLand} from 'react-icons/md'
 import {AiFillInfoCircle} from 'react-icons/ai'
+import {AiOutlineClose, AiOutlineFieldTime} from 'react-icons/ai'
+import {MdOutlinePersonPinCircle} from 'react-icons/md'
+import {BiSolidPhoneCall} from 'react-icons/bi'
 
 
 export default function Carcomponents() {
 
     const handleFlightinfo:any = useRef();
-
-    const {passengers} = useContext(AppContext)
+    const router = useRouter();
+    const { passengers } = router.query
 
     const Car = cars.cars.map((i:any) => {
 
@@ -60,20 +64,35 @@ export default function Carcomponents() {
                 </div>
                 <div id="Price-wrapper"></div>
             </div>
-            <form className=' border-red-900 h-[120px] w-[80%] mx-auto relative'>
-                <div ref={handleFlightinfo} className='hidden p-[4px] w-[85%] left-0 absolute bg-white border roudned-[10xp]'><p>Write down your flight number then we will be able to monitoring eventual departures time and get your from the airport at right time. After departure our waiting time is up to 60 mins.</p></div>
-                <div className=' border-blue-900 w-full flex justify-between'>
-                    <div className=' border-blue-900 w-full h-[30px] flex items-center'>
-                        <MdFlightLand className='h-[30px] w-[30px] px-[4px]'/>
-                        <input className='border border-gray-400 w-full' placeholder=' Flight e.g FR9847'></input>
+            <form className=' border-red-900 h-[250px] w-[80%] mx-auto relative'>
+                <div ref={handleFlightinfo} className='hidden -top-[70px] p-[9px] w-[85%] left-0 absolute bg-white border rounded-[10px] shadow-xl'>
+                    <AiOutlineClose className="w-[20px] h-[20px] float-right" onClick={handleHideInfoAboutFlight}/>
+                    <p>By writing down number of your flight we will be able to monitoring departures time and get your from the airport at right time. After departure our waiting time is up to 60 mins.</p>
+                </div>
+                <div className=' border-blue-900 w-full h-[30px] flex items-center'>
+                    <MdOutlinePersonPinCircle className='h-[30px] w-[40px] px-[4px] text-yellow-500'/>
+                    <div className='border-gray-400 w-full'>We will find you at the Airport</div>
+                </div>
+                <div className=' border-blue-900 w-full h-[30px] flex items-center'>
+                    <BiSolidPhoneCall className='h-[30px] w-[40px] px-[4px] text-yellow-500'/>
+                    <div className='border-gray-400 w-full'>We will call you to find you</div>
+                </div>
+                <div className=' border-blue-900 w-full h-[30px] flex items-center'>
+                    <AiOutlineFieldTime className='h-[30px] w-[40px] px-[4px] text-yellow-500'/>
+                    <div className='border-gray-400 w-full'>Waiting time up to 60 mins.</div>
+                </div>
+                <div className=' border-blue-900 w-full flex justify-between items-center mt-[20px]'>
+                    <div className=' border-blue-900 w-full h-[40px] flex items-center'>
+                        <MdFlightLand className='h-[40px] w-[40px] px-[4px] text-yellow-500'/>
+                        <input className='border border-gray-400 w-full h-[40px]' placeholder=' Flight number e.g FR9847'></input>
                     </div>
                     <div id="info-icon" onMouseEnter={handleShowInfoAboutFlight} onMouseLeave={handleHideInfoAboutFlight}>
                         <AiFillInfoCircle className='h-[30px] w-[30px] px-[4px] text-yellow-500'/>
                     </div>
                 </div>
-                <div className=' border-blue-900 w-full h-[70px] flex items-start flex-col mt-[10px]'>
+                <div className=' border-blue-900 w-full h-[70px] flex items-start flex-col mt-[10px] px-[4px]'>
                         <div className='text-[12px]'>Information for your driver:</div>
-                        <textarea className='text-[12px] border border-gray-300 h-[50px] w-full' placeholder=' Your massage here'></textarea>
+                        <textarea className='border border-gray-300 h-[50px] w-full' placeholder=' Your massage here'></textarea>
                     </div>
             </form>
             <div className='flex w-[80%] border-green-900 h-[50px] justify-end mx-auto'>

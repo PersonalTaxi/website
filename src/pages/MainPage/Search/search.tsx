@@ -25,10 +25,6 @@ export default function Search() {
     const dataTo:any = useRef();
     const DatePlaceholder:any = useRef();
     const TimePlaceholder:any = useRef();
-    const [PersonsToDrive, setPersonsToDrive] = useState(2);
-
-    const [list, setList] = useState(JSON.parse(JSON.stringify(Cities.cities)))
-
 
     const handleChooseLocalization = (e:any) => {
 
@@ -67,12 +63,12 @@ export default function Search() {
     }
 
     const handleHidePlaceholderDivDate = () =>  {
-        DatePlaceholder.current.style.display = "none"
+        // DatePlaceholder.current.style.display = "none"
 
     }
 
     const handleHidePlaceholderDivTime = () =>  {
-        TimePlaceholder.current.style.display = "none"
+        // TimePlaceholder.current.style.display = "none"
 
     }
 
@@ -94,7 +90,18 @@ export default function Search() {
     }
 
     const handleTime = (e:any) => {
-        setTime(e.target.value)
+        setTime(e.target.value) 
+    }
+
+    const handleSendForm = (e:any) => {
+        e.preventDefault();
+        router.push({
+            pathname:"/ordering/summary",
+            query:{
+                passengers:passengers
+            }
+        })
+
     }
 
 
@@ -119,7 +126,7 @@ export default function Search() {
                 <div className='w-[120px] bg-white text-center rounded-t-[10px]'>Your drive:</div>
             </div>
             <div id="search-contianer" className='bg-white w-11/12 rounded-[15px] h-auto'>
-                <form className='w-full h-[300px] flex flex-col justify-evenly items-center mx-auto border-red-900'>
+                <form onSubmit={handleSendForm} className='w-full h-[300px] flex flex-col justify-evenly items-center mx-auto border-red-900'>
                     <div id="form-inputs-wraper" className='w-full h-[250px] flex flex-col justify-evenly items-center mx-auto border-red-900'>
                         <div id="from-to" className="rounded-[10px] h-[100px] w-10/12 border relative">
                                 <div id="icon-input-wraper" className='h-full rounded-[10px] w-full flex items-center relative'> 
@@ -177,11 +184,9 @@ export default function Search() {
                                     <AiOutlinePlus className="w-full h-full"/>
                                 </div>
                             </div>
-                            <Link className="rounded-[10px] h-[50px] w-5/12" href="/ordering/summary" >
-                                <button id="person-and-submit-wraper" className=" border-black rounded-[10px] h-[50px] w-full border-2 bg-black text-yellow-400 hover:text-black hover:bg-yellow-500 hover:border-yellow-500 duration-150">
+                                <button id="person-and-submit-wraper" className=" border-black rounded-[10px] h-[50px] w-[130px] border-2 bg-black text-yellow-400 hover:text-black hover:bg-yellow-500 hover:border-yellow-500 duration-150">
                                     {!router.asPath.includes("ordering") ? <p>See offer</p> : <p>Update road</p>}
                                 </button>
-                            </Link>
                         </div>
                     </div>
                 </form>

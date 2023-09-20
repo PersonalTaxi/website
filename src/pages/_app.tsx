@@ -1,6 +1,6 @@
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
-import { createContext, useState } from 'react'
+import { createContext, useReducer, useState } from 'react'
 import Search from './MainPage/Search/search'
 
 type QueryParams = {
@@ -14,7 +14,6 @@ type QueryParams = {
   setTime:React.Dispatch<React.SetStateAction<any>>
   passengers: number
   setPassengers:React.Dispatch<React.SetStateAction<number>>
-  
   
 }
 
