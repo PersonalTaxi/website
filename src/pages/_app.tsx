@@ -12,6 +12,8 @@ type QueryParams = {
   setDate:React.Dispatch<React.SetStateAction<any>>
   time: any
   setTime:React.Dispatch<React.SetStateAction<any>>
+  passengers: number
+  setPassengers:React.Dispatch<React.SetStateAction<number>>
   
 }
 
@@ -23,9 +25,10 @@ export default function App({ Component, pageProps }: AppProps) {
   const [queryTo, setQueryTo] = useState("")
   const [date, setDate] = useState("")
   const [time, setTime] = useState("")
+  const [passengers, setPassengers] = useState(2)
 
   return (
-    <AppContext.Provider value={{queryFrom, setQueryFrom, queryTo, setQueryTo, date, setDate, time, setTime}}>
+    <AppContext.Provider value={{queryFrom, setQueryFrom, queryTo, setQueryTo, date, setDate, time, setTime, passengers, setPassengers}}>
       <Component {...pageProps} />
     </AppContext.Provider>
     )

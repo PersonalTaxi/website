@@ -15,7 +15,7 @@ import Head from 'next/head'
 
 export default function Search() {
 
-    const {queryFrom, setQueryFrom, queryTo, setQueryTo, date, setDate, time, setTime} = useContext(AppContext)
+    const {queryFrom, setQueryFrom, queryTo, setQueryTo, date, setDate, time, setTime, passengers setPassengers} = useContext(AppContext)
 
     const router = useRouter();
 
@@ -78,14 +78,14 @@ export default function Search() {
 
     const handleDowncreaseNumber = useCallback(() => {
         if(PersonsToDrive > 1){
-            return [setPersonsToDrive(PersonsToDrive -1)]
+            return [setPassengers(passengers -1)]
         }
         
     }, [PersonsToDrive])
 
     const handleIncreaseNumber = useCallback(() => {
         if(PersonsToDrive < 7){
-            return [setPersonsToDrive(PersonsToDrive +1)]
+            return [setPassengers(passengers +1)]
         }
     }, [PersonsToDrive])
 
@@ -96,6 +96,7 @@ export default function Search() {
     const handleTime = (e:any) => {
         setTime(e.target.value)
     }
+
 
     console.log(date)
 
@@ -135,9 +136,9 @@ export default function Search() {
                                 </div>}
                                 <BsCalendar3 locale="en_EN" className="w-[30px] h-[30px] text-yellow-500/[0.4]"/>
                                 <input 
-                                    onChange={handleDate}  
+                                    onChange={handleDate}
                                     id="data" 
-                                    className='w-full h-[45px] pl-[5px] outline-none z-10' 
+                                    className='w-full h-[45px] pl-[5px] outline-none z-10'
                                     placeholder='Date' 
                                     type="date" 
                                     onFocus={handleHidePlaceholderDivDate} 
@@ -171,7 +172,7 @@ export default function Search() {
                                 <div className='w-[30px] h-[30px]'>
                                     <BsFillPersonFill className="w-full h-full text-yellow-400/[0.4]" />
                                 </div>
-                                <div className='w-[30px] h-[30px] text-[22px] leading-7 text-center duration-200'>{PersonsToDrive}</div>
+                                <div className='w-[30px] h-[30px] text-[22px] leading-7 text-center duration-200'>{passengers}</div>
                                 <div className=' w-[25px] h-[25px] rounded-[50%]' onClick={handleIncreaseNumber}>
                                     <AiOutlinePlus className="w-full h-full"/>
                                 </div>
