@@ -185,8 +185,6 @@ export default function TomTom() {
 
   }
 
-  console.log(inputTo.current)
-
     return (
         <div className='flex flex-col w-full justify-around'>
           <div className='w-full h-[47px] flex flex-col rounded-r-[10px] relative'>
