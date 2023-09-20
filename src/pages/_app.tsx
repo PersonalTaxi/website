@@ -15,6 +15,7 @@ type QueryParams = {
   passengers: number
   setPassengers:React.Dispatch<React.SetStateAction<number>>
   
+  
 }
 
 export const AppContext = createContext({} as QueryParams );

@@ -15,7 +15,7 @@ import Head from 'next/head'
 
 export default function Search() {
 
-    const {queryFrom, setQueryFrom, queryTo, setQueryTo, date, setDate, time, setTime, passengers setPassengers} = useContext(AppContext)
+    const {queryFrom, setQueryFrom, queryTo, setQueryTo, date, setDate, time, setTime, passengers, setPassengers} = useContext(AppContext)
 
     const router = useRouter();
 
@@ -77,17 +77,17 @@ export default function Search() {
     }
 
     const handleDowncreaseNumber = useCallback(() => {
-        if(PersonsToDrive > 1){
+        if(passengers > 1){
             return [setPassengers(passengers -1)]
         }
         
-    }, [PersonsToDrive])
+    }, [passengers])
 
     const handleIncreaseNumber = useCallback(() => {
-        if(PersonsToDrive < 7){
+        if(passengers < 7){
             return [setPassengers(passengers +1)]
         }
-    }, [PersonsToDrive])
+    }, [passengers])
 
     const handleDate = (e:any) => {
         setDate(e.target.value)
