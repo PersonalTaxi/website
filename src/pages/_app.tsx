@@ -1,24 +1,25 @@
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 import { createContext, useState } from 'react'
+import Search from './MainPage/Search/search'
 
 type QueryParams = {
-  FromLocalization:any;
-  setFromLocalization(FromLocalization:any): void;
+  queryFrom: string
+  setQueryFrom:React.Dispatch<React.SetStateAction<string>>
+  queryTo: string
+  setQueryTo:React.Dispatch<React.SetStateAction<string>>
+  
 }
 
-const AppContext = createContext<QueryParams | null>(null);
+export const AppContext = createContext<QueryParams | null>(null);
 
 export default function App({ Component, pageProps }: AppProps) {
 
-      //choosed params 
-      const [FromLocalization, setFromLocalization] = useState();
-      const [ToLocalization, setToLocalization] = useState();
-      const [Date, setDate] = useState();
-      const [Time, setTime] = useState();
-  
+  const [queryFrom, setQueryFrom] = useState("")
+  const [queryTo, setQueryTo] = useState("")
+
   return (
-    <AppContext.Provider value={{ FromLocalization, setFromLocalization}} >
+    <AppContext.Provider value={{queryFrom, setQueryFrom, queryTo, setQueryTo}}>
       <Component {...pageProps} />
     </AppContext.Provider>
     )

@@ -1,9 +1,8 @@
-import React, { useState, useRef, useMemo, useCallback, useEffect, createContext } from 'react'
-import AppContext  from '@/pages/_app'
+import React, { useState, useRef, useMemo, useCallback, useEffect, useContext } from 'react'
+import { AppContext }  from '@/pages/_app'
 import Router, { useRouter } from 'next/router'
 import Link from 'next/link'
 import TomTom from '@/pages/tomtom'
-import { useContext } from 'react'
 import {BiSolidMap} from 'react-icons/bi'
 import {BsCalendar3} from 'react-icons/bs'
 import {TbClockHour8} from 'react-icons/tb'
@@ -15,6 +14,8 @@ import Script from 'next/script'
 import Head from 'next/head'
 
 export default function Search() {
+
+    const {queryFrom, setQueryFrom, queryTo, setQueryTo} = useContext(AppContext)
 
     const router = useRouter();
 
@@ -100,6 +101,7 @@ export default function Search() {
             <link rel='stylesheet' type='text/css' href='/cdn.web-sdk-plugin-searchbox/SearchBox.css'></link>
             <link rel='stylesheet' type='text/css' href='../assets/ui-library/icons-css/poi.css'></link>
         </Head>
+        {/* <AppContext.Provider value={{queryFrom, setQueryFrom,queryTo, setQueryTo}}> */}
     <div className='w-screen h-[400px] border-blue-900 z-20'>
         <div id="search-wraper" className='w-full flex flex-col justify-start items-center'>
             <div id="search-contianer-text" className='w-11/12 px-[30px]'>

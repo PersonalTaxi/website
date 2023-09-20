@@ -1,5 +1,4 @@
-import React, { useEffect, Component, useContext } from 'react'
-import { useRef, useState } from 'react';
+import  React, { useRef, useState, useEffect, Component, useContext } from 'react';
 
 //icons
 import { MdLocalAirport, MdPlace, MdHotel, MdDirectionsCar, MdAttachMoney, MdLocalParking } from 'react-icons/md'
@@ -7,17 +6,20 @@ import { LiaHotelSolid } from 'react-icons/lia'
 import { IoMdRestaurant} from 'react-icons/io'
 import { BiSolidMap } from 'react-icons/bi'
 import { AiFillCloseSquare } from 'react-icons/ai'
+import { AppContext } from './_app';
 
 export default function TomTom() {
 
   const [dataFromFetch, setDataFromFetch] = useState(null);
-  const [queryFrom, setQueryFrom] = useState("");
+  const {queryFrom, setQueryFrom} = useContext(AppContext)
 
   const [dataToFetch, setDataToFetch] = useState(null);
-  const [queryTo, setQueryTo] = useState("");
+  const {queryTo, setQueryTo} = useContext(AppContext)
   const [activeQuery, setActiveQuery] = useState("")
 
   const FromList:any = useRef();
+  const inputFrom:any = useRef();
+  const inputTo:any = useRef();
   const ToList:any = useRef();
   const clearFrom:any = useRef();
   const clearTo:any = useRef();
@@ -183,6 +185,8 @@ export default function TomTom() {
 
   }
 
+  console.log(inputTo.current)
+
     return (
         <div className='flex flex-col w-full justify-around'>
           <div className='w-full h-[47px] flex flex-col rounded-r-[10px] relative'>
@@ -192,6 +196,7 @@ export default function TomTom() {
               <AiFillCloseSquare className="w-[90%] h-[90%]" />
               </div>
               <input 
+                ref={inputFrom}
                 name="from" 
                 onBlur={handleHidingList} 
                 value={queryFrom} 
@@ -204,7 +209,7 @@ export default function TomTom() {
             <div 
               onMouseDown={(e) => e.preventDefault()}
               ref={FromList} 
-              className={(queryFrom.length > 4 && queryFrom !== null) ? 'absolute w-[102%] -left-[1%] top-[50px] border-2 border-yellow-500 rounded-[10px] bg-white z-30' : 'hidden overflow-hidden'}>{dataFromFetch}</div>
+              className={(queryFrom.length > 4 && queryFrom !== null && inputFrom.current === document.activeElement) ? 'absolute w-[102%] -left-[1%] top-[50px] border-2 border-yellow-500 rounded-[10px] bg-white z-30' : 'hidden overflow-hidden'}>{dataFromFetch}</div>
           </div>
           <div className='h-[1px] bg-gray-400/[0.3] w-11/12 mx-auto'></div>
           <div className='w-full h-[47px] flex flex-col z-20 rounded-r-[10px] relative'>
@@ -214,6 +219,7 @@ export default function TomTom() {
                 <AiFillCloseSquare className="w-[90%] h-[90%]" />
               </div>
               <input 
+                ref={inputTo}
                 name="to" 
                 onBlur={handleHidingList} 
                 value={queryTo} 
@@ -226,7 +232,7 @@ export default function TomTom() {
             </div>
             <div 
               ref={ToList} 
-              className={(queryTo.length > 4 && queryTo !== null) ? 'absolute w-[102%] -left-[1%] top-[50px] border-2 border-yellow-500 rounded-[10px] bg-white' : 'hidden overflow-hidden'}
+              className={(queryTo.length > 4 && queryTo !== null && inputTo.current === document.activeElement) ? 'absolute w-[102%] -left-[1%] top-[50px] border-2 border-yellow-500 rounded-[10px] bg-white' : 'hidden overflow-hidden'}
               onMouseDown={(e) => e.preventDefault()} >{dataToFetch}</div>
           </div>
         </div>  
