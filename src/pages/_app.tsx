@@ -11,7 +11,7 @@ type QueryParams = {
   
 }
 
-export const AppContext = createContext<QueryParams | null>(null);
+export const AppContext = createContext({} as QueryParams );
 
 export default function App({ Component, pageProps }: AppProps) {
 
