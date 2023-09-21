@@ -73,7 +73,7 @@ export default function Carcomponents() {
             passenger = 1
         }
     
-    let PersonsLeft = passenger - (state.sedan * 4 + state.van * 8)
+    let PersonsLeft = passenger - (state?.sedan * 4 + state?.van * 8)
         
     const Car = cars.cars.map((i:any) => {
 
