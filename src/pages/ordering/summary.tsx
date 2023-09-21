@@ -38,7 +38,7 @@ export default function Summary() {
   },[])
 
   return (
-    <div className={`bg-white w-screen  bg-cover bg-fixed ${ubuntuFont.className}`}>
+    <div className={`w-screen  bg-cover bg-fixed ${ubuntuFont.className}`}>
        <Head>
             <meta http-equiv='X-UA-Compatible' content='IE=Edge' ></meta>
             <title>Your best drive</title>
@@ -51,8 +51,8 @@ export default function Summary() {
         </Head>
       <Header />
       <div id='search-wrapper-ordering' className='pt-[50px]'>
-          <div ref={MapElement} className='w-screen h-[400px] overflow-hidden'></div>
-          <div className='bg-white w-screen h-[350px] rounded-t-[10px] -mt-[12px]'>
+          <div ref={MapElement} className='w-screen h-[450px] overflow-hidden'></div>
+          <div className='bg-white w-screen h-[350px] rounded-t-[40px] z-20 -mt-[15px]'>
             <Search/>
           </div>
       </div>
