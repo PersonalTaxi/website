@@ -26,42 +26,6 @@ export default function Search() {
     const DatePlaceholder:any = useRef();
     const TimePlaceholder:any = useRef();
 
-    const handleChooseLocalization = (e:any) => {
-
-        // const name = e.target.getAttribute("data-name")
-        // const value = e.target.getAttribute("data-value")
-
-        // console.log(name)
-
-        // if(name === "From"){
-        //     setFromLocalization(value)
-        //     handleOnBlurInputFrom()
-        // } else {
-        //     setToLocalization(value)
-        //     handleOnBlurInputTo()
-        // }
-    }
-
-    const handleFocusInputFrom = (e:any) =>  {
-        dataFrom.current.style.display = "block"
-
-    }
-
-    const handleOnBlurInputFrom = () =>  {
-        dataFrom.current.style.display = "none"
-
-    }
-
-    const handleFocusInputTo = (e:any) =>  {
-        dataTo.current.style.display = "block"
-
-    }
-
-    const handleOnBlurInputTo = () =>  {
-        dataTo.current.style.display = "none"
-
-    }
-
     const handleHidePlaceholderDivDate = () =>  {
         // DatePlaceholder.current.style.display = "none"
 
@@ -98,14 +62,11 @@ export default function Search() {
         router.push({
             pathname:"/ordering/summary",
             query:{
-                passengers:passengers
-            }
-        })
+                passengers:passengers,
+            },
+        },undefined, {scroll:false})
 
     }
-
-
-    console.log(date)
 
   return (
     <>

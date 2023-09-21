@@ -1,4 +1,4 @@
-import React, { useEffect, Component, useContext } from 'react'
+import React, { useEffect, Component, useContext, useRef } from 'react'
 import Carcomponents from './carcomponents'
 import Header from '../Header/header'
 import Search from '../MainPage/Search/search'
@@ -13,8 +13,32 @@ const ubuntuFont = Ubuntu({
 
 export default function Summary() {
 
+  const MapElement:any = useRef();
+
+  useEffect(() => {
+
+   const importingMaps = async() => {
+      const tt = await import("@tomtom-international/web-sdk-maps")
+      let map = tt.map({
+        key:'rKQOvSWb5WRcI826HMCl5W82PMDxhDqM',
+        container: MapElement.current,
+        stylesVisibility:{
+          trafficIncidents:true,
+          trafficFlow:true,
+        },
+        center:[19.945, 50.064],
+        zoom:13
+      })
+    }
+
+    importingMaps()
+
+   
+
+  },[])
+
   return (
-    <div className={`bg-[url("/Main_theme.png")] w-screen  bg-cover bg-fixed ${ubuntuFont.className}`}>
+    <div className={`bg-white w-screen  bg-cover bg-fixed ${ubuntuFont.className}`}>
        <Head>
             <meta http-equiv='X-UA-Compatible' content='IE=Edge' ></meta>
             <title>Your best drive</title>
@@ -26,10 +50,12 @@ export default function Summary() {
             <link rel='stylesheet' type='text/css' href='../assets/ui-library/icons-css/poi.css'></link>
         </Head>
       <Header />
-      <div id='search-wrapper-ordering' className='pt-[80px]'>
-          <Search/>
+      <div id='search-wrapper-ordering' className='pt-[50px]'>
+          <div ref={MapElement} className='w-screen h-[400px] overflow-hidden'></div>
+          <div className='bg-white w-screen h-[350px] rounded-t-[10px] -mt-[12px]'>
+            <Search/>
+          </div>
       </div>
-    
       <Carcomponents />
     </div>
   )

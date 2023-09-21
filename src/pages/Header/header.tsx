@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { RxHamburgerMenu } from 'react-icons/rx'
 
 export default function Header() {
-  
+
   return (
     <div className='fixed z-40 h-[50px] w-screen bg-black  border-gray-900 flex items-center justify-between px-[20px]'>
         <div>

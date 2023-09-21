@@ -14,7 +14,6 @@ type QueryParams = {
   setTime:React.Dispatch<React.SetStateAction<any>>
   passengers: number
   setPassengers:React.Dispatch<React.SetStateAction<number>>
-  
 }
 
 export const AppContext = createContext({} as QueryParams );

@@ -76,108 +76,91 @@ export default function Carcomponents() {
         }
     
     let PersonsLeft = passenger - (state?.sedan * 4 + state?.van * 8)
+
+    const handleShowInfoAboutFlight= () => {
+        handleFlightinfo.current.style.display = "block"
+
+    }
+    const handleHideInfoAboutFlight= () => {
+        handleFlightinfo.current.style.display = "none"
+
+    }
         
-    const Car = cars.cars.map((i:any) => {
+    // const Car = cars.cars.map((i:any) => {
 
-        let CarType = ""
+    //     let CarType = ""
 
-        passengers
+    //     passengers
 
-        if(passenger < 5){
-            CarType = "Sedan"
-        }
+    //     if(passenger < 5){
+    //         CarType = "Sedan"
+    //     }
 
-        if(passenger >= 5){
-            CarType = "Van"
-        }
+    //     if(passenger >= 5){
+    //         CarType = "Van"
+    //     }
 
-        const handleShowInfoAboutFlight= () => {
-            handleFlightinfo.current.style.display = "block"
-    
-        }
-        const handleHideInfoAboutFlight= () => {
-            handleFlightinfo.current.style.display = "none"
-    
-        }
 
-        if(i.type === CarType){
-        return (
-            <div key={i} className='flex border-blue-900 w-[90vw] rounded-xl h-[400px] mx-auto flex-wrap'>
-            <div id="photo" className='border-red-900 w-5/12 h-[180px] flex flex-col items-center'>
-                {(state?.van > 0) && <div className='w-full h-full relative flex'>
-                <Image className='object-contain'
-                    src="/Van.webp"
-                    fill
-                    alt="car">
-                </Image>
-                {(state?.van >1) && <div className='w-[40px] text-[18px]'> x {state?.van}</div>}
-                </div>}
-                {(state?.van >=1 && state?.sedan >=1) &&  <div className='text-[20px]'>+</div>}
-                {(state?.sedan > 0) && <div className='w-full h-full relative'>
-                <Image className='object-contain'
-                    src="/mercedes.png"
-                    fill
-                    alt="car">
-                </Image>
-                {(state?.sedan >1) && <div className='w-[40px] text-[18px]'> x {state?.sedan}</div>}
-                </div>}
-            </div>
-            <div id="wrapper" className='flex flex-col border-blue-900 w-7/12 h-[180px] p-[10px]'>
-                <div id="car-model" className='text-[30px] font-bold flex'>
-                    {(state?.van > 0) && <p>Van</p>}
-                    {(state?.sedan > 0 && (state?.van > 0)) && <p>+</p>}
-                    {(state?.sedan > 0) && <p>Sedan</p>}
-                </div>
-                <div id="number-of-persons">{i.name}, {i.model}</div>
-                <div id="number-of-fits" className='flex items-center justify-start mt-[20px]'>
-                    <BsFillPersonFill className="text-yellow-500 mr-[4px]"/><p>Seats for&nbsp;</p>{state?.sedan * 4 + state?.van * 8}<p>&nbsp;people</p>
-                </div>
-                <div id="distance" className='flex items-center justify-start'>
-                    <BsFillBagFill className="text-yellow-500 mr-[4px]"/><p>Fit&nbsp;</p>{state?.sedan * 4 + state?.van * 7}<p>&nbsp;suitcases</p>
-                </div>
-                <div id="Price-wrapper"></div>
-            </div>
-            <div className=' border-red-900 h-[150px] w-[80%] mx-auto relative'>
-                <div ref={handleFlightinfo} className='hidden -top-[70px] p-[9px] w-[85%] left-0 absolute bg-white border rounded-[10px] shadow-xl'>
-                    <AiOutlineClose className="w-[20px] h-[20px] float-right" onClick={handleHideInfoAboutFlight}/>
-                    <p>By writing down number of your flight we will be able to monitoring departures time and get your from the airport at right time. After departure our waiting time is up to 60 mins.</p>
-                </div>
-                <div className=' border-blue-900 w-full h-[30px] flex items-center'>
-                    <MdOutlinePersonPinCircle className='h-[30px] w-[30px] px-[4px] text-yellow-500'/>
-                    <div className='border-gray-400 w-full'>We will find you</div>
-                </div>
-                <div className=' border-blue-900 w-full h-[30px] flex items-center'>
-                    <BiSolidPhoneCall className='h-[30px] w-[30px] px-[4px] text-yellow-500'/>
-                    <div className='border-gray-400 w-full'>We will call you to find you</div>
-                </div>
-                <div className=' border-blue-900 w-full h-[30px] flex items-center'>
-                    <AiOutlineFieldTime className='h-[30px] w-[30px] px-[4px] text-yellow-500'/>
-                    <div className='border-gray-400 w-full'>Waiting time up to 60 mins. </div>
-                </div>
-                {/* <div className=' border-blue-900 w-full flex justify-between items-center mt-[20px]'>
-                    <div className=' border-blue-900 w-full h-[40px] flex items-center'>
-                        <MdFlightLand className='h-[40px] w-[40px] px-[4px] text-yellow-500'/>
-                        <input className='border border-gray-400 w-full h-[40px]' placeholder=' Flight number e.g FR9847'></input>
-                    </div>
-                    <div id="info-icon" onMouseEnter={handleShowInfoAboutFlight} onMouseLeave={handleHideInfoAboutFlight}>
-                        <AiFillInfoCircle className='h-[30px] w-[30px] px-[4px] text-yellow-500'/>
-                    </div>
-                </div> */}
-
-                {/* <div className=' border-blue-900 w-full h-[70px] flex items-start flex-col mt-[20px] px-[4px]'>
-                        <div className='text-[14px]'>Information for your driver:</div>
-                        <textarea className='border border-gray-300 h-[50px] w-full' placeholder=' Your massage here'></textarea>
-                    </div> */}
-            </div>
-            <div className='flex w-[80%] border-green-900 h-[50px] justify-end mx-auto'>
-            <button className='flex border-green-900 h-[50px] px-[10px] py-[5px] bg-yellow-500 text-white items-center justify-center rounded-[10px]'>
-                <p>Order for 139 €</p>
-            </button>
-            </div>
-        </div>
-        )
-        }
-    })
+    //     if(i.type === CarType){
+    //     return (
+    //         <div key={i} className='flex border-blue-900 w-[90vw] rounded-xl h-[400px] mx-auto flex-wrap'>
+    //         <div id="photo" className='border-red-900 w-5/12 h-[180px] flex flex-col items-center'>
+    //             {(state?.van > 0) && <div className='w-full h-full relative flex'>
+    //             <Image className='object-contain'
+    //                 src="/Van.webp"
+    //                 fill
+    //                 alt="car">
+    //             </Image>
+    //             {(state?.van >1) && <div className='w-[40px] text-[18px]'> x {state?.van}</div>}
+    //             </div>}
+    //             {(state?.van >=1 && state?.sedan >=1) &&  <div className='text-[20px]'>+</div>}
+    //             {(state?.sedan > 0) && <div className='w-full h-full relative'>
+    //             <Image className='object-contain'
+    //                 src="/mercedes.png"
+    //                 fill
+    //                 alt="car">
+    //             </Image>
+    //             {(state?.sedan >1) && <div className='w-[40px] text-[18px]'> x {state?.sedan}</div>}
+    //             </div>}
+    //         </div>
+    //         <div id="wrapper" className='flex flex-col border-blue-900 w-7/12 h-[180px] p-[10px]'>
+    //             <div id="car-model" className='text-[30px] font-bold flex'>
+    //                 {(state?.van > 0) && <p>Van</p>}
+    //                 {(state?.sedan > 0 && (state?.van > 0)) && <p>+</p>}
+    //                 {(state?.sedan > 0) && <p>Sedan</p>}
+    //             </div>
+    //             <div id="number-of-persons">{i.name}, {i.model}</div>
+    //             <div id="number-of-fits" className='flex items-center justify-start mt-[20px]'>
+    //                 <BsFillPersonFill className="text-yellow-500 mr-[4px]"/><p>Seats for&nbsp;</p>{state?.sedan * 4 + state?.van * 8}<p>&nbsp;people</p>
+    //             </div>
+    //             <div id="distance" className='flex items-center justify-start'>
+    //                 <BsFillBagFill className="text-yellow-500 mr-[4px]"/><p>Fit&nbsp;</p>{state?.sedan * 4 + state?.van * 7}<p>&nbsp;suitcases</p>
+    //             </div>
+    //             <div id="Price-wrapper"></div>
+    //         </div>
+    //         <div className=' border-red-900 h-[150px] w-[80%] mx-auto relative'>
+    //             <div className=' border-blue-900 w-full h-[30px] flex items-center'>
+    //                 <MdOutlinePersonPinCircle className='h-[30px] w-[30px] px-[4px] text-yellow-500'/>
+    //                 <div className='border-gray-400 w-full'>We will find you</div>
+    //             </div>
+    //             <div className=' border-blue-900 w-full h-[30px] flex items-center'>
+    //                 <BiSolidPhoneCall className='h-[30px] w-[30px] px-[4px] text-yellow-500'/>
+    //                 <div className='border-gray-400 w-full'>We will call you to find you</div>
+    //             </div>
+    //             <div className=' border-blue-900 w-full h-[30px] flex items-center'>
+    //                 <AiOutlineFieldTime className='h-[30px] w-[30px] px-[4px] text-yellow-500'/>
+    //                 <div className='border-gray-400 w-full'>Waiting time up to 60 mins. </div>
+    //             </div>
+    //         </div>
+    //         <div className='flex w-[80%] border-green-900 h-[50px] justify-end mx-auto'>
+    //         <button className='flex border-green-900 h-[50px] px-[10px] py-[5px] bg-yellow-500 text-white items-center justify-center rounded-[10px]'>
+    //             <p>Order for 139 €</p>
+    //         </button>
+    //         </div>
+    //     </div>
+    //     )
+    //     }
+    // })
 
     const handleClosingTipWithCars = () => {
         CarsInfo.current.style.height = "0px"
@@ -190,14 +173,7 @@ export default function Carcomponents() {
     return (
         <div className='relative'>
             {(PersonsLeft > 0) && <div className='absolute bg-red-600 text-white w-[92vw] -top-[32px] left-0 right-0 mx-auto px-[4px] rounded-[3px]'>Find a seats for {PersonsLeft} persons yet.</div>}
-            {(passenger > 4) && <div ref={CarsInfo} onClick={handleClosingTipWithCars} className='duration-200 bg-white rounded-[10px] w-[90vw] h-[120px] mx-auto px-[5px] py-[2px] mb-[10px]'>
-                <AiOutlineClose  className="float-right w-[20px] h-[20px]"/>
-                <div >
-                    <AiFillInfoCircle className="w-[20px] h-[20px] text-yellow-500"/>
-                    <p className='w-[85%] mx-auto'>Are you trying to reserve drive for <b>more than 4 people?</b> You may need more than one car. Choose number of cars below.</p>
-                </div>
-            </div>}
-            <div id="choose-cars-wrapper" className={(passenger > 4) ? ' rounded-[10px] flex w-[90vw] mx-auto justify-between duration-200 mb-[12px] bg-white' : "h-[0px] overflow-hidden trasition-150 duration-200 mb-[12px] bg-white"}>
+            <div id="choose-cars-wrapper" className=' rounded-[10px] flex w-[90vw] mx-auto justify-between duration-200 mb-[12px] bg-white'>
                 <div className='rounded-[10px] h-[129px] w-[170px] bg-white flex'>
                     <div id="left-wrapper" className='w-[120px]'>
                         <div className='w-full'><p className=' text-center font-semibold pt-[4px]'>Eco Sedan</p></div>
@@ -238,7 +214,7 @@ export default function Carcomponents() {
                         </div>
                         <div className='w-full flex pl-[5px]'>
                             <BsFillPersonFill className="text-yellow-500"/>
-                            <p className=' text-center font-semibold text-[12px] pl-[5px]'>max 8 people</p></div>
+                            <p className='text-center font-semibold text-[12px] pl-[5px]'>max 8 people</p></div>
                         <div className='w-full flex pl-[5px]'>
                             <BsFillBagFill className="text-yellow-500"/>
                             <p className=' text-center font-semibold text-[12px] pl-[5px]'>max 7 suitcases</p></div>
@@ -254,13 +230,33 @@ export default function Carcomponents() {
                     </div>
                 </div>
                 </div>
-                {(state?.sedan > 0 || state?.van > 0) ? 
-                    (<div className='bg-white w-[90vw] mx-auto p-[10px] rounded-t-[10px]'>{Car}</div>) :
-                    (<div className='bg-white w-[90vw] mx-auto p-[10px] rounded-t-[10px] h-[350px] text-[20px] flex flex-col items-center'>
-                        <AiFillInfoCircle className="text-red-700 w-[50px] h-[50px]"/>
-                        <p>You have to choose at least one car.</p>
-                </div>)
-                }
+                <form className='w-[90vw] h-[300px] mx-auto my-[30px]'>
+                        <div className=' border-blue-900 w-full flex justify-between items-center mt-[20px]'>
+                    <div className=' border-blue-900 w-full h-[40px] flex items-center'>
+                        <MdFlightLand className='h-[40px] w-[40px] px-[4px] text-yellow-500'/>
+                        <input className='border border-gray-400 w-full h-[40px]' placeholder=' Flight number e.g FR9847'></input>
+                    </div>
+                    <div ref={handleFlightinfo} className='hidden top-[100px] p-[9px] w-[85%] left-0 absolute bg-white border rounded-[10px] shadow-xl'>
+                    <AiOutlineClose className="w-[20px] h-[20px] float-right" onClick={handleHideInfoAboutFlight}/>
+                    <p>By writing down number of your flight we will be able to monitoring departures time and get your from the airport at right time. After departure our waiting time is up to 60 mins.</p>
+                </div>
+                    <div id="info-icon" 
+                        onMouseEnter={handleShowInfoAboutFlight} 
+                        onMouseLeave={handleHideInfoAboutFlight}
+                        >
+                        <AiFillInfoCircle className='h-[30px] w-[30px] px-[4px] text-yellow-500'/>
+                    </div>
+                </div>
+                <div className=' border-blue-900 w-full h-[120px] flex items-start flex-col mt-[20px] px-[4px]'>
+                        <div className='text-[14px]'>Information for your driver:</div>
+                        <textarea className='border border-gray-300 h-[100px] w-full' placeholder=' Your massage here'></textarea>
+                    </div>
+                    <div className='w-[90vw] mx-auto my-[20px]'>
+                        <button className='float-right flex border-green-900 h-[50px] px-[10px] py-[5px] bg-yellow-500 text-white items-center justify-center rounded-[10px]'>
+                            <p>Start ordering for 139 €</p>
+                        </button>
+                    </div>
+                </form>
         </div>
     )
 }
