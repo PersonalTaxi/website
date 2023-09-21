@@ -17,20 +17,20 @@ function reducer(state:any, action:any) {
 
     switch(action.type){
         case "increment-sedan":
-            if(state.sedan >= 0)
-            return {sedan: state.sedan + 1, van:state.van }
+            // if(state.sedan >= 0)
+            return {sedan: state.sedan + 1, van:state.van}
         
         case "decrement-sedan":
             if(state.sedan >= 0)
-            return {sedan: state.sedan - 1,van:state.van }
+            return {sedan: state.sedan - 1, van:state.van}
         
         case "increment-van":
-            if(state.van >= 0)
-            return {van: state.van + 1, sedan: state.sedan }
+            // if(state.van >= 0)
+            return {van: state.van + 1, sedan: state.sedan}
             
         case "decrement-van":
             if(state.van >= 0)
-            return {van: state.van - 1, sedan: state.sedan }
+            return {van: state.van - 1, sedan: state.sedan}
     } 
   }
 
@@ -98,25 +98,40 @@ export default function Carcomponents() {
     
         }
 
-
         if(i.type === CarType){
         return (
             <div key={i} className='flex border-blue-900 w-[90vw] rounded-xl h-[400px] mx-auto flex-wrap'>
-            <div id="photo" className='border-red-900 w-5/12 h-[180px] relative'>
+            <div id="photo" className='border-red-900 w-5/12 h-[180px] flex flex-col items-center'>
+                {(state?.van > 0) && <div className='w-full h-full relative flex'>
                 <Image className='object-contain'
-                    src={i.photo}
+                    src="/Van.webp"
                     fill
                     alt="car">
                 </Image>
+                {(state?.van >1) && <div className='w-[40px] text-[18px]'> x {state?.van}</div>}
+                </div>}
+                {(state?.van >=1 && state?.sedan >=1) &&  <div className='text-[20px]'>+</div>}
+                {(state?.sedan > 0) && <div className='w-full h-full relative'>
+                <Image className='object-contain'
+                    src="/mercedes.png"
+                    fill
+                    alt="car">
+                </Image>
+                {(state?.sedan >1) && <div className='w-[40px] text-[18px]'> x {state?.sedan}</div>}
+                </div>}
             </div>
             <div id="wrapper" className='flex flex-col border-blue-900 w-7/12 h-[180px] p-[10px]'>
-                <div id="car-model" className='text-[30px] font-bold'>{i.type}</div>
+                <div id="car-model" className='text-[30px] font-bold flex'>
+                    {(state?.van > 0) && <p>Van</p>}
+                    {(state?.sedan > 0 && (state?.van > 0)) && <p>+</p>}
+                    {(state?.sedan > 0) && <p>Sedan</p>}
+                </div>
                 <div id="number-of-persons">{i.name}, {i.model}</div>
                 <div id="number-of-fits" className='flex items-center justify-start mt-[20px]'>
-                    <BsFillPersonFill className="text-yellow-500 mr-[4px]"/><p>Seats for&nbsp;</p>{i.passengers}<p>&nbsp;people</p>
+                    <BsFillPersonFill className="text-yellow-500 mr-[4px]"/><p>Seats for&nbsp;</p>{state?.sedan * 4 + state?.van * 8}<p>&nbsp;people</p>
                 </div>
                 <div id="distance" className='flex items-center justify-start'>
-                    <BsFillBagFill className="text-yellow-500 mr-[4px]"/><p>Fit&nbsp;</p>{i.fits}<p>&nbsp;suitcases</p>
+                    <BsFillBagFill className="text-yellow-500 mr-[4px]"/><p>Fit&nbsp;</p>{state?.sedan * 4 + state?.van * 7}<p>&nbsp;suitcases</p>
                 </div>
                 <div id="Price-wrapper"></div>
             </div>
@@ -127,7 +142,7 @@ export default function Carcomponents() {
                 </div>
                 <div className=' border-blue-900 w-full h-[30px] flex items-center'>
                     <MdOutlinePersonPinCircle className='h-[30px] w-[30px] px-[4px] text-yellow-500'/>
-                    <div className='border-gray-400 w-full'>We will find you?</div>
+                    <div className='border-gray-400 w-full'>We will find you</div>
                 </div>
                 <div className=' border-blue-900 w-full h-[30px] flex items-center'>
                     <BiSolidPhoneCall className='h-[30px] w-[30px] px-[4px] text-yellow-500'/>
@@ -171,8 +186,8 @@ export default function Carcomponents() {
     console.log(CarsData)
 
     return (
-        <div>
-            {(PersonsLeft > 0) && <div className='bg-red-600 text-white w-[90vw] mx-auto px-[4px] rounded-[3px]'>Find a seats for {PersonsLeft} persons yet.</div>}
+        <div className='relative'>
+            {(PersonsLeft > 0) && <div className='absolute bg-red-600 text-white w-[92vw] -top-[32px] left-0 right-0 mx-auto px-[4px] rounded-[3px]'>Find a seats for {PersonsLeft} persons yet.</div>}
             {(passenger > 4) && <div ref={CarsInfo} onClick={handleClosingTipWithCars} className='duration-200 bg-white rounded-[10px] w-[90vw] h-[110px] mx-auto px-[5px] py-[2px] mb-[10px]'>
                 <AiOutlineClose  className="float-right w-[20px] h-[20px]"/>
                 <div >

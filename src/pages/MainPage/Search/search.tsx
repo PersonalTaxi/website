@@ -80,7 +80,7 @@ export default function Search() {
     }, [passengers])
 
     const handleIncreaseNumber = useCallback(() => {
-        if(passengers < 7){
+        if(passengers < 40){
             return [setPassengers(passengers +1)]
         }
     }, [passengers])
