@@ -12,9 +12,6 @@ import { AppContext } from './_app';
 export default function TomTom() {
 
   const router = useRouter();
-
-  console.log(router.query.from)
-
   const [dataFromFetch, setDataFromFetch] = useState(null);
   const {queryFrom, setQueryFrom} = useContext(AppContext)
 
@@ -56,8 +53,6 @@ export default function TomTom() {
     }
   }
 
-  console.log(queryTo)
-
   useEffect(() => {
 
     let query;
@@ -68,8 +63,6 @@ export default function TomTom() {
     if(activeQuery === "To") {
       query = queryTo
     } 
-
-    // console.log(queryChanged)
 
     const res:any = fetch(
       `https://api.tomtom.com/search/2/search/${query}.json?key=cjmuWSfVTrJfOGj7AcXvMLU8R8i1Q9cF&setCountry=PL&limit=5&language=en-US`

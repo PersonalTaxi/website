@@ -109,18 +109,16 @@ export default function Search() {
 
   return (
     <>
-        <Head>
-            <meta http-equiv='X-UA-Compatible' content='IE=Edge' ></meta>
-            <title>Your best drive</title>
-            <meta name='viewport'
-                content='width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no'></meta>
-            <link rel='stylesheet' type='text/css' href='/cdn.web-sdk-maps/maps.css'></link>
-            <link rel='stylesheet' type='text/css' href='../assets/ui-library/index.css'></link>
-            <link rel='stylesheet' type='text/css' href='/cdn.web-sdk-plugin-searchbox/SearchBox.css'></link>
-            <link rel='stylesheet' type='text/css' href='../assets/ui-library/icons-css/poi.css'></link>
-        </Head>
-        {/* <AppContext.Provider value={{queryFrom, setQueryFrom,queryTo, setQueryTo}}> */}
-    <div className='w-screen h-[400px] border-blue-900 z-20'>
+    <Head>
+        <meta http-equiv='X-UA-Compatible' content='IE=Edge' ></meta>
+        <title>Your best drive</title>
+        <meta name='viewport' content='width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no'></meta>
+        <link rel='stylesheet' type='text/css' href='/cdn.web-sdk-maps/maps.css'></link>
+        <link rel='stylesheet' type='text/css' href='../assets/ui-library/index.css'></link>
+        <link rel='stylesheet' type='text/css' href='/cdn.web-sdk-plugin-searchbox/SearchBox.css'></link>
+        <link rel='stylesheet' type='text/css' href='../assets/ui-library/icons-css/poi.css'></link>
+    </Head>
+    <div className='w-screen h-[320px] border-blue-900 z-20 mb-[12px]'>
         <div id="search-wraper" className='w-full flex flex-col justify-start items-center'>
             <div id="search-contianer-text" className='w-11/12 px-[30px]'>
                 <div className='w-[120px] bg-white text-center rounded-t-[10px]'>Your drive:</div>
@@ -135,7 +133,6 @@ export default function Search() {
                             </div>
                         <div id="schedule-in-calendar" className="rounded-[10px] h-[50px] w-10/12 border flex flex-no-wrap">
                             <div className="h-[50px] w-1/2 border-r flex items-center pl-[10px] relative">
-                            {/* <Calendar className='absolute bg-white border w-[280px]'/> */}
                                 {(date === "") && <div 
                                     ref={DatePlaceholder} 
                                     className='absolute w-9/12 h-full text-left leading-[50px] text-gray-900/[0.5] right-0 pl-[5px]'>

@@ -5,16 +5,13 @@ import Search from '../MainPage/Search/search'
 import Head from 'next/head'
 import { Ubuntu } from 'next/font/google'
 
-
 const ubuntuFont = Ubuntu({
   subsets: ['latin'],
   weight:['300']
 })
 
-export default function Summary() {
 
-    // const {FromLocalization, setFromLocalization} = useContext(AppContext)
-    // console.log(FromLocalization)
+export default function Summary() {
 
   return (
     <div className={`bg-[url("/Main_theme.png")] w-screen h-screen bg-cover ${ubuntuFont.className}`}>
