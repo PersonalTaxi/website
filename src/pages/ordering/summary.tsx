@@ -52,7 +52,7 @@ export default function Summary() {
       <Header />
       <div id='search-wrapper-ordering' className='pt-[50px]'>
           <div ref={MapElement} className='w-screen h-[450px] overflow-hidden'></div>
-          <div className='bg-white w-screen h-[350px] rounded-t-[40px] z-20 -mt-[15px]'>
+          <div className='bg-white w-screen h-[350px] rounded-t-[40px] z-20 -mt-[20px]'>
             <Search/>
           </div>
       </div>
