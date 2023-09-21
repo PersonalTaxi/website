@@ -202,7 +202,7 @@ export default function Carcomponents() {
                         <div className='relative w-full h-[125px] flex items-center justify-around '>
                             <div>
                                 <BiSolidUpArrow className='w-[30px] text-[40px]' onClick={incrementSedan}/>
-                                    <div className='w-[30px] h-[20px] text-[20px] text-center leading-5'>{state.sedan}</div>
+                                    <div className='w-[30px] h-[20px] text-[20px] text-center leading-5'>{state?.sedan}</div>
                                 <BiSolidDownArrow className='w-[30px] text-[40px]' onClick={decrementSedan}/>
                             </div>
                         </div>
@@ -230,7 +230,7 @@ export default function Carcomponents() {
                         <div className='relative w-full h-[125px] flex items-center justify-around '>
                             <div>
                                 <BiSolidUpArrow className='w-[30px] text-[40px]' onClick={incrementVan}/>
-                                    <div className='w-[30px] h-[20px] text-[20px] text-center leading-5'>{state.van}</div>
+                                    <div className='w-[30px] h-[20px] text-[20px] text-center leading-5'>{state?.van}</div>
                                 <BiSolidDownArrow className='w-[30px] text-[40px]' onClick={decrementVan}/>
                             </div>
                         </div>
