@@ -14,7 +14,7 @@ const ubuntuFont = Ubuntu({
 export default function Summary() {
 
   return (
-    <div className={`bg-[url("/Main_theme.png")] w-screen h-screen bg-cover ${ubuntuFont.className}`}>
+    <div className={`bg-[url("/Main_theme.png")] w-screen  bg-cover bg-fixed ${ubuntuFont.className}`}>
        <Head>
             <meta http-equiv='X-UA-Compatible' content='IE=Edge' ></meta>
             <title>Your best drive</title>

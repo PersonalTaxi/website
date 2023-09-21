@@ -21,16 +21,18 @@ function reducer(state:any, action:any) {
             return {sedan: state.sedan + 1, van:state.van}
         
         case "decrement-sedan":
-            if(state.sedan >= 0)
-            return {sedan: state.sedan - 1, van:state.van}
-        
+            if(state.sedan > 0) {
+                return {sedan: state.sedan - 1, van:state.van}
+            } else return state
         case "increment-van":
             // if(state.van >= 0)
             return {van: state.van + 1, sedan: state.sedan}
             
         case "decrement-van":
-            if(state.van >= 0)
-            return {van: state.van - 1, sedan: state.sedan}
+            if(state.van > 0) {
+                return {van: state.van - 1, sedan: state.sedan}
+            } else return state
+            
     } 
   }
 
@@ -188,11 +190,11 @@ export default function Carcomponents() {
     return (
         <div className='relative'>
             {(PersonsLeft > 0) && <div className='absolute bg-red-600 text-white w-[92vw] -top-[32px] left-0 right-0 mx-auto px-[4px] rounded-[3px]'>Find a seats for {PersonsLeft} persons yet.</div>}
-            {(passenger > 4) && <div ref={CarsInfo} onClick={handleClosingTipWithCars} className='duration-200 bg-white rounded-[10px] w-[90vw] h-[110px] mx-auto px-[5px] py-[2px] mb-[10px]'>
+            {(passenger > 4) && <div ref={CarsInfo} onClick={handleClosingTipWithCars} className='duration-200 bg-white rounded-[10px] w-[90vw] h-[120px] mx-auto px-[5px] py-[2px] mb-[10px]'>
                 <AiOutlineClose  className="float-right w-[20px] h-[20px]"/>
                 <div >
                     <AiFillInfoCircle className="w-[20px] h-[20px] text-yellow-500"/>
-                    <p className='w-[85%] mx-auto'>You are trying to reserve drive for <b>more than 4 people</b>, you may need more than one car. Choose number of cars below.</p>
+                    <p className='w-[85%] mx-auto'>Are you trying to reserve drive for <b>more than 4 people?</b> You may need more than one car. Choose number of cars below.</p>
                 </div>
             </div>}
             <div id="choose-cars-wrapper" className={(passenger > 4) ? ' rounded-[10px] flex w-[90vw] mx-auto justify-between duration-200 mb-[12px] bg-white' : "h-[0px] overflow-hidden trasition-150 duration-200 mb-[12px] bg-white"}>
@@ -208,10 +210,10 @@ export default function Carcomponents() {
                         </div>
                         <div className='w-full flex pl-[5px]'>
                             <BsFillPersonFill className="text-yellow-500" />
-                            <p className=' text-center font-semibold text-[12px] pl-[5px]'>max 4 people</p></div>
+                            <p className=' text-center font-semibold text-[10px] pl-[5px]'>max 4 people</p></div>
                         <div className='w-full flex pl-[5px]'>
                             <BsFillBagFill className="text-yellow-500"/>
-                            <p className=' text-center font-semibold text-[12px] pl-[5px]'>max 4 suitcases</p></div>
+                            <p className=' text-center font-semibold text-[10px] pl-[5px]'>max 4 suitcases</p></div>
                         </div>
                     <div id="left-wrapper" className='w-[50px]'>
                         <div className='relative w-full h-[125px] flex items-center justify-around '>
@@ -252,7 +254,13 @@ export default function Carcomponents() {
                     </div>
                 </div>
                 </div>
-            <div className='bg-white w-[90vw] mx-auto p-[10px] rounded-t-[10px]'>{Car}</div>
+                {(state?.sedan > 0 || state?.van > 0) ? 
+                    (<div className='bg-white w-[90vw] mx-auto p-[10px] rounded-t-[10px]'>{Car}</div>) :
+                    (<div className='bg-white w-[90vw] mx-auto p-[10px] rounded-t-[10px] h-[350px] text-[20px] flex flex-col items-center'>
+                        <AiFillInfoCircle className="text-red-700 w-[50px] h-[50px]"/>
+                        <p>You have to choose at least one car.</p>
+                </div>)
+                }
         </div>
     )
 }
