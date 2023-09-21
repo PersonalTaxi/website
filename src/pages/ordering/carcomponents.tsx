@@ -17,16 +17,26 @@ export default function Carcomponents() {
     const handleFlightinfo:any = useRef();
     const router = useRouter();
     const { passengers } = router.query
+    let passenger:any = ""
+
+        if(passengers !== undefined) {
+            passenger = passengers
+        } else {
+            passenger = 2
+        }
+        
 
     const Car = cars.cars.map((i:any) => {
 
         let CarType = ""
 
-        if(passengers < 5){
+        passengers
+
+        if(passenger < 5){
             CarType = "Sedan"
         }
 
-        if(passengers >= 5){
+        if(passenger >= 5){
             CarType = "Van"
         }
 
