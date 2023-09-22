@@ -8,10 +8,11 @@ import { useRouter } from 'next/router'
 //icons
 import {MdFlightLand} from 'react-icons/md'
 import {AiFillInfoCircle} from 'react-icons/ai'
-import {AiOutlineClose, AiOutlineFieldTime} from 'react-icons/ai'
+import {AiOutlineClose, AiOutlineFieldTime, AiOutlineCheck} from 'react-icons/ai'
 import {MdOutlinePersonPinCircle} from 'react-icons/md'
 import {BiSolidPhoneCall} from 'react-icons/bi'
 import {BiSolidUpArrow, BiSolidDownArrow} from 'react-icons/bi'
+
 
 function reducer(state:any, action:any) {
 
@@ -32,7 +33,6 @@ function reducer(state:any, action:any) {
             if(state.van > 0) {
                 return {van: state.van - 1, sedan: state.sedan}
             } else return state
-            
     } 
   }
 
@@ -40,8 +40,16 @@ function reducer(state:any, action:any) {
 
 export default function Carcomponents() {
 
+    const router = useRouter();
+
+    const {people} = useContext(AppContext)
+
+    console.log(router.query.people)
+
     const [state, dispatch] = useReducer(reducer, CarsData);
     const CarsInfo:any = useRef();
+
+    const passengersFromQuery:any = router.query.passengers
 
     function incrementSedan() {
         dispatch({type: "increment-sedan"})
@@ -62,15 +70,12 @@ export default function Carcomponents() {
 
     }
 
-    const [van, setVan] = useState(0);
-
     const handleFlightinfo:any = useRef();
-    const router = useRouter();
     const { passengers } = router.query
     let passenger:any = ""
 
-        if(passengers !== undefined) {
-            passenger = passengers
+        if(people !== undefined) {
+            passenger = people
         } else {
             passenger = 1
         }
@@ -168,12 +173,13 @@ export default function Carcomponents() {
         CarsInfo.current.style.overflow = "hidden"
     }
 
-    console.log(CarsData)
-
     return (
         <div className='relative'>
-            {(PersonsLeft > 0) && <div className='absolute bg-red-600 text-white w-[92vw] -top-[32px] left-0 right-0 mx-auto px-[4px] rounded-[3px]'>Find a seats for {PersonsLeft} persons yet.</div>}
-            <div id="choose-cars-wrapper" className=' rounded-[10px] flex w-[90vw] mx-auto justify-between duration-200 mb-[12px] bg-white'>
+            {(parseInt(passengersFromQuery) === people) && <div className='absolute flex justify-center items-center text-green-600 -top-[50px] w-screen'><AiOutlineCheck /><p>You are up to date</p></div>}
+            {(parseInt(passengersFromQuery) !== people) && <div className='absolute flex justify-center items-center text-red-600 -top-[50px] w-screen'><AiOutlineClose /><p>You have to update road!</p></div>}
+            {(PersonsLeft > 0 && (parseInt(passengersFromQuery) === people)) && <div className='absolute bg-red-600 text-white w-[92vw] -top-[25px] left-0 right-0 mx-auto px-[4px] rounded-[3px]'>Find a seats for {PersonsLeft} persons yet.</div>}
+            <div id="choose-cars-wrapper" className=' rounded-[10px] flex w-[90vw] mx-auto justify-between duration-200 mb-[12px] bg-white relative'>
+            {(parseInt(passengersFromQuery) !== people) && <div className='bg-white/[0.9] absolute w-screen h-[600px] z-20 -left-[5vw]'></div>}
                 <div className='rounded-[10px] h-[129px] w-[170px] bg-white flex'>
                     <div id="left-wrapper" className='w-[120px]'>
                         <div className='w-full'><p className=' text-center font-semibold pt-[4px]'>Eco Sedan</p></div>

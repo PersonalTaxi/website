@@ -15,7 +15,7 @@ import Head from 'next/head'
 
 export default function Search() {
 
-    const {queryFrom, setQueryFrom, queryTo, setQueryTo, date, setDate, time, setTime, passengers, setPassengers} = useContext(AppContext)
+    const {queryFrom, setQueryFrom, queryTo, setQueryTo, date, setDate, time, setTime, people, setPeople} = useContext(AppContext)
 
     const router = useRouter();
 
@@ -37,17 +37,17 @@ export default function Search() {
     }
 
     const handleDowncreaseNumber = useCallback(() => {
-        if(passengers > 1){
-            return [setPassengers(passengers -1)]
+        if(people > 1){
+            return [setPeople(people -1)]
         }
         
-    }, [passengers])
+    }, [people])
 
     const handleIncreaseNumber = useCallback(() => {
-        if(passengers < 40){
-            return [setPassengers(passengers +1)]
+        if(people < 40){
+            return [setPeople(people +1)]
         }
-    }, [passengers])
+    }, [people])
 
     const handleDate = (e:any) => {
         setDate(e.target.value)
@@ -62,7 +62,7 @@ export default function Search() {
         router.push({
             pathname:"/ordering/summary",
             query:{
-                passengers:passengers,
+                passengers:people,
             },
         },undefined, {scroll:false})
 
@@ -137,13 +137,13 @@ export default function Search() {
                                 <div className='w-[30px] h-[30px]'>
                                     <BsFillPersonFill className="w-full h-full text-yellow-400/[0.4]" />
                                 </div>
-                                <div className='w-[30px] h-[30px] text-[22px] leading-7 text-center duration-200'>{passengers}</div>
+                                <div className='w-[30px] h-[30px] text-[22px] leading-7 text-center duration-200'>{people}</div>
                                 <div className=' w-[25px] h-[25px] rounded-[50%]' onClick={handleIncreaseNumber}>
                                     <AiOutlinePlus className="w-full h-full"/>
                                 </div>
                             </div>
                                 <button id="person-and-submit-wraper" className=" border-black rounded-[10px] h-[50px] w-[130px] border-2 bg-black text-yellow-400 hover:text-black hover:bg-yellow-500 hover:border-yellow-500 duration-150">
-                                    {!router.asPath.includes("ordering") ? <p>See offer</p> : <p>Update road</p>}
+                                    {(!router.asPath.includes("ordering")) ? <p>See offer</p> : <p>Update road</p>}
                                 </button>
                         </div>
                     </div>
