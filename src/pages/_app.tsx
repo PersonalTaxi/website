@@ -14,6 +14,12 @@ type QueryParams = {
   setTime:React.Dispatch<React.SetStateAction<any>>
   people: number
   setPeople:React.Dispatch<React.SetStateAction<number>>
+  latLangFrom: any
+  setlatLangFrom:React.Dispatch<React.SetStateAction<any>>
+  latLangTo: any
+  setlatLangTo:React.Dispatch<React.SetStateAction<any>>
+  calculateDistance:any
+  setCalculateDistance:React.Dispatch<React.SetStateAction<any>>
 }
 
 export const AppContext = createContext({} as QueryParams );
@@ -25,9 +31,12 @@ export default function App({ Component, pageProps }: AppProps) {
   const [date, setDate] = useState("")
   const [time, setTime] = useState("")
   const [people, setPeople] = useState(2)
+  const [latLangFrom, setlatLangFrom] = useState(null)
+  const [latLangTo, setlatLangTo] = useState(null)
+  const [calculateDistance, setCalculateDistance] = useState(null)
 
   return (
-    <AppContext.Provider value={{queryFrom, setQueryFrom, queryTo, setQueryTo, date, setDate, time, setTime, people, setPeople}}>
+    <AppContext.Provider value={{queryFrom, setQueryFrom, queryTo, setQueryTo, date, setDate, time, setTime, people, setPeople, latLangFrom, setlatLangFrom, latLangTo, setlatLangTo, calculateDistance, setCalculateDistance}}>
       <Component {...pageProps} />
     </AppContext.Provider>
     )

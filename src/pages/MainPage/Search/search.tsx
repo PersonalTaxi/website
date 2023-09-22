@@ -15,7 +15,7 @@ import Head from 'next/head'
 
 export default function Search() {
 
-    const {queryFrom, setQueryFrom, queryTo, setQueryTo, date, setDate, time, setTime, people, setPeople} = useContext(AppContext)
+    const {queryFrom, setQueryFrom, queryTo, setQueryTo, date, setDate, time, setTime, people, setPeople, latLangFrom, setlatLangFrom, latLangTo, setlatLangTo,calculateDistance, setCalculateDistance} = useContext(AppContext)
 
     const router = useRouter();
 
@@ -59,6 +59,7 @@ export default function Search() {
 
     const handleSendForm = (e:any) => {
         e.preventDefault();
+
         router.push({
             pathname:"/ordering/summary",
             query:{
@@ -150,6 +151,8 @@ export default function Search() {
                 </form>
             </div>
         </div>
+        {(latLangFrom !== null && latLangTo!== null) && <div className='w-[90vw] mx-auto text-center'>Drive distance {calculateDistance} km</div>}
+        {(latLangFrom !== null || latLangTo!== null) && <div className='w-[90vw] mx-auto text-center'>Drive distance: wating for second localization ...</div>}
     </div>
     </>
   )

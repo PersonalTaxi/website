@@ -42,9 +42,7 @@ export default function Carcomponents() {
 
     const router = useRouter();
 
-    const {people} = useContext(AppContext)
-
-    console.log(router.query.people)
+    const {queryFrom, setQueryFrom, queryTo, setQueryTo, date, setDate, time, setTime, people, setPeople, latLangFrom, setlatLangFrom, latLangTo, setlatLangTo,calculateDistance, setCalculateDistance} = useContext(AppContext)
 
     const [state, dispatch] = useReducer(reducer, CarsData);
     const CarsInfo:any = useRef();
@@ -53,21 +51,18 @@ export default function Carcomponents() {
 
     function incrementSedan() {
         dispatch({type: "increment-sedan"})
-
     }
 
     function decrementSedan() {
         dispatch({type: "decrement-sedan"})
-
     }
+
     function incrementVan() {
         dispatch({type: "increment-van"})
-
     }
 
     function decrementVan() {
         dispatch({type: "decrement-van"})
-
     }
 
     const handleFlightinfo:any = useRef();
@@ -173,18 +168,29 @@ export default function Carcomponents() {
         CarsInfo.current.style.overflow = "hidden"
     }
 
+    const handleOrdering = () => {
+        router.push({
+            pathname:"/ordering/ordered"
+        })
+
+    }
+
     return (
         <div className='relative'>
-            {(parseInt(passengersFromQuery) === people) && <div className='absolute flex justify-center items-center text-green-600 -top-[50px] w-screen'><AiOutlineCheck /><p>You are up to date</p></div>}
-            {(parseInt(passengersFromQuery) !== people) && <div className='absolute flex justify-center items-center text-red-600 -top-[50px] w-screen'><AiOutlineClose /><p>You have to update road!</p></div>}
-            {(PersonsLeft > 0 && (parseInt(passengersFromQuery) === people)) && <div 
-                className='absolute bg-red-600 text-white w-[92vw] -top-[25px] left-0 right-0 mx-auto px-[4px] rounded-[3px] flex justify-center items-center'>
+            {(latLangFrom !== null && latLangTo!== null && PersonsLeft <= 0 && parseInt(passengersFromQuery) === people) && <div className='absolute flex justify-center items-center text-green-600 -top-[50px] w-screen'><AiOutlineCheck /><p>You are up to date and can make an order</p></div>}
+            {(parseInt(passengersFromQuery) !== people) && <div className='absolute flex justify-center items-center text-red-600 -top-[50px] w-screen'><AiOutlineClose /><p>You have to update road first (button above)</p></div>}
+            {(latLangFrom !== null && latLangTo !== null && PersonsLeft > 0 && (parseInt(passengersFromQuery) === people)) && <div 
+                className='absolute bg-red-600 text-white w-[92vw] -top-[52px] left-0 right-0 mx-auto px-[4px] rounded-[3px] flex justify-center items-center'>
                     <AiFillInfoCircle /> 
                     <p 
                         className='pl-[4px]'>Find a seats for {PersonsLeft} persons yet.</p>
                     </div>}
             <div id="choose-cars-wrapper" className=' rounded-[10px] flex w-[90vw] mx-auto justify-between duration-200 mb-[12px] bg-white relative'>
-            {(parseInt(passengersFromQuery) !== people) && <div className='bg-white/[0.9] absolute w-screen h-[600px] z-20 -left-[5vw]'></div>}
+            {
+                //Bloking to configure offer before chosing correct params
+                ((latLangFrom === null && latLangTo === null) || (latLangFrom !== null && latLangTo !== null) || (latLangFrom === null && latLangTo !== null) || (latLangFrom !== null && latLangTo === null)) && parseInt(passengersFromQuery) !== people && <div className='bg-white/[0.9] absolute w-screen h-[600px] z-20 -left-[5vw]'></div>}
+            
+                
                 <div className='rounded-[10px] h-[129px] w-[170px] bg-white flex'>
                     <div id="left-wrapper" className='w-[120px]'>
                         <div className='w-full'><p className=' text-center font-semibold pt-[4px]'>Eco Sedan</p></div>
@@ -225,10 +231,10 @@ export default function Carcomponents() {
                         </div>
                         <div className='w-full flex pl-[5px]'>
                             <BsFillPersonFill className="text-yellow-500"/>
-                            <p className='text-center font-semibold text-[12px] pl-[5px]'>max 8 people</p></div>
+                            <p className='text-center font-semibold text-[10px] pl-[5px]'>max 8 people</p></div>
                         <div className='w-full flex pl-[5px]'>
                             <BsFillBagFill className="text-yellow-500"/>
-                            <p className=' text-center font-semibold text-[12px] pl-[5px]'>max 7 suitcases</p></div>
+                            <p className=' text-center font-semibold text-[10px] pl-[5px]'>max 7 suitcases</p></div>
                         </div>
                     <div id="left-wrapper" className='w-[50px]'>
                         <div className='relative w-full h-[125px] flex items-center justify-around '>
@@ -263,7 +269,9 @@ export default function Carcomponents() {
                         <textarea className='border border-gray-300 h-[100px] w-full' placeholder=' Your massage here'></textarea>
                     </div>
                     <div className='w-[90vw] mx-auto my-[20px]'>
-                        <button className='float-right flex border-green-900 h-[50px] px-[10px] py-[5px] bg-yellow-500 text-white items-center justify-center rounded-[10px]'>
+                        <button 
+                        className='float-right flex border-green-900 h-[50px] px-[10px] py-[5px] bg-yellow-500 text-white items-center justify-center rounded-[10px]'
+                        onClick={handleOrdering}>
                             <p>Start ordering for 139 €</p>
                         </button>
                     </div>
