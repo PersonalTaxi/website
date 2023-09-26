@@ -139,6 +139,7 @@ export default function Search() {
         
         if(CompleteStatus = true){
             setIsFromCompleted(CompleteStatus)
+            
         } else {
             setIsFromCompleted(CompleteStatus)
         }
