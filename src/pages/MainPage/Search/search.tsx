@@ -137,7 +137,7 @@ export default function Search() {
     
         console.log(CompleteStatus)
         
-        if(CompleteStatus === true){
+        if(CompleteStatus = true){
             setIsFromCompleted(CompleteStatus)
         } else {
             setIsFromCompleted(CompleteStatus)
