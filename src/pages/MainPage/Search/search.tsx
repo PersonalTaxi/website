@@ -1,6 +1,6 @@
 import React, { useState, useRef, useMemo, useCallback, useEffect, useContext } from 'react'
 import { AppContext }  from '@/pages/_app'
-import Router, { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import Link from 'next/link'
 import TomTom from '@/pages/tomtom'
 import {BiSolidMap} from 'react-icons/bi'
@@ -10,16 +10,28 @@ import Cities from '../../../data/cities.json'
 import Calendar  from 'react-calendar'
 import {AiOutlineMinus, AiOutlinePlus} from 'react-icons/ai'
 import {BsFillPersonFill} from 'react-icons/bs'
+import {AiFillInfoCircle} from 'react-icons/ai'
 import Script from 'next/script'
 import Head from 'next/head'
 
 export default function Search() {
 
-    const {queryFrom, setQueryFrom, queryTo, setQueryTo, date, setDate, time, setTime, people, setPeople, latLangFrom, setlatLangFrom, latLangTo, setlatLangTo,calculateDistance, setCalculateDistance} = useContext(AppContext)
+    const {queryFrom, setQueryFrom, queryTo, setQueryTo, date, setDate, time, setTime, people, setPeople, latLangFrom, setlatLangFrom, latLangTo, setlatLangTo,calculateDistance, setCalculateDistance, isFormCompleted, setIsFromCompleted} = useContext(AppContext)
 
     const router = useRouter();
+    const [SearchButtonWasClicked, setSearchButtonWasClicked] = useState(false);
+
+    let passengersFromQuery:number = 2
+    
+    if(router.query.passengers === undefined) {
+        //default value is 2
+        passengersFromQuery = 2
+    } else {
+        passengersFromQuery = parseInt(router.query.passengers.toString())
+    }
 
     const mapElement:any = useRef();
+    const InfoAboutFillLocations = useRef<any | null>(null);
 
     const dataFrom:any = useRef();
     const dataTo:any = useRef();
@@ -40,7 +52,6 @@ export default function Search() {
         if(people > 1){
             return [setPeople(people -1)]
         }
-        
     }, [people])
 
     const handleIncreaseNumber = useCallback(() => {
@@ -57,17 +68,87 @@ export default function Search() {
         setTime(e.target.value) 
     }
 
+
+    const ShowOrHideInfoAboutMissingLocalizations = () => {
+        console.log(SearchButtonWasClicked)
+        if(SearchButtonWasClicked === false){
+            console.log("TRUE")
+            InfoAboutFillLocations.current.style.display = "none"
+        } 
+        
+        if(((latLangFrom === null && latLangTo === null) || (latLangFrom !== null && latLangTo === null) || (latLangFrom === null && latLangTo !== null)) && SearchButtonWasClicked === true){
+            console.log("SECOND")
+            InfoAboutFillLocations.current.style.display = "flex"
+        }
+
+        if((latLangFrom !== null && latLangTo !== null) && SearchButtonWasClicked === true){
+            console.log("THIRD")
+            InfoAboutFillLocations.current.style.display = "none"
+        } 
+    }
+
     const handleSendForm = (e:any) => {
         e.preventDefault();
 
-        router.push({
-            pathname:"/ordering/summary",
-            query:{
-                passengers:people,
-            },
-        },undefined, {scroll:false})
+        setSearchButtonWasClicked(true)
 
+        if(latLangFrom !== null && latLangTo !== null){
+            router.push({
+                pathname:"/ordering/summary",
+                query:{
+                    passengers:people,
+                },
+            },undefined, {scroll:false})
+    
+        }
     }
+
+    const MissingValuesChecking = useCallback(() => {
+        console.log("DZIAŁA")
+        console.log(SearchButtonWasClicked)
+        ShowOrHideInfoAboutMissingLocalizations();
+    }, [SearchButtonWasClicked, latLangFrom, latLangTo])
+
+
+    console.log(passengersFromQuery)
+
+
+    const CheckIfAllDataIsComplete = () => {
+
+        console.log("In")
+        let CompleteStatus = false
+
+        const Check = () => {
+            if (queryFrom === "") return false
+            console.log("QF")
+            if (queryTo === "") return false
+            console.log("QT")
+            if (latLangFrom === null) return false
+            console.log("LF")
+            if (latLangTo === null) return false
+            console.log("LT")
+            if (passengersFromQuery !== people) return false
+            console.log("Persons")
+
+            CompleteStatus = true
+        }
+
+        Check();
+    
+        console.log(CompleteStatus)
+        
+        if(CompleteStatus === true){
+            setIsFromCompleted(CompleteStatus)
+        } else {
+            setIsFromCompleted(CompleteStatus)
+        }
+    }
+
+
+    useEffect(() =>{
+        MissingValuesChecking();
+        CheckIfAllDataIsComplete()
+    })
 
   return (
     <>
@@ -86,32 +167,40 @@ export default function Search() {
                 <div className='w-[120px] bg-white text-center rounded-t-[10px]'>Your drive:</div>
             </div>
             <div id="search-contianer" className='bg-white w-11/12 rounded-[15px] h-auto'>
-                <form onSubmit={handleSendForm} className='w-full h-[300px] flex flex-col justify-evenly items-center mx-auto border-red-900'>
-                    <div id="form-inputs-wraper" className='w-full h-[250px] flex flex-col justify-evenly items-center mx-auto border-red-900'>
+                <form onSubmit={handleSendForm} className='w-full h-[320px] flex flex-col justify-evenly items-center mx-auto border-red-900'>
+                    <div id="form-inputs-wraper" className='w-full h-[280px] flex flex-col justify-evenly items-center mx-auto border-red-900'>
                         <div id="from-to" className="rounded-[10px] h-[100px] w-10/12 border relative">
-                                <div id="icon-input-wraper" className='h-full rounded-[10px] w-full flex items-center relative'> 
-                                    <TomTom />
+                                    <div id="icon-input-wraper" className='h-full rounded-[10px] w-full flex items-center relative'> 
+                                        <TomTom ShowOrHideInfoAboutMissingLocalizations={ShowOrHideInfoAboutMissingLocalizations} />
+                                    </div>
+                            <div ref={InfoAboutFillLocations} className='hidden h-[25px] text-red-800 items-center'> 
+                                <AiFillInfoCircle />
+                                <div  className='pl-[5px]'>Please fill localizations</div>
+                            </div>
+                        </div>
+                        <div id="wrapper-for-bottom-search w-full">
+                            {/* Date*/}
+                            <div id="calendar-timer-wrapper" className="rounded-[10px] h-[50px] w-12/12 border flex flex-no-wrap mb-[10px]">
+                                <div className="h-[50px] w-1/2 border-r flex items-center pl-[10px] relative">
+                                    {(date === "") && <div 
+                                        ref={DatePlaceholder} 
+                                        className='absolute w-9/12 h-[50px] text-left leading-[50px] text-gray-900/[0.5] right-0 pl-[5px]'>
+                                            Date
+                                    </div>}
+                                    <BsCalendar3 locale="en_EN" className="w-[30px] h-[30px] text-yellow-500/[0.4]"/>
+                                    <input 
+                                        onChange={handleDate}
+                                        id="data"
+                                        className='w-full h-[45px] pl-[5px] outline-none z-10'
+                                        placeholder='Date'
+                                        type="date"
+                                        onFocus={handleHidePlaceholderDivDate}
+                                        value={date}
+                                        required
+                                        >
+                                    </input>
                                 </div>
-                            </div>
-                        <div id="schedule-in-calendar" className="rounded-[10px] h-[50px] w-10/12 border flex flex-no-wrap">
-                            <div className="h-[50px] w-1/2 border-r flex items-center pl-[10px] relative">
-                                {(date === "") && <div 
-                                    ref={DatePlaceholder} 
-                                    className='absolute w-9/12 h-full text-left leading-[50px] text-gray-900/[0.5] right-0 pl-[5px]'>
-                                        Date
-                                </div>}
-                                <BsCalendar3 locale="en_EN" className="w-[30px] h-[30px] text-yellow-500/[0.4]"/>
-                                <input 
-                                    onChange={handleDate}
-                                    id="data" 
-                                    className='w-full h-[45px] pl-[5px] outline-none z-10'
-                                    placeholder='Date' 
-                                    type="date" 
-                                    onFocus={handleHidePlaceholderDivDate} 
-                                    value={date}
-                                    >
-                                </input>
-                            </div>
+                             {/* Time */}
                             <div className="h-[50px] w-1/2 flex items-center justify-center pl-[10px] relative">
                             {(time === "") && <div 
                                     ref={TimePlaceholder} 
@@ -126,11 +215,13 @@ export default function Search() {
                                     placeholder='Hour' 
                                     type="time" 
                                     onFocus={handleHidePlaceholderDivTime}
-                                    value={time}>
+                                    value={time}
+                                    required>
                                 </input>
                             </div>
                         </div>
-                        <div id="person-and-submit-wraper" className="rounded-[10px] h-[50px] w-10/12 flex justify-between">
+                        {/* Persons do drive */}
+                        <div id="person-and-submit-wraper" className="rounded-[10px] h-[50px] w-full flex justify-between">
                             <div id="person-and-submit-wraper" className="rounded-[10px] h-[50px] w-6/12 border flex justify-center items-center">
                                 <div className='w-[25px] h-[25px] rounded-[50%]' onClick={handleDowncreaseNumber}> 
                                     <AiOutlineMinus className="w-full h-full" />
@@ -147,6 +238,7 @@ export default function Search() {
                                     {(!router.asPath.includes("ordering")) ? <p>See offer</p> : <p>Update road</p>}
                                 </button>
                         </div>
+                    </div>
                     </div>
                 </form>
             </div>

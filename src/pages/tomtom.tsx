@@ -7,13 +7,13 @@ import { LiaHotelSolid } from 'react-icons/lia'
 import { IoMdRestaurant} from 'react-icons/io'
 import { BiSolidMap } from 'react-icons/bi'
 import { AiFillCloseSquare } from 'react-icons/ai'
-import { AppContext } from './_app';
+import { AppContext } from './_app'
 
-export default function TomTom() {
+export default function TomTom({ShowOrHideInfoAboutMissingLocalizations}) {
 
   const router = useRouter();
   const [dataFromFetch, setDataFromFetch] = useState(null);
-  const {queryFrom, setQueryFrom, queryTo, setQueryTo, date, setDate, time, setTime, people, setPeople, latLangFrom, setlatLangFrom, latLangTo, setlatLangTo, calculateDistance, setCalculateDistance} = useContext(AppContext)
+  const {queryFrom, setQueryFrom, queryTo, setQueryTo, date, setDate, time, setTime, people, setPeople, latLangFrom, setlatLangFrom, latLangTo, setlatLangTo, calculateDistance, setCalculateDistance, isFormCompleted, setIsFromCompleted} = useContext(AppContext)
 
   const [dataToFetch, setDataToFetch] = useState(null);
   const [activeQuery, setActiveQuery] = useState("")
@@ -25,9 +25,6 @@ export default function TomTom() {
   const clearFrom:any = useRef();
   const clearTo:any = useRef();
   const suggest:any = useRef();
-
-  console.log(latLangFrom)
-  console.log(latLangTo)
 
   const handleSearchFrom = (e:any) => {
     // console.log(e.target.value)
@@ -46,7 +43,7 @@ export default function TomTom() {
   }
 
   const handleChosingParam = (e:any) => {
-    console.log(e.target.getAttribute('data-name'))
+    // console.log(e.target.getAttribute('data-name'))
     if(suggest.current.id === "From"){
 
       setlatLangFrom(e.target.getAttribute('data-value'))
@@ -59,24 +56,27 @@ export default function TomTom() {
       setQueryTo(e.target.getAttribute('data-name'))
       ToList.current.style.display = "none"
     }
+
+    ShowOrHideInfoAboutMissingLocalizations();
+
   }
 
   const calculateDistances = useCallback(() => {
     if(latLangFrom !== null && latLangTo !== null) {
 
-      console.log(latLangFrom)
+      console.log(latLangFrom, latLangTo)
       let data = fetch(`https://api.tomtom.com/routing/1/calculateRoute/${latLangFrom}:${latLangTo}/json?key=cjmuWSfVTrJfOGj7AcXvMLU8R8i1Q9cF`,{
       method:"GET"
       })
     .then(res => res.json())
     .then(data => 
-      // console.log(data.routes[0].summary.lengthInMeters)
       setCalculateDistance(Math.round(data.routes[0].summary.lengthInMeters /1000))
       )
     } else {
       setCalculateDistance(null)
 
     }
+
   },[latLangFrom, latLangTo])
 
   useEffect(() => {
@@ -160,9 +160,9 @@ export default function TomTom() {
             >
                 <div className='w-[30px] h-full p-[5px] flex justify-center items-center'>{icon}</div>
                 <div className='flex flex-col w-full justify-center'>
-                  <div data-name={POI} data-value={`${lat},${lon}`} className='font-bold text-[13px] w-full leading-[12px]'>{POI}</div>
+                  <div id={activeQuery} data-name={POI} data-value={`${lat},${lon}`} className='font-bold text-[13px] w-full leading-[12px]'>{POI}</div>
                   {/* <div className='text-[10px] w-full z-20 leading-[12px]'>{i.address.municipality} </div> */}
-                  <div data-name={POI} data-value={`${lat},${lon}`} className='text-[10px] w-full z-20 leading-[12px]'>{StreetName} {StreetNumber} {City}</div>
+                  <div id={activeQuery} data-name={POI} data-value={`${lat},${lon}`} className='text-[10px] w-full z-20 leading-[12px]'>{StreetName} {StreetNumber} {City}</div>
                   {/* <p className='text-[10px] bg-blue-800 text-white pl-[10px] w-full'>{i.poi.categories[0]}</p> */}
                 </div>
             </div>
@@ -178,7 +178,7 @@ export default function TomTom() {
       })
       .catch((err) => console.log(err))
 
-  },[queryFrom, queryTo])
+  },[queryFrom, queryTo, latLangFrom, latLangTo])
 
 
   const handleShowingList = (e:any) => {

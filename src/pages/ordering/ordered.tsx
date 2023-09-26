@@ -7,7 +7,7 @@ export default function Ordered() {
 
   return (
     <div className=' w-[90vw] mx-auto mt-[50px]'>
-        <div className='text-[18px]'>You've just made an order you badass !</div>
+        <div className='text-[18px]'>You&apos;ve just made an order you badass !</div>
         <div><p>From: {queryFrom}</p></div>
         <div><p>To: {queryFrom}</p></div>
         <div><p>For: {people} people</p></div>
