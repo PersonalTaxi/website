@@ -9,7 +9,12 @@ import { BiSolidMap } from 'react-icons/bi'
 import { AiFillCloseSquare } from 'react-icons/ai'
 import { AppContext } from './_app'
 
-export default function TomTom({ShowOrHideInfoAboutMissingLocalizations}) {
+
+type Function = {
+  ShowOrHideInfoAboutMissingLocalizations:() => void;
+}
+
+export default function TomTom({ShowOrHideInfoAboutMissingLocalizations}:{ShowOrHideInfoAboutMissingLocalizations:Function}) {
 
   const router = useRouter();
   const [dataFromFetch, setDataFromFetch] = useState(null);
