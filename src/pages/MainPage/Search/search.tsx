@@ -180,9 +180,9 @@ export default function Search() {
                                 <div className='pl-[5px]'>Please fill localizations</div>
                             </div>
                         </div>
-                        <div id="wrapper-for-bottom-search w-full">
+                        <div id="wrapper-for-bottom-search" className='w-10/12'>
                             {/* Date*/}
-                            <div id="calendar-timer-wrapper" className="rounded-[10px] h-[50px] w-12/12 border flex flex-no-wrap mb-[10px]">
+                            <div id="calendar-timer-wrapper" className="rounded-[10px] h-[50px] w-full border flex flex-no-wrap mb-[10px]">
                                 <div className="h-[50px] w-1/2 border-r flex items-center pl-[10px] relative">
                                     {(date === "") && <div 
                                         ref={DatePlaceholder} 
@@ -203,10 +203,10 @@ export default function Search() {
                                     </input>
                                 </div>
                              {/* Time */}
-                            <div className="h-[50px] w-1/2 flex items-center justify-center pl-[10px] relative">
-                            {(time === "") && <div 
+                                <div className="h-[50px] w-1/2 flex items-center justify-center pl-[10px] relative">
+                                {(time === "") && <div 
                                     ref={TimePlaceholder} 
-                                    className='absolute w-9/12 h-full text-left leading-[50px] text-gray-900/[0.5] right-0 pl-[5px]'>Time
+                                    className='absolute w-full h-full text-left leading-[50px] text-gray-900/[0.5] right-0 pl-[5px]'>Time
                                 </div>}
                                     <TbClockHour8 
                                         className="w-[30px] h-[30px] text-yellow-500/[0.4]"
@@ -221,9 +221,9 @@ export default function Search() {
                                     required>
                                 </input>
                             </div>
-                        </div>
-                        {/* Persons do drive */}
-                        <div id="person-and-submit-wraper" className="rounded-[10px] h-[50px] w-full flex justify-between">
+                            </div>
+                            {/* Persons do drive */}
+                            <div id="person-and-submit-wraper" className="rounded-[10px] h-[50px] w-full flex justify-between">
                             <div id="person-and-submit-wraper" className="rounded-[10px] h-[50px] w-6/12 border flex justify-center items-center">
                                 <div className='w-[25px] h-[25px] rounded-[50%]' onClick={handleDowncreaseNumber}> 
                                     <AiOutlineMinus className="w-full h-full" />
