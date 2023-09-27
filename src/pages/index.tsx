@@ -6,18 +6,18 @@ import Main from './MainPage/main'
 
 const rubikFonts = Ubuntu({
   subsets: ['latin'],
-  weight:['300', '500',]
+  weight:['300', '500','700']
 })
 
 
 export default function Home() {
 
-  return (
-    <>
-      <main className={`${rubikFonts.className}`}>
+  return (  
+    <div className={`${rubikFonts.className}`}>
+      <main >
         <Header />
-        <Main />
+        <Main  />
       </main>
-    </>
+    </div>
   )
 }

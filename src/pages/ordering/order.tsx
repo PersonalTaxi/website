@@ -1,5 +1,5 @@
 import React, { useEffect, Component, useContext } from 'react'
-import Carcomponents from './carcomponents'
+import Carcomponents from './chooseparams'
 import Header from '../Header/header'
 import Search from '../MainPage/Search/search'
 import Head from 'next/head'
@@ -10,7 +10,7 @@ export default function Order() {
     // console.log(FromLocalization)
 
   return (
-    <div className='bg-[url("/Main_theme.png")] w-screen h-screen bg-cover'>
+    <div className='bg-[url("/Main_theme.png")] w-screen  bg-cover bg-fixed'>
        <Head>
             <meta http-equiv='X-UA-Compatible' content='IE=Edge' ></meta>
             <title>Your best drive</title>
@@ -25,8 +25,6 @@ export default function Order() {
       <div id='search-wrapper-ordering' className='pt-[80px]'>
           <Search/>
       </div>
-    
-      <Carcomponents />
     </div>
   )
 }

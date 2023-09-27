@@ -199,7 +199,7 @@ export default function Search() {
                                         onFocus={handleHidePlaceholderDivDate}
                                         value={date}
                                         required
-                                        >
+                                    >
                                     </input>
                                 </div>
                              {/* Time */}

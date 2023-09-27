@@ -1,15 +1,8 @@
 import React, { useEffect, Component, useContext, useRef } from 'react'
-import Carcomponents from './carcomponents'
+import Chooseparams from './chooseparams'
 import Header from '../Header/header'
 import Search from '../MainPage/Search/search'
 import Head from 'next/head'
-import { Ubuntu } from 'next/font/google'
-
-const ubuntuFont = Ubuntu({
-  subsets: ['latin'],
-  weight:['300']
-})
-
 
 export default function Summary() {
 
@@ -38,7 +31,7 @@ export default function Summary() {
   },[])
 
   return (
-    <div className={`w-screen  bg-cover bg-fixed ${ubuntuFont.className}`}>
+    <div>
        <Head>
             <meta http-equiv='X-UA-Compatible' content='IE=Edge' ></meta>
             <title>Your best drive</title>
@@ -51,12 +44,12 @@ export default function Summary() {
         </Head>
       <Header />
       <div id='search-wrapper-ordering' className='pt-[50px]'>
-          <div ref={MapElement} className='w-screen h-[450px] overflow-hidden'></div>
+          <div ref={MapElement} className='w-screen h-[200px] overflow-hidden'></div>
           <div className='bg-white w-screen h-[350px] rounded-t-[40px] z-20 -mt-[20px]'>
             <Search/>
           </div>
       </div>
-      <Carcomponents />
+      <Chooseparams />
     </div>
   )
 }
