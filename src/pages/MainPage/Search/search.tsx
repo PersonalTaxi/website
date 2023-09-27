@@ -17,10 +17,9 @@ import Head from 'next/head'
 
 export default function Search() {
 
-    const {queryFrom, setQueryFrom, queryTo, setQueryTo, date, setDate, time, setTime, people, setPeople, latLangFrom, setlatLangFrom, latLangTo, setlatLangTo,calculateDistance, setCalculateDistance, isFormCompleted, setIsFromCompleted} = useContext(AppContext)
+    const {queryFrom, setQueryFrom, queryTo, setQueryTo, date, setDate, time, setTime, people, setPeople, latLangFrom, setlatLangFrom, latLangTo, setlatLangTo,calculateDistance, setCalculateDistance, isFormCompleted, setIsFromCompleted, SearchButtonWasClicked, setSearchButtonWasClicked} = useContext(AppContext)
 
     const router = useRouter();
-    const [SearchButtonWasClicked, setSearchButtonWasClicked] = useState(false);
 
     let passengersFromQuery:number = 2
     
@@ -30,6 +29,8 @@ export default function Search() {
     } else {
         passengersFromQuery = parseInt(router.query.passengers.toString())
     }
+
+    console.log(SearchButtonWasClicked)
 
     const mapElement:any = useRef();
     const InfoAboutFillLocations = useRef<any | null>(null);
@@ -71,7 +72,6 @@ export default function Search() {
 
 
     const ShowOrHideInfoAboutMissingLocalizations = () => {
-        console.log(SearchButtonWasClicked)
         if(SearchButtonWasClicked === false){
             console.log("TRUE")
             InfoAboutFillLocations.current.style.display = "none"
@@ -177,7 +177,7 @@ export default function Search() {
                                     </div>
                             <div ref={InfoAboutFillLocations} className='hidden h-[25px] text-red-800 items-center'> 
                                 <AiFillInfoCircle />
-                                <div  className='pl-[5px]'>Please fill localizations</div>
+                                <div className='pl-[5px]'>Please fill localizations</div>
                             </div>
                         </div>
                         <div id="wrapper-for-bottom-search w-full">
