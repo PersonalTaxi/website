@@ -120,7 +120,7 @@ export default function Carcomponents() {
 
     return (
         <div className='relative'>
-            {isFormCompleted === true && <div className='absolute flex justify-center items-center text-green-600 -top-[50px] w-screen'><AiOutlineCheck /><p>Conditions are up to date</p></div>}
+            {isFormCompleted === 'true' && <div className='absolute flex justify-center items-center text-green-600 -top-[50px] w-screen'><AiOutlineCheck /><p>Conditions are up to date</p></div>}
             {(parseInt(passengersFromQuery) !== people) && <div className='absolute flex justify-center items-center text-red-600 -top-[50px] w-screen'><AiOutlineClose /><p>You have to update road first (button above)</p></div>}
             {(latLangFrom !== null && latLangTo !== null && PersonsLeft > 0 && (parseInt(passengersFromQuery) === people)) && <div 
                 className='absolute bg-red-600 text-white w-[92vw] -top-[25px] left-0 right-0 mx-auto px-[4px] rounded-[3px] flex justify-center items-center'>
@@ -131,7 +131,7 @@ export default function Carcomponents() {
             <div id="choose-cars-wrapper" className=' rounded-[10px] flex w-[90vw] mx-auto justify-between duration-200 mb-[12px] bg-white relative'>
             {
                 //Bloking to configure offer before chosing correct params
-                isFormCompleted !== true && <div className='bg-white/[0.9] absolute w-screen h-[600px] z-20 -left-[5vw]'></div>}
+                isFormCompleted !== 'true' && <div className='bg-white/[0.9] absolute w-screen h-[600px] z-20 -left-[5vw]'></div>}
             
                 <div className='rounded-[10px] h-[129px] w-[170px] bg-white flex'>
                     <div id="left-wrapper" className='w-[120px]'>

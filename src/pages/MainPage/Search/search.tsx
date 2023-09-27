@@ -14,6 +14,7 @@ import {AiFillInfoCircle} from 'react-icons/ai'
 import Script from 'next/script'
 import Head from 'next/head'
 
+
 export default function Search() {
 
     const {queryFrom, setQueryFrom, queryTo, setQueryTo, date, setDate, time, setTime, people, setPeople, latLangFrom, setlatLangFrom, latLangTo, setlatLangTo,calculateDistance, setCalculateDistance, isFormCompleted, setIsFromCompleted} = useContext(AppContext)
@@ -116,7 +117,7 @@ export default function Search() {
     const CheckIfAllDataIsComplete = () => {
 
         console.log("In")
-        let CompleteStatus = false
+        let CompleteStatus:string = 'false'
 
         const Check = () => {
             if (queryFrom === "") return false
@@ -130,16 +131,16 @@ export default function Search() {
             if (passengersFromQuery !== people) return false
             console.log("Persons")
 
-            CompleteStatus = true
+            CompleteStatus = 'true'
         }
 
         Check();
     
         console.log(CompleteStatus)
         
-        if(CompleteStatus = true){
+        if(CompleteStatus === 'true'){
             setIsFromCompleted(CompleteStatus)
-            
+
         } else {
             setIsFromCompleted(CompleteStatus)
         }

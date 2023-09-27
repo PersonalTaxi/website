@@ -14,7 +14,7 @@ type Function = {
   ShowOrHideInfoAboutMissingLocalizations:() => void;
 }
 
-export default function TomTom({ShowOrHideInfoAboutMissingLocalizations}:{ShowOrHideInfoAboutMissingLocalizations:Function}) {
+export default function TomTom({ShowOrHideInfoAboutMissingLocalizations}: Function) {
 
   const router = useRouter();
   const [dataFromFetch, setDataFromFetch] = useState(null);
