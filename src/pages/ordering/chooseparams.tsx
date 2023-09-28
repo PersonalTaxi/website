@@ -127,11 +127,11 @@ export default function Chooseparams() {
 
 
     return (
-        <div className='relative'>
-            {isFormCompleted === 'true' && <div className='absolute flex justify-center items-center text-green-600 -top-[50px] w-screen'><AiOutlineCheck /><p>Conditions are up to date</p></div>}
-            {(parseInt(passengersFromQuery) !== people) && <div className='absolute flex justify-center items-center text-red-600 -top-[50px] w-screen'><AiOutlineClose /><p>You have to update (button above)</p></div>}
+        <div className='relative pt-[10px]'>
+            {isFormCompleted === 'true' && <div className='absolute flex justify-center items-center text-green-600 -top-[40px] w-screen'><AiOutlineCheck /><p>Conditions are up to date</p></div>}
+            {(parseInt(passengersFromQuery) !== people) && <div className='absolute flex justify-center items-center text-red-600 -top-[40px] w-screen'><AiOutlineClose /><p>You have to update (button above)</p></div>}
             {(latLangFrom !== null && latLangTo !== null && PersonsLeft > 0 && (parseInt(passengersFromQuery) === people)) && <div 
-                className='absolute bg-red-600 text-white w-[92vw] -top-[25px] left-0 right-0 mx-auto px-[4px] rounded-[3px] flex justify-center items-center'>
+                className='absolute bg-red-600 text-white w-[92vw] -top-[40px] left-0 right-0 mx-auto px-[4px] rounded-[3px] flex justify-center items-center'>
                     <AiFillInfoCircle /> 
                     <p 
                         className='pl-[4px]'>Find a seats for {PersonsLeft} persons yet.</p>

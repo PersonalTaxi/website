@@ -86,7 +86,15 @@ export default function Search() {
     const handleSendForm = (e:any) => {
         e.preventDefault();
 
+        let ScrollOption = true
+
+        if(router.query.passengers){
+            ScrollOption = false
+        }
+
         setSearchButtonWasClicked(true)
+
+        console.log(ScrollOption)
 
         if(latLangFrom !== null && latLangTo !== null){
             router.push({
@@ -94,7 +102,7 @@ export default function Search() {
                 query:{
                     passengers:people,
                 },
-            },undefined)
+            },undefined, {scroll:ScrollOption})
     
         }
     }
@@ -115,6 +123,8 @@ export default function Search() {
             if (latLangFrom === null) return false
             if (latLangTo === null) return false
             if (passengersFromQuery !== people) return false
+
+            CompleteStatus = 'true'
         }
 
         Check();
@@ -136,7 +146,7 @@ export default function Search() {
   return (
     <>
     <Head>
-        <meta http-equiv='X-UA-Compatible' content='IE=Edge' ></meta>
+        <meta http-equiv='X-UA-Compatible' content='IE=Edge'></meta>
         <title>Your best drive</title>
         <meta name='viewport' content='width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no'></meta>
         <link rel='stylesheet' type='text/css' href='/cdn.web-sdk-maps/maps.css'></link>
@@ -144,10 +154,10 @@ export default function Search() {
         <link rel='stylesheet' type='text/css' href='/cdn.web-sdk-plugin-searchbox/SearchBox.css'></link>
         <link rel='stylesheet' type='text/css' href='../assets/ui-library/icons-css/poi.css'></link>
     </Head>
-    <div className='w-screen h-[320px] border-blue-900 z-20 mb-[12px] ' id="specifics">
+    <div className='w-screen h-[330px] border-blue-900 z-20 mb-[12px] ' id="specifics">
         <div id="search-wraper" className='w-full flex flex-col justify-start items-center'>
             <div id="search-contianer-text" className='w-11/12 px-[30px]'>
-                <div className='w-[120px] bg-white text-center rounded-t-[10px]'>Your drive:</div>
+                <div className='w-[120px] bg-white text-center rounded-t-[10px] -mt-[20px]'>Your drive:</div>
             </div>
             <div id="search-contianer" className='bg-white w-11/12 rounded-[15px] h-auto'>
                 <form onSubmit={handleSendForm} className='w-full h-[320px] flex flex-col justify-evenly items-center mx-auto border-red-900'>

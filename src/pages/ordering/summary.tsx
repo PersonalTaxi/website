@@ -15,7 +15,6 @@ export default function Summary() {
     if(window.scrollX < 200){
       GoForMore.current.style.display = "none"
     }
-
   }
   
   useEffect(() => {
@@ -59,7 +58,8 @@ export default function Summary() {
             <div className={`bg-white w-screen h-[350px] rounded-t-[40px] z-20 absolute bottom-0`}>
               <Search/>
               <Chooseparams />
-            <Link href="#specifics"><div ref={GoForMore} className="absolute w-screen h-[120px] bg-white bottom-[45px] z-20 flex justify-center items-start">
+            <Link href="#specifics">
+              <div ref={GoForMore} className="absolute w-screen h-[120px] bg-white bottom-[60px] z-20 flex justify-center items-start">
               <div className='flex justify-center px-[20px] h-[50px] border items-center rounded-[30px] bg-yellow-500 text-white'>
                   <MdOutlineKeyboardArrowDown className="h-[35px] w-[35px] left-0 right-0 mx-auto duration-700"/>
                 <div className='h-[30px] text-[20px]'>Go to specifics</div>
