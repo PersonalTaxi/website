@@ -30,8 +30,6 @@ export default function Search() {
         passengersFromQuery = parseInt(router.query.passengers.toString())
     }
 
-    console.log(SearchButtonWasClicked)
-
     const mapElement:any = useRef();
     const InfoAboutFillLocations = useRef<any | null>(null);
 
@@ -73,17 +71,14 @@ export default function Search() {
 
     const ShowOrHideInfoAboutMissingLocalizations = () => {
         if(SearchButtonWasClicked === false){
-            console.log("TRUE")
             InfoAboutFillLocations.current.style.display = "none"
         } 
         
         if(((latLangFrom === null && latLangTo === null) || (latLangFrom !== null && latLangTo === null) || (latLangFrom === null && latLangTo !== null)) && SearchButtonWasClicked === true){
-            console.log("SECOND")
             InfoAboutFillLocations.current.style.display = "flex"
         }
 
         if((latLangFrom !== null && latLangTo !== null) && SearchButtonWasClicked === true){
-            console.log("THIRD")
             InfoAboutFillLocations.current.style.display = "none"
         } 
     }
@@ -105,38 +100,24 @@ export default function Search() {
     }
 
     const MissingValuesChecking = useCallback(() => {
-        console.log("DZIAŁA")
-        console.log(SearchButtonWasClicked)
         ShowOrHideInfoAboutMissingLocalizations();
     }, [SearchButtonWasClicked, latLangFrom, latLangTo])
 
 
-    console.log(passengersFromQuery)
-
 
     const CheckIfAllDataIsComplete = () => {
 
-        console.log("In")
         let CompleteStatus:string = 'false'
 
         const Check = () => {
             if (queryFrom === "") return false
-            console.log("QF")
             if (queryTo === "") return false
-            console.log("QT")
             if (latLangFrom === null) return false
-            console.log("LF")
             if (latLangTo === null) return false
-            console.log("LT")
             if (passengersFromQuery !== people) return false
-            console.log("Persons")
-
-            CompleteStatus = 'true'
         }
 
         Check();
-    
-        console.log(CompleteStatus)
         
         if(CompleteStatus === 'true'){
             setIsFromCompleted(CompleteStatus)
@@ -163,7 +144,7 @@ export default function Search() {
         <link rel='stylesheet' type='text/css' href='/cdn.web-sdk-plugin-searchbox/SearchBox.css'></link>
         <link rel='stylesheet' type='text/css' href='../assets/ui-library/icons-css/poi.css'></link>
     </Head>
-    <div className='w-screen h-[320px] border-blue-900 z-20 mb-[12px]'>
+    <div className='w-screen h-[320px] border-blue-900 z-20 mb-[12px] ' id="specifics">
         <div id="search-wraper" className='w-full flex flex-col justify-start items-center'>
             <div id="search-contianer-text" className='w-11/12 px-[30px]'>
                 <div className='w-[120px] bg-white text-center rounded-t-[10px]'>Your drive:</div>
