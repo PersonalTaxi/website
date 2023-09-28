@@ -23,7 +23,7 @@ export default function Summary() {
    const importingMaps = async() => {
       const tt = await import("@tomtom-international/web-sdk-maps")
       let map = tt.map({
-        key:'rKQOvSWb5WRcI826HMCl5W82PMDxhDqM',
+        key:'adAkl09WHcOiZEvvFkaGPPHrYtJF6Wz1',
         container: MapElement.current,
         stylesVisibility:{
           trafficIncidents:true,
