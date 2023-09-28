@@ -159,7 +159,7 @@ export default function Search() {
             <div id="search-contianer-text" className='w-11/12 px-[30px]'>
                 <div className='w-[120px] bg-white text-center rounded-t-[10px] -mt-[20px]'>Your drive:</div>
             </div>
-            <div id="search-contianer" className='bg-white w-11/12 rounded-[15px] h-auto'>
+            <div id="search-contianer" className='bg-white w-11/12 rounded-t-[15px] h-auto'>
                 <form onSubmit={handleSendForm} className='w-full h-[320px] flex flex-col justify-evenly items-center mx-auto border-red-900'>
                     <div id="form-inputs-wraper" className='w-full h-[280px] flex flex-col justify-evenly items-center mx-auto border-red-900'>
                         <div id="from-to" className="rounded-[10px] h-[100px] w-10/12 border relative">
@@ -236,9 +236,9 @@ export default function Search() {
                 </form>
             </div>
         </div>
-        {(latLangFrom !== null && latLangTo!== null) && <div className='w-[90vw] mx-auto text-center'>Drive distance {calculateDistance} km</div>}
+        {(latLangFrom !== null && latLangTo!== null) && <div className='bg-white w-[90vw] mx-auto text-center'>Drive distance {calculateDistance} km</div>}
 
-        {isFormCompleted === "false" && <div className='w-[90vw] mx-auto text-center'>Drive distance: wating for both localizations ...</div>}
+        {isFormCompleted === "false" && <div className='bg-white w-[90vw] mx-auto text-center'>Drive distance: wating for both localizations ...</div>}
     </div>
     </>
   )
