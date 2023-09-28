@@ -157,7 +157,7 @@ export default function Search() {
     <div className='w-screen h-[330px] border-blue-900 z-20 mb-[12px] ' id="specifics">
         <div id="search-wraper" className='w-full flex flex-col justify-start items-center'>
             <div id="search-contianer-text" className='w-11/12 px-[30px]'>
-                <div className='w-[120px] bg-white text-center rounded-t-[10px] -mt-[20px]'>Your drive:</div>
+                <div className='w-[120px] bg-white text-center rounded-t-[10px] -mt-[15px]'>Your drive:</div>
             </div>
             <div id="search-contianer" className='bg-white w-11/12 rounded-t-[15px] h-auto'>
                 <form onSubmit={handleSendForm} className='w-full h-[320px] flex flex-col justify-evenly items-center mx-auto border-red-900'>
@@ -197,7 +197,7 @@ export default function Search() {
                                 <div className="h-[50px] w-1/2 flex items-center justify-center pl-[10px] relative">
                                 {(time === "") && <div 
                                     ref={TimePlaceholder} 
-                                    className='absolute w-full h-full text-left leading-[50px] text-gray-900/[0.5] right-0 pl-[5px]'>Time
+                                    className='absolute w-9/12 h-full text-left leading-[50px] text-gray-900/[0.5] right-0 pl-[5px]'>Time
                                 </div>}
                                     <TbClockHour8 
                                         className="w-[30px] h-[30px] text-yellow-500/[0.4]"
@@ -236,9 +236,9 @@ export default function Search() {
                 </form>
             </div>
         </div>
-        {(latLangFrom !== null && latLangTo!== null) && <div className='bg-white w-[90vw] mx-auto text-center'>Drive distance {calculateDistance} km</div>}
+        {(latLangFrom !== null && latLangTo!== null) && <div className='bg-white w-11/12 mx-auto text-center'>Drive distance {calculateDistance} km</div>}
 
-        {isFormCompleted === "false" && <div className='bg-white w-[90vw] mx-auto text-center'>Drive distance: wating for both localizations ...</div>}
+        {isFormCompleted === "false" && <div className='bg-white w-11/12 mx-auto text-center'>Drive distance: wating for localizations ...</div>}
     </div>
     </>
   )
