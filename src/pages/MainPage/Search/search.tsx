@@ -94,7 +94,7 @@ export default function Search() {
                 query:{
                     passengers:people,
                 },
-            },undefined, {scroll:false})
+            },undefined)
     
         }
     }
