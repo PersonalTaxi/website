@@ -13,7 +13,7 @@ export default function Summary() {
 
   const handleScrolling = () => {
     if(window.scrollX < 200){
-      GoForMore.current.style.display = "none"
+      GoForMore.current.style.display =  "none"
     }
   }
   
