@@ -86,15 +86,13 @@ export default function Search() {
     const handleSendForm = (e:any) => {
         e.preventDefault();
 
-        let ScrollOption = true
+        // let ScrollOption = true
 
-        if(router.query.passengers){
-            ScrollOption = false
-        }
+        // if(router.query.passengers){
+        //     ScrollOption = false
+        // }
 
         setSearchButtonWasClicked(true)
-
-        console.log(ScrollOption)
 
         if(latLangFrom !== null && latLangTo !== null){
             router.push({
@@ -102,7 +100,7 @@ export default function Search() {
                 query:{
                     passengers:people,
                 },
-            },undefined, {scroll:ScrollOption})
+            },undefined, {scroll:false})
     
         }
     }
