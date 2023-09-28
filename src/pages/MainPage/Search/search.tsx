@@ -237,7 +237,8 @@ export default function Search() {
             </div>
         </div>
         {(latLangFrom !== null && latLangTo!== null) && <div className='w-[90vw] mx-auto text-center'>Drive distance {calculateDistance} km</div>}
-        {(latLangFrom !== null || latLangTo!== null) && <div className='w-[90vw] mx-auto text-center'>Drive distance: wating for second localization ...</div>}
+
+        {isFormCompleted === "false" && <div className='w-[90vw] mx-auto text-center'>Drive distance: wating for both localizations ...</div>}
     </div>
     </>
   )
