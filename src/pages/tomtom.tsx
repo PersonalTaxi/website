@@ -32,7 +32,7 @@ export default function TomTom({ShowOrHideInfoAboutMissingLocalizations}: Functi
   const suggest:any = useRef();
 
   const handleSearchFrom = (e:any) => {
-    // console.log(e.target.value)
+    console.log("From: "+ e.target.value)
     setQueryFrom(e.target.value)
     FromList.current.style.display = "block"
     setActiveQuery("From")
@@ -40,7 +40,7 @@ export default function TomTom({ShowOrHideInfoAboutMissingLocalizations}: Functi
   }
 
   const handleSearchTo = (e:any) => {
-    // console.log(e.target.value)
+    console.log("To: " + e.target.value)
     setlatLangTo(null)
     setQueryTo(e.target.value)
     ToList.current.style.display = "block"
@@ -67,9 +67,11 @@ export default function TomTom({ShowOrHideInfoAboutMissingLocalizations}: Functi
   }
 
   const calculateDistances = useCallback(() => {
+
+    console.log("LatLang"+latLangFrom, latLangTo)
     if(latLangFrom !== null && latLangTo !== null) {
 
-      console.log(latLangFrom, latLangTo)
+      console.log("LatLang Works"+latLangFrom, latLangTo)
       let data = fetch(`https://api.tomtom.com/routing/1/calculateRoute/${latLangFrom}:${latLangTo}/json?key=cjmuWSfVTrJfOGj7AcXvMLU8R8i1Q9cF`,{
       method:"GET"
       })
@@ -160,11 +162,12 @@ export default function TomTom({ShowOrHideInfoAboutMissingLocalizations}: Functi
               key={i}
               ref={suggest}
               id={activeQuery}
+              data-name={POI} data-value={`${lat},${lon}`}
               className='flex w-[99%] border bg-white py-[5px] rounded-[2px] px-[10px] m-[0.5%] duration-200 hover:bg-blue-400 hover:text-white cursor-pointer overflow-hidden'
               onClick={handleChosingParam}
             >
-                <div className='w-[30px] h-full p-[5px] flex justify-center items-center'>{icon}</div>
-                <div className='flex flex-col w-full justify-center'>
+                <div id={activeQuery} data-name={POI} data-value={`${lat},${lon}`} className='w-[30px] h-full p-[5px] flex justify-center items-center'>{icon}</div>
+                <div id={activeQuery} data-name={POI} data-value={`${lat},${lon}`} className='flex flex-col w-full justify-center'>
                   <div id={activeQuery} data-name={POI} data-value={`${lat},${lon}`} className='font-bold text-[13px] w-full leading-[12px]'>{POI}</div>
                   {/* <div className='text-[10px] w-full z-20 leading-[12px]'>{i.address.municipality} </div> */}
                   <div id={activeQuery} data-name={POI} data-value={`${lat},${lon}`} className='text-[10px] w-full z-20 leading-[12px]'>{StreetName} {StreetNumber} {City}</div>
