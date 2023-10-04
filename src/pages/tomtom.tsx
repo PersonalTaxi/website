@@ -9,7 +9,6 @@ import { BiSolidMap } from 'react-icons/bi'
 import { AiFillCloseSquare } from 'react-icons/ai'
 import { AppContext } from './_app'
 
-
 type Function = {
   ShowOrHideInfoAboutMissingLocalizations:() => void;
 }
@@ -18,7 +17,7 @@ export default function TomTom({ShowOrHideInfoAboutMissingLocalizations}: Functi
 
   const router = useRouter();
   const [dataFromFetch, setDataFromFetch] = useState(null);
-  const {queryFrom, setQueryFrom, queryTo, setQueryTo, date, setDate, time, setTime, people, setPeople, latLangFrom, setlatLangFrom, latLangTo, setlatLangTo, calculateDistance, setCalculateDistance, isFormCompleted, setIsFromCompleted} = useContext(AppContext)
+  const {queryFrom, setQueryFrom, queryTo, setQueryTo, date, setDate, time, setTime, people, setPeople, latLangFrom, setlatLangFrom, latLangTo, setlatLangTo, calculateDistance, setCalculateDistance, isFormCompleted, setIsFromCompleted,mapLongitude, setMapLongitude, mapLatitude, setMapLatitude, mapUpdated, setMapUpdated} = useContext(AppContext)
 
   const [dataToFetch, setDataToFetch] = useState(null);
   const [activeQuery, setActiveQuery] = useState("")
@@ -32,7 +31,7 @@ export default function TomTom({ShowOrHideInfoAboutMissingLocalizations}: Functi
   const suggest:any = useRef();
 
   const handleSearchFrom = (e:any) => {
-    console.log("From: "+ e.target.value)
+    // console.log("From: "+ e.target.value)
     setQueryFrom(e.target.value)
     FromList.current.style.display = "block"
     setActiveQuery("From")
@@ -40,48 +39,49 @@ export default function TomTom({ShowOrHideInfoAboutMissingLocalizations}: Functi
   }
 
   const handleSearchTo = (e:any) => {
-    console.log("To: " + e.target.value)
+    // console.log("To: " + e.target.value)
     setlatLangTo(null)
     setQueryTo(e.target.value)
     ToList.current.style.display = "block"
     setActiveQuery("To")
   }
 
-  const handleChosingParam = (e:any) => {
-    // console.log(e.target.getAttribute('data-name'))
-    if(suggest.current.id === "From"){
+  const handleChosingParam = (e:any, i:any) => {
 
-      setlatLangFrom(e.target.getAttribute('data-value'))
+    if(suggest.current.id === "From"){
+      setMapUpdated(true)
+      console.log(i.position.lat)
+      setMapLatitude(i.position.lat)
+      setMapLongitude(i.position.lon)
+      setlatLangFrom([i.position.lat, i.position.lon])
+      console.log("works")
       setQueryFrom(e.target.getAttribute('data-name'))
       FromList.current.style.display = "none"
 
     }
     if(suggest.current.id === "To"){
-      setlatLangTo(e.target.getAttribute('data-value'))
+      setlatLangTo([i.position.lat, i.position.lon])
       setQueryTo(e.target.getAttribute('data-name'))
       ToList.current.style.display = "none"
     }
 
     ShowOrHideInfoAboutMissingLocalizations();
-
   }
 
   const calculateDistances = useCallback(() => {
-
-    console.log("LatLang"+latLangFrom, latLangTo)
     if(latLangFrom !== null && latLangTo !== null) {
 
-      console.log("LatLang Works"+latLangFrom, latLangTo)
+      console.log(latLangFrom, latLangTo)
       let data = fetch(`https://api.tomtom.com/routing/1/calculateRoute/${latLangFrom}:${latLangTo}/json?key=cjmuWSfVTrJfOGj7AcXvMLU8R8i1Q9cF`,{
       method:"GET"
       })
     .then(res => res.json())
-    .then(data => 
-      setCalculateDistance(Math.round(data.routes[0].summary.lengthInMeters /1000))
-      )
+    .then(data => {
+      // console.log(data)
+      setCalculateDistance(Math.round(data.routes[0].summary.lengthInMeters / 1000))
+    })
     } else {
       setCalculateDistance(null)
-
     }
 
   },[latLangFrom, latLangTo])
@@ -109,7 +109,7 @@ export default function TomTom({ShowOrHideInfoAboutMissingLocalizations}: Functi
       .then(res => res.json())
       .then(data => {
         const newData = data.results.map((i:any) => {
-
+          // console.log(i.position.lat)
           let icon
           let POI
           let StreetName = i.address.streetName
@@ -162,15 +162,15 @@ export default function TomTom({ShowOrHideInfoAboutMissingLocalizations}: Functi
               key={i}
               ref={suggest}
               id={activeQuery}
-              data-name={POI} data-value={`${lat},${lon}`}
+              data-name={POI} data-value-lat={lat} data-value-lon={lon}
               className='flex w-[99%] border bg-white py-[5px] rounded-[2px] px-[10px] m-[0.5%] duration-200 hover:bg-blue-400 hover:text-white cursor-pointer overflow-hidden'
-              onClick={handleChosingParam}
+              onClick={(e:any) => handleChosingParam(e,i)}
             >
-                <div id={activeQuery} data-name={POI} data-value={`${lat},${lon}`} className='w-[30px] h-full p-[5px] flex justify-center items-center'>{icon}</div>
-                <div id={activeQuery} data-name={POI} data-value={`${lat},${lon}`} className='flex flex-col w-full justify-center'>
-                  <div id={activeQuery} data-name={POI} data-value={`${lat},${lon}`} className='font-bold text-[13px] w-full leading-[12px]'>{POI}</div>
+                <div id={activeQuery} data-name={POI} className='w-[30px] h-full p-[5px] flex justify-center items-center'>{icon}</div>
+                <div id={activeQuery} data-name={POI} className='flex flex-col w-full justify-center'>
+                  <div id={activeQuery} data-name={POI} className='font-bold text-[13px] w-full leading-[12px]'>{POI}</div>
                   {/* <div className='text-[10px] w-full z-20 leading-[12px]'>{i.address.municipality} </div> */}
-                  <div id={activeQuery} data-name={POI} data-value={`${lat},${lon}`} className='text-[10px] w-full z-20 leading-[12px]'>{StreetName} {StreetNumber} {City}</div>
+                  <div id={activeQuery} data-name={POI} className='text-[10px] w-full z-20 leading-[12px]'>{StreetName} {StreetNumber} {City}</div>
                   {/* <p className='text-[10px] bg-blue-800 text-white pl-[10px] w-full'>{i.poi.categories[0]}</p> */}
                 </div>
             </div>
@@ -197,7 +197,6 @@ export default function TomTom({ShowOrHideInfoAboutMissingLocalizations}: Functi
     if(RefName === "o"){
       ToList.current.style.display = "block"
    }
-
   }
 
   const handleHidingList = (e:any) => {

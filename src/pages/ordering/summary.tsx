@@ -1,48 +1,86 @@
+'use client'
+
 import React, { useEffect, useLayoutEffect, Component, useContext, useRef, useState, useCallback } from 'react'
 import Chooseparams from './chooseparams'
 import Header from '../Header/header'
 import Search from '../MainPage/Search/search'
 import Link from 'next/link'
-// import Head from 'next/head'
+import Head from 'next/head'
 import {MdOutlineKeyboardArrowDown} from "react-icons/md"
+import {BiSolidMap} from 'react-icons/bi'
+import { AppContext } from '../_app'
 
 export default function Summary() {
 
+  const {latLangFrom, setlatLangFrom, mapLongitude, setMapLongitude, mapLatitude, setMapLatitude, mapUpdated, setMapUpdated,SearchButtonWasClicked, setSearchButtonWasClicked} = useContext(AppContext)
+
+  // console.log(latLangFrom[1])
+
+  setSearchButtonWasClicked(true)
+
+  const [map, setMap] = useState({});
   const MapElement:any = useRef();
-  const GoForMore:any = useRef()
+  const GoForMore:any = useRef();
 
-  const handleScrolling = () => {
-    if(window.scrollX < 230){
-      GoForMore.current.style.display =  "none"
-    }
-  }
-  
-  useEffect(() => {
+  // const handleScrolling = () => {
+  //   if(window.scrollX < 230){
+  //     GoForMore.current.style.display =  "none"
+  //   }
+  // }
 
-   const importingMaps = async() => {
-      const tt = await import("@tomtom-international/web-sdk-maps")
-      let map = tt.map({
-        key:'adAkl09WHcOiZEvvFkaGPPHrYtJF6Wz1',
-        container: MapElement.current,
-        stylesVisibility:{
-          trafficIncidents:true,
-          trafficFlow:true,
-        },
-        center:[19.945, 50.064],
-        zoom:13
-      })
-    }
 
-    importingMaps() 
+  // useEffect(() => {
 
-    window.addEventListener('scroll', handleScrolling)
+  //   const updateMap = () => {
+  //     console.log("lala")
+  //     map.setCenter([parseFloat(mapLongitude), parseFloat(mapLatitude)])
+  //     setMapUpdated(false)
+  //   }
 
-  },[])
+  //   let map = fetch("https://api.tomtom.com/map/1/tile/basic/main/0/0/0.pbf?key=adAkl09WHcOiZEvvFkaGPPHrYtJF6Wz1&view=Unified&language=NGT", {
+  //   method:"GET"})
+  //   .then(res => console.log(res.body))
+
+
+  //  const importingMaps = async() => {
+    
+  //     const tt = await import("@tomtom-international/web-sdk-maps")
+  //         // setMapUpdated(false)
+  //         let map = await tt.map({
+  //           key:'adAkl09WHcOiZEvvFkaGPPHrYtJF6Wz1',
+  //           container: MapElement.current,
+  //           stylesVisibility:{
+  //             trafficIncidents:true,
+  //             trafficFlow:true,
+  //           },
+
+  //       center:[mapLongitude, mapLatitude],
+  //       zoom:10
+        
+  //     })
+
+  //     console.log(mapUpdated)
+
+  //     setMap(map)
+  //     if(mapUpdated === true) {
+  //       updateMap();
+  //     }
+      
+  //     return () => map.remove()
+       
+  //  }
+
+  //   importingMaps()
+
+  //   window.addEventListener('scroll', handleScrolling)
+
+  // },[mapUpdated])
+
 
 
   return (
     <div>
-       {/* <Head>
+       <Head>
             <meta http-equiv='X-UA-Compatible' content='IE=Edge' ></meta>
             <title>Your best drive</title>
             <meta name='viewport'
@@ -51,21 +89,25 @@ export default function Summary() {
             <link rel='stylesheet' type='text/css' href='../assets/ui-library/index.css'></link>
             <link rel='stylesheet' type='text/css' href='/cdn.web-sdk-plugin-searchbox/SearchBox.css'></link>
             <link rel='stylesheet' type='text/css' href='../assets/ui-library/icons-css/poi.css'></link>
-        </Head> */}
+        </Head>
       <Header />
-      <div id='search-wrapper-ordering' className='pt-[50px] relative h-screen'>
-          <div ref={MapElement} className={`w-screen h-[55vh] overflow-hidden`}></div>
-            <div className={`bg-white w-screen h-[350px] rounded-t-[40px] z-20 absolute bottom-0`}>
+      <div id='search-wrapper-ordering' className='pt-[100px] relative h-[180vh] bg-[url("/Main_theme.png")] bg-top bg-cover bg-no-repeat bg-fixed'>
+          {/* <div ref={MapElement} id="map" className={`w-screen h-[55vh] overflow-hidden relative`}>
+            <div className='absolute w-[40px] h-[40px] top-[200px] left-0 right-0 mx-auto z-30'>
+              <BiSolidMap className="w-full h-full text-red-700" />
+            </div>
+          </div>  */}
+            <div className={`w-screen h-[350px] rounded-t-[40px] z-20 bottom-0`}>
               <Search/>
               <Chooseparams />
-            <Link href="#specifics">
+            {/* <Link href="#specifics">
               <div ref={GoForMore} className="absolute w-screen h-[120px] bg-white bottom-[60px] z-20 flex justify-center items-start">
               <div className='flex justify-center px-[20px] h-[50px] border items-center rounded-[30px] bg-yellow-500 text-white'>
                   <MdOutlineKeyboardArrowDown className="h-[35px] w-[35px] left-0 right-0 mx-auto duration-700"/>
                 <div className='h-[30px] text-[20px]'>Go to specifics</div>
               </div>
             </div>
-            </Link>
+            </Link> */}
       </div>
       </div>
     </div>

@@ -10,7 +10,7 @@ import { useRouter } from 'next/router'
 //icons
 import {MdFlightLand} from 'react-icons/md'
 import {AiFillInfoCircle} from 'react-icons/ai'
-import {AiOutlineClose, AiOutlineFieldTime, AiOutlineCheck} from 'react-icons/ai'
+import {AiOutlineClose, AiOutlineFieldTime, AiOutlineCheck, AiFillDollarCircle} from 'react-icons/ai'
 import {MdOutlinePersonPinCircle} from 'react-icons/md'
 import {BiSolidPhoneCall} from 'react-icons/bi'
 import {IoIosArrowUp, IoIosArrowDown} from 'react-icons/io'
@@ -55,12 +55,17 @@ export default function Chooseparams() {
 
     const router = useRouter();
     
-    const {queryFrom, setQueryFrom, queryTo, setQueryTo, date, setDate, time, setTime, people, setPeople, latLangFrom, setlatLangFrom, latLangTo, setlatLangTo, calculateDistance, setCalculateDistance, isFormCompleted, setIsFromCompleted} = useContext(AppContext)
+    const {queryFrom, setQueryFrom, queryTo, setQueryTo, date, setDate, time, setTime, people, setPeople, latLangFrom, setlatLangFrom, latLangTo, setlatLangTo, calculateDistance, setCalculateDistance, isFormCompleted, setIsFromCompleted,} = useContext(AppContext)
 
 
     const [state, dispatch] = useReducer(reducer, CarsData);
     const CarsInfo:any = useRef();
     const InfoAbout:any = useRef();
+
+    const [prices, setPrices] = useState([
+        {name:"sedan", price:129},
+        {name:"van", price:149}
+    ])
 
     const passengersFromQuery:any = router.query.passengers
 
@@ -105,11 +110,9 @@ export default function Chooseparams() {
 
     }
 
-    const handleOrdering = () => {
-        router.push({
-            pathname:"/ordering/ordered"
-        })
-
+    const handleOrdering = (e:any) => {
+        e.preventDefault();
+        router.replace("/ordering/ordered")
     }
 
     const handleShowingInfoAboutCorrectFromsBeforeOrdering = () => {
@@ -121,25 +124,28 @@ export default function Chooseparams() {
     }
 
     useEffect(() => {
-        console.log("re-render")
+        // console.log("re-render")
         resetCars()
     },[router.query.passengers])
 
+    let FinalPrice = (state.van * 149 + ((state.van * (calculateDistance -20)) * 7)) + (state.sedan * 129 + ((state.sedan * (calculateDistance - 20)) * 7))
 
     return (
-        <div className='relative pt-[10px]'>
-            {isFormCompleted === 'true' && <div className='absolute flex justify-center items-center text-green-600 -top-[40px] w-screen'><AiOutlineCheck /><p>Conditions are up to date</p></div>}
-            {(parseInt(passengersFromQuery) !== people) && <div className='absolute flex justify-center items-center text-red-600 -top-[40px] w-screen'><AiOutlineClose /><p>You have to update (button above)</p></div>}
+        <div className='relative  bg-white mt-[90px] w-[95vw] mx-auto rounded-[10px] h-[1080px]'>
+            <div className='w-[80vw] h-[60px] flex items-end flex-col mx-auto'>
+                <p className='text-[12px]'> Step 2 of 3</p>
+                <div className='bg-gradient-to-r from-yellow-500 from-0% via-white via-70% to-white to-100% w-full border border-yellow-500/[0.5] h-[20px] rounded-[5px] bg-'></div>
+            </div>
             {(latLangFrom !== null && latLangTo !== null && PersonsLeft > 0 && (parseInt(passengersFromQuery) === people)) && <div 
-                className='absolute bg-red-600 text-white w-[92vw] -top-[40px] left-0 right-0 mx-auto px-[4px] rounded-[3px] flex justify-center items-center'>
+                className='absolute bg-red-600 text-white w-[92vw] -top-[60px] left-0 right-0 mx-auto px-[4px] rounded-[3px] flex justify-center items-center h-[40px]'>
                     <AiFillInfoCircle /> 
                     <p 
-                        className='pl-[4px]'>Find a seats for {PersonsLeft} persons yet.</p>
+                        className='pl-[4px]'>Find a seat(s) for {PersonsLeft} person(s) yet.</p>
                     </div>}
             <div id="choose-cars-wrapper" className=' rounded-[10px] flex w-[90vw] mx-auto justify-between duration-200 mb-[12px] bg-white relative'>
-            {
-                //Bloking to configure offer before chosing correct params
-                isFormCompleted !== 'true' && <div className='bg-white/[0.85] absolute w-screen h-[1000px] z-20 -left-[5vw]'></div>}
+            
+                {/* Bloking to configure offer before chosing correct params */}
+                {isFormCompleted !== 'true' && <div className='bg-white/[0.85] absolute w-[90vw] h-[1000px] z-20 '></div>}
             
                 <div className='rounded-[10px] h-[129px] w-[170px] bg-white flex'>
                     <div id="left-wrapper" className='w-[120px]'>
@@ -158,6 +164,9 @@ export default function Chooseparams() {
                         <div className='w-full flex pl-[5px]'>
                             <BsFillBagFill className="text-yellow-500"/>
                             <p className=' text-center font-semibold text-[10px] pl-[5px]'>max 4 suitcases</p></div>
+                        <div className='w-full flex pl-[5px] mt-[1px]'>
+                            {/* <AiFillDollarCircle className="text-yellow-500"/> */}
+                            <p className=' text-center font-normal text-[10px] pl-[1px] font'> from <b>129 zł</b></p></div>
                         </div>
                     <div id="left-wrapper" className='w-[50px]'>
                         <div className='relative w-full h-[125px] flex items-center justify-around '>
@@ -186,6 +195,10 @@ export default function Chooseparams() {
                         <div className='w-full flex pl-[5px]'>
                             <BsFillBagFill className="text-yellow-500"/>
                             <p className=' text-center font-semibold text-[10px] pl-[5px]'>max 7 suitcases</p></div>
+                        <div className='w-full flex pl-[5px] mt-[1px]'>
+                            {/* <div className="text-yellow-500 w-[20px]"></div> */}
+                            {/* <AiFillDollarCircle className="text-yellow-500"/> */}
+                            <p className=' text-center font-normal text-[10px] pl-[1px]'>from 149 zł</p></div>
                         </div>
                     <div id="left-wrapper" className='w-[50px]'>
                         <div className='relative w-full h-[125px] flex items-center justify-around '>
@@ -211,12 +224,12 @@ export default function Chooseparams() {
                         </div>
                     </div>
                 </div>
-                <form className='w-[90vw] h-[300px] mx-auto my-[10px]'>
+                <form onSubmit={handleOrdering} className='w-[90vw] h-[300px] mx-auto my-[10px]'>
                     <p className='font-[700] text-[20px]'>Order details:</p>
                         <div className=' border-blue-900 w-full flex justify-between items-center mt-[20px]' >
                     <div className=' border-blue-900 w-full h-[40px] flex items-center' >
                         <MdFlightLand className='h-[40px] w-[40px] px-[4px] text-yellow-500' />
-                        <input className='border border-gray-400 w-full h-[40px]' placeholder=' Flight number e.g FR9847'></input>
+                        <input className='border border-gray-400 w-full h-[40px] pl-[10px] rounded-[5px] outline-none' placeholder='Flight number e.g FR9847'></input>
                     </div>
                         <div ref={handleFlightinfo} className='hidden top-[260px] p-[9px] w-[85%] left-0 absolute bg-white border rounded-[10px] shadow-xl'>
                         <AiOutlineClose className="w-[20px] h-[20px] float-right"/>
@@ -230,8 +243,8 @@ export default function Chooseparams() {
                     </div>
                 </div>
                 <div className=' border-blue-900 w-full h-[120px] flex items-start flex-col mt-[20px] px-[4px]'>
-                        <div className='text-[14px]'>Information for your driver:</div>
-                        <textarea className='border border-gray-300 h-[100px] w-full' placeholder=' Your massage here'></textarea>
+                        <div className='text-[16px]'>Information for your driver:</div>
+                        <textarea className='border border-gray-300 h-[100px] w-full rounded-[5px] outline-none' placeholder=' Your massage here'></textarea>
                     </div>
                     <Orderspacifications />
                     <div className='w-[90vw] mx-auto my-[20px] relative'>
@@ -244,15 +257,14 @@ export default function Chooseparams() {
                     </div>
                     <div className=''>
                         {(latLangFrom !== null && latLangTo !== null && PersonsLeft > 0 && (parseInt(passengersFromQuery) === people)) &&  <div 
-                            className='absolute bg-white/[0.5] h-[50px] w-[210px] z-40 right-0 border-green-900'
+                            className='absolute bg-white/[0.5] h-[50px] w-full z-40 right-0 border-green-900'
                             onMouseEnter={handleShowingInfoAboutCorrectFromsBeforeOrdering}
                             onMouseLeave={handleHidingingInfoAboutCorrectFromsBeforeOrdering}
                             >
                         </div>}
                         <button 
-                            className='float-right flex border-green-900 h-[50px] px-[10px] py-[5px] bg-yellow-500 text-white items-center justify-center rounded-[10px]'
-                            onClick={handleOrdering}>
-                            <p>Start ordering for 139 €</p>
+                            className='float-right flex border-green-900 h-[50px] px-[10px] py-[5px] bg-yellow-500 text-white items-center justify-center rounded-[10px]'>
+                            <p>Start ordering for {FinalPrice} zł </p>
                         </button>
                     </div>
                 </form>
