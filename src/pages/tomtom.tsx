@@ -163,14 +163,32 @@ export default function TomTom({ShowOrHideInfoAboutMissingLocalizations}: Functi
               ref={suggest}
               id={activeQuery}
               data-name={POI} data-value-lat={lat} data-value-lon={lon}
-              className='flex w-[99%] border bg-white py-[5px] rounded-[2px] px-[10px] m-[0.5%] duration-200 hover:bg-blue-400 hover:text-white cursor-pointer overflow-hidden'
+              className='flex w-full border-b bg-white py-[5px] rounded-[10px] px-[10px] duration-200 hover:bg-blue-400 hover:text-white cursor-pointer overflow-hidden'
               onClick={(e:any) => handleChosingParam(e,i)}
             >
-                <div id={activeQuery} data-name={POI} className='w-[30px] h-full p-[5px] flex justify-center items-center'>{icon}</div>
-                <div id={activeQuery} data-name={POI} className='flex flex-col w-full justify-center'>
-                  <div id={activeQuery} data-name={POI} className='font-bold text-[13px] w-full leading-[12px]'>{POI}</div>
+                <div 
+                  onClick={(e:any) => handleChosingParam(e,i)} 
+                  id={activeQuery} 
+                  data-name={POI} 
+                  className='w-[30px] h-full p-[5px] flex justify-center items-center'>{icon}</div>
+                <div 
+                  onClick={(e:any) => handleChosingParam(e,i)} 
+                  id={activeQuery} 
+                  data-name={POI} 
+                  className='flex flex-col w-full justify-center'>
+                  <div 
+                    onClick={(e:any) => handleChosingParam(e,i)} 
+                    id={activeQuery} 
+                    data-name={POI} 
+                    className='font-bold text-[13px] w-full leading-[12px]'>{POI}</div>
                   {/* <div className='text-[10px] w-full z-20 leading-[12px]'>{i.address.municipality} </div> */}
-                  <div id={activeQuery} data-name={POI} className='text-[10px] w-full z-20 leading-[12px]'>{StreetName} {StreetNumber} {City}</div>
+                  <div 
+                    onClick={(e:any) => handleChosingParam(e,i)} 
+                    id={activeQuery} 
+                    data-name={POI} 
+                    className='text-[10px] w-full z-20 leading-[12px]'>
+                      {StreetName} {StreetNumber} {City}
+                    </div>
                   {/* <p className='text-[10px] bg-blue-800 text-white pl-[10px] w-full'>{i.poi.categories[0]}</p> */}
                 </div>
             </div>
