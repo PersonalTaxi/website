@@ -150,7 +150,7 @@ export default function Search() {
     <div className='w-screen h-[300px] border-blue-900 z-20 mb-[12px]' id="specifics">
         <div id="search-wraper" className='w-full flex flex-col justify-start items-center relative'>
             <div id="search-contianer-text" className='w-11/12 px-[30px]'>
-                <div className='w-[120px] bg-white text-center rounded-t-[10px] -mt-[15px]'>Your drive:</div>
+                <div id="correctInfo" className='w-[120px] bg-white text-center rounded-t-[10px] -mt-[15px]'>Your drive:</div>
             </div>
             <div id="search-contianer" className='bg-white w-11/12 rounded-t-[15px] h-auto'>
                 <form onSubmit={handleSendForm} className='w-full h-full flex flex-col justify-evenly items-center mx-auto border-red-900'>

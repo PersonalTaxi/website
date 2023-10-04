@@ -1,4 +1,5 @@
 import React,{useContext, useEffect, useReducer, useRef, useState} from 'react'
+import Link from 'next/link'
 import cars from "../../data/cars.json"
 import Orderspacifications from '../MainPage/Search/orderspecifications'
 import { Ubuntu } from 'next/font/google'
@@ -131,12 +132,14 @@ export default function Chooseparams() {
     let FinalPrice = (state.van * 149 + ((state.van * (calculateDistance -20)) * 7)) + (state.sedan * 129 + ((state.sedan * (calculateDistance - 20)) * 7))
 
     return (
-        <div className='relative  bg-white mt-[90px] w-[95vw] mx-auto rounded-[10px] h-[1080px]'>
+        <div 
+            className='relative  bg-white mt-[90px] w-[95vw] mx-auto rounded-[10px] h-[1080px]'>
             <div className='w-[80vw] h-[60px] flex items-end flex-col mx-auto'>
                 <p className='text-[12px]'> Step 2 of 3</p>
                 <div className='bg-gradient-to-r from-yellow-500 from-0% via-white via-70% to-white to-100% w-full border border-yellow-500/[0.5] h-[20px] rounded-[5px] bg-'></div>
             </div>
-            {(latLangFrom !== null && latLangTo !== null && PersonsLeft > 0 && (parseInt(passengersFromQuery) === people)) && <div 
+            {(latLangFrom !== null && latLangTo !== null && PersonsLeft > 0 && (parseInt(passengersFromQuery) === people)) && 
+            <div 
                 className='absolute bg-red-600 text-white w-[92vw] -top-[60px] left-0 right-0 mx-auto px-[4px] rounded-[3px] flex justify-center items-center h-[40px]'>
                     <AiFillInfoCircle /> 
                     <p 
@@ -256,12 +259,15 @@ export default function Chooseparams() {
                         </div>
                     </div>
                     <div className=''>
-                        {(latLangFrom !== null && latLangTo !== null && PersonsLeft > 0 && (parseInt(passengersFromQuery) === people)) &&  <div 
+                        {(latLangFrom !== null && latLangTo !== null && PersonsLeft > 0 && (parseInt(passengersFromQuery) === people)) &&  
+                        <Link href="#correctInfo">
+                        <div 
                             className='absolute bg-white/[0.5] h-[50px] w-full z-40 right-0 border-green-900'
-                            onMouseEnter={handleShowingInfoAboutCorrectFromsBeforeOrdering}
-                            onMouseLeave={handleHidingingInfoAboutCorrectFromsBeforeOrdering}
+                            // onMouseEnter={handleShowingInfoAboutCorrectFromsBeforeOrdering}
+                            // onMouseLeave={handleHidingingInfoAboutCorrectFromsBeforeOrdering}
                             >
-                        </div>}
+                        </div>
+                        </Link>}
                         <button 
                             className='float-right flex border-green-900 h-[50px] px-[10px] py-[5px] bg-yellow-500 text-white items-center justify-center rounded-[10px]'>
                             <p>Start ordering for {FinalPrice} zł </p>
