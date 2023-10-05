@@ -68,7 +68,7 @@ export default function Search() {
 
     const ShowOrHideInfoAboutMissingLocalizations = () => {
 
-        console.log(latLangFrom, latLangTo, SearchButtonWasClicked)
+        // console.log(latLangFrom, latLangTo, SearchButtonWasClicked)
 
         if(SearchButtonWasClicked === false){
             InfoAboutFillLocations.current.style.display = "none"

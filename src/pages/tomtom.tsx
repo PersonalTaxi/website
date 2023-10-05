@@ -107,9 +107,14 @@ export default function TomTom({ShowOrHideInfoAboutMissingLocalizations}: Functi
     method:"GET"
       })
       .then(res => res.json())
+      .then(resData => {
+        return resData.results.filter((i:any) => i.type !== "Geography")
+        // console.log(resData)
+      })
       .then(data => {
-        const newData = data.results.map((i:any) => {
-          // console.log(i.position.lat)
+        console.log(data)
+        const newData = data.map((i:any) => {
+          // console.log(i)
           let icon
           let POI
           let StreetName = i.address.streetName
