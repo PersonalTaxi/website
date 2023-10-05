@@ -125,7 +125,11 @@ export default function TomTom({ShowOrHideInfoAboutMissingLocalizations}: Functi
             // Contions to show icon //
             if(i.type === "POI") {
               POI = i.poi.name
-            } else {
+            }
+            if(i.type === "Street") {
+              POI = i.poi.name, StreetName, StreetNumber
+            } 
+            else {
               POI = i.address.municipality
             }
 
