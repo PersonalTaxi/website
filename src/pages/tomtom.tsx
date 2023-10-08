@@ -225,7 +225,7 @@ export default function TomTom({ShowOrHideInfoAboutMissingLocalizations}: Functi
                   data-name={POI} 
                   className='w-[30px] h-full p-[5px] flex justify-center items-center'>{icon}</div>
                 <div 
-                  ref={suggest} 
+                  ref={suggest}
                   // onClick={(e:any) => handleChosingParam(e,i)}
                   id={activeQuery}
                   data-name={POI}
@@ -264,12 +264,11 @@ export default function TomTom({ShowOrHideInfoAboutMissingLocalizations}: Functi
       .catch((err) => console.log(err))
 
 
-  },[queryFrom, queryTo, latLangFrom, latLangTo, activeQuery])
+  },[queryFrom, queryTo, latLangFrom, latLangTo])
 
   useEffect(() => {
     calculateDistances()
   },[latLangFrom, latLangTo])
-
 
     return (
         <div className='flex flex-col w-full justify-around'>
@@ -286,7 +285,7 @@ export default function TomTom({ShowOrHideInfoAboutMissingLocalizations}: Functi
                 value={queryFrom}
                 onFocus={handleShowingList}
                 onChange={handleSearchFrom}
-                className='text-[18px] w-full min-h-[45px] outline-none rounded-[10px] pl-[5px] pr-[50px] overflow-ellipsis' 
+                className='text-[15px] w-full min-h-[45px] outline-none rounded-[10px] pl-[5px] pr-[50px] overflow-ellipsis' 
                 placeholder='from'
                 autoComplete='off'></input>
             </div>
@@ -309,10 +308,10 @@ export default function TomTom({ShowOrHideInfoAboutMissingLocalizations}: Functi
                 value={queryTo} 
                 onFocus={handleShowingList} 
                 onChange={handleSearchTo} 
-                className='text-[18px] w-full min-h-[45px] outline-none rounded-[10px] pl-[5px] pr-[50px] overflow-ellipsis' 
+                className='text-[15px] w-full min-h-[45px] outline-none rounded-[10px] pl-[5px] pr-[50px] overflow-ellipsis' 
                 placeholder='to'
                 autoComplete='off'>
-                </input>
+              </input>
             </div>
             <div 
               ref={ToList} 
