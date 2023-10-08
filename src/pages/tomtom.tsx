@@ -48,18 +48,19 @@ export default function TomTom({ShowOrHideInfoAboutMissingLocalizations}: Functi
 
   const handleChosingParam = (e:any, i:any) => {
 
-    if(suggest.current.id === "From"){
+    console.log(e.target.id)
+   
+    if(e.target.id === "From"){
       setMapUpdated(true)
       console.log(i.position.lat)
       setMapLatitude(i.position.lat)
       setMapLongitude(i.position.lon)
       setlatLangFrom([i.position.lat, i.position.lon])
-      console.log("works")
       setQueryFrom(e.target.getAttribute('data-name'))
       FromList.current.style.display = "none"
 
     }
-    if(suggest.current.id === "To"){
+    if(e.target.id === "To"){
       setlatLangTo([i.position.lat, i.position.lon])
       setQueryTo(e.target.getAttribute('data-name'))
       ToList.current.style.display = "none"
@@ -86,9 +87,42 @@ export default function TomTom({ShowOrHideInfoAboutMissingLocalizations}: Functi
 
   },[latLangFrom, latLangTo])
 
-  useEffect(() => {
-    calculateDistances()
-  },[latLangFrom, latLangTo])
+  const handleShowingList = (e:any) => {
+    const RefName = e.target.name
+    if(e.target.name === "from"){
+       FromList.current.style.display = "block"
+       setActiveQuery("From")
+    }
+    if(e.target.name === "to"){
+      ToList.current.style.display = "block"
+      setActiveQuery("To")
+   }
+  }
+
+  const handleHidingList = (e:any) => {
+    const RefName = e.target.name
+    if(RefName === "from"){
+       FromList.current.style.display = "none"
+    }
+    if(RefName === "to"){
+      ToList.current.style.display = "none"
+   }
+  }
+
+  // handling X (clear) buttons in localization inputs
+  const clearFromQuery = () => {
+    setQueryFrom("")
+    setlatLangFrom(null)
+  }
+
+  const clearToQuery = () => {
+    setQueryTo("")
+    setlatLangTo(null)
+  }
+  //END of handling X (clear) buttons in localization inputs
+
+
+  console.log(dataFromFetch)
 
   useEffect(() => {
 
@@ -106,30 +140,38 @@ export default function TomTom({ShowOrHideInfoAboutMissingLocalizations}: Functi
       ,{
     method:"GET"
       })
+
       .then(res => res.json())
       .then(resData => {
         return resData.results.filter((i:any) => i.type !== "Geography")
         // console.log(resData)
       })
       .then(data => {
-        console.log(data)
+        // console.log(data)
         const newData = data.map((i:any) => {
-          // console.log(i)
+          console.log(i)
           let icon
           let POI
           let StreetName = i.address.streetName
-          let StreetNumber = i.address.streetNumber
+          let StreetNumber = 2
           let City = i.address.municipality
           let {lat,lon} = i.position
 
-            // Contions to show icon //
+            //Contions to show icon
             if(i.type === "POI") {
+              StreetNumber = i.address.streetNumber
               POI = i.poi.name
             }
             if(i.type === "Street") {
-              POI = i.poi.name, StreetName, StreetNumber
+              POI = `${StreetName},${StreetName}`
+
+            } 
+            if(i.type === "Point Address") {
+              StreetNumber = i.address.streetNumber
+              POI = `${City}, ${StreetName} ${StreetNumber}`
             } 
             else {
+              StreetNumber = i.address.streetNumber
               POI = i.address.municipality
             }
 
@@ -160,49 +202,57 @@ export default function TomTom({ShowOrHideInfoAboutMissingLocalizations}: Functi
               !i.poi.categories[0].includes("restaurant") &&
               !i.poi.categories[0].includes("fusion") &&
               !i.poi.categories[0].includes("italian")
-              )  {
+              )  
+            {
               icon = <MdPlace className='h-full'/>
             }
             }
-            // END - Contions to show icon //
+            //END - Contions to show icon
 
-          return (
+            return (
             <div 
               key={i}
               ref={suggest}
               id={activeQuery}
               data-name={POI} data-value-lat={lat} data-value-lon={lon}
-              className='flex w-full border-b bg-white py-[5px] rounded-[10px] px-[10px] duration-200 hover:bg-blue-400 hover:text-white cursor-pointer overflow-hidden'
+              className='flex w-full border-b py-[5px] rounded-[10px] px-[10px] duration-200 hover:bg-blue-400 hover:text-white cursor-pointer overflow-hidden'
               onClick={(e:any) => handleChosingParam(e,i)}
-            >
+            > 
                 <div 
-                  onClick={(e:any) => handleChosingParam(e,i)} 
-                  id={activeQuery} 
+                  ref={suggest}
+                  // onClick={(e:any) => handleChosingParam(e,i)}
+                  id={activeQuery}
                   data-name={POI} 
                   className='w-[30px] h-full p-[5px] flex justify-center items-center'>{icon}</div>
                 <div 
-                  onClick={(e:any) => handleChosingParam(e,i)} 
-                  id={activeQuery} 
-                  data-name={POI} 
+                  ref={suggest} 
+                  // onClick={(e:any) => handleChosingParam(e,i)}
+                  id={activeQuery}
+                  data-name={POI}
                   className='flex flex-col w-full justify-center'>
-                  <div 
-                    onClick={(e:any) => handleChosingParam(e,i)} 
-                    id={activeQuery} 
-                    data-name={POI} 
-                    className='font-bold text-[13px] w-full leading-[12px]'>{POI}</div>
-                  {/* <div className='text-[10px] w-full z-20 leading-[12px]'>{i.address.municipality} </div> */}
-                  <div 
-                    onClick={(e:any) => handleChosingParam(e,i)} 
-                    id={activeQuery} 
-                    data-name={POI} 
-                    className='text-[10px] w-full z-20 leading-[12px]'>
-                      {StreetName} {StreetNumber} {City}
-                    </div>
-                  {/* <p className='text-[10px] bg-blue-800 text-white pl-[10px] w-full'>{i.poi.categories[0]}</p> */}
+                <div 
+                  ref={suggest}
+                  // onClick={(e:any) => handleChosingParam(e,i)}
+                  id={activeQuery}
+                  data-name={POI}
+                  className='font-bold text-[13px] w-full leading-[12px]'>{POI}</div>
+                <div
+                  ref={suggest}
+                  // onClick={(e:any) => handleChosingParam(e,i)} 
+                  id={activeQuery}
+                  data-name={POI} 
+                  className='text-[10px] w-full z-20 leading-[12px]'>
+                  {StreetName} {StreetNumber}, {City}
                 </div>
+                  {/* <p className='text-[10px] bg-blue-800 text-white pl-[10px] w-full'>{i.poi.categories[0]}</p> */}
             </div>
+          </div>
           )
         })
+
+        // console.log("po")
+        // console.log(suggest.current)
+      
 
         if(activeQuery === "From") {
           setDataFromFetch(newData)
@@ -213,40 +263,13 @@ export default function TomTom({ShowOrHideInfoAboutMissingLocalizations}: Functi
       })
       .catch((err) => console.log(err))
 
-  },[queryFrom, queryTo, latLangFrom, latLangTo])
 
+  },[queryFrom, queryTo, latLangFrom, latLangTo, activeQuery])
 
-  const handleShowingList = (e:any) => {
-    const RefName = e.target.name
-    if(RefName === "from"){
-       FromList.current.style.display = "block"
-    }
-    if(RefName === "o"){
-      ToList.current.style.display = "block"
-   }
-  }
+  useEffect(() => {
+    calculateDistances()
+  },[latLangFrom, latLangTo])
 
-  const handleHidingList = (e:any) => {
-    const RefName = e.target.name
-    if(RefName === "from"){
-       FromList.current.style.display = "none"
-    }
-    if(RefName === "to"){
-      ToList.current.style.display = "none"
-   }
-  }
-
-  // handling X (clear) buttons in localization inputs
-  const clearFromQuery = () => {
-    setQueryFrom("")
-    setlatLangFrom(null)
-  }
-
-  const clearToQuery = () => {
-    setQueryTo("")
-    setlatLangTo(null)
-  }
-  //END of handling X (clear) buttons in localization inputs
 
     return (
         <div className='flex flex-col w-full justify-around'>
@@ -258,17 +281,17 @@ export default function TomTom({ShowOrHideInfoAboutMissingLocalizations}: Functi
               </div>
               <input 
                 ref={inputFrom}
-                name="from" 
-                onBlur={handleHidingList} 
-                value={queryFrom} 
-                onFocus={handleShowingList} 
-                onChange={handleSearchFrom} 
+                name="From"
+                // onBlur={handleHidingList}
+                value={queryFrom}
+                onFocus={handleShowingList}
+                onChange={handleSearchFrom}
                 className='text-[18px] w-full min-h-[45px] outline-none rounded-[10px] pl-[5px] pr-[50px] overflow-ellipsis' 
                 placeholder='from'
                 autoComplete='off'></input>
             </div>
             <div 
-              onMouseDown={(e) => e.preventDefault()}
+              // onMouseDown={(e) => e.preventDefault()}
               ref={FromList} 
               className={(queryFrom.length > 4 && queryFrom !== null && inputFrom.current === document.activeElement) ? 'absolute w-[102%] -left-[1%] top-[50px] border-2 border-yellow-500 rounded-[10px] bg-white z-30' : 'hidden overflow-hidden'}>{dataFromFetch}</div>
           </div>
