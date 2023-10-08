@@ -170,14 +170,13 @@ export default function Search() {
                                 <div className="h-[50px] w-1/2 border-r flex items-center pl-[10px] relative">
                                     {(date === "") && <div 
                                         ref={DatePlaceholder} 
-                                        className='absolute w-9/12 h-[50px] text-left leading-[50px] text-gray-900/[0.5] right-0 pl-[5px]'>
-                                            Date
+                                        className='absolute w-9/12 h-[50px] text-left leading-[50px] text-gray-900/[0.5] right-0 pl-[5px]'>Date
                                     </div>}
                                     <BsCalendar3 locale="en_EN" className="w-[30px] h-[30px] text-yellow-500/[0.4]"/>
                                     <input 
                                         onChange={handleDate}
                                         id="data"
-                                        className='w-full h-[45px] pl-[5px] outline-none z-10'
+                                        className='w-full h-[45px] text-[15px] pl-[5px] outline-none z-10'
                                         placeholder='Date'
                                         type="date"
                                         onFocus={handleHidePlaceholderDivDate}
@@ -190,7 +189,7 @@ export default function Search() {
                                 <div className="h-[50px] w-1/2 flex items-center justify-center pl-[10px] relative">
                                 {(time === "") && <div 
                                     ref={TimePlaceholder} 
-                                    className='absolute w-9/12 h-full text-left leading-[50px] text-gray-900/[0.5] right-0 pl-[5px]'>Time
+                                    className='absolute w-9/12 h-full text-[15px] text-left leading-[50px] text-gray-900/[0.5] right-0 pl-[5px]'>Time
                                 </div>}
                                     <TbClockHour8 
                                         className="w-[30px] h-[30px] text-yellow-500/[0.4]"

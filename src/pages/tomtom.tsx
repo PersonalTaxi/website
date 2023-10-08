@@ -170,10 +170,10 @@ export default function TomTom({ShowOrHideInfoAboutMissingLocalizations}: Functi
               StreetNumber = i.address.streetNumber
               POI = `${City}, ${StreetName} ${StreetNumber}`
             } 
-            else {
-              StreetNumber = i.address.streetNumber
-              POI = i.address.municipality
-            }
+            // else {
+            //   StreetNumber = i.address.streetNumber
+            //   POI = i.address.municipality
+            // }
 
             if(!i.poi) {
               icon = <MdPlace className='h-full'/>
