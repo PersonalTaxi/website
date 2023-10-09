@@ -10,7 +10,6 @@ export default function Orderspacifications() {
     firstName, setFirstName, lastName, setLastName, phone, setPhone, email, setEmail} = useContext(AppContext)
 
     const CodeLists:any = useRef();
-    const select:any = useRef()
 
     const [data, setData] = useState([
       {country:"Poland"},
@@ -23,8 +22,10 @@ export default function Orderspacifications() {
     const handleAddingNewData = (i:any) => {
       setData([{country: i.name}, {code: i.dial_code}, {emoji: i.emoji}])
     }
+    
+    const countriesData = countries.sort()
 
-    const countriesMap = countries.map(i => {
+    const countriesMap = countriesData.map(i => {
       return (
           <option key={i.name} className="flex w-full justify-center">
             <div className='w-[30px]'>{i.emoji}</div>
@@ -40,19 +41,19 @@ export default function Orderspacifications() {
       <div className='w-11/12 mx-auto'>
       <p className='mb-[25px] text-[20px] font-bold'>A few informations about you: </p>
         <div className='flex mb-[25px]'>
-          <div className='w-[70px]'>
+          <div className='w-[70px] flex items-center'>
             <input 
               name="title" 
               type="radio" 
-              className='mr-[4px]'
+              className='mr-[4px] w-[20px] h-[20px]'
               required></input>
             <label>Mr.</label>
           </div>
-          <div className='w-[70px]'>
+          <div className='w-[70px] flex items-center'>
             <input 
               name="title" 
               type="radio" 
-              className='mr-[4px]'
+              className='mr-[4px] w-[20px] h-[20px]'
               required>
             </input>
             <label>Mrs.</label>
@@ -74,7 +75,7 @@ export default function Orderspacifications() {
           onChange={(e) => setEmail(e.target.value)}>
         </input>
         <div className='flex h-[40px] w-full relative'>
-          <select ref={select} onChange={handleAddingNewData}
+          <select onChange={handleAddingNewData}
             className='border h-[40px] w-[120px] flex items-center justify-center rounded-l-[5px] bg-gray-100 border-gray-400'
             >
             {countriesMap}
@@ -86,9 +87,9 @@ export default function Orderspacifications() {
               onChange={(e) => setPhone(e.target.value)}>
             </input>
         </div>
-        <div className='w-full border flex items-start p-[5px]'>
-              <input type="checkbox" required className='w-[25px] h-[25px]'></input>
-              <p className=''>I accept the privacy policy and agree to contact and realize my order.</p>
+        <div className='w-full flex items-start p-[5px]'>
+              <input type="checkbox" required className='w-[30px] h-[30px] mr-[5px]'></input>
+              <p className='leading-4'>I accept the privacy policy and agree to contact and realize my order.</p>
             </div>
       </div>
     </div>

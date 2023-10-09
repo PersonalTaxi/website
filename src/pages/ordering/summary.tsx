@@ -1,5 +1,3 @@
-'use client'
-
 import React, { useEffect, useLayoutEffect, Component, useContext, useRef, useState, useCallback } from 'react'
 import Chooseparams from './chooseparams'
 import Header from '../Header/header'
@@ -8,6 +6,7 @@ import Link from 'next/link'
 import Head from 'next/head'
 import {MdOutlineKeyboardArrowDown} from "react-icons/md"
 import {BiSolidMap} from 'react-icons/bi'
+import Footer from '../Footer/footer'
 import { AppContext } from '../_app'
 
 export default function Summary() {
@@ -91,25 +90,13 @@ export default function Summary() {
             <link rel='stylesheet' type='text/css' href='../assets/ui-library/icons-css/poi.css'></link>
         </Head>
       <Header />
-      <div id='search-wrapper-ordering' className='pt-[100px] relative h-[180vh] bg-[url("/Main_theme.png")] bg-top bg-cover bg-no-repeat bg-fixed'>
-          {/* <div ref={MapElement} id="map" className={`w-screen h-[55vh] overflow-hidden relative`}>
-            <div className='absolute w-[40px] h-[40px] top-[200px] left-0 right-0 mx-auto z-30'>
-              <BiSolidMap className="w-full h-full text-red-700" />
-            </div>
-          </div>  */}
-            <div className={`w-screen h-[350px] rounded-t-[40px] z-20 bottom-0`}>
-              <Search/>
-              <Chooseparams />
-            {/* <Link href="#specifics">
-              <div ref={GoForMore} className="absolute w-screen h-[120px] bg-white bottom-[60px] z-20 flex justify-center items-start">
-              <div className='flex justify-center px-[20px] h-[50px] border items-center rounded-[30px] bg-yellow-500 text-white'>
-                  <MdOutlineKeyboardArrowDown className="h-[35px] w-[35px] left-0 right-0 mx-auto duration-700"/>
-                <div className='h-[30px] text-[20px]'>Go to specifics</div>
-              </div>
-            </div>
-            </Link> */}
+      <div id='search-wrapper-ordering' className='pt-[100px] relative h-[190vh] bg-[url("/Main_theme.png")] bg-top bg-cover bg-no-repeat bg-fixed'>
+        <div className={`w-screen h-[350px] rounded-t-[40px] z-20 bottom-0`}>
+          <Search/>
+          <Chooseparams />
+        </div>
       </div>
-      </div>
+      <Footer />
     </div>
   )
 }
