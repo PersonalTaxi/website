@@ -10,6 +10,7 @@ export default function Orderspacifications() {
     firstName, setFirstName, lastName, setLastName, phone, setPhone, email, setEmail} = useContext(AppContext)
 
     const CodeLists:any = useRef();
+    const select:any = useRef()
 
     const [data, setData] = useState([
       {country:"Poland"},
@@ -17,35 +18,19 @@ export default function Orderspacifications() {
       {emoji:"🇵🇱"},
     ])
 
+    const [countryCallCode, setCountryCallCode]:any = useState();
+
     const handleAddingNewData = (i:any) => {
       setData([{country: i.name}, {code: i.dial_code}, {emoji: i.emoji}])
-      CodeLists.current.style.display = "none"
-    }
-
-    const handleShowList = () => {
-      console.log(CodeLists.current.style.display)
-      if (CodeLists.current.style.display === "" || CodeLists.current.style.display === "none"){
-        console.log("ok")
-         CodeLists.current.style.display = "block"
-         return true
-      }
-
-      if (CodeLists.current.style.display === "block"){
-        CodeLists.current.style.display = "none"
-        return true
-     }
-    
     }
 
     const countriesMap = countries.map(i => {
       return (
-        <>
-          <li className="flex w-full" onClick={() => handleAddingNewData(i)} >
+          <option className="flex w-full justify-center">
             <div className='w-[30px]'>{i.emoji}</div>
-            <div>{i.name}</div>
-            <div className='mx-[8px]'>{i.dial_code}</div>
-          </li>
-        </>
+            {/* <div>{i.name}</div> */}
+            <div className='mx-[8px]'> {i.dial_code}</div>
+          </option>
       )
     })
 
@@ -68,7 +53,8 @@ export default function Orderspacifications() {
               name="title" 
               type="radio" 
               className='mr-[4px]'
-              required></input>
+              required>
+            </input>
             <label>Mrs.</label>
           </div>
         </div>
@@ -83,26 +69,27 @@ export default function Orderspacifications() {
           onChange={(e) => setLastName(e.target.value)}>
         </input>
         <input 
-          placeholder='Your email' 
+          placeholder='Your email'
           className='border border-gray-400 w-full pl-[10px] h-[40px] mb-[20px] rounded-[5px] placeholder-gray-400 outline-none' required
           onChange={(e) => setEmail(e.target.value)}>
         </input>
         <div className='flex h-[40px] w-full relative'>
-          <div 
-            role="combobox" 
+          <select ref={select} onChange={handleAddingNewData}
             className='border h-[40px] w-[120px] flex items-center justify-center rounded-l-[5px] bg-gray-100 border-gray-400'
-            onClick={handleShowList}>
-            <div className="pr-[4px]">{data[2].emoji}</div>
-            {data[1].code}
+            >
+            {countriesMap}
             <MdOutlineKeyboardArrowDown />
-          </div>
-          <ul ref={CodeLists} role="listbox" className="hidden absolute border w-full top-[40px] h-[150px] overflow-y-scroll pl-[10px] bg-white">{countriesMap}</ul>
+          </select>
             <input 
               placeholder='Your phone (only digists)' 
               className='border-r border-t border-b border-gray-400 w-full pl-[10px] h-[40px] mb-[20px] rounded-r-[5px] placeholder-gray-400 outline-none' type="phone" required
               onChange={(e) => setPhone(e.target.value)}>
             </input>
         </div>
+        <div className='w-full border flex items-start p-[5px]'>
+              <input type="checkbox" required className='w-[25px] h-[25px]'></input>
+              <p className=''>I accept the privacy policy and agree to contact and realize my order.</p>
+            </div>
       </div>
     </div>
   )
