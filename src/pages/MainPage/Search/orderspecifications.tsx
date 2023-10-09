@@ -26,7 +26,7 @@ export default function Orderspacifications() {
 
     const countriesMap = countries.map(i => {
       return (
-          <option key={i} className="flex w-full justify-center">
+          <option key={i.name} className="flex w-full justify-center">
             <div className='w-[30px]'>{i.emoji}</div>
             {/* <div>{i.name}</div> */}
             <div className='mx-[8px]'> {i.dial_code}</div>
