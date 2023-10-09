@@ -90,7 +90,7 @@ export default function Summary() {
             <link rel='stylesheet' type='text/css' href='../assets/ui-library/icons-css/poi.css'></link>
         </Head>
       <Header />
-      <div id='search-wrapper-ordering' className='pt-[100px] relative h-[190vh] bg-[url("/Main_theme.png")] bg-top bg-cover bg-no-repeat bg-fixed'>
+      <div id='search-wrapper-ordering' className='pt-[100px] relative h-[1600px] bg-[url("/Main_theme.png")] bg-top bg-cover bg-no-repeat bg-fixed'>
         <div className={`w-screen h-[350px] rounded-t-[40px] z-20 bottom-0`}>
           <Search/>
           <Chooseparams />
