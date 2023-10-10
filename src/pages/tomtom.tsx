@@ -135,19 +135,17 @@ export default function TomTom({ShowOrHideInfoAboutMissingLocalizations}: Functi
       query = queryTo
     } 
 
-    const res:any = fetch(
-      `https://api.tomtom.com/search/2/search/${query}.json?key=cjmuWSfVTrJfOGj7AcXvMLU8R8i1Q9cF&setCountry=PL&limit=5&language=en-US`
-      ,{
-    method:"GET"
+    setTimeout(() => {
+      console.log("kolo")
+    fetch(`https://api.tomtom.com/search/2/search/${query}.json?key=cjmuWSfVTrJfOGj7AcXvMLU8R8i1Q9cF&setCountry=PL&limit=5&language=en-US`,{
+      method:"GET"
       })
 
       .then(res => res.json())
       .then(resData => {
         return resData.results.filter((i:any) => i.type !== "Geography")
-        // console.log(resData)
       })
       .then(data => {
-        // console.log(data)
         const newData = data.map((i:any) => {
           console.log(i)
           let icon
@@ -249,11 +247,7 @@ export default function TomTom({ShowOrHideInfoAboutMissingLocalizations}: Functi
           </div>
           )
         })
-
-        // console.log("po")
-        // console.log(suggest.current)
       
-
         if(activeQuery === "From") {
           setDataFromFetch(newData)
         } 
@@ -261,7 +255,11 @@ export default function TomTom({ShowOrHideInfoAboutMissingLocalizations}: Functi
           setDataToFetch(newData)
         } 
       })
-      .catch((err) => console.log(err))
+      // .catch((err) => {
+      //   console.log(err) 
+      //   return
+      // })
+    },500)
 
 
   },[queryFrom, queryTo, latLangFrom, latLangTo])
