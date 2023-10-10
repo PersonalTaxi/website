@@ -1,5 +1,8 @@
+'use client'
+
 import  React, { useRef, useState, useEffect, Component, useContext, useCallback } from 'react';
 import { useRouter } from 'next/router';
+import { debounce } from 'lodash';
 
 //icons
 import { MdLocalAirport, MdPlace, MdHotel, MdDirectionsCar, MdAttachMoney, MdLocalParking } from 'react-icons/md'
@@ -29,6 +32,8 @@ export default function TomTom({ShowOrHideInfoAboutMissingLocalizations}: Functi
   const clearFrom:any = useRef();
   const clearTo:any = useRef();
   const suggest:any = useRef();
+
+
 
   const handleSearchFrom = (e:any) => {
     // console.log("From: "+ e.target.value)
@@ -121,9 +126,6 @@ export default function TomTom({ShowOrHideInfoAboutMissingLocalizations}: Functi
   }
   //END of handling X (clear) buttons in localization inputs
 
-
-  console.log(dataFromFetch)
-
   useEffect(() => {
 
     let query:any;
@@ -135,9 +137,8 @@ export default function TomTom({ShowOrHideInfoAboutMissingLocalizations}: Functi
       query = queryTo
     } 
 
-    setTimeout(() => {
-      console.log("kolo")
-    fetch(`https://api.tomtom.com/search/2/search/${query}.json?key=cjmuWSfVTrJfOGj7AcXvMLU8R8i1Q9cF&setCountry=PL&limit=5&language=en-US`,{
+    const search = debounce(() => {
+      fetch(`https://api.tomtom.com/search/2/search/${query}.json?key=cjmuWSfVTrJfOGj7AcXvMLU8R8i1Q9cF&setCountry=PL&limit=5&language=en-US`,{
       method:"GET"
       })
 
@@ -146,14 +147,15 @@ export default function TomTom({ShowOrHideInfoAboutMissingLocalizations}: Functi
         return resData.results.filter((i:any) => i.type !== "Geography")
       })
       .then(data => {
+        console.log(data)
         const newData = data.map((i:any) => {
-          console.log(i)
-          let icon
-          let POI
-          let StreetName = i.address.streetName
-          let StreetNumber = 2
-          let City = i.address.municipality
-          let {lat,lon} = i.position
+
+            let icon
+            let POI
+            let StreetName = i.address.streetName
+            let StreetNumber = 2
+            let City = i.address.municipality
+            let {lat,lon} = i.position
 
             //Contions to show icon
             if(i.type === "POI") {
@@ -228,7 +230,7 @@ export default function TomTom({ShowOrHideInfoAboutMissingLocalizations}: Functi
                   id={activeQuery}
                   data-name={POI}
                   className='flex flex-col w-full justify-center'>
-                <div 
+                <div
                   ref={suggest}
                   // onClick={(e:any) => handleChosingParam(e,i)}
                   id={activeQuery}
@@ -236,9 +238,9 @@ export default function TomTom({ShowOrHideInfoAboutMissingLocalizations}: Functi
                   className='font-bold text-[13px] w-full leading-[12px]'>{POI}</div>
                 <div
                   ref={suggest}
-                  // onClick={(e:any) => handleChosingParam(e,i)} 
+                  // onClick={(e:any) => handleChosingParam(e,i)}
                   id={activeQuery}
-                  data-name={POI} 
+                  data-name={POI}
                   className='text-[10px] w-full z-20 leading-[12px]'>
                   {StreetName} {StreetNumber}, {City}
                 </div>
@@ -254,15 +256,19 @@ export default function TomTom({ShowOrHideInfoAboutMissingLocalizations}: Functi
         if(activeQuery === "To") {
           setDataToFetch(newData)
         } 
-      })
-      // .catch((err) => {
-      //   console.log(err) 
-      //   return
-      // })
-    },500)
 
+      })},500)
 
-  },[queryFrom, queryTo, latLangFrom, latLangTo])
+      if(activeQuery === "From" && queryFrom.length > 3){
+        search()
+      }
+
+      if(activeQuery === "To" && queryTo.length > 3){
+        search()
+      }
+      
+  },[queryFrom, queryTo])
+
 
   useEffect(() => {
     calculateDistances()
