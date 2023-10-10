@@ -126,7 +126,7 @@ export default function TomTom({ShowOrHideInfoAboutMissingLocalizations}: Functi
 
   useEffect(() => {
 
-    let query;
+    let query:any;
     if(activeQuery === "From") {
       query = queryFrom
     } 
