@@ -192,7 +192,7 @@ export default function TomTom({
         })
         .then((data) => {
           console.log(data);
-          const newData = data.map((i: any) => {
+          const newData = data.map((i: any, key: any) => {
             let icon;
             let POI;
             let StreetName = i.address.streetName;
@@ -259,7 +259,7 @@ export default function TomTom({
 
             return (
               <div
-                key={i}
+                key={key}
                 ref={suggest}
                 id={activeQuery}
                 data-name={POI}

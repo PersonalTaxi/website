@@ -16,9 +16,7 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "typeRoots": [
-      "/index.d.ts"
-    ],
+    "typeRoots": ["/index.d.ts"]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/appcontext"],
   "exclude": ["node_modules"]
