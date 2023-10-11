@@ -380,7 +380,7 @@ export default function TomTom({
             onClick={clearToQuery}
             ref={clearTo}
             className={
-              queryTo.length > 1 && queryTo !== null
+              queryTo?.length > 1 && queryTo !== null
                 ? "bg-white absolute w-[40px] h-[40px] right-0 z-10 flex items-center duration-200 justify-center text-gray-300 hover:text-gray-800"
                 : "hidden"
             }
@@ -402,7 +402,7 @@ export default function TomTom({
         <div
           ref={ToList}
           className={
-            queryTo.length > 4 &&
+            queryTo?.length > 4 &&
             queryTo !== null &&
             inputTo.current === document.activeElement
               ? "absolute w-[102%] -left-[1%] top-[50px] border-2 border-yellow-500 rounded-[10px] bg-white"

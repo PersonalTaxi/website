@@ -5,6 +5,7 @@ import React, {
   useRef,
   useState,
 } from "react";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import cars from "../../data/cars.json";
 import Orderspacifications from "../MainPage/Search/orderspecifications";
@@ -12,7 +13,6 @@ import { Ubuntu } from "next/font/google";
 import Image from "next/image";
 import { BsFillPersonFill, BsFillBagFill } from "react-icons/bs";
 import { AppContext } from "../_app";
-import { useRouter } from "next/router";
 
 //icons
 import { MdFlightLand } from "react-icons/md";
@@ -53,13 +53,18 @@ function reducer(state: any, action: any) {
       }
 
     case "resetCars":
-      return { van: (state.van = 0), sedan: (state.sedan = 1) };
+      console.log(action.pass.router);
+      if (action.pass.router > 4) {
+        return { van: (state.van = 1), sedan: (state.sedan = 0) };
+      } else {
+        return { van: (state.van = 0), sedan: (state.sedan = 1) };
+      }
 
-      return state;
+    //   return state;
   }
 }
 
-const CarsData = { sedan: 1, van: 0 };
+let CarsData = { sedan: 0, van: 1 };
 
 export default function Chooseparams() {
   const router = useRouter();
@@ -113,7 +118,7 @@ export default function Chooseparams() {
   }
 
   function resetCars() {
-    dispatch({ type: "resetCars" });
+    dispatch({ type: "resetCars", pass: { router: router.query.passengers } });
   }
 
   const handleFlightinfo: any = useRef();
@@ -149,7 +154,6 @@ export default function Chooseparams() {
   };
 
   useEffect(() => {
-    // console.log("re-render")
     resetCars();
   }, [router.query.passengers]);
 
@@ -286,6 +290,25 @@ export default function Chooseparams() {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      <div
+        className={
+          state.sedan > 0
+            ? "w-screen duration-200 h-[20px] mb-[10px]"
+            : "w-screen h-[0px] overflow-hidden duration-200 "
+        }
+      >
+        <div className="w-[92vw] h-[20px] mx-auto flex items-center">
+          <input
+            id="combi-type"
+            type="checkbox"
+            defaultChecked={state.sedan === 0 && false}
+            className="w-[20px] h-[20px] bg-yellow-500"
+          ></input>
+          <label id="combi-type" className="ml-[4px] font-semibold ">
+            I need a combi car
+          </label>
         </div>
       </div>
       <div className="w-[90vw] mx-auto py-[20px] border-t border-b">

@@ -40,7 +40,9 @@ export default function Orderspacifications() {
     setData([{ country: i.name }, { code: i.dial_code }, { emoji: i.emoji }]);
   };
 
-  const countriesData = countries.sort();
+  const countriesData = countries.sort((a, b) =>
+    parseInt(a.dial_code.slice(1)) > parseInt(b.dial_code.slice(1)) ? 1 : -1,
+  );
 
   const countriesMap = countriesData.map((i) => {
     return (

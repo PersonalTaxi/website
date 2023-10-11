@@ -35,10 +35,6 @@ export default function Summary() {
 
   setSearchButtonWasClicked(true);
 
-  const [map, setMap] = useState({});
-  const MapElement: any = useRef();
-  const GoForMore: any = useRef();
-
   // const handleScrolling = () => {
   //   if(window.scrollX < 230){
   //     GoForMore.current.style.display =  "none"
