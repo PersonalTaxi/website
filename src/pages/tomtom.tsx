@@ -362,7 +362,7 @@ export default function TomTom({
           // onMouseDown={(e) => e.preventDefault()}
           ref={FromList}
           className={
-            queryFrom.length > 4 &&
+            queryFrom.length > 2 &&
             queryFrom !== null &&
             inputFrom.current === document.activeElement
               ? "absolute w-[102%] -left-[1%] top-[50px] border-2 border-yellow-500 rounded-[10px] bg-white z-30"
