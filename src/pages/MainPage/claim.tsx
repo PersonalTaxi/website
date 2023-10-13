@@ -1,12 +1,17 @@
-import React from 'react'
+import React from "react";
 
 export default function Claim() {
-  
   return (
-    <div className='w-screen h-[25vh] border-red-900 flex flex-col px-[20px] z-10 justify-start'>
-        <div className='text-white leading-4 text-[20px]'><b className='text-[30px]'>Safety</b> transport from | to</div>
-        <div className='text-[36px] leading-10 font-bold text-yellow-500'>Krakow Airport</div>
-        <div className='text-white leading-6 text-[20px]'>to your <b className='text-[32px]'>destianation</b></div>
+    <div className="w-screen h-[25vh] border-red-900 flex flex-col px-[20px] z-10 justify-start">
+      <div className="text-white leading-4 text-[20px]">
+        <b className="text-[30px]">Safety</b> transport from | to
+      </div>
+      <div className="text-[36px] leading-10 font-bold text-yellow-500">
+        Krakow Airport
+      </div>
+      <div className="text-white leading-6 text-[20px]">
+        from | to your <b className="text-[32px]">destianation</b>
+      </div>
     </div>
-  )
+  );
 }

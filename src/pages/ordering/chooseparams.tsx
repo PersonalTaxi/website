@@ -91,8 +91,10 @@ export default function Chooseparams() {
   } = useContext(AppContext);
 
   const [state, dispatch] = useReducer(reducer, CarsData);
-  const CarsInfo: any = useRef();
+  const [combi, setCombi] = useState(false);
+
   const InfoAbout: any = useRef();
+  const handleFlightinfo: any = useRef();
 
   const [prices, setPrices] = useState([
     { name: "sedan", price: 129 },
@@ -121,7 +123,6 @@ export default function Chooseparams() {
     dispatch({ type: "resetCars", pass: { router: router.query.passengers } });
   }
 
-  const handleFlightinfo: any = useRef();
   const { passengers } = router.query;
   let passenger: any = "";
 
@@ -153,9 +154,19 @@ export default function Chooseparams() {
     InfoAbout.current.style.display = "none";
   };
 
+  const handleCombiCheckBox = () => {
+    setCombi(!combi);
+  };
+
   useEffect(() => {
     resetCars();
   }, [router.query.passengers]);
+
+  useEffect(() => {
+    if (state.sedan === 0) {
+      setCombi(false);
+    }
+  }, [state]);
 
   let FinalPrice =
     state.van * 149 +
@@ -299,12 +310,14 @@ export default function Chooseparams() {
             : "w-screen h-[0px] overflow-hidden duration-200 "
         }
       >
+        {/* COMBI CAR CHECKBOX */}
         <div className="w-[92vw] h-[20px] mx-auto flex items-center">
           <input
             id="combi-type"
             type="checkbox"
-            defaultChecked={state.sedan === 0 && false}
-            className="w-[20px] h-[20px] bg-yellow-500"
+            checked={combi}
+            onChange={handleCombiCheckBox}
+            className="w-[20px] h-[20px] accent-yellow-500 bg-white"
           ></input>
           <label id="combi-type" className="ml-[4px] font-semibold ">
             I need a combi car

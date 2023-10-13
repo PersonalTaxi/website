@@ -23,7 +23,11 @@ import {
 import { LiaHotelSolid } from "react-icons/lia";
 import { IoMdRestaurant } from "react-icons/io";
 import { BiSolidMap } from "react-icons/bi";
-import { AiFillCloseSquare } from "react-icons/ai";
+import {
+  AiFillCloseSquare,
+  AiFillInfoCircle,
+  AiOutlineClose,
+} from "react-icons/ai";
 import { AppContext } from "./_app";
 
 type Function = {
@@ -69,6 +73,15 @@ export default function TomTom({
   const debouncedSearchFrom = useDebounce(queryFrom, 150);
   const debouncedSearchTo = useDebounce(queryTo, 150);
 
+  const [municipalityFrom, setMunicipalityFrom] = useState("Kraków");
+  const [municipalityTo, setMunicipalityTo] = useState("Kraków");
+  const [permissionedMunicipality, setPermissionedMunicipality] = useState([
+    "Krakow",
+    "Kraków",
+    "Zabierzów",
+  ]);
+  const [correctRoad, setCorrectRoad] = useState(true);
+
   const FromList: any = useRef();
   const inputFrom: any = useRef();
   const inputTo: any = useRef();
@@ -76,8 +89,10 @@ export default function TomTom({
   const clearFrom: any = useRef();
   const clearTo: any = useRef();
   const suggest: any = useRef();
+  const CloseInfoAbourRoute: any = useRef();
 
   const handleSearchFrom = (e: any) => {
+    // setCorrectRoad(true);
     // console.log("From: "+ e.target.value)
     setQueryFrom(e.target.value);
     FromList.current.style.display = "block";
@@ -86,6 +101,7 @@ export default function TomTom({
   };
 
   const handleSearchTo = (e: any) => {
+    // setCorrectRoad(true);
     // console.log("To: " + e.target.value)
     setlatLangTo(null);
     setQueryTo(e.target.value);
@@ -94,18 +110,17 @@ export default function TomTom({
   };
 
   const handleChosingParam = (e: any, i: any) => {
+    console.log(e.target.getAttribute("data-name"));
     console.log(e.target.id);
 
     if (e.target.id === "From") {
-      setMapUpdated(true);
-      console.log(i.position.lat);
-      setMapLatitude(i.position.lat);
-      setMapLongitude(i.position.lon);
+      setMunicipalityFrom(i.address.municipality);
       setlatLangFrom([i.position.lat, i.position.lon]);
       setQueryFrom(e.target.getAttribute("data-name"));
       FromList.current.style.display = "none";
     }
     if (e.target.id === "To") {
+      setMunicipalityTo(i.address.municipality);
       setlatLangTo([i.position.lat, i.position.lon]);
       setQueryTo(e.target.getAttribute("data-name"));
       ToList.current.style.display = "none";
@@ -148,12 +163,21 @@ export default function TomTom({
   };
 
   const handleHidingList = (e: any) => {
+    console.log("hiding...");
     const RefName = e.target.name;
-    if (RefName === "from") {
+
+    if (RefName === "From") {
       FromList.current.style.display = "none";
+      if (latLangFrom === null) {
+        setQueryFrom("");
+      }
     }
-    if (RefName === "to") {
+
+    if (RefName === "To") {
       ToList.current.style.display = "none";
+      if (latLangTo === null) {
+        setQueryTo("");
+      }
     }
   };
 
@@ -171,17 +195,22 @@ export default function TomTom({
 
   useEffect(() => {
     let query: any;
+    let RestricionOne: any;
+    let RestricionTwo: any;
+
     if (activeQuery === "From") {
       query = queryFrom;
     }
 
     if (activeQuery === "To") {
       query = queryTo;
+      RestricionOne = "Kraków";
+      RestricionTwo = "Zabierzów";
     }
 
     function fetchData() {
       fetch(
-        `https://api.tomtom.com/search/2/search/${query}.json?key=cjmuWSfVTrJfOGj7AcXvMLU8R8i1Q9cF&setCountry=PL&limit=5&language=en-US`,
+        `https://api.tomtom.com/search/2/search/${query}.json?maxFuzzyLevel=4&key=cjmuWSfVTrJfOGj7AcXvMLU8R8i1Q9cF&setCountry=PL&limit=7&language=en-US`,
         {
           method: "GET",
         },
@@ -190,6 +219,14 @@ export default function TomTom({
         .then((resData) => {
           return resData.results.filter((i: any) => i.type !== "Geography");
         })
+        .then((resData) => {
+          console.log(resData);
+          if (resData) {
+            return resData.filter(
+              (i: any) => i.address.municipality !== RestricionOne,
+            );
+          }
+        })
         .then((data) => {
           console.log(data);
           const newData = data.map((i: any, key: any) => {
@@ -197,7 +234,13 @@ export default function TomTom({
             let POI;
             let StreetName = i.address.streetName;
             let StreetNumber = 2;
-            let City = i.address.municipality;
+            let City = "";
+
+            if (i.address.municipalitySubdivision) {
+              City = `${i.address.postalCode}, ${i.address.municipalitySubdivision}`;
+            } else {
+              City = `${i.address.postalCode}, ${i.address.municipality}`;
+            }
             let { lat, lon } = i.position;
 
             //Contions to show icon
@@ -265,6 +308,7 @@ export default function TomTom({
                 data-name={POI}
                 data-value-lat={lat}
                 data-value-lon={lon}
+                onMouseDown={(e) => e.preventDefault()}
                 className="flex w-full border-b py-[5px] rounded-[10px] px-[10px] duration-200 hover:bg-blue-400 hover:text-white cursor-pointer overflow-hidden"
                 onClick={(e: any) => handleChosingParam(e, i)}
               >
@@ -328,11 +372,57 @@ export default function TomTom({
 
   useEffect(() => {
     calculateDistances();
+
+    console.log(municipalityFrom);
+    console.log(municipalityTo);
+    // console.log(correctRoad);
+
+    if (
+      (permissionedMunicipality.includes(municipalityFrom) &&
+        !permissionedMunicipality.includes(municipalityTo)) ||
+      (!permissionedMunicipality.includes(municipalityFrom) &&
+        permissionedMunicipality.includes(municipalityTo)) ||
+      (permissionedMunicipality.includes(municipalityFrom) &&
+        permissionedMunicipality.includes(municipalityTo))
+    ) {
+      console.log("true");
+      setCorrectRoad(true);
+    } else {
+      console.log("false");
+      setCorrectRoad(false);
+      setQueryFrom("");
+      setQueryTo("");
+      setlatLangFrom(null);
+      setlatLangTo(null);
+    }
   }, [latLangFrom, latLangTo]);
+
+  const handleClosingInfoAboutRoute = () => {
+    setCorrectRoad(true);
+    setMunicipalityFrom("Kraków");
+    setMunicipalityTo("Kraków");
+  };
 
   return (
     <div className="flex flex-col w-full justify-around">
-      <div className="w-full h-[47px] flex flex-col rounded-r-[10px] relative">
+      <div className="w-full h-[47px] flex flex-col rounded-r-[10px]">
+        <div
+          className={
+            correctRoad === true
+              ? "absolute w-full h-[0px] mx-auto bg-white z-40 rounded-[10px] flex items-start justify-between overflow-hidden duration-300"
+              : "absolute w-full h-[98%] mx-auto bg-white z-40 rounded-[10px] flex items-start justify-between overflow-hidden duration-300"
+          }
+          onClick={handleClosingInfoAboutRoute}
+        >
+          <div className="flex items-center w-[90%] h-full">
+            <AiFillInfoCircle className="w-[15%]" />
+            <div className="h-full w-[85%] leading-4 pt-[20px]">
+              Sorry, you can only choose a route which contain a starting or
+              finishig point in Kraków commune
+            </div>
+          </div>
+          <AiOutlineClose classname="w-[10%]" />
+        </div>
         <div className="flex justify-center items-center">
           <BiSolidMap className="w-[30px] h-[30px] text-yellow-500/[0.4]" />
           <div
@@ -349,7 +439,7 @@ export default function TomTom({
           <input
             ref={inputFrom}
             name="From"
-            // onBlur={handleHidingList}
+            onBlur={handleHidingList}
             value={queryFrom}
             onFocus={handleShowingList}
             onChange={handleSearchFrom}
@@ -362,7 +452,7 @@ export default function TomTom({
           // onMouseDown={(e) => e.preventDefault()}
           ref={FromList}
           className={
-            queryFrom.length > 2 &&
+            queryFrom.length > 4 &&
             queryFrom !== null &&
             inputFrom.current === document.activeElement
               ? "absolute w-[102%] -left-[1%] top-[50px] border-2 border-yellow-500 rounded-[10px] bg-white z-30"
@@ -380,7 +470,7 @@ export default function TomTom({
             onClick={clearToQuery}
             ref={clearTo}
             className={
-              queryTo?.length > 1 && queryTo !== null
+              queryTo.length > 1 && queryTo !== null
                 ? "bg-white absolute w-[40px] h-[40px] right-0 z-10 flex items-center duration-200 justify-center text-gray-300 hover:text-gray-800"
                 : "hidden"
             }
@@ -389,7 +479,7 @@ export default function TomTom({
           </div>
           <input
             ref={inputTo}
-            name="to"
+            name="To"
             onBlur={handleHidingList}
             value={queryTo}
             onFocus={handleShowingList}
