@@ -332,7 +332,7 @@ export default function Search() {
                       <div className="flex items-center">
                         <AiFillInfoCircle className="w-[20px] h-[20px]" />
                         <p className="px-[5px] h-full mt-[5px]">
-                          You can order an taxi not eariler that 16 hours from
+                          You can order a taxi not eariler that 16 hours from
                           now
                         </p>
                       </div>
