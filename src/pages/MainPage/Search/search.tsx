@@ -268,7 +268,7 @@ export default function Search() {
                     className="hidden h-[20px] text-red-800 items-center text-[14px]"
                   >
                     <AiFillInfoCircle />
-                    <div className="pl-[5px]">Please fill localizations</div>
+                    <div className="pl-[5px]">Please fill a localizations</div>
                   </div>
                 </div>
                 <div id="wrapper-for-bottom-search" className="w-10/12">
@@ -327,12 +327,15 @@ export default function Search() {
                     <div
                       ref={InfoAboutDate}
                       onClick={handleHideInfoAboutDate}
-                      className="absolute w-full h-[0px] bg-white z-[500] text-[12px] flex items-start duration-200 overflow-hidden"
+                      className="absolute w-full h-[0px] bg-white z-[500] text-[12px] flex items-start duration-200 overflow-hidden rounded-[10px] shadow-xl pl-[10px] pr-[4px]"
                     >
-                      <AiFillInfoCircle className="w-[20px] h-[20px]" />
-                      <p className="px-[5px]">
-                        You can order an taxi not eariler that 16 hours from now
-                      </p>
+                      <div className="flex items-center">
+                        <AiFillInfoCircle className="w-[20px] h-[20px]" />
+                        <p className="px-[5px] h-full mt-[5px]">
+                          You can order an taxi not eariler that 16 hours from
+                          now
+                        </p>
+                      </div>
                       <AiOutlineClose className="w-[20px] h-[20px]" />
                     </div>
                     <div
