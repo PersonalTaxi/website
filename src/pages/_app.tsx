@@ -10,6 +10,8 @@ type QueryParams = {
   setQueryTo: React.Dispatch<React.SetStateAction<string>>;
   date: any;
   setDate: React.Dispatch<React.SetStateAction<any>>;
+  dateLimit: any;
+  setDateLimit: React.Dispatch<React.SetStateAction<any>>;
   time: any;
   setTime: React.Dispatch<React.SetStateAction<any>>;
   people: number;
@@ -57,20 +59,31 @@ export default function App({ Component, pageProps }: AppProps) {
   const [queryFrom, setQueryFrom] = useState("");
   const [queryTo, setQueryTo] = useState("");
   const [date, setDate] = useState(() => {
-
     const ActualData = new Date();
     const NewDate = ActualData.setTime(
       ActualData.getTime() + 16 * 60 * 60 * 1000,
     );
 
     const ReservationDate = new Date(NewDate);
-    let lolo = `${ReservationDate.getFullYear()}-${
+    let StartDate = `${ReservationDate.getFullYear()}-${
       ReservationDate.getMonth() + 1
     }-${ReservationDate.getUTCDate()}T${ReservationDate.getUTCHours()}:${ReservationDate.getUTCMinutes()}`;
 
-    return lolo;
-  }
-  );
+    return StartDate;
+  });
+  const [dateLimit, setDateLimit] = useState(() => {
+    const ActualData = new Date();
+    const NewDate = ActualData.setTime(
+      ActualData.getTime() + 16 * 60 * 60 * 1000,
+    );
+
+    const ReservationDate = new Date(NewDate);
+    let ActualDate = `${ReservationDate.getFullYear()}-${
+      ReservationDate.getMonth() + 1
+    }-${ReservationDate.getUTCDate()}T${ReservationDate.getUTCHours()}:${ReservationDate.getUTCMinutes()}`;
+
+    return ActualDate;
+  });
   const [time, setTime] = useState("");
   const [people, setPeople] = useState(2);
   const [latLangFrom, setlatLangFrom] = useState(null);
@@ -139,6 +152,8 @@ export default function App({ Component, pageProps }: AppProps) {
         setMunicipalityFrom,
         municipalityTo,
         setMunicipalityTo,
+        dateLimit,
+        setDateLimit,
       }}
     >
       <Component {...pageProps} />

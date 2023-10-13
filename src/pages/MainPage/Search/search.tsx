@@ -49,6 +49,8 @@ export default function Search() {
     setIsFromCompleted,
     SearchButtonWasClicked,
     setSearchButtonWasClicked,
+    dateLimit,
+    setDateLimit,
   } = useContext(AppContext);
 
   const router = useRouter();
@@ -276,7 +278,7 @@ export default function Search() {
                         id="data"
                         className="w-full h-[45px] text-[15px] pl-[5px] outline-none z-10 rounded-[10px] bg-transparent"
                         type="datetime-local"
-                        min={date}
+                        min={dateLimit}
                         onFocus={handleHidePlaceholderDivDate}
                         value={date}
                         required
