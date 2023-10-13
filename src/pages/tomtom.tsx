@@ -165,7 +165,6 @@ export default function TomTom({
   };
 
   const handleHidingList = (e: any) => {
-    console.log("hiding...");
     const RefName = e.target.name;
 
     if (RefName === "From") {
@@ -226,7 +225,7 @@ export default function TomTom({
           );
         })
         .then((resData) => {
-          console.log(resData);
+          // console.log(resData);
           if (resData) {
             return resData.filter(
               (i: any) => i.address.municipality !== RestricionOne,
@@ -234,7 +233,7 @@ export default function TomTom({
           }
         })
         .then((data) => {
-          console.log(data);
+          // console.log(data);
           const newData = data.map((i: any, key: any) => {
             let icon;
             let POI;

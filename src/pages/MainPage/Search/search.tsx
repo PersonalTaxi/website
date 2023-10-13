@@ -50,6 +50,26 @@ export default function Search() {
     setSearchButtonWasClicked,
   } = useContext(AppContext);
 
+  let DataToReservation;
+  let HourToReservation;
+
+  function setReservationDate() {
+    const ActualData = new Date();
+    const NewDate = ActualData.setTime(
+      ActualData.getTime() + 16 * 60 * 60 * 1000,
+    );
+
+    const ReservationDate = new Date(NewDate);
+    DataToReservation = `${ReservationDate.getFullYear()}-${
+      ReservationDate.getMonth() + 1
+    }-${ReservationDate.getUTCDate()}`;
+    HourToReservation = `${ReservationDate.getHours()}:${ReservationDate.getUTCMinutes()}`;
+
+    console.log(DataToReservation);
+  }
+
+  setReservationDate();
+
   const router = useRouter();
 
   let passengersFromQuery: any = 2;
@@ -67,6 +87,7 @@ export default function Search() {
   const dataTo: any = useRef();
   const DatePlaceholder: any = useRef();
   const TimePlaceholder: any = useRef();
+  const InfoAboutDate: any = useRef();
 
   const handleHidePlaceholderDivDate = () => {
     // DatePlaceholder.current.style.display = "none"
@@ -182,6 +203,14 @@ export default function Search() {
     CheckIfAllDataIsComplete();
   });
 
+  const handleShowInfoAboutDate = () => {
+    InfoAboutDate.current.style.height = "100%";
+  };
+
+  const handleHideInfoAboutDate = () => {
+    InfoAboutDate.current.style.height = "0px";
+  };
+
   return (
     <>
       <Head>
@@ -246,7 +275,7 @@ export default function Search() {
                   {/* Date*/}
                   <div
                     id="calendar-timer-wrapper"
-                    className="rounded-[10px] h-[50px] w-full border flex flex-no-wrap mb-[10px]"
+                    className="rounded-[10px] h-[50px] w-full border flex flex-no-wrap mb-[10px] relative"
                   >
                     <div className="h-[50px] w-1/2 border-r flex items-center pl-[10px] relative">
                       {date === "" && (
@@ -267,6 +296,7 @@ export default function Search() {
                         className="w-full h-[45px] text-[15px] pl-[5px] outline-none z-10"
                         placeholder="Date"
                         type="date"
+                        min={DataToReservation}
                         onFocus={handleHidePlaceholderDivDate}
                         value={date}
                         required
@@ -288,10 +318,29 @@ export default function Search() {
                         onChange={handleTime}
                         placeholder="Hour"
                         type="time"
+                        min={HourToReservation}
                         onFocus={handleHidePlaceholderDivTime}
-                        value={time}
+                        // value={time}
                         required
                       ></input>
+                    </div>
+                    <div
+                      ref={InfoAboutDate}
+                      onClick={handleHideInfoAboutDate}
+                      className="absolute w-full h-[0px] bg-white z-[500] text-[12px] flex items-start duration-200 overflow-hidden"
+                    >
+                      <AiFillInfoCircle className="w-[20px] h-[20px]" />
+                      <p className="px-[5px]">
+                        You can order an taxi not eariler that 16 hours from now
+                      </p>
+                      <AiOutlineClose className="w-[20px] h-[20px]" />
+                    </div>
+                    <div
+                      onMouseEnter={handleShowInfoAboutDate}
+                      onMouseLeave={handleHideInfoAboutDate}
+                      className="absolute -right-6 my-auto z-40  h-full flex items-center text-yellow-500 w-[25px]"
+                    >
+                      <AiFillInfoCircle className="w-full h-full ml-[5px]" />
                     </div>
                   </div>
                   {/* Persons do drive */}

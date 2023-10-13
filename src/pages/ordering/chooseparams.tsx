@@ -53,7 +53,6 @@ function reducer(state: any, action: any) {
       }
 
     case "resetCars":
-      console.log(action.pass.router);
       if (action.pass.router > 4) {
         return { van: (state.van = 1), sedan: (state.sedan = 0) };
       } else {
@@ -168,10 +167,19 @@ export default function Chooseparams() {
     }
   }, [state]);
 
+  //calculating final price
+  let distanceAboveMin = 0;
+
+  if (calculateDistance > 20) {
+    distanceAboveMin = calculateDistance - 20;
+  }
+
   let FinalPrice =
     state.van * 149 +
-    state.van * (calculateDistance - 20) * 7 +
-    (state.sedan * 129 + state.sedan * (calculateDistance - 20) * 7);
+    state.van * distanceAboveMin * 7 +
+    (state.sedan * 129 + state.sedan * distanceAboveMin * 7);
+
+  // END OF CALCULATING
 
   return (
     <div className="relative bg-white mt-[90px] w-[95vw] mx-auto rounded-[10px] h-[1080px] border">
