@@ -7,6 +7,7 @@ import React, {
   useState,
   useCallback,
 } from "react";
+import { Ubuntu } from "next/font/google";
 import Chooseparams from "./chooseparams";
 import Header from "../Header/header";
 import Search from "../MainPage/Search/search";
@@ -16,6 +17,11 @@ import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { BiSolidMap } from "react-icons/bi";
 import Footer from "../Footer/footer";
 import { AppContext } from "../_app";
+
+const rubikFonts = Ubuntu({
+  subsets: ["latin"],
+  weight: ["300", "500", "700"],
+});
 
 export default function Summary() {
   const {
@@ -88,7 +94,7 @@ export default function Summary() {
   // },[mapUpdated])
 
   return (
-    <div>
+    <div className={`${rubikFonts.className}`}>
       <Head>
         <meta http-equiv="X-UA-Compatible" content="IE=Edge"></meta>
         <title>Your best drive</title>
