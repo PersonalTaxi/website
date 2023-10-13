@@ -51,26 +51,6 @@ export default function Search() {
     setSearchButtonWasClicked,
   } = useContext(AppContext);
 
-  let DataToReservation;
-  let HourToReservation;
-
-  function setReservationDate() {
-    const ActualData = new Date();
-    const NewDate = ActualData.setTime(
-      ActualData.getTime() + 16 * 60 * 60 * 1000,
-    );
-
-    const ReservationDate = new Date(NewDate);
-    DataToReservation = `${ReservationDate.getFullYear()}-${
-      ReservationDate.getMonth() + 1
-    }-${ReservationDate.getUTCDate()}`;
-    HourToReservation = `${ReservationDate.getHours()}:${ReservationDate.getUTCMinutes()}`;
-
-    console.log(DataToReservation);
-  }
-
-  setReservationDate();
-
   const router = useRouter();
 
   let passengersFromQuery: any = 2;
@@ -295,9 +275,8 @@ export default function Search() {
                         onChange={handleDate}
                         id="data"
                         className="w-full h-[45px] text-[15px] pl-[5px] outline-none z-10 rounded-[10px] bg-transparent"
-                        placeholder="Date"
                         type="datetime-local"
-                        min={`${DataToReservation}T${HourToReservation}`}
+                        min={date}
                         onFocus={handleHidePlaceholderDivDate}
                         value={date}
                         required
