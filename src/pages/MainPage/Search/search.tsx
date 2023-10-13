@@ -320,7 +320,7 @@ export default function Search() {
                         type="time"
                         min={HourToReservation}
                         onFocus={handleHidePlaceholderDivTime}
-                        // value={time}
+                        value={time}
                         required
                       ></input>
                     </div>
