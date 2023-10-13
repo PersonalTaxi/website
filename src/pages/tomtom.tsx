@@ -65,6 +65,10 @@ export default function TomTom({
     setMapLatitude,
     mapUpdated,
     setMapUpdated,
+    municipalityFrom,
+    setMunicipalityFrom,
+    municipalityTo,
+    setMunicipalityTo,
   } = useContext(AppContext);
 
   const [dataToFetch, setDataToFetch] = useState(null);
@@ -73,8 +77,6 @@ export default function TomTom({
   const debouncedSearchFrom = useDebounce(queryFrom, 150);
   const debouncedSearchTo = useDebounce(queryTo, 150);
 
-  const [municipalityFrom, setMunicipalityFrom] = useState("Kraków");
-  const [municipalityTo, setMunicipalityTo] = useState("Kraków");
   const [permissionedMunicipality, setPermissionedMunicipality] = useState([
     "Krakow",
     "Kraków",
@@ -183,11 +185,13 @@ export default function TomTom({
 
   // handling X (clear) buttons in localization inputs
   const clearFromQuery = () => {
+    setMunicipalityFrom("Kraków")
     setQueryFrom("");
     setlatLangFrom(null);
   };
 
   const clearToQuery = () => {
+    setMunicipalityTo("Kraków");
     setQueryTo("");
     setlatLangTo(null);
   };

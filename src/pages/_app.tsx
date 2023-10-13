@@ -44,6 +44,11 @@ type QueryParams = {
   //final price
   price: any;
   setPrice: React.Dispatch<React.SetStateAction<any>>;
+
+  municipalityFrom: any;
+  setMunicipalityFrom: React.Dispatch<React.SetStateAction<any>>;
+  municipalityTo: any;
+  setMunicipalityTo: React.Dispatch<React.SetStateAction<any>>;
 };
 
 export const AppContext = createContext({} as QueryParams);
@@ -69,6 +74,9 @@ export default function App({ Component, pageProps }: AppProps) {
   const [lastName, setLastName] = useState();
   const [email, setEmail] = useState();
   const [phone, setPhone] = useState();
+
+  const [municipalityFrom, setMunicipalityFrom] = useState("Kraków");
+  const [municipalityTo, setMunicipalityTo] = useState("Kraków");
 
   //price
   const [price, setPrice] = useState();
@@ -114,6 +122,10 @@ export default function App({ Component, pageProps }: AppProps) {
         //price
         price,
         setPrice,
+        municipalityFrom,
+        setMunicipalityFrom,
+        municipalityTo,
+        setMunicipalityTo,
       }}
     >
       <Component {...pageProps} />
