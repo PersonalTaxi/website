@@ -294,7 +294,7 @@ export default function Search() {
                       <input
                         onChange={handleDate}
                         id="data"
-                        className="w-full h-[45px] text-[15px] pl-[5px] outline-none z-10"
+                        className="w-full h-[45px] text-[15px] pl-[5px] outline-none z-10 bg-white"
                         placeholder="Date"
                         type="datetime-local"
                         min={`${DataToReservation}T${HourToReservation}`}
