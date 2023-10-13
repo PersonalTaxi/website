@@ -38,7 +38,7 @@ export default function TomTom({
   ShowOrHideInfoAboutMissingLocalizations,
 }: Function) {
   const router = useRouter();
-  const [dataFromFetch, setDataFromFetch] = useState(null);
+  const [dataFromFetch, setDataFromFetch] = useState();
 
   const {
     queryFrom,
@@ -71,7 +71,7 @@ export default function TomTom({
     setMunicipalityTo,
   } = useContext(AppContext);
 
-  const [dataToFetch, setDataToFetch] = useState(null);
+  const [dataToFetch, setDataToFetch]: any = useState([]);
   const [activeQuery, setActiveQuery] = useState("");
 
   const debouncedSearchFrom = useDebounce(queryFrom, 150);
@@ -185,7 +185,7 @@ export default function TomTom({
 
   // handling X (clear) buttons in localization inputs
   const clearFromQuery = () => {
-    setMunicipalityFrom("Kraków")
+    setMunicipalityFrom("Kraków");
     setQueryFrom("");
     setlatLangFrom(null);
   };
@@ -214,14 +214,16 @@ export default function TomTom({
 
     function fetchData() {
       fetch(
-        `https://api.tomtom.com/search/2/search/${query}.json?maxFuzzyLevel=4&key=cjmuWSfVTrJfOGj7AcXvMLU8R8i1Q9cF&setCountry=PL&limit=7&language=en-US`,
+        `https://api.tomtom.com/search/2/search/${query}.json?maxFuzzyLevel=2&key=cjmuWSfVTrJfOGj7AcXvMLU8R8i1Q9cF&setCountry=PL&limit107&language=en-US`,
         {
           method: "GET",
         },
       )
         .then((res) => res.json())
         .then((resData) => {
-          return resData.results.filter((i: any) => i.type !== "Geography");
+          return resData.results.filter(
+            (i: any) => i.type !== "Geography" && i.type !== "Street",
+          );
         })
         .then((resData) => {
           console.log(resData);
@@ -236,6 +238,7 @@ export default function TomTom({
           const newData = data.map((i: any, key: any) => {
             let icon;
             let POI;
+            let Specifics = i.address.freeformAddress;
             let StreetName = i.address.streetName;
             let StreetNumber = 2;
             let City = "";
@@ -249,14 +252,14 @@ export default function TomTom({
 
             //Contions to show icon
             if (i.type === "POI") {
-              StreetNumber = i.address.streetNumber;
+              // StreetNumber = i.address.streetNumber;
               POI = i.poi.name;
             }
             if (i.type === "Street") {
               POI = `${StreetName},${StreetName}`;
             }
             if (i.type === "Point Address") {
-              StreetNumber = i.address.streetNumber;
+              // StreetNumber = i.address.streetNumber;
               POI = `${City}, ${StreetName} ${StreetNumber}`;
             }
             // else {
@@ -348,7 +351,7 @@ export default function TomTom({
                     data-name={POI}
                     className="text-[10px] w-full z-20 leading-[12px]"
                   >
-                    {StreetName} {StreetNumber}, {City}
+                    {Specifics}
                   </div>
                   {/* <p className='text-[10px] bg-blue-800 text-white pl-[10px] w-full'>{i.poi.categories[0]}</p> */}
                 </div>
@@ -456,7 +459,7 @@ export default function TomTom({
           // onMouseDown={(e) => e.preventDefault()}
           ref={FromList}
           className={
-            queryFrom.length > 4 &&
+            queryFrom.length > 2 &&
             queryFrom !== null &&
             inputFrom.current === document.activeElement
               ? "absolute w-[102%] -left-[1%] top-[50px] border-2 border-yellow-500 rounded-[10px] bg-white z-30"
