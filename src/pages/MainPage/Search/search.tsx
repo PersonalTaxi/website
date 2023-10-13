@@ -278,13 +278,13 @@ export default function Search() {
                     id="calendar-timer-wrapper"
                     className="rounded-[10px] h-[50px] w-full border flex flex-no-wrap mb-[10px] relative"
                   >
-                    <div className="h-[50px] w-full border-r flex items-center pl-[10px] relative">
+                    <div className="h-[50px] w-full rounded-[10px] flex items-center pl-[10px] relative">
                       {date === "" && (
                         <div
                           ref={DatePlaceholder}
-                          className="absolute w-9/12 h-[50px] text-left leading-[50px] text-gray-900/[0.5] right-0 pl-[5px]"
+                          className="absolute w-10/12 h-[50px] text-left leading-[50px] text-gray-900/[0.5] right-0 pl-[5px]"
                         >
-                          Date
+                          Date and time
                         </div>
                       )}
                       <TbCalendarTime
@@ -294,7 +294,7 @@ export default function Search() {
                       <input
                         onChange={handleDate}
                         id="data"
-                        className="w-full h-[45px] text-[15px] pl-[5px] outline-none z-10 bg-white"
+                        className="w-full h-[45px] text-[15px] pl-[5px] outline-none z-10 rounded-[10px] bg-transparent"
                         placeholder="Date"
                         type="datetime-local"
                         min={`${DataToReservation}T${HourToReservation}`}
