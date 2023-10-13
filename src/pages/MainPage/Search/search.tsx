@@ -156,7 +156,7 @@ export default function Search() {
       if (queryTo === "") return false;
       if (latLangFrom === null) return false;
       if (latLangTo === null) return false;
-      if (date === "") return false;
+      if (dateLimit > date) return false;
       if (
         passengersFromQuery !== people &&
         !router.asPath.includes("passengers")
