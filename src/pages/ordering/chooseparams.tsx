@@ -174,7 +174,7 @@ export default function Chooseparams() {
     (state.sedan * 129 + state.sedan * (calculateDistance - 20) * 7);
 
   return (
-    <div className="relative  bg-white mt-[90px] w-[95vw] mx-auto rounded-[10px] h-[1080px]">
+    <div className="relative bg-white mt-[90px] w-[95vw] mx-auto rounded-[10px] h-[1080px] border">
       <div className="w-[80vw] h-[60px] flex items-end flex-col mx-auto">
         <p className="text-[12px]"> Step 2 of 3</p>
         <div className="bg-gradient-to-r from-yellow-500 from-0% via-white via-70% to-white to-100% w-full border border-yellow-500/[0.5] h-[20px] rounded-[5px] bg-"></div>

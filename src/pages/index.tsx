@@ -20,7 +20,7 @@ export default function Home() {
           content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
         ></meta>
       </Head>
-      <div className={`${rubikFonts.className} overflow-hidden`}>
+      <div className={`${rubikFonts.className}`}>
         <main>
           <Header />
           <Main />

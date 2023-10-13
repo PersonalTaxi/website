@@ -2,10 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  overflow-x: hidden;
+}
 
 body {
-    margin:0px;
-    box-sizing: border-box;
+  margin: 0px;
+  box-sizing: border-box;
 }
 
 /* ::-webkit-calendar-picker-indicator {
@@ -14,15 +17,16 @@ body {
     height: 30px;
 } */
 
-input[type="date"],[type="time"] {
-    background-color: transparent;
-    color:black;
-    content: "yolo"
-    /* -webkit-appearance: none;
+input[type="date"],
+[type="time"] {
+  background-color: transparent;
+  color: black;
+  content: "yolo";
+  /* -webkit-appearance: none;
     -moz-appearance:    none;
     appearance:         none; */
 }
 
-input[type="date"]::placeholder{
-    color:black;
+input[type="date"]::placeholder {
+  color: black;
 }
