@@ -18,6 +18,7 @@ import Calendar from "react-calendar";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { BsFillPersonFill } from "react-icons/bs";
 import { AiFillInfoCircle } from "react-icons/ai";
+import { TbCalendarTime } from "react-icons/tb";
 import {
   AiOutlineClose,
   AiOutlineFieldTime,
@@ -277,7 +278,7 @@ export default function Search() {
                     id="calendar-timer-wrapper"
                     className="rounded-[10px] h-[50px] w-full border flex flex-no-wrap mb-[10px] relative"
                   >
-                    <div className="h-[50px] w-1/2 border-r flex items-center pl-[10px] relative">
+                    <div className="h-[50px] w-full border-r flex items-center pl-[10px] relative">
                       {date === "" && (
                         <div
                           ref={DatePlaceholder}
@@ -286,24 +287,24 @@ export default function Search() {
                           Date
                         </div>
                       )}
-                      <BsCalendar3
+                      <TbCalendarTime
                         locale="en_EN"
-                        className="w-[30px] h-[30px] text-yellow-500/[0.4]"
+                        className="w-[40px] h-[40px] text-yellow-500/[0.4]"
                       />
                       <input
                         onChange={handleDate}
                         id="data"
                         className="w-full h-[45px] text-[15px] pl-[5px] outline-none z-10"
                         placeholder="Date"
-                        type="date"
-                        min={DataToReservation}
+                        type="datetime-local"
+                        min={`${DataToReservation}T${HourToReservation}`}
                         onFocus={handleHidePlaceholderDivDate}
                         value={date}
                         required
                       ></input>
                     </div>
                     {/* Time */}
-                    <div className="h-[50px] w-1/2 flex items-center justify-center pl-[10px] relative">
+                    {/* <div className="h-[50px] w-1/2 flex items-center justify-center pl-[10px] relative">
                       {time === "" && (
                         <div
                           ref={TimePlaceholder}
@@ -323,7 +324,7 @@ export default function Search() {
                         value={time}
                         required
                       ></input>
-                    </div>
+                    </div> */}
                     <div
                       ref={InfoAboutDate}
                       onClick={handleHideInfoAboutDate}
