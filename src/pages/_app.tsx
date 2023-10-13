@@ -58,19 +58,6 @@ export const AppContext = createContext({} as QueryParams);
 export default function App({ Component, pageProps }: AppProps) {
   const [queryFrom, setQueryFrom] = useState("");
   const [queryTo, setQueryTo] = useState("");
-  const [date, setDate] = useState(() => {
-    const ActualData = new Date();
-    const NewDate = ActualData.setTime(
-      ActualData.getTime() + 16 * 60 * 60 * 1000,
-    );
-
-    const ReservationDate = new Date(NewDate);
-    let StartDate = `${ReservationDate.getFullYear()}-${
-      ReservationDate.getMonth() + 1
-    }-${ReservationDate.getUTCDate()}T${ReservationDate.getUTCHours()}:${ReservationDate.getUTCMinutes()}`;
-
-    return StartDate;
-  });
   const [dateLimit, setDateLimit] = useState(() => {
     const ActualData = new Date();
     const NewDate = ActualData.setTime(
@@ -83,6 +70,19 @@ export default function App({ Component, pageProps }: AppProps) {
     }-${ReservationDate.getUTCDate()}T${ReservationDate.getUTCHours()}:${ReservationDate.getUTCMinutes()}`;
 
     return ActualDate;
+  });
+  const [date, setDate] = useState(() => {
+    const ActualData = new Date();
+    const NewDate = ActualData.setTime(
+      ActualData.getTime() + 16 * 60 * 60 * 1000,
+    );
+
+    const ReservationDate = new Date(NewDate);
+    let StartDate = `${ReservationDate.getFullYear()}-${
+      ReservationDate.getMonth() + 1
+    }-${ReservationDate.getUTCDate()}T${ReservationDate.getUTCHours()}:${ReservationDate.getUTCMinutes()}`;
+
+    return StartDate;
   });
   const [time, setTime] = useState("");
   const [people, setPeople] = useState(2);
