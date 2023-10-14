@@ -65,10 +65,7 @@ export default function App({ Component, pageProps }: AppProps) {
     );
 
     const ReservationDate = new Date(NewDate);
-    let ActualDate = `${ReservationDate.getFullYear()}-${
-      ReservationDate.getMonth() + 1
-    }-${ReservationDate.getUTCDate()}T${ReservationDate.getUTCHours()}:${ReservationDate.getUTCMinutes()}`;
-
+    let ActualDate = ReservationDate.toISOString().slice(0, 16);
     return ActualDate;
   });
   const [date, setDate] = useState(() => {
@@ -78,9 +75,8 @@ export default function App({ Component, pageProps }: AppProps) {
     );
 
     const ReservationDate = new Date(NewDate);
-    let StartDate = `${ReservationDate.getFullYear()}-${
-      ReservationDate.getMonth() + 1
-    }-${ReservationDate.getUTCDate()}T${ReservationDate.getUTCHours()}:${ReservationDate.getUTCMinutes()}`;
+    // console.log(ReservationDate.toISOString());
+    let StartDate = ReservationDate.toISOString().slice(0, 16);
 
     return StartDate;
   });

@@ -64,20 +64,12 @@ export default function Search() {
     passengersFromQuery = parseInt(router.query.passengers.toString());
   }
 
-  const mapElement: any = useRef();
   const InfoAboutFillLocations = useRef<any | null>(null);
-  const dataFrom: any = useRef();
-  const dataTo: any = useRef();
   const DatePlaceholder: any = useRef();
-  const TimePlaceholder: any = useRef();
   const InfoAboutDate: any = useRef();
 
   const handleHidePlaceholderDivDate = () => {
     // DatePlaceholder.current.style.display = "none"
-  };
-
-  const handleHidePlaceholderDivTime = () => {
-    // TimePlaceholder.current.style.display = "none"
   };
 
   const handleDowncreaseNumber = useCallback(() => {
@@ -94,10 +86,6 @@ export default function Search() {
 
   const handleDate = (e: any) => {
     setDate(e.target.value);
-  };
-
-  const handleTime = (e: any) => {
-    setTime(e.target.value);
   };
 
   const ShowOrHideInfoAboutMissingLocalizations = () => {
@@ -192,6 +180,9 @@ export default function Search() {
   const handleHideInfoAboutDate = () => {
     InfoAboutDate.current.style.height = "0px";
   };
+
+  console.log(date);
+  console.log(dateLimit);
 
   return (
     <>
