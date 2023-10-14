@@ -245,9 +245,9 @@ export default function Search() {
                   {/* Date*/}
                   <div
                     id="calendar-timer-wrapper"
-                    className="rounded-[10px] h-[50px] w-full border flex flex-no-wrap mb-[10px] relative"
+                    className="rounded-[10px] h-[50px] w-full flex flex-no-wrap mb-[10px] relative"
                   >
-                    <div className="h-[50px] w-full rounded-[10px] flex items-center pl-[10px] relative">
+                    <div className="h-[50px] w-full rounded-[10px] border flex items-center pl-[10px] relative">
                       {date === "" && (
                         <div
                           ref={DatePlaceholder}
@@ -288,9 +288,9 @@ export default function Search() {
                     <div
                       onMouseEnter={handleShowInfoAboutDate}
                       onMouseLeave={handleHideInfoAboutDate}
-                      className="absolute -right-6 my-auto z-40  h-full flex items-center text-yellow-500 w-[25px]"
+                      className="right-0 my-auto z-40 h-full flex items-center text-yellow-500 w-[16%]"
                     >
-                      <AiFillInfoCircle className="w-full h-full ml-[5px]" />
+                      <AiFillInfoCircle className="w-full h-full ml-[15px]" />
                     </div>
                   </div>
                   {/* Persons do drive */}
