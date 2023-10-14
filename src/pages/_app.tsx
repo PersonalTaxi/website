@@ -151,6 +151,8 @@ export default function App({ Component, pageProps }: AppProps) {
         setLastName,
         phone,
         setPhone,
+        phonePrefix,
+        setPhonePrefix,
         email,
         setEmail,
         //price

@@ -40,6 +40,8 @@ export default function Payment() {
     setEmail,
     phone,
     setPhone,
+    phonePrefix,
+    setPhonePrefix,
     price,
     setPrice,
   } = useContext(AppContext);
@@ -51,8 +53,6 @@ export default function Payment() {
       <p>For the most important and commons questions</p>
     </div>
   </div>;
-
-  console.log(cars);
 
   return (
     <div>
@@ -113,7 +113,9 @@ export default function Payment() {
             </div>
             <div className="flex">
               <p className="w-[100px]">Phone</p>
-              <p className="border-l">{phone}</p>
+              <p className="border-l">
+                {phonePrefix} {phone}
+              </p>
             </div>
           </div>
         </div>
