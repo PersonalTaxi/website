@@ -1,10 +1,7 @@
-"use client";
-
 import React, {
   useRef,
   useState,
   useEffect,
-  Component,
   useContext,
   useCallback,
 } from "react";
@@ -73,6 +70,7 @@ export default function TomTom({
 
   const [dataToFetch, setDataToFetch]: any = useState([]);
   const [activeQuery, setActiveQuery] = useState("");
+  const [focused, setFocused] = useState("");
 
   const debouncedSearchFrom = useDebounce(queryFrom, 150);
   const debouncedSearchTo = useDebounce(queryTo, 150);
@@ -94,8 +92,6 @@ export default function TomTom({
   const CloseInfoAbourRoute: any = useRef();
 
   const handleSearchFrom = (e: any) => {
-    // setCorrectRoad(true);
-    // console.log("From: "+ e.target.value)
     setQueryFrom(e.target.value);
     FromList.current.style.display = "block";
     setActiveQuery("From");
@@ -103,8 +99,6 @@ export default function TomTom({
   };
 
   const handleSearchTo = (e: any) => {
-    // setCorrectRoad(true);
-    // console.log("To: " + e.target.value)
     setlatLangTo(null);
     setQueryTo(e.target.value);
     ToList.current.style.display = "block";
@@ -153,12 +147,16 @@ export default function TomTom({
   }, [latLangFrom, latLangTo]);
 
   const handleShowingList = (e: any) => {
-    const RefName = e.target.name;
-    if (e.target.name === "from") {
+    const TargetName = e.target.name;
+
+    if (TargetName === "From") {
+      setFocused("From");
       FromList.current.style.display = "block";
       setActiveQuery("From");
     }
-    if (e.target.name === "to") {
+
+    if (TargetName === "To") {
+      setFocused("To");
       ToList.current.style.display = "block";
       setActiveQuery("To");
     }
@@ -168,6 +166,7 @@ export default function TomTom({
     const RefName = e.target.name;
 
     if (RefName === "From") {
+      setFocused("");
       FromList.current.style.display = "none";
       if (latLangFrom === null) {
         setQueryFrom("");
@@ -175,6 +174,7 @@ export default function TomTom({
     }
 
     if (RefName === "To") {
+      setFocused("");
       ToList.current.style.display = "none";
       if (latLangTo === null) {
         setQueryTo("");
@@ -379,10 +379,6 @@ export default function TomTom({
   useEffect(() => {
     calculateDistances();
 
-    console.log(municipalityFrom);
-    console.log(municipalityTo);
-    // console.log(correctRoad);
-
     if (
       (permissionedMunicipality.includes(municipalityFrom) &&
         !permissionedMunicipality.includes(municipalityTo)) ||
@@ -391,10 +387,8 @@ export default function TomTom({
       (permissionedMunicipality.includes(municipalityFrom) &&
         permissionedMunicipality.includes(municipalityTo))
     ) {
-      console.log("true");
       setCorrectRoad(true);
     } else {
-      console.log("false");
       setCorrectRoad(false);
       setQueryFrom("");
       setQueryTo("");
@@ -458,9 +452,7 @@ export default function TomTom({
           // onMouseDown={(e) => e.preventDefault()}
           ref={FromList}
           className={
-            queryFrom.length > 2 &&
-            queryFrom !== null &&
-            inputFrom.current === document.activeElement
+            queryFrom.length > 2 && queryFrom !== null && focused === "From"
               ? "absolute w-[102%] -left-[1%] top-[50px] border-2 border-yellow-500 rounded-[10px] bg-white z-30"
               : "hidden overflow-hidden"
           }
@@ -498,9 +490,7 @@ export default function TomTom({
         <div
           ref={ToList}
           className={
-            queryTo?.length > 4 &&
-            queryTo !== null &&
-            inputTo.current === document.activeElement
+            queryTo?.length > 4 && queryTo !== null && focused === "To"
               ? "absolute w-[102%] -left-[1%] top-[50px] border-2 border-yellow-500 rounded-[10px] bg-white"
               : "hidden overflow-hidden"
           }

@@ -83,9 +83,13 @@ export default function Chooseparams() {
     setlatLangFrom,
     latLangTo,
     setlatLangTo,
+    cars,
+    setCars,
     calculateDistance,
     setCalculateDistance,
     isFormCompleted,
+    price,
+    setPrice,
     setIsFromCompleted,
   } = useContext(AppContext);
 
@@ -142,12 +146,12 @@ export default function Chooseparams() {
 
   const handleOrdering = (e: any) => {
     e.preventDefault();
-    router.replace("/ordering/ordered");
+    setCars(state);
+    setPrice(FinalPrice);
+    router.replace("/ordering/payment");
   };
 
-  const handleShowingInfoAboutCorrectFromsBeforeOrdering = () => {
-    InfoAbout.current.style.display = "flex";
-  };
+  console.log(state.sedan);
 
   const handleHidingingInfoAboutCorrectFromsBeforeOrdering = () => {
     InfoAbout.current.style.display = "none";
@@ -315,7 +319,7 @@ export default function Chooseparams() {
         className={
           state.sedan > 0
             ? "w-screen duration-200 h-[20px] mb-[10px]"
-            : "w-screen h-[0px] overflow-hidden duration-200 "
+            : "w-screen h-[0px] overflow-hidden duration-200"
         }
       >
         {/* COMBI CAR CHECKBOX */}

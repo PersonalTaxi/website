@@ -181,9 +181,6 @@ export default function Search() {
     InfoAboutDate.current.style.height = "0px";
   };
 
-  console.log(date);
-  console.log(dateLimit);
-
   return (
     <>
       <Head>
@@ -288,7 +285,7 @@ export default function Search() {
                     <div
                       onMouseEnter={handleShowInfoAboutDate}
                       onMouseLeave={handleHideInfoAboutDate}
-                      className="right-0 my-auto z-40 h-full flex items-center text-yellow-500 w-[16%]"
+                      className="right-0 my-auto h-full flex items-center text-yellow-500 w-[16%]"
                     >
                       <AiFillInfoCircle className="w-full h-full ml-[15px]" />
                     </div>

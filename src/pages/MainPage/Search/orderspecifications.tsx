@@ -16,17 +16,19 @@ export default function Orderspacifications() {
     people,
     setPeople,
     //client's data
+    personTitle,
+    setPersonTitle,
     firstName,
     setFirstName,
     lastName,
     setLastName,
     phone,
     setPhone,
+    phonePrefix,
+    setPhonePrefix,
     email,
     setEmail,
   } = useContext(AppContext);
-
-  const CodeLists: any = useRef();
 
   const [data, setData] = useState([
     { country: "Poland" },
@@ -34,10 +36,9 @@ export default function Orderspacifications() {
     { emoji: "🇵🇱" },
   ]);
 
-  const [countryCallCode, setCountryCallCode]: any = useState();
-
   const handleAddingNewData = (i: any) => {
     setData([{ country: i.name }, { code: i.dial_code }, { emoji: i.emoji }]);
+    setPhonePrefix(i.dial_code);
   };
 
   const countriesData = countries.sort((a, b) =>
@@ -54,6 +55,10 @@ export default function Orderspacifications() {
     );
   });
 
+  const handlePersonTitle = (e: any) => {
+    setPersonTitle(e.target.value);
+  };
+
   return (
     // As form element
     <div className="bg-white w-full mx-auto mt-[20px] border-t pt-[15px]">
@@ -67,6 +72,7 @@ export default function Orderspacifications() {
               name="title"
               type="radio"
               className="mr-[4px] w-[20px] h-[20px]"
+              onChange={handlePersonTitle}
               required
             ></input>
             <label>Mr.</label>

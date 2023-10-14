@@ -19,6 +19,8 @@ type QueryParams = {
   latLangFrom: any;
   setlatLangFrom: React.Dispatch<React.SetStateAction<any>>;
   latLangTo: any;
+  cars: any;
+  setCars: React.Dispatch<React.SetStateAction<any>>;
   setlatLangTo: React.Dispatch<React.SetStateAction<any>>;
   calculateDistance: any;
   setCalculateDistance: React.Dispatch<React.SetStateAction<any>>;
@@ -34,12 +36,16 @@ type QueryParams = {
   setMapUpdated: React.Dispatch<React.SetStateAction<any>>;
 
   // Person details
+  personTitle: any;
+  setPersonTitle: React.Dispatch<React.SetStateAction<any>>;
   firstName: any;
   setFirstName: React.Dispatch<React.SetStateAction<any>>;
   lastName: any;
   setLastName: React.Dispatch<React.SetStateAction<any>>;
   email: any;
   setEmail: React.Dispatch<React.SetStateAction<any>>;
+  phonePrefix: any;
+  setPhonePrefix: React.Dispatch<React.SetStateAction<any>>;
   phone: any;
   setPhone: React.Dispatch<React.SetStateAction<any>>;
 
@@ -84,6 +90,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const [people, setPeople] = useState(2);
   const [latLangFrom, setlatLangFrom] = useState(null);
   const [latLangTo, setlatLangTo] = useState(null);
+  const [cars, setCars] = useState();
   const [calculateDistance, setCalculateDistance] = useState(null);
   const [isFormCompleted, setIsFromCompleted] = useState(false);
   const [SearchButtonWasClicked, setSearchButtonWasClicked] = useState(false);
@@ -96,6 +103,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
   const [email, setEmail] = useState();
+  const [phonePrefix, setPhonePrefix] = useState();
   const [phone, setPhone] = useState();
 
   const [municipalityFrom, setMunicipalityFrom] = useState("Kraków");
@@ -120,6 +128,8 @@ export default function App({ Component, pageProps }: AppProps) {
         setlatLangFrom,
         latLangTo,
         setlatLangTo,
+        cars,
+        setCars,
         calculateDistance,
         setCalculateDistance,
         isFormCompleted,
@@ -133,6 +143,8 @@ export default function App({ Component, pageProps }: AppProps) {
         mapUpdated,
         setMapUpdated,
         //client's data
+        personTitle,
+        setPersonTitle,
         firstName,
         setFirstName,
         lastName,
