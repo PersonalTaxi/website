@@ -203,25 +203,22 @@ export default function Search() {
           content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
         ></meta>
       </Head>
-      <div
-        className="w-screen h-[300px] border-blue-900 z-20 mb-[12px]"
-        id="specifics"
-      >
+      <div className="w-screen z-20 mb-[12px]" id="specifics">
         <div
           id="search-wraper"
-          className="w-full flex flex-col justify-start items-center relative"
+          className="w-full flex flex-col justify-center items-center relative"
         >
           <div id="search-contianer-text" className="w-11/12 px-[30px]">
             <div
               id="correctInfo"
-              className="w-[120px] bg-white text-center rounded-t-[10px] -mt-[15px]"
+              className="w-[120px] bg-white text-center rounded-t-[10px]"
             >
               Your drive:
             </div>
           </div>
           <div
             id="search-contianer"
-            className="bg-white w-11/12 rounded-t-[15px] h-auto"
+            className="bg-white w-11/12 rounded-t-[15px] h-auto border-red-200 -m-[1px]"
           >
             <form
               onSubmit={handleSendForm}
@@ -229,7 +226,7 @@ export default function Search() {
             >
               <div
                 id="form-inputs-wraper"
-                className="w-full h-[260px] flex flex-col justify-evenly items-center mx-auto border-red-900"
+                className="w-full h-[260px] flex flex-col justify-evenly items-center mx-auto"
               >
                 <div
                   id="from-to"
@@ -283,28 +280,6 @@ export default function Search() {
                         required
                       ></input>
                     </div>
-                    {/* Time */}
-                    {/* <div className="h-[50px] w-1/2 flex items-center justify-center pl-[10px] relative">
-                      {time === "" && (
-                        <div
-                          ref={TimePlaceholder}
-                          className="absolute w-9/12 h-full text-[15px] text-left leading-[50px] text-gray-900/[0.5] right-0 pl-[5px]"
-                        >
-                          Time
-                        </div>
-                      )}
-                      <TbClockHour8 className="w-[30px] h-[30px] text-yellow-500/[0.4]" />
-                      <input
-                        className="w-full h-[45px] pl-[5px] outline-none appearance-none z-10"
-                        onChange={handleTime}
-                        placeholder="Hour"
-                        type="time"
-                        min={HourToReservation}
-                        onFocus={handleHidePlaceholderDivTime}
-                        value={time}
-                        required
-                      ></input>
-                    </div> */}
                     <div
                       ref={InfoAboutDate}
                       onClick={handleHideInfoAboutDate}
@@ -394,8 +369,9 @@ export default function Search() {
               Drive distance {calculateDistance} km
             </div>
           )}
-          {(latLangFrom === null || latLangTo === null) && (
-            <div className="bg-white w-11/12 mx-auto text-center rounded-b-[10px]">
+          {((latLangFrom !== null && latLangTo === null) ||
+            (latLangFrom === null && latLangTo !== null)) && (
+            <div className="bg-white w-11/12 mx-auto text-center rounded-b-[10px] text-[12px]">
               Drive distance: wating for localizations ...
             </div>
           )}
