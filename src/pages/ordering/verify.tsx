@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { useEffect } from "react";
 
 export default function verify() {
   useEffect(() => {
     const fetchAnswer = async () => {
-      let data = await fetch("http://localhost:3000/ordering/verify", {
+      let data = await fetch("/api/verify", {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });
