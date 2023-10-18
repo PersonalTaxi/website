@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 async function handlerData(req: NextApiRequest, res: NextApiResponse) {
   let data = await fetch("https://psbeta.vercel.app/ordering/verifyData");
-  const final = await data;
+  const final = await data.json();
   res.status(200).json({ msg: final });
 }
 
