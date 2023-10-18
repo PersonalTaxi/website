@@ -5,7 +5,6 @@ export default function Verify() {
   useEffect(() => {
     const fetchAnswer = async () => {
       let data = await fetch("/api/verify", {
-        method: "GET",
         headers: { "Content-Type": "application/json" },
       });
 
