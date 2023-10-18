@@ -8,7 +8,7 @@ export default function Verify() {
         headers: { "Content-Type": "application/json" },
       });
 
-      console.log(await data);
+      console.log(await data.json());
     };
 
     fetchAnswer();
