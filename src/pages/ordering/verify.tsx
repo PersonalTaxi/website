@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 
-export default function verify() {
+export default function Verify() {
   useEffect(() => {
     const fetchAnswer = async () => {
       let data = await fetch("/api/verify", {
