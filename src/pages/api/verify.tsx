@@ -9,7 +9,7 @@ async function handlerData(req: NextResponse, res: NextRequest) {
     //     "Basic Mjc0MDc6MWI2NDdjYTJjYjRkZGI0ZmFmY2Q3NjgzZmM0MGZiYTY=",
     // },
   });
-  const final = await req.body;
+  const final = await req;
   console.log(final);
 }
 
