@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from "next";
+import type { NextResponse, NextRequest } from "next/server";
 
-async function handlerData(req: NextApiRequest, res: NextApiResponse) {
+async function handlerData(req: NextResponse, res: NextRequest) {
   await fetch("https://psbeta.vercel.app/ordering/p24callback", {
     headers: {
       "Content-Type": "application/json",
@@ -10,7 +10,7 @@ async function handlerData(req: NextApiRequest, res: NextApiResponse) {
     },
   });
   const final = await req.body;
-  res.status(200).json({ msg: final });
+  console.log(final);
 }
 
 export default handlerData;
