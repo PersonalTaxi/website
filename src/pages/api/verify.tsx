@@ -2,8 +2,8 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
 async function handlerData(req: NextApiRequest, res: NextApiResponse) {
-  let data = await fetch("https://psbeta.vercel.app/ordering/verify");
-  const final = await data.json();
+  fetch("https://psbeta.vercel.app/ordering/verify");
+  const final = await req.body;
   res.status(200).json({ msg: final });
 }
 
