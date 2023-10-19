@@ -2,17 +2,17 @@ import React from "react";
 import { useEffect } from "react";
 
 export default function Verify() {
-  useEffect(() => {
-    const fetchAnswer = async () => {
-      let data = await fetch("/api/verify", {
-        // headers: { "Content-Type": "application/json" },
-      });
+  // useEffect(() => {
+  //   const fetchAnswer = async () => {
+  //     let data = await fetch("/api/verify", {
+  //       // headers: { "Content-Type": "application/json" },
+  //     });
 
-      console.log(await data.json());
-    };
+  //     console.log(await data);
+  //   };
 
-    fetchAnswer();
-  }, []);
+  //   fetchAnswer();
+  // }, []);
 
   return (
     <div className="w-screen h-screen flex flex-col items-center justify-center">
