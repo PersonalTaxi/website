@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextResponse, NextRequest } from "next/server";
+import type { NextApiRequest, NextApiResponse } from "next";
 
-async function handlerData(req: NextResponse, res: NextRequest) {
+async function handlerData(req: NextApiRequest, res: NextApiResponse) {
   let data = await fetch("https://ptbackend.vercel.app/ver", {
     method: "GET",
   });
