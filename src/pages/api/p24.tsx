@@ -2,15 +2,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { sha384 } from "crypto-hash";
 import bcrypt from "bcrypt";
-import {
-  P24,
-  Order,
-  Currency,
-  Country,
-  Language,
-  NotificationRequest,
-  Verification,
-} from "@ingameltd/node-przelewy24";
 
 // type Data = {
 //   status: number;

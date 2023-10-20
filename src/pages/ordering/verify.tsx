@@ -4,11 +4,14 @@ import { useEffect } from "react";
 export default function Verify() {
   useEffect(() => {
     const fetchAnswer = async () => {
-      let data = await fetch("/api/verify", {
+      await fetch("http://localhost:8080/", {
+        method:"POST"
         // headers: { "Content-Type": "application/json" },
-      });
+      })
+        .then((res) => res.json())
+        .then((data) => console.log(data));
 
-      console.log(await data);
+      // console.log(await data);
     };
 
     fetchAnswer();
