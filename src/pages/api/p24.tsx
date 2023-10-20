@@ -41,7 +41,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     country: "PL",
     language: "pl",
     urlReturn: "https://psbeta.vercel.app/ordering/verify",
-    urlStatus: "https://psbeta.vercel.app/ordering/p24callback",
+    urlStatus: "https://psbackend.vercel.app",
     sign: await querySign(),
   });
 
