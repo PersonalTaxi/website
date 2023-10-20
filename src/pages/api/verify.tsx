@@ -2,7 +2,7 @@
 import type { NextResponse, NextRequest } from "next/server";
 
 async function handlerData(req: NextResponse, res: NextRequest) {
-  await fetch("https://psbeta.vercel.app/ordering/p24callback", {
+  await fetch("https://ptbeta.vercel.app/ordering/p24callback", {
     // headers: {
     //   "Content-Type": "application/json",
     //   Authorization:
