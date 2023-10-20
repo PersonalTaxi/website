@@ -11,7 +11,7 @@ import { AppContext } from "../_app";
 //   res: any;
 // };
 
-async function handler(req: NextApiRequest, res: NextApiResponse) {
+async function Handler(req: NextApiRequest, res: NextApiResponse) {
   const {
     queryFrom,
     queryTo,
@@ -83,4 +83,4 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   }
 }
 
-export default handler;
+export default Handler;
