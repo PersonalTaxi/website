@@ -2,14 +2,10 @@
 import type { NextResponse, NextRequest } from "next/server";
 
 async function handlerData(req: NextResponse, res: NextRequest) {
-  await fetch("https://ptbackend.vercel.app", {
-    // headers: {
-    //   "Content-Type": "application/json",
-    //   Authorization:
-    //     "Basic Mjc0MDc6MWI2NDdjYTJjYjRkZGI0ZmFmY2Q3NjgzZmM0MGZiYTY=",
-    // },
+  await fetch("https://ptbackend.vercel.app/ver", {
+    method: "GET",
   });
-  const final = await req.json();
+  const final = await req;
   console.log(final);
 }
 
