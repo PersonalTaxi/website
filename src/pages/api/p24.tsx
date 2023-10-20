@@ -17,7 +17,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   let crc = "fccb3ef343fe113a";
 
   const querySign = async () => {
-    const DatCRC = `{"sessionId":"${sessionId}","merchantId":${merchantId},"amount":${amount},"currency":"${currency}","crc":"${crc}"}`;
+    const DatCRC = `{"sessionId":"${sessionId}","amount":${amount},"currency":"${currency}","crc":"${crc}"}`;
     return await sha384(DatCRC);
   };
 

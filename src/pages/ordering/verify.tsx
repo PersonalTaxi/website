@@ -1,12 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
+import { sha384 } from "crypto-hash";
 
 export default function Verify() {
+  const [VeryficationStatus, setVerificationStatus]: any = useState();
+
   useEffect(() => {
     const fetchAnswer = async () => {
-      await fetch("/api/verify")
-        .then((res) => res.json())
-        .then((data) => console.log(data));
+      const data = await fetch("/api/verify");
+      const DataJson = await data.json();
+      const urlStatus = await DataJson.msg;
+      // console.log(urlStatus);
+
+      const DataCRC = `{"sessionId":"${urlStatus.sessionId}","orderId":${urlStatus.orderId},"amount":${urlStatus.amount},"currency":"${urlStatus.currency}","crc":"fccb3ef343fe113a"}`;
+      const DataKEY = await sha384(DataCRC);
+      console.log(DataCRC);
+      // const DataCRC = `{"merchantId":${urlStatus.merchantId},"posId":${urlStatus.posId},"sessionId":"${urlStatus.sessionId}","amount":${urlStatus.amount},"originAmount":${urlStatus.originAmount},"currency":"${urlStatus.currency}","orderId":${urlStatus.orderId},"methodID":${urlStatus.methodId},"statement":"${urlStatus.statement}","crc":"fccb3ef343fe113a"}`;
+      // const DataKEY = await sha384(DataCRC);
+      // console.log(DataCRC);
+
+      const query = JSON.stringify({
+        merchantId: urlStatus.merchantId,
+        posId: urlStatus.posId,
+        sessionId: urlStatus.sessionId,
+        amount: urlStatus.amount,
+        currency: urlStatus.currency,
+        orderId: urlStatus.orderId,
+        sign: DataKEY,
+      });
+
+      console.log(query);
+
+      fetch("https://sandbox.przelewy24.pl/api/v1/transaction/verify", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization:
+            "Basic Mjc0MDc6MWI2NDdjYTJjYjRkZGI0ZmFmY2Q3NjgzZmM0MGZiYTY=",
+        },
+        body: query,
+      });
     };
 
     fetchAnswer();
