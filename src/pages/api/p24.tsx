@@ -1,7 +1,9 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
+import { useContext } from "react";
 import { sha384 } from "crypto-hash";
 import bcrypt from "bcrypt";
+import { AppContext } from "../_app";
 
 // type Data = {
 //   status: number;
@@ -10,6 +12,28 @@ import bcrypt from "bcrypt";
 // };
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const {
+    queryFrom,
+    queryTo,
+    date,
+    time,
+    people,
+    latLangFrom,
+    latLangTo,
+    cars,
+    calculateDistance,
+    isFormCompleted,
+    SearchButtonWasClicked,
+    dateLimit,
+    personTitle,
+    firstName,
+    lastName,
+    email,
+    phone,
+    phonePrefix,
+    price,
+  } = useContext(AppContext);
+
   let merchantId = 27407;
   let sessionId = await bcrypt.hash("895043jrifokds", 10);
   let amount = 2500;
@@ -25,18 +49,16 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     merchantId: 27407,
     posId: 27407,
     sessionId: sessionId,
-    amount: 2500,
+    amount: price,
     currency: "PLN",
-    description: "Taxi",
-    email: "m.marszalek@wearebrave.pl",
+    description: firstName,
+    email: email,
     country: "PL",
     language: "pl",
     urlReturn: "https://ptbeta.vercel.app/ordering/verify",
     urlStatus: "https://ptbackend.vercel.app/",
     sign: await querySign(),
   });
-
-  // "https://psbeta.vercel.app/ordering/verify"
 
   try {
     let respond = await fetch(

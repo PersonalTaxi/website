@@ -70,6 +70,7 @@ export default function Orderspacifications() {
           <div className="w-[70px] flex items-center">
             <input
               name="title"
+              value="Mr."
               type="radio"
               className="mr-[4px] w-[20px] h-[20px]"
               onChange={handlePersonTitle}
@@ -80,6 +81,7 @@ export default function Orderspacifications() {
           <div className="w-[70px] flex items-center">
             <input
               name="title"
+              value="Mrs."
               type="radio"
               className="mr-[4px] w-[20px] h-[20px]"
               required
