@@ -5,6 +5,7 @@ async function handlerData(req: NextApiRequest, res: NextApiResponse) {
   let data = await fetch("https://ptbackend.vercel.app/ver", {
     method: "GET",
   });
+
   const final = await data;
   console.log(final);
   return final;
