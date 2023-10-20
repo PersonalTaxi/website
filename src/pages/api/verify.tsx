@@ -2,10 +2,10 @@
 import type { NextResponse, NextRequest } from "next/server";
 
 async function handlerData(req: NextResponse, res: NextRequest) {
-  await fetch("https://ptbackend.vercel.app/ver", {
+  let data = await fetch("https://ptbackend.vercel.app/ver", {
     method: "GET",
   });
-  const final = await req;
+  const final = await data;
   console.log(final);
   return final;
 }

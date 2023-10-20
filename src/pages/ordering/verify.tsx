@@ -4,7 +4,9 @@ import { useEffect } from "react";
 export default function Verify() {
   useEffect(() => {
     const fetchAnswer = async () => {
-      await fetch("/api/verify", {})
+      await fetch("/api/verify", {
+        method: "GET",
+      })
         .then((res) => res.json())
         .then((data) => console.log(data));
 
