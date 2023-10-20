@@ -90,7 +90,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const [people, setPeople] = useState(2);
   const [latLangFrom, setlatLangFrom] = useState(null);
   const [latLangTo, setlatLangTo] = useState(null);
-  const [cars, setCars] = useState();
+  const [cars, setCars] = useState({ sedan: 1, van: 0 });
   const [calculateDistance, setCalculateDistance] = useState(null);
   const [isFormCompleted, setIsFromCompleted] = useState(false);
   const [SearchButtonWasClicked, setSearchButtonWasClicked] = useState(false);
