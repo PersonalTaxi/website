@@ -7,6 +7,7 @@ async function handlerData(req: NextResponse, res: NextRequest) {
   });
   const final = await req;
   console.log(final);
+  return final;
 }
 
 export default handlerData;
