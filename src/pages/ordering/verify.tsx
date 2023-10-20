@@ -4,7 +4,7 @@ import { useEffect } from "react";
 export default function Verify() {
   useEffect(() => {
     const fetchAnswer = async () => {
-      await fetch("http://ptbackend.vercel.app", {
+      await fetch("https://ptbackend.vercel.app", {
         method: "POST",
         // headers: { "Content-Type": "application/json" },
       })
