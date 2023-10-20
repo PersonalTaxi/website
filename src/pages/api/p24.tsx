@@ -31,7 +31,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     email: "m.marszalek@wearebrave.pl",
     country: "PL",
     language: "pl",
-    urlReturn: "https://ptbackend/ordering/verify",
+    urlReturn: "https://ptbeta/ordering/verify",
     urlStatus: "https://ptbackend.vercel.app/",
     sign: await querySign(),
   });
