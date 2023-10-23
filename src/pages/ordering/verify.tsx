@@ -49,9 +49,17 @@ export default function Verify() {
         },
       );
 
-      const final = verifiedData.json();
-      console.log("verified!");
-      router.replace({ pathname: "https://ptbeta.vercel.app/ordering/succes" });
+      const final = verifiedData.status;
+      console.log(final);
+      if (final === 200) {
+        router.replace({
+          pathname: "http://ptbeta.vercel.app/ordering/succes",
+        });
+      } else {
+        router.replace({
+          pathname: "http://ptbeta.vercel.app/ordering/failed",
+        });
+      }
     };
 
     fetchAnswer();
