@@ -8,62 +8,62 @@ export default function Verify() {
   const [VeryficationStatus, setVerificationStatus]: any = useState();
   const router = useRouter();
 
-  // useEffect(() => {
-  //   const fetchAnswer = async () => {
-  //     //Getting data from UrlStatus from backend to verification
-  //     const data = await fetch("/api/verify");
-  //     const DataJson = await data.json();
-  //     const urlStatus = await DataJson.msg;
-  //     console.log(urlStatus);
+  useEffect(() => {
+    const fetchAnswer = async () => {
+      //Getting data from UrlStatus from backend to verification
+      const data = await fetch("/api/verify");
+      const DataJson = await data.json();
+      const urlStatus = await DataJson.msg;
+      console.log(urlStatus);
 
-  //     const DataCRC = `{"sessionId":"${urlStatus.sessionId}","orderId":${urlStatus.orderId},"amount":${urlStatus.amount},"currency":"${urlStatus.currency}","crc":"fccb3ef343fe113a"}`;
-  //     const DataKEY = await sha384(DataCRC);
-  //     console.log(DataCRC);
-  //     // const DataCRC = `{"merchantId":${urlStatus.merchantId},"posId":${urlStatus.posId},"sessionId":"${urlStatus.sessionId}","amount":${urlStatus.amount},"originAmount":${urlStatus.originAmount},"currency":"${urlStatus.currency}","orderId":${urlStatus.orderId},"methodID":${urlStatus.methodId},"statement":"${urlStatus.statement}","crc":"fccb3ef343fe113a"}`;
-  //     // const DataKEY = await sha384(DataCRC);
-  //     // console.log(DataCRC);
+      const DataCRC = `{"sessionId":"${urlStatus.sessionId}","orderId":${urlStatus.orderId},"amount":${urlStatus.amount},"currency":"${urlStatus.currency}","crc":"fccb3ef343fe113a"}`;
+      const DataKEY = await sha384(DataCRC);
+      console.log(DataCRC);
+      // const DataCRC = `{"merchantId":${urlStatus.merchantId},"posId":${urlStatus.posId},"sessionId":"${urlStatus.sessionId}","amount":${urlStatus.amount},"originAmount":${urlStatus.originAmount},"currency":"${urlStatus.currency}","orderId":${urlStatus.orderId},"methodID":${urlStatus.methodId},"statement":"${urlStatus.statement}","crc":"fccb3ef343fe113a"}`;
+      // const DataKEY = await sha384(DataCRC);
+      // console.log(DataCRC);
 
-  //     //Preapring query with incoming data to verify transaction
-  //     const query = JSON.stringify({
-  //       merchantId: urlStatus.merchantId,
-  //       posId: urlStatus.posId,
-  //       sessionId: urlStatus.sessionId,
-  //       amount: urlStatus.amount,
-  //       currency: urlStatus.currency,
-  //       orderId: urlStatus.orderId,
-  //       sign: DataKEY,
-  //     });
+      //Preapring query with incoming data to verify transaction
+      const query = JSON.stringify({
+        merchantId: urlStatus.merchantId,
+        posId: urlStatus.posId,
+        sessionId: urlStatus.sessionId,
+        amount: urlStatus.amount,
+        currency: urlStatus.currency,
+        orderId: urlStatus.orderId,
+        sign: DataKEY,
+      });
 
-  //     console.log(query);
+      console.log(query);
 
-  //     let verifiedData = await fetch(
-  //       "https://sandbox.przelewy24.pl/api/v1/transaction/verify",
-  //       {
-  //         method: "PUT",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           Authorization:
-  //             "Basic Mjc0MDc6MWI2NDdjYTJjYjRkZGI0ZmFmY2Q3NjgzZmM0MGZiYTY=",
-  //         },
-  //         body: query,
-  //       },
-  //     );
+      let verifiedData = await fetch(
+        "https://sandbox.przelewy24.pl/api/v1/transaction/verify",
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization:
+              "Basic Mjc0MDc6MWI2NDdjYTJjYjRkZGI0ZmFmY2Q3NjgzZmM0MGZiYTY=",
+          },
+          body: query,
+        },
+      );
 
-  //     const final = verifiedData.status;
-  //     console.log(final);
-  //     if (final === 200) {
-  //       router.replace({
-  //         pathname: "http://ptbeta.vercel.app/ordering/succes",
-  //       });
-  //     } else {
-  //       router.replace({
-  //         pathname: "http://ptbeta.vercel.app/ordering/failed",
-  //       });
-  //     }
-  //   };
+      const final = verifiedData.status;
+      console.log(final);
+      if (final === 200) {
+        router.replace({
+          pathname: "http://ptbeta.vercel.app/ordering/succes",
+        });
+      } else {
+        router.replace({
+          pathname: "http://ptbeta.vercel.app/ordering/failed",
+        });
+      }
+    };
 
-  //   fetchAnswer();
-  // }, []);
+    fetchAnswer();
+  }, []);
 
   return (
     <div className="w-screen h-screen bg-[url('/Main_theme.png')] bg-top bg-cover bg-no-repeat flex justify-center items-center">
