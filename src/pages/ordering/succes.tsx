@@ -58,13 +58,17 @@ export default function Succes() {
     price: price,
   });
 
-  console.log(query)
+  console.log(query);
 
   useEffect(() => {
     const sendEmail = async () => {
       if (!router.asPath.includes("email")) {
         let mail = await fetch("/api/sendnotification", {
           method: "POST",
+          headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json",
+          },
           body: query,
         });
         const data = await mail;
