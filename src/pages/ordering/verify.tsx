@@ -1,16 +1,20 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { sha384 } from "crypto-hash";
+import path from "path";
 
 export default function Verify() {
   const [VeryficationStatus, setVerificationStatus]: any = useState();
+  const router = useRouter();
 
   useEffect(() => {
     const fetchAnswer = async () => {
+      //Getting data from UrlStatus from backend to verification
       const data = await fetch("/api/verify");
       const DataJson = await data.json();
       const urlStatus = await DataJson.msg;
-      // console.log(urlStatus);
+      console.log(urlStatus);
 
       const DataCRC = `{"sessionId":"${urlStatus.sessionId}","orderId":${urlStatus.orderId},"amount":${urlStatus.amount},"currency":"${urlStatus.currency}","crc":"fccb3ef343fe113a"}`;
       const DataKEY = await sha384(DataCRC);
@@ -19,6 +23,7 @@ export default function Verify() {
       // const DataKEY = await sha384(DataCRC);
       // console.log(DataCRC);
 
+      //Preapring query with incoming data to verify transaction
       const query = JSON.stringify({
         merchantId: urlStatus.merchantId,
         posId: urlStatus.posId,
@@ -31,15 +36,22 @@ export default function Verify() {
 
       console.log(query);
 
-      fetch("https://sandbox.przelewy24.pl/api/v1/transaction/verify", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization:
-            "Basic Mjc0MDc6MWI2NDdjYTJjYjRkZGI0ZmFmY2Q3NjgzZmM0MGZiYTY=",
+      let verifiedData = await fetch(
+        "https://sandbox.przelewy24.pl/api/v1/transaction/verify",
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization:
+              "Basic Mjc0MDc6MWI2NDdjYTJjYjRkZGI0ZmFmY2Q3NjgzZmM0MGZiYTY=",
+          },
+          body: query,
         },
-        body: query,
-      });
+      );
+
+      const final = verifiedData.json();
+      console.log("verified!");
+      router.replace({ pathname: "https://ptbeta.vercel.app/ordering/succes" });
     };
 
     fetchAnswer();

@@ -3,8 +3,9 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import Image from "next/image";
 import { Buffer } from "buffer";
+import bcrypt from "bcrypt";
 import Header from "../Header/header";
-
+import { sha384 } from "crypto-hash";
 import { AppContext } from "../_app";
 
 export default function Payment() {
@@ -59,8 +60,38 @@ export default function Payment() {
 
   const [data, setData] = useState();
 
-  const fire = async () => {
-    let res = await fetch("/api/p24");
+  const handleRedirectTpPayments = async () => {
+    let merchantId = 27407;
+    const UniqeNumber = Date.now().toString();
+    let sessionId = "1212121";
+    let amount = price;
+    let currency = "PLN";
+    let crc = "fccb3ef343fe113a";
+
+    const querySign = async () => {
+      const DatCRC = `{"sessionId":"${sessionId}","merchantId":${merchantId},"amount":${amount},"currency":"${currency}","crc":"${crc}"}`;
+      return await sha384(DatCRC);
+    };
+
+    let query = JSON.stringify({
+      merchantId: 27407,
+      posId: 27407,
+      sessionId: sessionId,
+      amount: price,
+      currency: "PLN",
+      description: "tax beta",
+      email: "test@test.pl",
+      country: "PL",
+      language: "pl",
+      urlReturn: "https://ptbeta.vercel.app/ordering/verify",
+      urlStatus: "https://ptbackend.vercel.app/",
+      sign: await querySign(),
+    });
+
+    let res = await fetch("/api/p24", {
+      method: "POST",
+      body: query,
+    });
     const token = await res.json();
     console.log(token.msg);
 
@@ -141,7 +172,7 @@ export default function Payment() {
         </div>
         <div
           className="w-[80%] mx-auto rounded-[25px] bg-yellow-500 text-center py-[10px] mt-[20px] text-white text-[20px]"
-          onClick={fire}
+          onClick={handleRedirectTpPayments}
         >
           Pay & Order
         </div>
