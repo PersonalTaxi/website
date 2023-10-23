@@ -97,7 +97,6 @@ export default function Payment() {
 
     window.open(
       `https://sandbox.przelewy24.pl/trnRequest/${token.msg.data.token}`,
-      "_blank",
     );
   };
 
