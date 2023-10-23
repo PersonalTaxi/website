@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { sha384 } from "crypto-hash";
-import path from "path";
 
 export default function Verify() {
   const [VeryficationStatus, setVerificationStatus]: any = useState();

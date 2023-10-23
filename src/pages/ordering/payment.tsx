@@ -64,7 +64,7 @@ export default function Payment() {
     let merchantId = 27407;
     const UniqeNumber = Date.now().toString();
     let sessionId = UniqeNumber;
-    let amount = price;
+    let amount = `${price},00`;
     let currency = "PLN";
     let crc = "fccb3ef343fe113a";
 
@@ -77,7 +77,7 @@ export default function Payment() {
       merchantId: 27407,
       posId: 27407,
       sessionId: sessionId,
-      amount: price,
+      amount: amount,
       currency: "PLN",
       description: "tax beta",
       email: "test@test.pl",
