@@ -63,7 +63,7 @@ export default function Payment() {
   const handleRedirectTpPayments = async () => {
     let merchantId = 27407;
     const UniqeNumber = Date.now().toString();
-    let sessionId = "1212121";
+    let sessionId = UniqeNumber;
     let amount = price;
     let currency = "PLN";
     let crc = "fccb3ef343fe113a";
