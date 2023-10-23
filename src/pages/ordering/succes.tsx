@@ -58,6 +58,8 @@ export default function Succes() {
     price: price,
   });
 
+  console.log(query)
+
   useEffect(() => {
     const sendEmail = async () => {
       if (!router.asPath.includes("email")) {
@@ -66,7 +68,7 @@ export default function Succes() {
           body: query,
         });
         const data = await mail;
-        router.push("email=true", undefined, { shallow: true });
+        router.push("?email=true", undefined, { shallow: true });
       }
     };
 
