@@ -60,7 +60,7 @@ export default function Succes() {
 
   useEffect(() => {
     const sendEmail = async () => {
-      if (router.asPath.includes("email")) {
+      if (!router.asPath.includes("email")) {
         let mail = await fetch("/api/sendnotification", {
           method: "POST",
           body: query,

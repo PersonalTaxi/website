@@ -2,9 +2,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 const nodemailer = require("nodemailer");
 
-const working = '{"info":"true"}';
-const noworking = '{"info":"false"}';
-
 type Data = {
   name: string;
 };
