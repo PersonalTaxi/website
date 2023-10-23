@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 html {
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 body {
-  overflow-x: hidden;
+  overflow: hidden;
   margin: 0px;
   box-sizing: border-box;
 }
