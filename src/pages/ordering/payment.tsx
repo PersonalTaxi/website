@@ -64,7 +64,7 @@ export default function Payment() {
     let merchantId = 27407;
     const UniqeNumber = Date.now().toString();
     let sessionId = UniqeNumber;
-    let amount = price*100;
+    let amount = price * 100;
     let currency = "PLN";
     let crc = "fccb3ef343fe113a";
 
