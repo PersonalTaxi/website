@@ -7,8 +7,8 @@ export default function Succes() {
     <div className="w-screen h-screen bg-[url('/Main_theme.png')] bg-top bg-cover bg-no-repeat flex justify-center items-center">
       <div className="w-[80%] h-[40%] flex flex-col items-center justify-center mx-auto bg-white rounded-[10px]">
         <div className="text-[20px] mb-[20px] text-center px-[10px]">
-          <p className="font-bold">Payment successful!</p> We've send you an
-          email with order details.
+          <p className="font-bold">Payment successful!</p> We&apos;ve send you
+          an email with order details.
         </div>
         <div role="status" className="w-[140px] h-[140px]">
           <BsCheck2Square className="w-full h-full text-green-600" />
