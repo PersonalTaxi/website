@@ -404,7 +404,7 @@ export default function TomTom({
   };
 
   return (
-    <div className="flex flex-col w-full justify-around">
+    <div className="flex flex-col lg:flex-row w-full justify-around">
       <div className="w-full h-[47px] flex flex-col rounded-r-[10px]">
         <div
           className={
@@ -423,7 +423,7 @@ export default function TomTom({
           </div>
           <AiOutlineClose classname="w-[10%]" />
         </div>
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center lg:border rounded-[10px] relative lg:w-11/12">
           <BiSolidMap className="w-[30px] h-[30px] text-yellow-500/[0.4]" />
           <div
             onClick={clearFromQuery}
@@ -460,9 +460,9 @@ export default function TomTom({
           {dataFromFetch}
         </div>
       </div>
-      <div className="h-[1px] bg-gray-400/[0.3] w-11/12 mx-auto"></div>
-      <div className="w-full h-[47px] flex flex-col z-20 rounded-r-[10px] relative">
-        <div className="flex justify-center items-center">
+      <div className="h-[1px] lg:hidden bg-gray-400/[0.3] w-11/12 mx-auto"></div>
+      <div className="w-full h-[47px] flex flex-col z-20 rounded-r-[10px] relative lg:w-11/12">
+        <div className="flex justify-center items-center lg:border rounded-[10px]">
           <BiSolidMap className="w-[30px] h-[30px] text-yellow-500/[0.4]" />
           <div
             onClick={clearToQuery}

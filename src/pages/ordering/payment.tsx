@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Buffer } from "buffer";
 import bcrypt from "bcrypt";
 import Header from "../Header/header";
+import RegisterInDataBase from "@/components/registerindatabase";
 import { sha384 } from "crypto-hash";
 import { AppContext } from "../_app";
 
@@ -13,43 +14,19 @@ export default function Payment() {
 
   const {
     queryFrom,
-    setQueryFrom,
     queryTo,
-    setQueryTo,
     date,
-    setDate,
-    time,
-    setTime,
-    people,
-    setPeople,
-    latLangFrom,
-    setlatLangFrom,
-    latLangTo,
-    setlatLangTo,
     cars,
-    setCars,
     calculateDistance,
-    setCalculateDistance,
-    isFormCompleted,
-    setIsFromCompleted,
-    SearchButtonWasClicked,
-    setSearchButtonWasClicked,
-    dateLimit,
-    setDateLimit,
     personTitle,
-    setPersonTitle,
     firstName,
-    setFirstName,
     lastName,
-    setLastName,
     email,
-    setEmail,
     phone,
-    setPhone,
     phonePrefix,
-    setPhonePrefix,
     price,
-    setPrice,
+    sessionIdContext,
+    setSessionIdContext,
   } = useContext(AppContext);
 
   const ID = process.env.P24_ID;
@@ -73,6 +50,8 @@ export default function Payment() {
       return await sha384(DatCRC);
     };
 
+    const sign = await querySign();
+
     let query = JSON.stringify({
       merchantId: 27407,
       posId: 27407,
@@ -83,10 +62,30 @@ export default function Payment() {
       email: "test@test.pl",
       country: "PL",
       language: "pl",
-      urlReturn: "https://ptbeta.vercel.app/ordering/verify",
+      urlReturn: "https://www.personaltaxi.pl/ordering/verify",
       urlStatus: "https://ptbackend.vercel.app/",
-      sign: await querySign(),
+      sign: sign,
     });
+
+    //register order details in MongoDB
+    const DataForDatabase = JSON.stringify({
+      From: queryFrom,
+      To: queryTo,
+      distance: calculateDistance,
+      firstName: firstName,
+      lastName: lastName,
+      email: "test@test.pl",
+      description: "tax beta",
+      country: "PL",
+      amount: amount,
+      currency: "PLN",
+      merchantId: 27407,
+      posId: 27407,
+      sessionId: sessionId,
+      sign: sign,
+    });
+
+    await RegisterInDataBase(DataForDatabase);
 
     let res = await fetch("/api/p24", {
       method: "POST",
@@ -95,7 +94,7 @@ export default function Payment() {
     const token = await res.json();
     console.log(token.msg);
 
-    window.open(
+    router.replace(
       `https://sandbox.przelewy24.pl/trnRequest/${token.msg.data.token}`,
     );
   };

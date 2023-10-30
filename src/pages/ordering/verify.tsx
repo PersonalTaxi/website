@@ -1,67 +1,80 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { setCookie, getCookie } from "cookies-next";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { sha384 } from "crypto-hash";
+import RegisterInDataBase from "@/components/registerindatabase";
+import { getUrlStatus } from "../../components/geturlstatus";
+import VerifyTransaction from "@/components/verifyTransaction";
+import { AppContext } from "../_app";
 
 export default function Verify() {
   const [VeryficationStatus, setVerificationStatus]: any = useState();
   const router = useRouter();
 
+  const {
+    queryFrom,
+    setQueryFrom,
+    queryTo,
+    setQueryTo,
+    date,
+    setDate,
+    time,
+    setTime,
+    people,
+    setPeople,
+    latLangFrom,
+    setlatLangFrom,
+    latLangTo,
+    setlatLangTo,
+    cars,
+    setCars,
+    calculateDistance,
+    setCalculateDistance,
+    isFormCompleted,
+    setIsFromCompleted,
+    SearchButtonWasClicked,
+    setSearchButtonWasClicked,
+    dateLimit,
+    setDateLimit,
+    personTitle,
+    setPersonTitle,
+    firstName,
+    setFirstName,
+    lastName,
+    setLastName,
+    email,
+    setEmail,
+    phone,
+    setPhone,
+    phonePrefix,
+    setPhonePrefix,
+    price,
+    setPrice,
+  } = useContext(AppContext);
+
   useEffect(() => {
-    const fetchAnswer = async () => {
-      //Getting data from UrlStatus from backend to verification
-      const data = await fetch("/api/verify");
-      const DataJson = await data.json();
-      const urlStatus = await DataJson.msg;
-      console.log(urlStatus);
+    const fetchAnswerVerifyAndRedirect = async () => {
+      //sending first verify and gain urlStatus from p24
+      const { status, DataKEY, query } = await getUrlStatus();
 
-      const DataCRC = `{"sessionId":"${urlStatus.sessionId}","orderId":${urlStatus.orderId},"amount":${urlStatus.amount},"currency":"${urlStatus.currency}","crc":"fccb3ef343fe113a"}`;
-      const DataKEY = await sha384(DataCRC);
-      console.log(DataCRC);
-      // const DataCRC = `{"merchantId":${urlStatus.merchantId},"posId":${urlStatus.posId},"sessionId":"${urlStatus.sessionId}","amount":${urlStatus.amount},"originAmount":${urlStatus.originAmount},"currency":"${urlStatus.currency}","orderId":${urlStatus.orderId},"methodID":${urlStatus.methodId},"statement":"${urlStatus.statement}","crc":"fccb3ef343fe113a"}`;
-      // const DataKEY = await sha384(DataCRC);
-      // console.log(DataCRC);
+      //sending data to verify payment and sending email after
+      let ParsedQuery = JSON.parse(query);
+      let sessionsId = ParsedQuery.sessionId;
 
-      //Preapring query with incoming data to verify transaction
-      const query = JSON.stringify({
-        merchantId: urlStatus.merchantId,
-        posId: urlStatus.posId,
-        sessionId: urlStatus.sessionId,
-        amount: urlStatus.amount,
-        currency: urlStatus.currency,
-        orderId: urlStatus.orderId,
-        sign: DataKEY,
-      });
-
-      console.log(query);
-
-      let verifiedData = await fetch(
-        "https://sandbox.przelewy24.pl/api/v1/transaction/verify",
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization:
-              "Basic Mjc0MDc6MWI2NDdjYTJjYjRkZGI0ZmFmY2Q3NjgzZmM0MGZiYTY=",
-          },
-          body: query,
-        },
-      );
-
-      const final = verifiedData.status;
-      console.log(final);
-      if (final === 200) {
+      const VerifyStatus = await VerifyTransaction(query);
+      if (VerifyStatus === 200) {
+        //get data from databse and sand email
         router.replace({
-          pathname: "http://ptbeta.vercel.app/ordering/succes",
+          pathname: "https://www.personaltaxi.pl/ordering/succes",
         });
       } else {
         router.replace({
-          pathname: "http://ptbeta.vercel.app/ordering/failed",
+          pathname: "https://www.personaltaxi.pl/ordering/failed",
         });
       }
     };
 
-    fetchAnswer();
+    fetchAnswerVerifyAndRedirect();
   }, []);
 
   return (

@@ -47,6 +47,8 @@ export default function Succes() {
     setPrice,
   } = useContext(AppContext);
 
+  console.log(queryFrom);
+
   const router = useRouter();
 
   const query = JSON.stringify({
@@ -60,24 +62,10 @@ export default function Succes() {
 
   console.log(query);
 
-  useEffect(() => {
-    const sendEmail = async () => {
-      if (!router.asPath.includes("email")) {
-        let mail = await fetch("/api/sendnotification", {
-          method: "POST",
-          headers: {
-            Accept: "application/json, text/plain, */*",
-            "Content-Type": "application/json",
-          },
-          body: query,
-        });
-        const data = await mail;
-        router.push("?email=true", undefined, { shallow: true });
-      }
-    };
-
-    sendEmail();
-  }, []);
+  // useEffect(() => {
+  //   // const getDataFromU
+  //   const getDataFromDataBase = () => {};
+  // }, []);
 
   return (
     <div className="w-screen h-screen bg-[url('/Main_theme.png')] bg-top bg-cover bg-no-repeat flex justify-center items-center">

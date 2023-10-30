@@ -7,7 +7,6 @@ import type { NextApiRequest, NextApiResponse } from "next";
 // };
 
 async function Handler(req: NextApiRequest, res: NextApiResponse) {
-  console.log(req);
   try {
     let respond = await fetch(
       "https://sandbox.przelewy24.pl/api/v1/transaction/register",

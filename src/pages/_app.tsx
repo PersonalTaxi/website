@@ -35,6 +35,9 @@ type QueryParams = {
   mapUpdated: any;
   setMapUpdated: React.Dispatch<React.SetStateAction<any>>;
 
+  sessionIdContext: any;
+  setSessionIdContext: React.Dispatch<React.SetStateAction<any>>;
+
   // Person details
   personTitle: any;
   setPersonTitle: React.Dispatch<React.SetStateAction<any>>;
@@ -97,6 +100,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const [mapLongitude, setMapLongitude]: any = useState(19.945);
   const [mapLatitude, setMapLatitude]: any = useState(40.064);
   const [mapUpdated, setMapUpdated] = useState(false);
+  const [sessionIdContext, setSessionIdContext] = useState();
 
   //data from clients
   const [personTitle, setPersonTitle] = useState();
@@ -164,6 +168,8 @@ export default function App({ Component, pageProps }: AppProps) {
         setMunicipalityTo,
         dateLimit,
         setDateLimit,
+        sessionIdContext,
+        setSessionIdContext,
       }}
     >
       <Component {...pageProps} />

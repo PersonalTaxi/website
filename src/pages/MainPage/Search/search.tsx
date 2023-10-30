@@ -191,7 +191,10 @@ export default function Search() {
           content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
         ></meta>
       </Head>
-      <div className="w-screen z-20 mb-[12px]" id="specifics">
+      <div
+        className="w-screen lg:w-[1240px] md:w-[1040px] z-20 mb-[12px] mx-auto"
+        id="specifics"
+      >
         <div
           id="search-wraper"
           className="w-full flex flex-col justify-center items-center relative"
@@ -210,19 +213,19 @@ export default function Search() {
           >
             <form
               onSubmit={handleSendForm}
-              className="w-full h-full flex flex-col justify-evenly items-center mx-auto border-red-900"
+              className="w-full h-full flex flex-col justify-evenly items-center mx-auto"
             >
               <div
-                id="form-inputs-wraper"
-                className="w-full h-[260px] flex flex-col justify-evenly items-center mx-auto"
+                id="form-elements-wraper"
+                className="w-full h-[260px] md:h-auto flex flex-col md:flex-row justify-evenly items-center mx-auto"
               >
                 <div
                   id="from-to"
-                  className="rounded-[10px] h-[100px] w-10/12 border relative"
+                  className="rounded-[10px] h-[100px] xl:h-auto w-10/12 xl:border-0 relative"
                 >
                   <div
-                    id="icon-input-wraper"
-                    className="h-full rounded-[10px] w-full flex items-center relative"
+                    id="localizations-input-wraper"
+                    className="h-full rounded-[10px] w-full flex items-center relative border border-red-900"
                   >
                     <TomTom
                       ShowOrHideInfoAboutMissingLocalizations={
@@ -238,11 +241,14 @@ export default function Search() {
                     <div className="pl-[5px]">Please fill a localizations</div>
                   </div>
                 </div>
-                <div id="wrapper-for-bottom-search" className="w-10/12">
+                <div
+                  id="wrapper-for-bottom-search"
+                  className="w-10/12 xl:flex items-center"
+                >
                   {/* Date*/}
                   <div
                     id="calendar-timer-wrapper"
-                    className="rounded-[10px] h-[50px] w-full flex flex-no-wrap mb-[10px] relative"
+                    className="rounded-[10px] h-[50px] w-full xl:w-[270px] flex xl:flex-row flex-no-wrap mb-[10px] relative"
                   >
                     <div className="h-[50px] w-full rounded-[10px] border flex items-center pl-[10px] relative">
                       {date === "" && (
@@ -297,7 +303,7 @@ export default function Search() {
                   >
                     <div
                       id="person-and-submit-wraper"
-                      className="rounded-[10px] h-[50px] w-6/12 border flex justify-center items-center"
+                      className="rounded-[10px] h-[50px] w-6/12 xl:w-[270px] border flex justify-center items-center"
                     >
                       <div
                         className="w-[25px] h-[25px] rounded-[50%]"

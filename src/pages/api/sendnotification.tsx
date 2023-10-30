@@ -39,18 +39,18 @@ export default async function Sendnotification(
   const mailData = {
     from: "Opłacono kurs",
     to: "m.marszalek@wearebrave.pl",
-    subject: `Wiadomość ze strony od: ${req.body.firstName} ${req.body.lastName}`,
+    subject: `Wiadomość ze strony od: ${req.body.name} ${req.body.lastname}`,
     text: "Hello. This email is for your email verification.",
     html:
-      `Imię i nazwisko / firma: ${req.body.firstName} ${req.body.lastName}` +
+      `Imię i nazwisko / firma: ${req.body.name} ${req.body.lastname}` +
       `<br>` +
       `Email kontaktowy: ${req.body.email}` +
       `<br>` +
       `Telefon kontaktowy: ${req.body.phone}` +
       `<br><br>` +
-      `Start: ${req.body.queryFrom}` +
+      `Start: ${req.body.from}` +
       `<br>` +
-      `Miejsce docelowe: ${req.body.queryTo}` +
+      `Miejsce docelowe: ${req.body.to}` +
       `<br>` +
       `Cena: ${req.body.price} zł` +
       `<br>`,
