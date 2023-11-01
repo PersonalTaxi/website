@@ -83,7 +83,10 @@ export default function Carcomponent() {
     }
 
     return (
-      <div className="rounded-[10px] h-auto lg:h-auto w-1/2 lg:w-[500px] bg-white flex pt-[4px] border-red-900">
+      <div
+        key={i.type}
+        className="rounded-[10px] h-auto lg:h-auto w-1/2 lg:w-[500px] bg-white flex pt-[4px] border-red-900"
+      >
         <div id="left-wrapper" className="w-10/12 lg:w-full">
           <div className="w-full">
             <p className=" text-center font-bold">{i.type}</p>
