@@ -116,6 +116,16 @@ export default function Search() {
   const handleSendForm = (e: any) => {
     e.preventDefault();
 
+    let type;
+    if (people < 5 && people > 0) {
+      type = "sedan";
+    }
+    if (people < 9 && people > 4) {
+      type = "van";
+    }
+    if (people > 8) {
+      type = "mixed";
+    }
     setSearchButtonWasClicked(true);
 
     if (latLangFrom !== null && latLangTo !== null) {
@@ -124,6 +134,7 @@ export default function Search() {
           pathname: "/ordering/summary",
           query: {
             passengers: people,
+            car: type,
           },
         },
         undefined,
@@ -192,7 +203,7 @@ export default function Search() {
         ></meta>
       </Head>
       <div
-        className="w-screen lg:w-[1240px] md:w-[1040px] z-20 mb-[12px] mx-auto"
+        className="w-screen lg:w-[1180px] z-20 mb-[12px] mx-auto"
         id="specifics"
       >
         <div
@@ -202,30 +213,30 @@ export default function Search() {
           <div id="search-contianer-text" className="w-11/12 px-[30px]">
             <div
               id="correctInfo"
-              className="w-[120px] bg-white text-center rounded-t-[10px]"
+              className="w-[120px] bg-white text-center rounded-t-[10px] "
             >
               Your drive:
             </div>
           </div>
           <div
             id="search-contianer"
-            className="bg-white w-11/12 rounded-t-[15px] h-auto border-red-200 -m-[1px]"
+            className="bg-white w-11/12 rounded-t-[15px] h-auto border-red-200 -m-[1px] lg:p-[10px] "
           >
             <form
               onSubmit={handleSendForm}
-              className="w-full h-full flex flex-col justify-evenly items-center mx-auto"
+              className="w-full h-full flex flex-col justify-evenly items-center mx-auto "
             >
               <div
                 id="form-elements-wraper"
-                className="w-full h-[260px] md:h-auto flex flex-col md:flex-row justify-evenly items-center mx-auto"
+                className="w-full h-[260px] md:h-auto flex flex-col lg:flex-row justify-evenly items-center mx-auto"
               >
                 <div
                   id="from-to"
-                  className="rounded-[10px] h-[100px] xl:h-auto w-10/12 xl:border-0 relative"
+                  className="rounded-[10px] h-[100px] lg:h-auto w-10/12 lg:border-0 relative"
                 >
                   <div
                     id="localizations-input-wraper"
-                    className="h-full rounded-[10px] w-full flex items-center relative border border-red-900"
+                    className="h-full rounded-[10px] w-full flex items-center relative border lg:border-0"
                   >
                     <TomTom
                       ShowOrHideInfoAboutMissingLocalizations={
@@ -235,7 +246,7 @@ export default function Search() {
                   </div>
                   <div
                     ref={InfoAboutFillLocations}
-                    className="hidden h-[20px] text-red-800 items-center text-[14px]"
+                    className="absolute hidden h-[20px] text-red-800 items-center text-[14px]"
                   >
                     <AiFillInfoCircle />
                     <div className="pl-[5px]">Please fill a localizations</div>
@@ -243,12 +254,12 @@ export default function Search() {
                 </div>
                 <div
                   id="wrapper-for-bottom-search"
-                  className="w-10/12 xl:flex items-center"
+                  className="w-10/12 lg:w-auto lg:flex items-center justify-center lg:pl-[10px]"
                 >
                   {/* Date*/}
                   <div
                     id="calendar-timer-wrapper"
-                    className="rounded-[10px] h-[50px] w-full xl:w-[270px] flex xl:flex-row flex-no-wrap mb-[10px] relative"
+                    className="rounded-[10px] h-[50px] w-full lg:w-[220px] flex xl:flex-row flex-no-wrap mb-[10px] lg:mb-0 relative"
                   >
                     <div className="h-[50px] w-full rounded-[10px] border flex items-center pl-[10px] relative">
                       {date === "" && (
@@ -261,7 +272,7 @@ export default function Search() {
                       )}
                       <TbCalendarTime
                         locale="en_EN"
-                        className="w-[40px] h-[40px] text-yellow-500/[0.4]"
+                        className="w-[40px] h-[40px] text-yellow-500/[0.4] lg:hidden"
                       />
                       <input
                         onChange={handleDate}
@@ -293,13 +304,13 @@ export default function Search() {
                       onMouseLeave={handleHideInfoAboutDate}
                       className="right-0 my-auto h-full flex items-center text-yellow-500 w-[16%]"
                     >
-                      <AiFillInfoCircle className="w-full h-full ml-[15px]" />
+                      <AiFillInfoCircle className="w-full h-full ml-[15px] lg:mx-[7px]" />
                     </div>
                   </div>
                   {/* Persons do drive */}
                   <div
                     id="person-and-submit-wraper"
-                    className="rounded-[10px] h-[50px] w-full flex justify-between"
+                    className="rounded-[10px] h-[50px] w-full lg:w-[220px] flex justify-between"
                   >
                     <div
                       id="person-and-submit-wraper"
@@ -326,7 +337,7 @@ export default function Search() {
                     </div>
                     <button
                       id="person-and-submit-wraper"
-                      className=" border-black rounded-[10px] h-[50px] w-[130px] border-2 bg-black text-yellow-400 hover:text-black hover:bg-yellow-500 hover:border-yellow-500 duration-150"
+                      className=" border-black rounded-[10px] h-[50px] w-[130px] lg:w-[190px] border-2 bg-black text-yellow-400 hover:text-black hover:bg-yellow-500 hover:border-yellow-500 duration-150 lg:ml-[15px]"
                     >
                       {!router.asPath.includes("ordering") ? (
                         <p>See offer</p>
@@ -338,7 +349,7 @@ export default function Search() {
                 </div>
               </div>
               {/* Comuniate if data is collected */}
-              <div className="flex justify-center items-center  -top-[40px] w-screen h-[20px]">
+              <div className="flex justify-center items-center -top-[40px] w-screen h-[20px]">
                 {isFormCompleted === "true" && (
                   <>
                     <AiOutlineCheck />
@@ -358,17 +369,17 @@ export default function Search() {
               </div>
             </form>
           </div>
-          {latLangFrom !== null && latLangTo !== null && (
-            <div className=" bg-white w-11/12 bottom-0 mx-auto text-center rounded-b-[10px]">
-              Drive distance {calculateDistance} km
-            </div>
-          )}
-          {((latLangFrom !== null && latLangTo === null) ||
-            (latLangFrom === null && latLangTo !== null)) && (
-            <div className="bg-white w-11/12 mx-auto text-center rounded-b-[10px] text-[12px]">
-              Drive distance: wating for localizations ...
-            </div>
-          )}
+          <div className="bg-white w-11/12 mx-auto text-center rounded-b-[10px] text-[12px] h-[20px]">
+            {((latLangFrom !== null && latLangTo === null) ||
+              (latLangFrom === null && latLangTo !== null)) && (
+              <p>Drive distance: wating for localizations ...</p>
+            )}
+            {latLangFrom !== null && latLangTo !== null && (
+              <p className=" bg-white w-11/12 bottom-0 mx-auto text-center rounded-b-[10px]">
+                Drive distance {calculateDistance} km
+              </p>
+            )}
+          </div>
         </div>
       </div>
     </>

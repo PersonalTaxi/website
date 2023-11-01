@@ -1,5 +1,4 @@
 import { setCookie, getCookie } from "cookies-next";
-import GET from "@/pages/api/mongoget";
 
 export async function VerifyTransaction(query: any) {
   let verifiedData = await fetch(

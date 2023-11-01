@@ -1,21 +1,24 @@
 {
-    "cars":[
-        {
-            "type":"Van",
-            "photo":"/Van.webp",
-            "name": "VW",
-            "model": "Transporter",
-            "passengers":7,
-            "fits": 6
-        },
-        {
-            "type":"Sedan",
-            "photo":"/mercedes.png",
-            "name": "Mercedes",
-            "model": "C Class",
-            "passengers":4,
-            "fits": 4
-        }
-    ]
+  "cars": [
+    {
+      "meta": "sedan",
+      "type": "Eco Sedan",
+      "photo": "/mercedes.png",
+      "name": "Mercedes",
+      "model": "C Class",
+      "passengers": 4,
+      "fits": 4,
+      "price": 129
+    },
+    {
+      "meta": "van",
+      "type": "Mini Van",
+      "photo": "/Van.webp",
+      "name": "VW",
+      "model": "Transporter",
+      "passengers": 8,
+      "fits": 6,
+      "price": 149
+    }
+  ]
 }
-    

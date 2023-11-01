@@ -59,17 +59,17 @@ export default function Verify() {
 
       //sending data to verify payment and sending email after
       let ParsedQuery = JSON.parse(query);
-      let sessionsId = ParsedQuery.sessionId;
+      // let sessionsId = ParsedQuery.sessionId;
 
       const VerifyStatus = await VerifyTransaction(query);
       if (VerifyStatus === 200) {
         //get data from databse and sand email
         router.replace({
-          pathname: "https://www.personaltaxi.pl/ordering/succes",
+          pathname: "https://ptbeta.vercel.app/ordering/succes",
         });
       } else {
         router.replace({
-          pathname: "https://www.personaltaxi.pl/ordering/failed",
+          pathname: "https://ptbeta.vercel.app/ordering/failed",
         });
       }
     };

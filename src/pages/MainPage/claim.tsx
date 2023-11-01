@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Claim() {
   return (
-    <div className="w-screen h-[25vh] border-red-900 flex flex-col px-[20px] z-10 justify-start">
+    <div className="w-screen lg:w-[1100px] mx-auto h-[25vh] lg:h-[220px] border-red-900 flex flex-col px-[20px] z-10 justify-start">
       <div className="text-white leading-4 text-[20px]">
         <b className="text-[30px]">Safety</b> transport from | to
       </div>

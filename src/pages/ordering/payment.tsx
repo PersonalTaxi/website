@@ -29,11 +29,11 @@ export default function Payment() {
     setSessionIdContext,
   } = useContext(AppContext);
 
-  const ID = process.env.P24_ID;
-  const PASS = process.env.P24_ID;
-  const data_ID = Buffer.from(
-    `${process.env.P24_ID}:${process.env.P24_API}`,
-  ).toString("base64");
+  // const ID = process.env.P24_ID;
+  // const PASS = process.env.P24_ID;
+  // const data_ID = Buffer.from(
+  //   `${process.env.P24_ID}:${process.env.P24_API}`,
+  // ).toString("base64");
 
   const [data, setData] = useState();
 
@@ -62,7 +62,7 @@ export default function Payment() {
       email: "test@test.pl",
       country: "PL",
       language: "pl",
-      urlReturn: "https://www.personaltaxi.pl/ordering/verify",
+      urlReturn: "https://ptbeta.vercel.app/ordering/verify",
       urlStatus: "https://ptbackend.vercel.app/",
       sign: sign,
     });

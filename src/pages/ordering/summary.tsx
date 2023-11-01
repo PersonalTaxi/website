@@ -128,7 +128,7 @@ export default function Summary() {
         id="search-wrapper-ordering"
         className='pt-[100px] relative h-[1600px] bg-[url("/Main_theme.png")] bg-top bg-cover bg-no-repeat bg-fixed'
       >
-        <div className={`w-screen h-[350px] rounded-t-[40px] z-20 bottom-0`}>
+        <div className={`w-screen  h-[350px] rounded-t-[40px] z-20 bottom-0`}>
           <Search />
           <Chooseparams />
         </div>

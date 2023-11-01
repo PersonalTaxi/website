@@ -404,7 +404,7 @@ export default function TomTom({
   };
 
   return (
-    <div className="flex flex-col lg:flex-row w-full justify-around">
+    <div className="flex flex-col lg:flex-row w-full">
       <div className="w-full h-[47px] flex flex-col rounded-r-[10px]">
         <div
           className={

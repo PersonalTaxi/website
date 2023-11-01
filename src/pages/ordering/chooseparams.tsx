@@ -10,6 +10,8 @@ import Link from "next/link";
 import cars from "../../data/cars.json";
 import Orderspacifications from "../MainPage/Search/orderspecifications";
 import { Ubuntu } from "next/font/google";
+import Sedan from "@/components/sedancomponent";
+import Van from "@/components/vancomponent";
 import Image from "next/image";
 import { BsFillPersonFill, BsFillBagFill } from "react-icons/bs";
 import { AppContext } from "../_app";
@@ -26,6 +28,7 @@ import {
 import { MdOutlinePersonPinCircle } from "react-icons/md";
 import { BiSolidPhoneCall } from "react-icons/bi";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
+import Carcomponent from "@/components/carcomponent";
 
 const rubikFonts = Ubuntu({
   subsets: ["latin"],
@@ -186,7 +189,7 @@ export default function Chooseparams() {
   // END OF CALCULATING
 
   return (
-    <div className="relative bg-white mt-[90px] w-[95vw] mx-auto rounded-[10px] h-[1080px] border">
+    <div className="relative bg-white mt-[90px] w-[95vw] lg:w-[1080px] mx-auto rounded-[10px] h-[1080px] border">
       <div className="w-[80vw] h-[60px] flex items-end flex-col mx-auto">
         <p className="text-[12px]"> Step 2 of 3</p>
         <div className="bg-gradient-to-r from-yellow-500 from-0% via-white via-70% to-white to-100% w-full border border-yellow-500/[0.5] h-[20px] rounded-[5px] bg-"></div>
@@ -195,7 +198,7 @@ export default function Chooseparams() {
         latLangTo !== null &&
         PersonsLeft > 0 &&
         parseInt(passengersFromQuery) === people && (
-          <div className="absolute bg-red-600 text-white w-[92vw] -top-[60px] left-0 right-0 mx-auto px-[4px] rounded-[3px] flex justify-center items-center h-[40px]">
+          <div className="absolute bg-red-600 text-white w-[92vw] lg:w-[1080px] -top-[60px] left-0 right-0 mx-auto px-[4px] rounded-[3px] flex justify-center items-center h-[40px]">
             <AiFillInfoCircle />
             <p className="pl-[4px]">
               Find a seat(s) for {PersonsLeft} person(s) yet.
@@ -204,116 +207,19 @@ export default function Chooseparams() {
         )}
       <div
         id="choose-cars-wrapper"
-        className=" rounded-[10px] flex w-[90vw] mx-auto justify-between duration-200 mb-[12px] bg-white relative"
+        className=" rounded-[10px] flex w-[90vw] lg:w-[1080px] mx-auto justify-between duration-200 mb-[12px] bg-white relative"
       >
         {/* Bloking to configure offer before chosing correct params */}
-        {isFormCompleted !== "true" && (
-          <div className="bg-white/[0.85] absolute w-[90vw] h-[1000px] z-20 "></div>
-        )}
+        {/* {isFormCompleted !== "true" && (
+          <div className="bg-white/[0.85] absolute w-[90vw] lg:w-[1080px] h-[1000px] z-20 "></div>
+        )} */}
 
-        <div className="rounded-[10px] h-[129px] w-[170px] bg-white flex">
-          <div id="left-wrapper" className="w-[120px]">
-            <div className="w-full">
-              <p className=" text-center font-semibold pt-[4px]">Eco Sedan</p>
-            </div>
-            <div className="relative w-full h-[60px]">
-              <Image
-                className="object-contain"
-                src="/mercedes.png"
-                fill
-                alt="sedan"
-              ></Image>
-            </div>
-            <div className="w-full flex pl-[5px]">
-              <BsFillPersonFill className="text-yellow-500" />
-              <p className=" text-center font-semibold text-[10px] pl-[5px]">
-                max 4 people
-              </p>
-            </div>
-            <div className="w-full flex pl-[5px]">
-              <BsFillBagFill className="text-yellow-500" />
-              <p className=" text-center font-semibold text-[10px] pl-[5px]">
-                max 4 suitcases
-              </p>
-            </div>
-            <div className="w-full flex pl-[5px] mt-[1px]">
-              {/* <AiFillDollarCircle className="text-yellow-500"/> */}
-              <p className=" text-center font-normal text-[10px] pl-[1px] font">
-                {" "}
-                from <b>129 zł</b>
-              </p>
-            </div>
-          </div>
-          <div id="left-wrapper" className="w-[50px]">
-            <div className="relative w-full h-[125px] flex items-center justify-around ">
-              <div>
-                <IoIosArrowUp
-                  className="w-[30px] text-[40px]"
-                  onClick={incrementSedan}
-                />
-                <div className="w-[30px] h-[20px] text-[20px] text-center leading-5">
-                  {state?.sedan}
-                </div>
-                <IoIosArrowDown
-                  className="w-[30px] text-[40px]"
-                  onClick={decrementSedan}
-                />
-              </div>
-            </div>
-          </div>
+        <div className="rounded-[10px] h-auto lg:h-[300px] w-full lg:w-full bg-white flex lg:justify-center ">
+          {router.query.car === "van" && <Van />}
+          {router.query.car === "sedan" && <Sedan />}
+          {router.query.car === "mixed" && <Carcomponent />}
         </div>
         <div className="w-[1px] h-[100px] bg-gray-200 my-[10px]"></div>
-        <div className="rounded-[10px] h-[125px] w-[170px] bg-white flex pt-[4px]">
-          <div id="left-wrapper" className="w-[120px]">
-            <div className="w-full">
-              <p className=" text-center font-bold">Mini Van</p>
-            </div>
-            <div className="relative w-full h-[60px]">
-              <Image
-                className="object-contain"
-                src="/Van.webp"
-                fill
-                alt="sedan"
-              ></Image>
-            </div>
-            <div className="w-full flex pl-[5px]">
-              <BsFillPersonFill className="text-yellow-500" />
-              <p className="text-center font-semibold text-[10px] pl-[5px]">
-                max 8 people
-              </p>
-            </div>
-            <div className="w-full flex pl-[5px]">
-              <BsFillBagFill className="text-yellow-500" />
-              <p className=" text-center font-semibold text-[10px] pl-[5px]">
-                max 7 suitcases
-              </p>
-            </div>
-            <div className="w-full flex pl-[5px] mt-[1px]">
-              {/* <div className="text-yellow-500 w-[20px]"></div> */}
-              {/* <AiFillDollarCircle className="text-yellow-500"/> */}
-              <p className=" text-center font-normal text-[10px] pl-[1px]">
-                from 149 zł
-              </p>
-            </div>
-          </div>
-          <div id="left-wrapper" className="w-[50px]">
-            <div className="relative w-full h-[125px] flex items-center justify-around ">
-              <div>
-                <IoIosArrowUp
-                  className="w-[30px] text-[40px]"
-                  onClick={incrementVan}
-                />
-                <div className="w-[30px] h-[20px] text-[20px] text-center leading-5">
-                  {state?.van}
-                </div>
-                <IoIosArrowDown
-                  className="w-[30px] text-[40px]"
-                  onClick={decrementVan}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
       <div
         className={
@@ -323,39 +229,44 @@ export default function Chooseparams() {
         }
       >
         {/* COMBI CAR CHECKBOX */}
-        <div className="w-[92vw] h-[20px] mx-auto flex items-center">
+        <div className="w-[92vw] h-[10px] mx-auto flex items-center">
           <input
             id="combi-type"
             type="checkbox"
             checked={combi}
             onChange={handleCombiCheckBox}
-            className="w-[20px] h-[20px] accent-yellow-500 bg-white"
+            className="w-[17px] h-[17px] accent-yellow-500 bg-white"
           ></input>
-          <label id="combi-type" className="ml-[4px] font-semibold ">
-            I need a combi car
+          <label
+            id="combi-type"
+            className="ml-[4px] font-semibold text-[14px] "
+          >
+            I need a combi cab
           </label>
         </div>
       </div>
-      <div className="w-[90vw] mx-auto py-[20px] border-t border-b">
-        <p className={`${rubikFonts.className} text-[20px]`}>
-          Choosed car(s) summary have:
-        </p>
-        <div>
-          <div id="seats-summary-wrapper" className=" flex items-center">
-            <BsFillPersonFill className="text-yellow-500 w-[30px] h-[20px]" />
-            <p> {state.van * 8 + state.sedan * 4} seats</p>
-          </div>
-          <div id="seats-summary-wrapper" className=" flex items-center">
-            <BsFillBagFill className="text-yellow-500 w-[30px] h-[20px]" />
-            <p>{state.van * 7 + state.sedan * 3} places for suitcase</p>
+      {router.query.car === "mixed" && (
+        <div className="w-[90vw] mx-auto py-[20px] border-t border-b">
+          <p className={`${rubikFonts.className} text-[20px]`}>
+            Choosed car(s) summary have:
+          </p>
+          <div>
+            <div id="seats-summary-wrapper" className=" flex items-center">
+              <BsFillPersonFill className="text-yellow-500 w-[30px] h-[20px]" />
+              <p> {state.van * 8 + state.sedan * 4} seats</p>
+            </div>
+            <div id="seats-summary-wrapper" className=" flex items-center">
+              <BsFillBagFill className="text-yellow-500 w-[30px] h-[20px]" />
+              <p>{state.van * 7 + state.sedan * 3} places for suitcase</p>
+            </div>
           </div>
         </div>
-      </div>
+      )}
       <form
         onSubmit={handleOrdering}
         className="w-[90vw] h-[300px] mx-auto my-[10px]"
       >
-        <p className="font-[700] text-[20px]">Order details:</p>
+        <p className="font-[700] text-[16px]">Order details:</p>
         <div className=" border-blue-900 w-full flex justify-between items-center mt-[20px]">
           <div className=" border-blue-900 w-full h-[40px] flex items-center">
             <MdFlightLand className="h-[40px] w-[40px] px-[4px] text-yellow-500" />
