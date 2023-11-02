@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Aboutinmian() {
   return (
-    <div className="bg-white w-screen lg:h-[600px] -mt-[50px] pt-[100px] flex">
+    <div className="bg-white w-screen lg:h-[600px] -mt-[50px] pt-[70px] flex">
       <div id="aboutus-wrapper" className="lg:w-[1080px] mx-auto flex">
         <div className="lg:w-2/3 mx-auto h-5/6 lg:flex flex-col relative">
           <p className="text-left w-full lg:text-[40px] text-[30px] my-[20px] z-10 px-[15px] lg:px-auto">

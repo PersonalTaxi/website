@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 export default function Contactform() {
   return (
@@ -33,7 +34,8 @@ export default function Contactform() {
               ></input>
               <p className="px-[10px]">
                 I accept this company privacy policy in order to contact with me
-                with any infrmation according to they serives.
+                with any infrmation according to{" "}
+                <Link href="/policy">Privacy Policy</Link> they serives.
               </p>
             </div>
             <button className="bg-yellow-500 border-yellow-500 border h-[40px] w-[150px] rounded-[7px] text-white duration-200 hover:text-black hover:bg-transparent mt-[20px]">

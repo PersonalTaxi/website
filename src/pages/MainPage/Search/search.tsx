@@ -203,7 +203,7 @@ export default function Search() {
         ></meta>
       </Head>
       <div
-        className="w-screen lg:w-[1180px] z-20 mt-[12px] mx-auto"
+        className="w-screen lg:w-[1180px] z-20 mt-[12px] mx-auto "
         id="specifics"
       >
         <div
@@ -261,7 +261,7 @@ export default function Search() {
                     id="calendar-timer-wrapper"
                     className="rounded-[10px] h-[50px] w-full lg:w-[220px] flex xl:flex-row flex-no-wrap mb-[10px] lg:mb-0 relative"
                   >
-                    <div className="h-[50px] w-full rounded-[10px] border border-gray-900/[0.4] flex items-center pl-[10px] relative">
+                    <div className="h-[50px] w-full rounded-[10px] border lg:border-gray-900/[0.4] flex items-center pl-[10px] relative">
                       {date === "" && (
                         <div
                           ref={DatePlaceholder}
@@ -314,7 +314,7 @@ export default function Search() {
                   >
                     <div
                       id="person-and-submit-wraper"
-                      className="rounded-[10px] h-[50px] w-6/12 xl:w-[270px] border border-gray-900/[0.4] flex justify-center items-center"
+                      className="rounded-[10px] h-[50px] w-6/12 xl:w-[270px] border lg:border-gray-900/[0.4] flex justify-center items-center"
                     >
                       <div
                         className="w-[25px] h-[25px] rounded-[50%]"
