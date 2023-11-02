@@ -5,6 +5,7 @@ import Aboutinmian from "../../components/aboutinmian";
 import Orderingprocess from "../../components/orderingprocess";
 import Footer from "../Footer/footer";
 import Contactform from "@/components/contactform";
+import Mobilemenu from "@/components/mobilemenu";
 
 export default function Main() {
   return (

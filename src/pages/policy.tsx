@@ -29,7 +29,8 @@ export default function Policy() {
         <Header />
         <div className="pt-[50px] lg:w-[1080px] w-[95vw] mx-auto">
           <p className="text-center font-bold my-[30px] lg:text-[32px] text-[20px]">
-            Privacy Policy ("RODO") <br></br>Polityka Prywatności ("RODO")
+            Privacy Policy (&quotRODO&quot) <br></br>Polityka Prywatności
+            (&quotRODO&quot)
           </p>
           <div className="flex mb-[40px]">
             <div
@@ -47,7 +48,7 @@ export default function Policy() {
               Privacy Policy (RODO)<br></br>version EN
             </div>
           </div>
-          {/* <p ref={RODO_EN} className="inline">
+          <p ref={RODO_EN} className="inline">
             In connection with RODO, or Regulation (EU) R2016/679 of the
             European Parliament and of the Council of 27 April 2016 on the
             protection of natural persons with regard to the processing of
@@ -57,34 +58,34 @@ export default function Policy() {
             document is the implementation of the information policy towards
             persons using the application for ordering transportation services
             and concluding contracts for the transportation of persons or goods
-            by cab (hereinafter referred to as the "Application") persons
-            ordering transportation services through the website in the domain
-            https://www.personaltaxi.pl/ (the "Site") and through the national
-            telephone exchange 605665462 (the "Exchange") or by any other means,
-            as well as persons contacting the controller of personal data, i.e.
-            Inter-Dywiz sp. z o.o., in all aspects of the processing and
-            protection of personal data. We attach great importance to the
-            protection, collection, processing and use of your personal data in
-            accordance with applicable regulations. The Administrator makes
-            every effort to ensure that the information concerning you remains
-            private. Accordingly, we publish a document explaining the rules and
-            how we collect, process and use information about the users of the
-            Application and the Site and other persons whose personal data we
-            process. Please read the document carefully to understand our
-            privacy policy and how we use your personal information. We would
-            like to inform you that Inter-Dywiz Ltd. complies with all
-            applicable data protection laws. We respect and protect your
-            privacy, and we assure you that we will answer all your questions
-            about data protection and ensure that your rights are exercised at
-            all times. Therefore, please read the following information
-            carefully. Your personal data is processed on the basis of
-            applicable laws and regulations, in particular the European
+            by cab (hereinafter referred to as the &quotApplication&quot)
+            persons ordering transportation services through the website in the
+            domain https://www.personaltaxi.pl/ (the &quotSite&quot) and through
+            the national telephone exchange 605665462 (the &quotExchange&quot)
+            or by any other means, as well as persons contacting the controller
+            of personal data, i.e. Inter-Dywiz sp. z o.o., in all aspects of the
+            processing and protection of personal data. We attach great
+            importance to the protection, collection, processing and use of your
+            personal data in accordance with applicable regulations. The
+            Administrator makes every effort to ensure that the information
+            concerning you remains private. Accordingly, we publish a document
+            explaining the rules and how we collect, process and use information
+            about the users of the Application and the Site and other persons
+            whose personal data we process. Please read the document carefully
+            to understand our privacy policy and how we use your personal
+            information. We would like to inform you that Inter-Dywiz Ltd.
+            complies with all applicable data protection laws. We respect and
+            protect your privacy, and we assure you that we will answer all your
+            questions about data protection and ensure that your rights are
+            exercised at all times. Therefore, please read the following
+            information carefully. Your personal data is processed on the basis
+            of applicable laws and regulations, in particular the European
             Parliament and the Council (EU) 2016/679 of April 27, 2016 on the
             protection of natural persons with regard to the processing of
             personal data and on the free movement of such data and the repeal
-            of Directive 95/46/EC (hereinafter: the "Regulation") and the Law of
-            May 10, 2018 on the Protection of Personal Data (hereinafter: the
-            „Law").
+            of Directive 95/46/EC (hereinafter: the &quotRegulation&quot) and
+            the Law of May 10, 2018 on the Protection of Personal Data
+            (hereinafter: the &quotLaw&quot).
             <br></br>
             1. information regarding the Administrator and the collection of
             personal data<br></br>
@@ -183,20 +184,21 @@ export default function Policy() {
             <br></br>
             <br></br>
             (8) In order to carry out an order for transportation services using
-            a "voucher", the Administrator processes the personal data of the
-            person using the "voucher" option in the form of a telephone number,
-            and the processing of such personal data is carried out pursuant to
-            Article 6(1)(f) of the Regulation. The processing of the personal
-            data provided is necessary for the purposes of the legitimate
-            interests pursued by the Administrator, i.e. to provide an
-            appropriate tool for placing an order for cab transportation for the
-            benefit of the person using the "voucher" option. 8.<br></br>
+            a &quotvoucher&quot, the Administrator processes the personal data
+            of the person using the &quotvoucher&quot option in the form of a
+            telephone number, and the processing of such personal data is
+            carried out pursuant to Article 6(1)(f) of the Regulation. The
+            processing of the personal data provided is necessary for the
+            purposes of the legitimate interests pursued by the Administrator,
+            i.e. to provide an appropriate tool for placing an order for cab
+            transportation for the benefit of the person using the
+            &quotvoucher&quot option. 8.<br></br>
             <br></br>
             In addition, the Administrator collects and processes your personal
             data in the form of your name, telephone number, email address on
             the basis of Article 6(1)(f) of the Regulation, i.e. the
-            Administrator's legitimate interest, which is direct marketing of
-            its own services, as well as research, in particular through
+            Administrator&rdquos legitimate interest, which is direct marketing
+            of its own services, as well as research, in particular through
             surveys, satisfaction with services, with the proviso that with
             regard to services constituting provision of services by electronic
             means within the meaning of the Act of July 18, 2002. on the
@@ -208,17 +210,17 @@ export default function Policy() {
             by the Administrator (which also applies to profiling), other data
             concerning you that are not necessary for the provision of services
             by electronic means. You may object to such processing at any time,
-            which will result in the immediate cessation of the Administrator's
-            processing of your personal data for this purpose, and in the case
-            of processing on the basis of consent, you may revoke (withdraw)
-            your consent at any time.<br></br>
+            which will result in the immediate cessation of the
+            Administrator&rdquos processing of your personal data for this
+            purpose, and in the case of processing on the basis of consent, you
+            may revoke (withdraw) your consent at any time.<br></br>
             <br></br>
             (9) The processing of personal data in the form of name, phone
             number, e-mail address for marketing purposes carried out by the
-            Administrator's Partners may be carried out only with your consent,
-            pursuant to Article 6(1)(a) of the Regulation. Consent to the
-            processing of personal data in such cases includes consent to the
-            processing of personal data for marketing purposes of the
+            Administrator&rdquos Partners may be carried out only with your
+            consent, pursuant to Article 6(1)(a) of the Regulation. Consent to
+            the processing of personal data in such cases includes consent to
+            the processing of personal data for marketing purposes of the
             Administrator and its Partners, such as subcontractors, companies
             and cab corporations, partners running social media, advertisers and
             entities co-organizing marketing actions, promotions, contests, etc.
@@ -273,12 +275,12 @@ export default function Policy() {
             <br></br>
             14 The Site performs functions of acquiring information and personal
             data about users and their behavior also by storing cookies
-            (so-called "cookies") in the end devices. The Administrator uses the
-            information contained in cookies to improve the functioning of the
-            Site. They provide data about user activity on the Site. The use of
-            cookies is based on your consent. You can disable cookies at any
-            time by changing the settings in your browser. The rules of use are
-            defined in the Cookies Policy.<br></br>
+            (so-called &quotcookies&quot) in the end devices. The Administrator
+            uses the information contained in cookies to improve the functioning
+            of the Site. They provide data about user activity on the Site. The
+            use of cookies is based on your consent. You can disable cookies at
+            any time by changing the settings in your browser. The rules of use
+            are defined in the Cookies Policy.<br></br>
             <br></br>
             15 The Administrator is an entrepreneur and constantly strives to
             improve the products and tools he uses to develop our business.
@@ -286,8 +288,8 @@ export default function Policy() {
             the best way and that as many people as possible who are interested
             in doing business with him visit them. To improve the quality of the
             Site, the Administrator may use tools commonly referred to as
-            "trackers." They allow us to monitor the effectiveness of web
-            offers. With them, we can collect such data as :<br></br>-
+            &quottrackers.&quot They allow us to monitor the effectiveness of
+            web offers. With them, we can collect such data as :<br></br>-
             information through which links online users are redirected to the
             Site<br></br>- information on when and how often the Site was
             visited<br></br>- information what kind of information is searched,
@@ -302,14 +304,15 @@ export default function Policy() {
             make automated decisions within the meaning of the Regulation,
             except that: - Your data may be profiled for the purpose of
             providing personalized content in the Application, i.e. the
-            implementation of the Application's function of presenting an offer
-            of cab transportation services as close to your preferences as
+            implementation of the Application&rdquos function of presenting an
+            offer of cab transportation services as close to your preferences as
             possible <br></br>- applies to the situation of the introduction of
             such functionality of the Application.<br></br>- data about the use
             of the Application and services offered through the Application, as
             well as <br></br>
             contact data may be used for the purpose of sending personalized
-            messages regarding the use of the Administrator's services<br></br>
+            messages regarding the use of the Administrator&rdquos services
+            <br></br>
             Such processing is necessary for the performance of a contract for
             the use of the Application or another contract for a service
             provided electronically, pursuant to the wording of Article 22(1)(a)
@@ -321,19 +324,20 @@ export default function Policy() {
             requirements of applicable laws, including tax laws, or for the
             period necessary for other purposes for which the Administrator may
             process your data in accordance with this Privacy Policy. In the
-            case of personal data processed on the basis of the Administrator's
-            legitimate interest, including for the purpose of providing a
-            service using a "voucher", the Administrator shall keep the personal
-            data provided for the period necessary for the purpose of processing
-            or until you file an effective objection. In the case of personal
-            data processed for the Administrator's direct marketing purposes,
-            the Administrator shall retain the personal data provided for the
-            period necessary for the purpose of processing or until an effective
-            objection is raised. In the case of personal data processed on the
-            basis of your consent, the Administrator shall keep the personal
-            data you provide for the period necessary for the purpose of
-            processing or until you withdraw your consent. After these periods,
-            your personal data will be deleted.
+            case of personal data processed on the basis of the
+            Administrator&rdquos legitimate interest, including for the purpose
+            of providing a service using a &quotvoucher&quot, the Administrator
+            shall keep the personal data provided for the period necessary for
+            the purpose of processing or until you file an effective objection.
+            In the case of personal data processed for the Administrator&rdquos
+            direct marketing purposes, the Administrator shall retain the
+            personal data provided for the period necessary for the purpose of
+            processing or until an effective objection is raised. In the case of
+            personal data processed on the basis of your consent, the
+            Administrator shall keep the personal data you provide for the
+            period necessary for the purpose of processing or until you withdraw
+            your consent. After these periods, your personal data will be
+            deleted.
             <br></br>
             <br></br>
             (14) When contacting through the Central Office, a special message
@@ -517,12 +521,13 @@ export default function Policy() {
             <br></br>
             (5) The Administrator uses the Google Analytics service to analyze
             web traffic, to collect and analyze data on the behavior of people
-            using the Application or the Administrator's websites. Web traffic
-            analysis is mainly used for website optimization and marketing
-            purposes. In accordance with the specified functionalities of Google
-            Analytics, Google Analytics also piques "cookies" and the data
-            contained therein may be used for marketing purposes, and the data
-            contained therein may also be used for profiling.<br></br>
+            using the Application or the Administrator&rdquos websites. Web
+            traffic analysis is mainly used for website optimization and
+            marketing purposes. In accordance with the specified functionalities
+            of Google Analytics, Google Analytics also piques &quotcookies&quot
+            and the data contained therein may be used for marketing purposes,
+            and the data contained therein may also be used for profiling.
+            <br></br>
             The operator of the Google Analytics service is Google Inc., 1600
             AmphitheatrePkwy, MountainView, CA 94043-1351, based in the USA. The
             user may not consent to the collection of data related to the use of
@@ -536,48 +541,49 @@ export default function Policy() {
             (6) The Administrator may also r use the remarketing feature of
             Google AdWords at Google Inc, 1600 AmphitheatreParkway,
             MountainView, CA 94043, USA. Remarketing allows you to create a
-            personalized "cue" to a recipient who has previously viewed a
-            particular page/pages on Google Inc.'s website in order to display
-            an advertisement for a product/service you may be interested in. For
-            this purpose, cookies are stored in your browser that are collected
-            from individual pages you visit through your Google browser. User
-            visits are collected through cookies that are used to identify the
-            browser of the device itself; personal data is not stored. You can
-            restrict or disable Google's storage of cookies at any time by
-            following the indicated link : www.google.com/settings/ads/plugin.
-            For more information on Google Adwords and Google's privacy policy,
-            please visit: www.google.com/privacy/ads.<br></br>
+            personalized &quotcue&quot to a recipient who has previously viewed
+            a particular page/pages on Google Inc.&rdquos website in order to
+            display an advertisement for a product/service you may be interested
+            in. For this purpose, cookies are stored in your browser that are
+            collected from individual pages you visit through your Google
+            browser. User visits are collected through cookies that are used to
+            identify the browser of the device itself; personal data is not
+            stored. You can restrict or disable Google&rdquos storage of cookies
+            at any time by following the indicated link :
+            www.google.com/settings/ads/plugin. For more information on Google
+            Adwords and Google&rdquos privacy policy, please visit:
+            www.google.com/privacy/ads.<br></br>
             <br></br>
             (7) Cookies may be used by advertising networks, in particular the
-            Google network, to display advertisements tailored to the user's use
-            of the Site. For this purpose, they may retain information about the
-            user's navigation path or how long the user stayed on a particular
-            page.<br></br>
+            Google network, to display advertisements tailored to the
+            user&rdquos use of the Site. For this purpose, they may retain
+            information about the user&rdquos navigation path or how long the
+            user stayed on a particular page.<br></br>
             <br></br>
             (8) The administrator also has a fanpage on the Facebook website to
             which links contained in the Site direct. Accordingly, data in the
             form of name or email address may be collected and subsequently
             shared with the Facebook operator, in which case the data processing
-            is performed for the purpose of using the Administrator's page on
-            Facebook and marketing with the help of Facebook.The Site may use
+            is performed for the purpose of using the Administrator&rdquos page
+            on Facebook and marketing with the help of Facebook.The Site may use
             the social plugins (SocialPlugins) of the social network
             Facebook.com, managed by Facebook Inc., 1601 S. California Ave,
-            PaloAlto, CA 94304, USA ("Facebook"). The plug-ins are marked with
-            the portal's logo, its icon or the add-on "Facebook SocialPlugin".
-            If the User launches a website that contains such a plug-in, the
-            browser will establish a direct connection to the Facebook server.
-            The content of the plug-in is directly transferred by Facebook.com
-            to the browser and integrated by it into the website. Inter-Dywiz
-            Ltd. has no influence in this respect on the size of the data that
-            Facebook collects via this plug-in. If you are a member of Facebook
-            but do not want the portal to associate the collected user data, you
-            must make the appropriate settings on your Facebook account. It is
-            the responsibility of this entity to grant access to your data that
-            you have made available to Facebook, and if you have any doubts, you
-            should contact this entity directly or make changes to your Facebook
-            account settings On a similar basis, the indicated data may be
-            transferred to other similar social networks and the entities that
-            run them.<br></br>
+            PaloAlto, CA 94304, USA (&quotFacebook&quot). The plug-ins are
+            marked with the portal&rdquos logo, its icon or the add-on
+            &quotFacebook SocialPlugin&quot. If the User launches a website that
+            contains such a plug-in, the browser will establish a direct
+            connection to the Facebook server. The content of the plug-in is
+            directly transferred by Facebook.com to the browser and integrated
+            by it into the website. Inter-Dywiz Ltd. has no influence in this
+            respect on the size of the data that Facebook collects via this
+            plug-in. If you are a member of Facebook but do not want the portal
+            to associate the collected user data, you must make the appropriate
+            settings on your Facebook account. It is the responsibility of this
+            entity to grant access to your data that you have made available to
+            Facebook, and if you have any doubts, you should contact this entity
+            directly or make changes to your Facebook account settings On a
+            similar basis, the indicated data may be transferred to other
+            similar social networks and the entities that run them.<br></br>
             <br></br>
             (9) In addition, in connection with the Administrator's use of
             Google services, e.g. the G Suite service, data may be transferred
@@ -850,7 +856,7 @@ export default function Policy() {
             <br></br>
             14. Strona realizuje funkcje pozyskiwania informacji oraz danych
             osobowych o użytkownikach i ich zachowaniu także poprzez zapisywanie
-            w urządzeniach końcowych pliki cookie (tzw. "ciasteczka").
+            w urządzeniach końcowych pliki cookie (tzw. &quotciasteczka&quot).
             Administrator wykorzystuje informacje zawarte w plikach cookies w
             celach usprawnienia funkcjonowania Strony. Dostarczają danych o
             aktywności użytkowników na Stronie. Korzystanie z plików cookies
@@ -1159,23 +1165,23 @@ export default function Policy() {
             marketingu z pomocą serwisu Facebook.Strona może korzystać z wtyczki
             społecznościowej (ang. SocialPlugins) portalu społecznościowego
             Facebook.com, zarządzanego przez Facebook Inc., 1601 S. California
-            Ave, PaloAlto, CA 94304, USA ("Facebook"). Wtyczki są oznaczone logo
-            portalu, jego ikoną lub też dodatkiem "Facebook SocialPlugin". W
-            przypadku uruchomienia przez Użytkownika strony internetowej, która
-            zawiera taką wtyczkę, przeglądarka utworzy bezpośrednie połączenie z
-            serwerem Facebook. Zawartość wtyczki zostaje przez portal
-            Facebook.com bezpośrednio przekazana do przeglądarki i przez nią
-            włączona w stronę internetową. Inter-Dywiz sp. z o.o. nie ma w tym
-            zakresie żadnego wpływu na rozmiar danych, które Facebook pobiera za
-            pomocą tej wtyczki. Jeśli jesteś członkiem Facebooka ale nie chcesz,
-            by portal ten kojarzył zgromadzone dane użytkownika, musisz dokonać
-            na swoim koncie na Facebook’u odpowiednich ustawień. Za udzielanie
-            dostępu do Waszych danych udostępnionych przez Was Facebook’owi
-            odpowiada ten podmiot i w przypadku wątpliwości należy zwrócić się
-            do bezpośrednio do tego podmiotu albo dokonać zmian w ustawieniach
-            konta na Facebook’u Na podobnej zasadzie wskazane dane mogą być
-            przekazywane innym podobnym serwisom społecznościowym i prowadzącym
-            je podmiotom.<br></br>
+            Ave, PaloAlto, CA 94304, USA (&quotFacebook&quot). Wtyczki są
+            oznaczone logo portalu, jego ikoną lub też dodatkiem &quotFacebook
+            SocialPlugin&quot. W przypadku uruchomienia przez Użytkownika strony
+            internetowej, która zawiera taką wtyczkę, przeglądarka utworzy
+            bezpośrednie połączenie z serwerem Facebook. Zawartość wtyczki
+            zostaje przez portal Facebook.com bezpośrednio przekazana do
+            przeglądarki i przez nią włączona w stronę internetową. Inter-Dywiz
+            sp. z o.o. nie ma w tym zakresie żadnego wpływu na rozmiar danych,
+            które Facebook pobiera za pomocą tej wtyczki. Jeśli jesteś członkiem
+            Facebooka ale nie chcesz, by portal ten kojarzył zgromadzone dane
+            użytkownika, musisz dokonać na swoim koncie na Facebook’u
+            odpowiednich ustawień. Za udzielanie dostępu do Waszych danych
+            udostępnionych przez Was Facebook’owi odpowiada ten podmiot i w
+            przypadku wątpliwości należy zwrócić się do bezpośrednio do tego
+            podmiotu albo dokonać zmian w ustawieniach konta na Facebook’u Na
+            podobnej zasadzie wskazane dane mogą być przekazywane innym podobnym
+            serwisom społecznościowym i prowadzącym je podmiotom.<br></br>
             <br></br>
             9. Ponadto, w związku z korzystaniem przez Administratora z usług
             Google np. usługi G Suite, dane mogą być przekazywane poza obszar
@@ -1216,7 +1222,7 @@ export default function Policy() {
             pisemnie na adres Inter-Dywiz sp. z o.o. ul. Lotnicza 6/2 31-462
             Kraków.<br></br>
             <br></br>
-          </p> */}
+          </p>
         </div>
       </div>
       <Footer />
