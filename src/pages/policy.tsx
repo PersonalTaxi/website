@@ -185,14 +185,15 @@ export default function Policy() {
             <br></br>
             <br></br>
             (8) In order to carry out an order for transportation services using
-            a "voucher", the Administrator processes the personal data of the
-            person using the "voucher" option in the form of a telephone number,
-            and the processing of such personal data is carried out pursuant to
-            Article 6(1)(f) of the Regulation. The processing of the personal
-            data provided is necessary for the purposes of the legitimate
-            interests pursued by the Administrator, i.e. to provide an
-            appropriate tool for placing an order for cab transportation for the
-            benefit of the person using the &ldquo;voucher&ldquo; option. 8.
+            a &quot;voucher&quot;, the Administrator processes the personal data
+            of the person using the &quot;voucher&quot; option in the form of a
+            telephone number, and the processing of such personal data is
+            carried out pursuant to Article 6(1)(f) of the Regulation. The
+            processing of the personal data provided is necessary for the
+            purposes of the legitimate interests pursued by the Administrator,
+            i.e. to provide an appropriate tool for placing an order for cab
+            transportation for the benefit of the person using the
+            &ldquo;voucher&ldquo; option. 8.
             <br></br>
             <br></br>
             In addition, the Administrator collects and processes your personal
@@ -276,12 +277,13 @@ export default function Policy() {
             <br></br>
             14 The Site performs functions of acquiring information and personal
             data about users and their behavior also by storing cookies
-            (so-called "cookies") in the end devices. The Administrator uses the
-            information contained in cookies to improve the functioning of the
-            Site. They provide data about user activity on the Site. The use of
-            cookies is based on your consent. You can disable cookies at any
-            time by changing the settings in your browser. The rules of use are
-            defined in the Cookies Policy.<br></br>
+            (so-called &quot;cookies&quot;) in the end devices. The
+            Administrator uses the information contained in cookies to improve
+            the functioning of the Site. They provide data about user activity
+            on the Site. The use of cookies is based on your consent. You can
+            disable cookies at any time by changing the settings in your
+            browser. The rules of use are defined in the Cookies Policy.
+            <br></br>
             <br></br>
             15 The Administrator is an entrepreneur and constantly strives to
             improve the products and tools he uses to develop our business.
