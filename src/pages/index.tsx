@@ -6,7 +6,7 @@ import Main from "./MainPage/main";
 
 const rubikFonts = Ubuntu({
   subsets: ["latin"],
-  weight: ["300", "500", "700"],
+  weight: ["300","400", "500", "700"],
 });
 
 export default function Home() {

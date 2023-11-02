@@ -62,9 +62,9 @@ export default function Orderspacifications() {
   return (
     // As form element
     <div className="bg-white w-full mx-auto mt-[20px] border-t pt-[15px]">
-      <div className="w-11/12 mx-auto">
+      <div className="w-full mx-auto">
         <p className="mb-[25px] text-[20px] font-bold">
-          A few informations about you:{" "}
+          A few informations about you:
         </p>
         <div className="flex mb-[25px]">
           <div className="w-[70px] flex items-center">
