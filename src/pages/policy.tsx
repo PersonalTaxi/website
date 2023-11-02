@@ -37,7 +37,7 @@ export default function Policy() {
               className="text-[10px] lg:text-[18px] lg:w-1/3 w-1/2 border-b-2 py-[10px] px-[6px] rounded-[5px] mr-[10px] font-bold border-gray-900 cursor-pointer"
               onClick={handleChangingPolicyToPL}
             >
-              Polityka prywatności  (RODO)<br></br>wersja PL
+              Polityka prywatności (RODO)<br></br>wersja PL
             </div>
             <div
               ref={RODO_EN_Button}
@@ -47,7 +47,7 @@ export default function Policy() {
               Privacy Policy (RODO)<br></br>version EN
             </div>
           </div>
-          <p ref={RODO_EN} className="inline">
+          {/* <p ref={RODO_EN} className="inline">
             In connection with RODO, or Regulation (EU) R2016/679 of the
             European Parliament and of the Council of 27 April 2016 on the
             protection of natural persons with regard to the processing of
@@ -1216,7 +1216,7 @@ export default function Policy() {
             pisemnie na adres Inter-Dywiz sp. z o.o. ul. Lotnicza 6/2 31-462
             Kraków.<br></br>
             <br></br>
-          </p>
+          </p> */}
         </div>
       </div>
       <Footer />
