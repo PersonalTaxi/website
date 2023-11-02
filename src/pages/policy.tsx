@@ -37,7 +37,7 @@ export default function Policy() {
               className="text-[10px] lg:text-[18px] lg:w-1/3 w-1/2 border-b-2 py-[10px] px-[6px] rounded-[5px] mr-[10px] font-bold border-gray-900 cursor-pointer"
               onClick={handleChangingPolicyToPL}
             >
-              Polityka prywatności (RODO)<br></br>wersja PL
+              Polityka prywatności  (RODO)<br></br>wersja PL
             </div>
             <div
               ref={RODO_EN_Button}
