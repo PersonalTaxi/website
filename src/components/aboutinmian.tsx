@@ -22,7 +22,7 @@ export default function Aboutinmian() {
             </p>
           </div>
         </div>
-        <div className="hidden lg:visible lg:w-1/3 h-5/6 relative rounded-[5px] overflow-hidden">
+        <div className="hidden lg:block lg:w-1/3 h-5/6 relative rounded-[5px] overflow-hidden">
           <Image
             src="/aboutus.png"
             alt="about-main"
