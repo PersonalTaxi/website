@@ -37,61 +37,7 @@ export default function Summary() {
     setSearchButtonWasClicked,
   } = useContext(AppContext);
 
-  // console.log(latLangFrom[1])
-
   setSearchButtonWasClicked(true);
-
-  // const handleScrolling = () => {
-  //   if(window.scrollX < 230){
-  //     GoForMore.current.style.display =  "none"
-  //   }
-  // }
-
-  // useEffect(() => {
-
-  //   const updateMap = () => {
-  //     console.log("lala")
-  //     map.setCenter([parseFloat(mapLongitude), parseFloat(mapLatitude)])
-  //     setMapUpdated(false)
-  //   }
-
-  //   let map = fetch("https://api.tomtom.com/map/1/tile/basic/main/0/0/0.pbf?key=adAkl09WHcOiZEvvFkaGPPHrYtJF6Wz1&view=Unified&language=NGT", {
-  //   method:"GET"})
-  //   .then(res => console.log(res.body))
-
-  //  const importingMaps = async() => {
-
-  //     const tt = await import("@tomtom-international/web-sdk-maps")
-  //         // setMapUpdated(false)
-  //         let map = await tt.map({
-  //           key:'adAkl09WHcOiZEvvFkaGPPHrYtJF6Wz1',
-  //           container: MapElement.current,
-  //           stylesVisibility:{
-  //             trafficIncidents:true,
-  //             trafficFlow:true,
-  //           },
-
-  //       center:[mapLongitude, mapLatitude],
-  //       zoom:10
-
-  //     })
-
-  //     console.log(mapUpdated)
-
-  //     setMap(map)
-  //     if(mapUpdated === true) {
-  //       updateMap();
-  //     }
-
-  //     return () => map.remove()
-
-  //  }
-
-  //   importingMaps()
-
-  //   window.addEventListener('scroll', handleScrolling)
-
-  // },[mapUpdated])
 
   return (
     <div className={`${rubikFonts.className}`}>

@@ -37,7 +37,7 @@ function reducer(state: any, action: any) {
   }
 }
 
-let CarsData = { sedan: 0, van: 2 };
+let CarsData = { sedan: 0, van: 1 };
 
 export default function Carcomponent() {
   const router = useRouter();

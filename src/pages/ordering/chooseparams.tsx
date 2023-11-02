@@ -210,9 +210,9 @@ export default function Chooseparams() {
         className=" rounded-[10px] flex w-[90vw] lg:w-[80%] mx-auto justify-between duration-200 mb-[12px] bg-white relative"
       >
         {/* Bloking to configure offer before chosing correct params */}
-        {/* {isFormCompleted !== "true" && (
+        {isFormCompleted !== "true" && (
           <div className="bg-white/[0.85] absolute w-[90vw] lg:w-[1080px] h-[1000px] z-20 "></div>
-        )} */}
+        )}
 
         <div className="rounded-[10px] h-auto lg:h-[300px] w-full bg-white flex lg:justify-center ">
           {router.query.car === "van" && <Van />}
