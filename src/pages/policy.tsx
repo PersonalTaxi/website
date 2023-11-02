@@ -30,7 +30,7 @@ export default function Policy() {
         <div className="pt-[50px] lg:w-[1080px] w-[95vw] mx-auto">
           <p className="text-center font-bold my-[30px] lg:text-[32px] text-[20px]">
             Privacy Policy (&ldquo;RODO&ldquo;) <br></br>Polityka Prywatności
-            (&ldquo;RODO"&ldquo;)
+            (&ldquo;RODO&ldquo;)
           </p>
           <div className="flex mb-[40px]">
             <div
