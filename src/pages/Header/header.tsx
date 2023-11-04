@@ -42,7 +42,7 @@ export default function Header() {
             mobileMenuOpened={mobileMenuOpened}
           />
         </div>
-        <div className="lg:visible  lg:flex hidden text-white w-[400px] justify-evenly">
+        <div className="lg:visible  lg:flex hidden text-white w-[600px] justify-evenly">
           <Link
             href="/"
             className="cursor-pointer hover:text-yellow-500 duration-200"
