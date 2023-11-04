@@ -10,7 +10,7 @@ export default function Claim() {
         Krakow Airport
       </div>
       <div className="text-white leading-6 lg:leading-[50px] text-[20px] lg:text-[40px]">
-        from | to your <b className="text-[32px]">destianation</b>
+        from | to your <b className="text-[28px]">destianation</b>
       </div>
     </div>
   );

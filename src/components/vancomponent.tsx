@@ -35,7 +35,7 @@ export default function Sedancomponent() {
   }
 
   let CountPrice = calculateDistance;
-  let FinalPrice = cars.sedan * 149 + cars.sedan * distanceAboveMin * 7;
+  let FinalPrice = cars.van * 149 + cars.van * distanceAboveMin * 7;
 
   console.log(CountPrice);
   return (

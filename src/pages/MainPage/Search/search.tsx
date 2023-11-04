@@ -203,7 +203,7 @@ export default function Search() {
         ></meta>
       </Head>
       <div
-        className="w-screen lg:w-[1180px] z-20 mt-[12px] mx-auto "
+        className="w-screen lg:w-[1180px] z-20 mt-[12px] mx-auto"
         id="specifics"
       >
         <div
@@ -220,7 +220,7 @@ export default function Search() {
           </div>
           <div
             id="search-contianer"
-            className="bg-white w-11/12 rounded-t-[15px] h-auto border-red-200 -m-[1px] lg:p-[10px] "
+            className="bg-white w-11/12 rounded-t-[15px] h-auto border-red-200 -m-[1px] lg:p-[10px] shadow-2xl"
           >
             <form
               onSubmit={handleSendForm}

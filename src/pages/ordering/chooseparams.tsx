@@ -136,11 +136,11 @@ export default function Chooseparams() {
 
   useEffect(() => {
     let settingCars;
-    if (passengersFromQuery < 5) {
+    if (parseInt(passengersFromQuery) < 5) {
       settingCars = { sedan: 1, van: 0 };
       setCars(settingCars);
     }
-    if (passengersFromQuery > 4) {
+    if (parseInt(passengersFromQuery) > 4) {
       settingCars = { sedan: 0, van: 1 };
       setCars(settingCars);
     }
