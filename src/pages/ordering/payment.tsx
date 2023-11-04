@@ -95,6 +95,8 @@ export default function Payment() {
     );
   };
 
+  console.log(isFormCompleted)
+
   return (
     <div>
       <Header />
@@ -118,7 +120,7 @@ export default function Payment() {
           </Link>
         </div>
       )}
-      {isFormCompleted === true && (
+      {isFormCompleted !== false && (
         <div className="w-screen flex justify-center items-center flex-col pt-[20px]">
           <div className="w-[90%] mx-auto">
             {/* <p className="font-semibold mb-[5px]">Your route</p> */}
