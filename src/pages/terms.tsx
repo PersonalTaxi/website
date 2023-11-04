@@ -222,15 +222,16 @@ export default function Policy() {
             name, surname, address, e-mail address and telephone number of the
             Customer, c. select the form of payment, d. accept the Rules of the
             Store, e. confirm the will to conclude a contract, including the
-            selection of the "I buy and pay" button.<br></br>
-            <br></br>5. if the Customer selects the box with "YES" for Invoice
-            in the order form, the VAT number must be provided. After payment of
-            the order, the Invoice will be sent to the email address indicated
-            in the form.<br></br>
+            selection of the &quot;I buy and pay&quot; button.<br></br>
+            <br></br>5. if the Customer selects the box with &quot;YES&quot; for
+            Invoice in the order form, the VAT number must be provided. After
+            payment of the order, the Invoice will be sent to the email address
+            indicated in the form.<br></br>
             <br></br>
             6. During the placement of the Order - until the moment of pressing
-            the "Buy and pay" button. - The Customer has the opportunity to
-            modify the entered data and in the selection of the Service.
+            the &quot;Buy and pay&quot; button. - The Customer has the
+            opportunity to modify the entered data and in the selection of the
+            Service.
             <br></br>
             <br></br>7. After the Buyer has provided all the data necessary to
             place the Order for the Service, a summary of the Order will be
