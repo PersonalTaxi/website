@@ -58,7 +58,7 @@ export default function Payment() {
       email: email,
       country: "PL",
       language: "pl",
-      urlReturn: "https://ptbeta.vercel.app/ordering/verify",
+      urlReturn: "https://personaltaxi.vercel.app/ordering/verify",
       urlStatus: "https://ptbackend.vercel.app/",
       sign: sign,
     });

@@ -20,12 +20,10 @@ export default function Sedancomponent() {
 
   const handleShowInfoAboutCar = () => {
     servies.current.style.display = "block";
-    // aboutCar.current.style.visibility = "hidden";
   };
 
   const handleHideInfoAboutCar = () => {
     servies.current.style.display = "none";
-    // aboutCar.current.style.visibility = "visible";
   };
 
   let distanceAboveMin = 0;
