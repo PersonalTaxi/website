@@ -56,13 +56,25 @@ export default function Header() {
             About Us
           </Link>
           <Link
-            href="/"
+            href="/faq"
             className="cursor-pointer hover:text-yellow-500 duration-200"
           >
             FAQ
           </Link>
           <Link
-            href="/"
+            href="/privacy"
+            className="cursor-pointer hover:text-yellow-500 duration-200"
+          >
+            Privacy
+          </Link>
+          <Link
+            href="/terms"
+            className="cursor-pointer hover:text-yellow-500 duration-200"
+          >
+            Terms
+          </Link>
+          <Link
+            href="/contact"
             className="cursor-pointer hover:text-yellow-500 duration-200"
           >
             Contact
