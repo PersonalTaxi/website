@@ -1,12 +1,18 @@
 import Image from "next/image";
 import { Ubuntu } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import Header from "./Header/header";
 import Head from "next/head";
 import Main from "./MainPage/main";
 
 const rubikFonts = Ubuntu({
   subsets: ["latin"],
-  weight: ["300","400", "500", "700"],
+  weight: ["300", "400", "500", "700"],
+});
+
+const MontserratFont = Montserrat({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
 });
 
 export default function Home() {
@@ -20,7 +26,7 @@ export default function Home() {
           content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
         ></meta>
       </Head>
-      <div className={`${rubikFonts.className}`}>
+      <div className={`${MontserratFont.className}`}>
         <main>
           <Header />
           <Main />

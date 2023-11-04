@@ -7,6 +7,7 @@ import React, {
   useState,
   useCallback,
 } from "react";
+import { Montserrat } from "next/font/google";
 import { Ubuntu } from "next/font/google";
 import Chooseparams from "./chooseparams";
 import Header from "../Header/header";
@@ -20,7 +21,12 @@ import { AppContext } from "../_app";
 
 const rubikFonts = Ubuntu({
   subsets: ["latin"],
-  weight: ["300", "500", "700"],
+  weight: ["300", "400", "500", "700"],
+});
+
+const MontserratFont = Montserrat({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
 });
 
 export default function Summary() {
@@ -40,7 +46,7 @@ export default function Summary() {
   setSearchButtonWasClicked(true);
 
   return (
-    <div className={`${rubikFonts.className}`}>
+    <div className={`${MontserratFont.className}`}>
       <Head>
         <meta http-equiv="X-UA-Compatible" content="IE=Edge"></meta>
         <title>Your best drive</title>
@@ -72,9 +78,11 @@ export default function Summary() {
       <Header />
       <div
         id="search-wrapper-ordering"
-        className='pt-[100px] relative h-[1600px] bg-[url("/Main_theme.png")] bg-top bg-cover bg-no-repeat bg-fixed'
+        className='pt-[100px] relative h-[1600px] lg:h-[1300px]  bg-[url("/Main_theme.png")] bg-top bg-cover bg-no-repeat bg-fixed'
       >
-        <div className={`w-screen  h-[350px] rounded-t-[40px] z-20 bottom-0`}>
+        <div
+          className={`w-screen  h-[350px] lg:h-auto rounded-t-[40px] z-20 bottom-0`}
+        >
           <Search />
           <Chooseparams />
         </div>

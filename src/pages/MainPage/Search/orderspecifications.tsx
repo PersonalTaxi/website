@@ -1,5 +1,6 @@
 import React, { useContext, useState, useRef } from "react";
 import { AppContext } from "../../_app";
+import Link from "next/link";
 import countries from "../../../data/countries.json";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 
@@ -61,9 +62,9 @@ export default function Orderspacifications() {
 
   return (
     // As form element
-    <div className="bg-white w-full mx-auto mt-[20px] border-t pt-[15px]">
+    <div className="bg-white w-full lg:w-1/2 mx-auto mt-[20px] border-t pt-[15px]">
       <div className="w-full mx-auto">
-        <p className="mb-[25px] text-[20px] font-bold">
+        <p className="lg:hidden mb-[25px] text-[20px] font-bold">
           A few informations about you:
         </p>
         <div className="flex mb-[25px]">
@@ -130,8 +131,12 @@ export default function Orderspacifications() {
             className="w-[30px] h-[30px] mr-[5px]"
           ></input>
           <p className="leading-4">
-            I accept the privacy policy and agree to contact and realize my
-            order.
+            I accept the{" "}
+            <Link href="/policy" className="underline">
+              {" "}
+              Privacy Policy
+            </Link>{" "}
+            and agree to contact and realize my order.
           </p>
         </div>
       </div>

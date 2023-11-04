@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { BsFillPersonFill, BsFillBagFill } from "react-icons/bs";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 import { useReducer } from "react";
 import Cars from "../data/cars.json";
+import { AppContext } from "@/pages/_app";
 
 function reducer(state: any, action: any) {
   switch (action.type) {
     case "increment-sedan":
       // if(state.sedan >= 0)
-      return { sedan: state.sedan + 1, van: state.van };
+      return;
+    // return { sedan: state.sedan + 1, van: state.van };
 
     case "decrement-sedan":
       if (state.sedan > 0) {
@@ -37,19 +39,20 @@ function reducer(state: any, action: any) {
   }
 }
 
-let CarsData = { sedan: 0, van: 1 };
+let CarsData = { sedan: 0, van: 0 };
 
 export default function Carcomponent() {
   const router = useRouter();
+  const { cars, setCars } = useContext(AppContext);
   const [state, dispatch] = useReducer(reducer, CarsData);
   function increment(e: any) {
     console.log(state);
     if (e.target.id === "sedan") {
-      console.log("sedansssss");
+      setCars({ sedan: cars.sedan + 1, van: cars.van });
       dispatch({ type: "increment-sedan" });
     }
     if (e.target.id === "van") {
-      console.log("vansss");
+      setCars({ sedan: cars.sedan, van: cars.van + 1 });
       dispatch({ type: "increment-van" });
     }
   }
@@ -57,9 +60,11 @@ export default function Carcomponent() {
   function decrement(e: any) {
     console.log(e.target.id);
     if (e.target.id === "van") {
+      setCars({ sedan: cars.sedan, van: cars.van - 1 });
       dispatch({ type: "decrement-van" });
     } else {
       dispatch({ type: "decrement-sedan" });
+      setCars({ sedan: cars.sedan - 1, van: cars.van });
     }
   }
 

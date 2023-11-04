@@ -35,14 +35,14 @@ export default function Policy() {
           <div className="flex mb-[40px]">
             <div
               ref={RODO_PL_Button}
-              className="text-[10px] lg:text-[18px] lg:w-1/3 w-1/2 border-b-2 py-[10px] px-[6px] rounded-[5px] mr-[10px] font-bold border-gray-900 cursor-pointer"
+              className="text-[10px] lg:text-[18px] lg:w-1/3 w-1/2 py-[10px] px-[6px] rounded-[5px] mr-[10px] font-bold border-gray-900 cursor-pointer"
               onClick={handleChangingPolicyToPL}
             >
               Polityka prywatności (RODO)<br></br>wersja PL
             </div>
             <div
               ref={RODO_EN_Button}
-              className="text-[10px] lg:text-[18px] lg:w-1/3 w-1/2 py-[10px] px-[6px] rounded-[5px] font-bold border-gray-900 cursor-pointer border-0"
+              className="text-[10px] lg:text-[18px] lg:w-1/3 w-1/2 py-[10px] px-[6px] rounded-[5px] font-bold border-gray-900 cursor-pointer border-b-2"
               onClick={handleChangingPolicyToEN}
             >
               Privacy Policy (RODO)<br></br>version EN

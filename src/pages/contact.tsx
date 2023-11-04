@@ -1,15 +1,16 @@
-import React, { useEffect, Component, useContext } from "react";
-import Carcomponents from "./chooseparams";
-import Header from "../Header/header";
-import Search from "../MainPage/Search/search";
+import React from "react";
 import Head from "next/head";
+import Header from "./Header/header";
+import Faqelement from "./Faq/faqelement";
+import Footer from "./Footer/footer";
+import Contactform from "@/components/contactform";
 
-export default function Order() {
+export default function Contact() {
   return (
-    <div className='bg-[url("/Main_theme.png")] w-screen  bg-cover bg-fixed'>
+    <>
       <Head>
         <meta http-equiv="X-UA-Compatible" content="IE=Edge"></meta>
-        <title>Your best drive</title>
+        <title>Contact Us</title>
         <meta
           name="viewport"
           content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
@@ -36,9 +37,19 @@ export default function Order() {
         ></link>
       </Head>
       <Header />
-      <div id="search-wrapper-ordering" className="pt-[80px]">
-        <Search />
+      <div className='w-screen h-[300px] bg-[url("/Main_theme.png")] bg-top bg-cover bg-no-repeat flex items-center justify-center text-white relative'>
+        <div className="absolute w-full h-full bg-gray-900/[0.7] z-0"></div>
+        <div className="flex items-center justify-center flex-col w-[65%] z-10">
+          <p className="text-[40px] font-semibold">Contact Us</p>
+        </div>
       </div>
-    </div>
+      <div
+        id="Faq-wrapper"
+        className=" border w-screen min-h-[400px] z-20 relative"
+      >
+        <Contactform />
+      </div>
+      <Footer />
+    </>
   );
 }

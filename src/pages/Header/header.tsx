@@ -19,8 +19,8 @@ export default function Header() {
           <Link href="/">
             <Image
               src="/Logo.png"
-              width={100}
-              height={100}
+              width={90}
+              height={90}
               alt="taxi_krakow"
             ></Image>
           </Link>
@@ -43,18 +43,30 @@ export default function Header() {
           />
         </div>
         <div className="lg:visible  lg:flex hidden text-white w-[400px] justify-evenly">
-          <p className="cursor-pointer hover:text-yellow-500 duration-200">
+          <Link
+            href="/"
+            className="cursor-pointer hover:text-yellow-500 duration-200"
+          >
             Home Page
-          </p>
-          <p className="cursor-pointer hover:text-yellow-500 duration-200">
+          </Link>
+          <Link
+            href="/"
+            className="cursor-pointer hover:text-yellow-500 duration-200"
+          >
             About Us
-          </p>
-          <p className="cursor-pointer hover:text-yellow-500 duration-200">
+          </Link>
+          <Link
+            href="/"
+            className="cursor-pointer hover:text-yellow-500 duration-200"
+          >
             FAQ
-          </p>
-          <p className="cursor-pointer hover:text-yellow-500 duration-200">
+          </Link>
+          <Link
+            href="/"
+            className="cursor-pointer hover:text-yellow-500 duration-200"
+          >
             Contact
-          </p>
+          </Link>
         </div>
       </div>
     </div>

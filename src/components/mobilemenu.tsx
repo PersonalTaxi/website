@@ -18,7 +18,7 @@ export default function Mobilemenu({
 
   return (
     <div className="w-screen h-screen bg-white z-50 top-0 left-0">
-      <div className="w-full h-[50px] px-[15px] flex items-center justify-between">
+      <div className="w-full h-[50px] px-[15px] flex items-center justify-between bg-black">
         <div>
           <Link href="/">
             <Image
@@ -30,7 +30,7 @@ export default function Mobilemenu({
           </Link>
         </div>
         <AiOutlineClose
-          className="w-[30px] h-[30px]"
+          className="w-[30px] h-[30px] text-white"
           onClick={handleClosingMenu}
         />
       </div>
@@ -46,14 +46,16 @@ export default function Mobilemenu({
           <Link href="#" onClick={handleClosingMenu}>
             About Us
           </Link>
-          <Link href="faq">FAQ</Link>
+          <Link href="faq" onClick={handleClosingMenu}>
+            FAQ
+          </Link>
           <Link href="policy" onClick={handleClosingMenu}>
             Privacy Police
           </Link>
-          <Link href="#" onClick={handleClosingMenu}>
+          <Link href="terms" onClick={handleClosingMenu}>
             Terms
           </Link>
-          <Link href="#" onClick={handleClosingMenu}>
+          <Link href="/contact" onClick={handleClosingMenu}>
             Contact
           </Link>
         </div>
