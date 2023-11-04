@@ -73,7 +73,7 @@ export default function Orderspacifications() {
               name="title"
               value="Mr."
               type="radio"
-              className="mr-[4px] w-[20px] h-[20px]"
+              className="mr-[4px] w-[20px] h-[20px] cursor-pointer"
               onChange={handlePersonTitle}
               required
             ></input>
@@ -84,7 +84,7 @@ export default function Orderspacifications() {
               name="title"
               value="Mrs."
               type="radio"
-              className="mr-[4px] w-[20px] h-[20px]"
+              className="mr-[4px] w-[20px] h-[20px] cursor-pointer"
               required
             ></input>
             <label>Mrs.</label>

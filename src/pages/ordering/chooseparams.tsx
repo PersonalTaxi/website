@@ -106,15 +106,6 @@ export default function Chooseparams() {
   }
 
   //setting cars
-  let settingCars;
-  if (passengersFromQuery < 5) {
-    settingCars = { sedan: 1, van: 0 };
-    setCars(settingCars);
-  }
-  if (passengersFromQuery > 5) {
-    settingCars = { sedan: 0, van: 1 };
-    setCars(settingCars);
-  }
 
   // setCars(settingCars);
   //end of setting cars
@@ -144,7 +135,15 @@ export default function Chooseparams() {
   };
 
   useEffect(() => {
-    setCars({ sedan: 0, van: 0 });
+    let settingCars;
+    if (passengersFromQuery < 5) {
+      settingCars = { sedan: 1, van: 0 };
+      setCars(settingCars);
+    }
+    if (passengersFromQuery > 4) {
+      settingCars = { sedan: 0, van: 1 };
+      setCars(settingCars);
+    }
   }, [router.query.passengers]);
 
   // useEffect(() => {
