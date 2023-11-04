@@ -52,7 +52,7 @@ export default function Policy() {
             <br></br>
             1. Personal Data Administrator - the entity that decides on the
             purposes and means of personal data processing. The administrator of
-            Customers' personal data is the Service Provider.
+            Customers&apos; personal data is the Service Provider.
             <br></br>
             <br></br>2. eVoucher - a document in electronic form, authorizing
             the execution of a purchased Service, generated in advance through
@@ -68,8 +68,8 @@ export default function Policy() {
             subject of his/her business activity, made available on the basis of
             the provisions of the Central Register and Information on Business
             Activity.<br></br>
-            <br></br>5. shopping cart - an element of the Store's software in
-            which the Services selected by the Customer for purchase are
+            <br></br>5. shopping cart - an element of the Store&apos;s software
+            in which the Services selected by the Customer for purchase are
             visible.<br></br>
             <br></br>
             6. Buyer - an adult individual with the capacity to perform legal
@@ -78,7 +78,7 @@ export default function Policy() {
             an Order from the Store, directly related to its business or
             professional activity.<br></br>
             <br></br>7. Cookies Policy - a document describing cookies and the
-            way they are used on the Store's website.
+            way they are used on the Store&apos;s website.
             <br></br>
             <br></br>8. Privacy Policy - a document describing the purposes and
             methods of processing personal data and the rights of data subjects.
@@ -122,11 +122,12 @@ export default function Policy() {
             National Court Register under KRS number: 0000496661, holding NIP:
             6751496482, REGON: 123040168. 16. Purchase of Services - reservation
             of Services and their payment by the Customer.<br></br>
-            <br></br>17. Order - the Customer's declaration of intent aimed
+            <br></br>17. Order - the Customer&apos;s declaration of intent aimed
             directly at concluding a contract of carriage of persons with the
             Service Provider by completing and submitting the Order Form in
-            electronic form available on the Store's website, including reading
-            and accepting the Terms and Conditions of the Online Store.<br></br>
+            electronic form available on the Store&apos;s website, including
+            reading and accepting the Terms and Conditions of the Online Store.
+            <br></br>
             <br></br>
             II. <b>GENERAL PROVISIONS</b> <br></br>
             <br></br>
@@ -151,23 +152,24 @@ export default function Policy() {
             <br></br>4. The Customer acknowledges that customer service in the
             Store is carried out using a data communications system, ensuring
             the processing of personal data referred to in the Privacy Policy
-            made available on the Store's website, through a telecommunications
-            network, in accordance with the Law on Provision of Electronic
-            Services and the Regulation of the European Parliament and of the
-            Council (EU) 2016/679 of April 27, 2016 on the protection of natural
-            persons in relation to the processing of personal data and on the
-            free movement of such data and repealing Directive 95/46/EC.
+            made available on the Store&apos;s website, through a
+            telecommunications network, in accordance with the Law on Provision
+            of Electronic Services and the Regulation of the European Parliament
+            and of the Council (EU) 2016/679 of April 27, 2016 on the protection
+            of natural persons in relation to the processing of personal data
+            and on the free movement of such data and repealing Directive
+            95/46/EC.
             <br></br>
-            <br></br>5. The Store uses cookies. Cookies used on the Store's
+            <br></br>5. The Store uses cookies. Cookies used on the Store&apos;s
             website are primarily used by the Service Provider or its
             contractors to collect statistical data about the behavior of
-            Customers, the number of Customers and how they use the Store's
+            Customers, the number of Customers and how they use the Store&apos;s
             content, as well as to use the collected data to improve the quality
             of services offered by the Service Provider and to direct
             personalized and tailored content to Customers. Detailed information
             regarding the rules of storing and accessing information on the
-            Customer's devices is contained in the Cookies Policy available on
-            the Store's website.<br></br>
+            Customer&apos;s devices is contained in the Cookies Policy available
+            on the Store&apos;s website.<br></br>
             <br></br>
             <br></br>6. In order to use the Store, it is required to have a
             final device with Internet access, with an installed web browser,
@@ -189,7 +191,7 @@ export default function Policy() {
             <br></br>8. the scope and prices of the Services are described in
             detail onpersonaltaxi.pl.<br></br>
             <br></br>9. purchase of the Services is conditional on the
-            Customer's acceptance of the rules set forth in these Shop
+            Customer&apos;s acceptance of the rules set forth in these Shop
             Regulations.<br></br>
             <br></br>10.The Customer, when accepting the Store Rules, shall do
             so on behalf of himself and/or the Participants on whose behalf he
@@ -202,11 +204,11 @@ export default function Policy() {
             <br></br>
             <br></br>
             1. Purchase of Services shall be made on the basis of a completed
-            form on the Store's website, acceptance of the Store's Terms and
-            Conditions and payment.<br></br>
+            form on the Store&apos;s website, acceptance of the Store&apos;s
+            Terms and Conditions and payment.<br></br>
             <br></br>2. Before making a Purchase of Services, the Customer
             should read in detail the scope of individual Services located on
-            the Store's website.<br></br>
+            the Store&apos;s website.<br></br>
             <br></br>3. During the Purchase of Services the Customer is obliged
             to provide correct and true data.
             <br></br>
@@ -232,8 +234,8 @@ export default function Policy() {
             <br></br>
             <br></br>7. After the Buyer has provided all the data necessary to
             place the Order for the Service, a summary of the Order will be
-            displayed. The Order sent by the Buyer is the Buyer's statement of
-            intent to reserve the Service and conclude a contract of carriage
+            displayed. The Order sent by the Buyer is the Buyer&apos;s statement
+            of intent to reserve the Service and conclude a contract of carriage
             with the Service Provider, in accordance with the provisions of
             these Shop Regulations. After placing an Order, the Buyer will
             receive a message confirming the Order, to the email address he/she
@@ -268,7 +270,7 @@ export default function Policy() {
             <br></br>
             4. Transaction settlements are carried out through Przelewy24 on the
             basis of the rules of service available at: przelewy24.pl and based
-            on the regulations of the Customer's bank.<br></br>
+            on the regulations of the Customer&apos;s bank.<br></br>
             <br></br>
             <br></br>
             V. <b>REALIZATION OF SERVICES</b> <br></br>1. The Customer, when
@@ -315,8 +317,9 @@ export default function Policy() {
             the right to withdraw from the Contract.<br></br>
             <br></br>4. Sending the Service Provider a statement of withdrawal
             before the deadline for withdrawal, in the form of an email message
-            to the Service Provider's email address, tj.biuro@personaltaxi.pl,
-            shall suffice to meet the deadline for withdrawal. <br></br>
+            to the Service Provider&apos;s email address,
+            tj.biuro@personaltaxi.pl, shall suffice to meet the deadline for
+            withdrawal. <br></br>
             <br></br>
             5. The Service Provider shall promptly confirm to the Consumer at
             the e-mail address provided at the conclusion of the contract and
@@ -567,7 +570,7 @@ export default function Policy() {
             Klienta.<br></br>
             <br></br>
             3. Usługa jest świadczona wyłącznie przez kierowcę podległego
-            Usługodawcy. Numer eVoucher'a zostanie przekazany kierowcy za
+            Usługodawcy. Numer eVoucher&apos;a zostanie przekazany kierowcy za
             pośrednictwem systemów teleinformatycznych stosowanych u
             Usługodawcy, co nie zwalnia Klienta z konieczności okazania go
             kierowcy.<br></br>
