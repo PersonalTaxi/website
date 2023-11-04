@@ -95,7 +95,7 @@ export default function Payment() {
     );
   };
 
-  console.log(isFormCompleted)
+  console.log(isFormCompleted);
 
   return (
     <div>
