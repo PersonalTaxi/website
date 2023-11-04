@@ -13,7 +13,7 @@ import { RiSuitcase3Fill, RiPriceTag3Fill } from "react-icons/ri";
 import { AppContext } from "@/pages/_app";
 
 export default function Sedancomponent() {
-  const { calculateDistance } = useContext(AppContext);
+  const { calculateDistance, cars } = useContext(AppContext);
 
   const servies: any = useRef();
   const aboutCar: any = useRef();
@@ -28,7 +28,15 @@ export default function Sedancomponent() {
     // aboutCar.current.style.visibility = "visible";
   };
 
+  let distanceAboveMin = 0;
+
+  if (calculateDistance > 20) {
+    distanceAboveMin = calculateDistance - 20;
+  }
+
   let CountPrice = calculateDistance;
+  let FinalPrice = cars.sedan * 149 + cars.sedan * distanceAboveMin * 7;
+
   console.log(CountPrice);
   return (
     <div className="w-full h-full flex border-blue-900">
@@ -109,7 +117,7 @@ export default function Sedancomponent() {
               className="bg-yellow-500 rounded-r-[5px] text-center text-white -ml-[15px] w-full"
             >
               <p className="text-[12px] lg:text-[20px] inline">
-                final way price {CountPrice} zł
+                final way price {FinalPrice} zł
               </p>
             </div>
             <p className="text-[8px]">Switch to van</p>
