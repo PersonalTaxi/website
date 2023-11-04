@@ -62,7 +62,7 @@ export default function Header() {
             FAQ
           </Link>
           <Link
-            href="/privacy"
+            href="/policy"
             className="cursor-pointer hover:text-yellow-500 duration-200"
           >
             Privacy
