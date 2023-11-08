@@ -2,9 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Head from "next/head";
-import Image from "next/image";
-import { Buffer } from "buffer";
-import bcrypt from "bcrypt";
 import Header from "../Header/header";
 import RegisterInDataBase from "@/components/registerindatabase";
 import { sha384 } from "crypto-hash";
@@ -87,6 +84,7 @@ export default function Payment() {
       method: "POST",
       body: query,
     });
+
     const token = await res.json();
     console.log(token.msg);
 
@@ -110,7 +108,7 @@ export default function Payment() {
       {isFormCompleted === false && (
         <div className="h-[70vh] flex justify-center items-center flex-col">
           <div className="w-[80%] mx-auto text-[20px] text-center mb-[15px]">
-            Sorry, your has session expired
+            Sorry, your session has expired
           </div>
           <Link
             href="/"
@@ -121,7 +119,7 @@ export default function Payment() {
         </div>
       )}
       {isFormCompleted !== false && (
-        <div className="w-screen flex justify-center items-center flex-col pt-[20px]">
+        <div className="w-screen lg:w-[40%] mx-auto flex justify-center items-center flex-col pt-[20px]">
           <div className="w-[90%] mx-auto">
             {/* <p className="font-semibold mb-[5px]">Your route</p> */}
             <div className="flex flex-col">
@@ -181,7 +179,7 @@ export default function Payment() {
             <p className="">{price} zł</p>
           </div>
           <div
-            className="w-[80%] mx-auto rounded-[25px] bg-yellow-500 text-center py-[10px] mt-[20px] text-white text-[20px]"
+            className="w-[80%] lg:w-[50%] mx-auto rounded-[25px] bg-yellow-500  border border-yellow-500 text-center py-[10px] mt-[20px] text-white text-[20px] duration-200 hover:text-white hover:bg-blue-400 hover:border-transparent cursor-pointer"
             onClick={handleRedirectTpPayments}
           >
             Pay & Order

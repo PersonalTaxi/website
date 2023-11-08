@@ -48,7 +48,7 @@ export default function Sedancomponent() {
       </div>
       <div id="info-wrapper" className="lg:w-7/12 w-1/2">
         <div className="text-[15px] lg:text-[20px] font-[500] flex items-center">
-          <p>Economic Sedan</p>
+          <p>Mini Van</p>
           <AiFillInfoCircle
             className="lg:hidden ml-[5px]"
             onMouseEnter={handleShowInfoAboutCar}
