@@ -82,6 +82,12 @@ export default function Chooseparams() {
     price,
     setPrice,
     setIsFromCompleted,
+    infoForDriver,
+    setInfoForDriver,
+    unusualItems,
+    setUnusualItems,
+    flightNumber,
+    setFlightNumber,
   } = useContext(AppContext);
 
   const [combi, setCombi] = useState(false);
@@ -132,6 +138,19 @@ export default function Chooseparams() {
 
   const handleCombiCheckBox = () => {
     setCombi(!combi);
+  };
+
+  const handleAddingFlightNumber = (e: any) => {
+    setFlightNumber(e.target.value);
+    console.log(e.target.value);
+  };
+
+  const handleAddingUnusualItems = (e: any) => {
+    setUnusualItems(e.target.value);
+  };
+
+  const handleAddingInfoForDriver = (e: any) => {
+    setInfoForDriver(e.target.value);
   };
 
   useEffect(() => {
@@ -249,7 +268,9 @@ export default function Chooseparams() {
                 <MdFlightLand className="h-[40px] w-[40px] px-[4px] text-yellow-500" />
                 <input
                   className="border border-gray-400 w-full h-[40px] pl-[10px] rounded-[5px] outline-none"
+                  value={flightNumber}
                   placeholder="Flight number e.g FR9847"
+                  onChange={handleAddingFlightNumber}
                 ></input>
               </div>
               <div
@@ -276,6 +297,8 @@ export default function Chooseparams() {
                 FIll if you have any non-standard bags:
               </div>
               <textarea
+                value={unusualItems}
+                onChange={handleAddingUnusualItems}
                 className="border border-gray-300 h-[100px] w-full rounded-[5px] outline-none"
                 placeholder=" Like bikes, ski, wheelchair and so on"
               ></textarea>
@@ -283,6 +306,8 @@ export default function Chooseparams() {
             <div className=" border-blue-900 w-full h-[120px] flex items-start flex-col mt-[20px] px-[7px] lg:pr-[25px]">
               <div className="text-[16px]">Information for your driver:</div>
               <textarea
+                value={infoForDriver}
+                onChange={handleAddingInfoForDriver}
                 className="border border-gray-300 h-[100px] w-full rounded-[5px] outline-none"
                 placeholder=" Your massage here"
               ></textarea>
@@ -313,7 +338,7 @@ export default function Chooseparams() {
                 ></div>
               </Link>
             )}
-          <button className="float-right flex border-green-900 h-[50px] px-[10px] py-[5px] bg-yellow-500 text-white items-center justify-center rounded-[10px]">
+          <button className="float-right flex h-[50px] px-[10px] py-[5px] bg-yellow-500 text-white items-center justify-center rounded-[10px] border duration-200  border-yellow-500 hover:bg-white hover:text-yellow-500">
             <p>Start ordering for {FinalPrice} zł </p>
           </button>
         </div>

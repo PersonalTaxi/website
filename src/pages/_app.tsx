@@ -26,6 +26,12 @@ type QueryParams = {
   setCalculateDistance: React.Dispatch<React.SetStateAction<any>>;
   isFormCompleted: any;
   setIsFromCompleted: React.Dispatch<React.SetStateAction<any>>;
+  flightNumber: any;
+  setFlightNumber: React.Dispatch<React.SetStateAction<any>>;
+  infoForDriver: any;
+  setInfoForDriver: React.Dispatch<React.SetStateAction<any>>;
+  unusualItems: any;
+  setUnusualItems: React.Dispatch<React.SetStateAction<any>>;
   SearchButtonWasClicked: any;
   setSearchButtonWasClicked: React.Dispatch<React.SetStateAction<any>>;
   mapLongitude: any;
@@ -95,12 +101,17 @@ export default function App({ Component, pageProps }: AppProps) {
   const [latLangTo, setlatLangTo] = useState(null);
   const [cars, setCars] = useState({ sedan: 0, van: 0 });
   const [calculateDistance, setCalculateDistance] = useState(null);
-  const [isFormCompleted, setIsFromCompleted] = useState(false);
+  const [flightNumber, setFlightNumber] = useState(null);
+  const [infoForDriver, setInfoForDriver] = useState(null);
+  const [unusualItems, setUnusualItems] = useState(null);
   const [SearchButtonWasClicked, setSearchButtonWasClicked] = useState(false);
   const [mapLongitude, setMapLongitude]: any = useState(19.945);
   const [mapLatitude, setMapLatitude]: any = useState(40.064);
   const [mapUpdated, setMapUpdated] = useState(false);
   const [sessionIdContext, setSessionIdContext] = useState();
+
+  //validation
+  const [isFormCompleted, setIsFromCompleted] = useState(false);
 
   //data from clients
   const [personTitle, setPersonTitle] = useState();
@@ -146,6 +157,12 @@ export default function App({ Component, pageProps }: AppProps) {
         setMapLatitude,
         mapUpdated,
         setMapUpdated,
+        flightNumber,
+        setFlightNumber,
+        infoForDriver,
+        setInfoForDriver,
+        unusualItems,
+        setUnusualItems,
         //client's data
         personTitle,
         setPersonTitle,
