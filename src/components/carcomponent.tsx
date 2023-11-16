@@ -132,7 +132,7 @@ export default function Carcomponent() {
           </div>
         </div>
         <div id="left-wrapper" className="w-[50px]">
-          <div className="relative w-full h-[25px] lg:h-full flex items-center justify-around ">
+          <div className="relative w-full h-[25px] lg:h-full lg:flex items-center justify-around ">
             <div>
               <IoIosArrowUp
                 id={i.meta}

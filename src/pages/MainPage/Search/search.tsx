@@ -351,11 +351,13 @@ export default function Search() {
                 </div>
               </div>
               {/* Comuniate if data is collected */}
-              <div className="flex justify-center items-center -top-[40px] w-screen h-[20px]">
+              <div className="flex justify-center items-center -top-[40px] w-screen h-[20px] ">
                 {isFormCompleted === "true" && (
                   <>
-                    <AiOutlineCheck />
-                    <p className="text-green-600">Conditions are up to date</p>
+                    <AiOutlineCheck className="text-white bg-green-600 mr-[4px]" />
+                    <p className="text-green-600 font-[500]">
+                      Conditions are up to date
+                    </p>
                   </>
                 )}
 
@@ -371,13 +373,13 @@ export default function Search() {
               </div>
             </form>
           </div>
-          <div className="bg-white w-11/12 mx-auto text-center rounded-b-[10px] text-[12px] h-[20px]">
+          <div className="bg-white w-11/12 mx-auto lg:-mt-[3px] text-center rounded-b-[10px] text-[14px] h-[22px]">
             {((latLangFrom !== null && latLangTo === null) ||
               (latLangFrom === null && latLangTo !== null)) && (
               <p>Drive distance: wating for localizations ...</p>
             )}
             {latLangFrom !== null && latLangTo !== null && (
-              <p className=" bg-white w-11/12 bottom-0 mx-auto text-center rounded-b-[10px]">
+              <p className=" bg-white w-11/12 mx-auto lg:-mt-[3px] text-center rounded-b-[10px] text-[14px]">
                 Drive distance {calculateDistance} km
               </p>
             )}
