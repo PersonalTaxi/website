@@ -12,13 +12,13 @@ export default function Aboutinmian() {
           <div className="absolute w-[50px] h-[50px] rounded-[10px] bg-yellow-500/[0.3] top-[40px] -left-[20px] rotate-45"></div>
           <div className="lg:w-full h-6/6 lg:text-[20px] text-[16px] lg:pr-[150px] px-[15px] font-[400]">
             <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Impedit
-              magni amet unde dolores eos placeat atque fugit vero hic. Ea
-              molestiae cumque nam ullam repudiandae voluptatum reiciendis
-              quibusdam perferendis eaque! Lorem ipsum dolor sit, amet
-              consectetur adipisicing elit. Impedit magni amet unde dolores eos
-              placeat atque fugit vero hic. Ea molestiae cumque nam ullam
-              repudiandae voluptatum reiciendis quibusdam perferendis eaque!
+              We are a company with 10 years of experience. We have about 100
+              cars and the same number of expirienced drivers and we made more
+              than 1000 courses for our clients. Our mission is to be always
+              ready to meet our customers needs and we are available 24/7. We
+              create this page to provide more efficent way to ordering a taxi.
+              With a simple few clicks you can order a taxi with course from
+              start point to finish point. <br></br>You can count on us.
             </p>
           </div>
         </div>

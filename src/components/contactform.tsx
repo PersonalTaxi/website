@@ -17,15 +17,15 @@ export default function Contactform() {
             <input
               type="text"
               placeholder="Your Name"
-              className="border-2 my-[15px] h-[45px] rounded-[7px] px-[5px] shadow-sm placeholder-gray-900/[0.3]"
+              className="border-2 border-gray-300  my-[15px] h-[45px] rounded-[7px] px-[5px] shadow-sm placeholder-gray-900/[0.3] outline-none"
             ></input>
             <input
               placeholder="Your phone number with prefix e.g. (+1) 111 222 333"
-              className="border-2 h-[45px] rounded-[7px] px-[5px] shadow-sm placeholder-gray-900/[0.3]"
+              className="border-2 border-gray-300  h-[45px] rounded-[7px] px-[5px] shadow-sm placeholder-gray-900/[0.3] outline-none"
             ></input>
             <textarea
               placeholder="Your massage"
-              className="border-2 my-[15px] h-[95px] rounded-[7px] px-[5px] shadow-sm placeholder-gray-900/[0.3]"
+              className="border-2 border-gray-300 my-[15px] h-[95px] rounded-[7px] px-[5px] shadow-sm placeholder-gray-900/[0.3] outline-none"
             ></textarea>
             <div
               id="policy-wrapper"
@@ -35,7 +35,7 @@ export default function Contactform() {
                 required
                 type="checkbox"
                 placeholder="Your Name with prefix"
-                className="border-2 rounded-[7px] px-[5px] shadow-sm w-[20px] h-[20px]"
+                className="border-2 border-gray-300 rounded-[7px] px-[5px] shadow-sm w-[20px] h-[20px]"
               ></input>
               <p className="px-[10px]">
                 I accept this company{" "}

@@ -249,7 +249,9 @@ export default function Search() {
                     className="absolute hidden h-[20px] text-red-800 items-center text-[14px]"
                   >
                     <AiFillInfoCircle />
-                    <div className="pl-[5px]">Please fill a localizations</div>
+                    <div className="pl-[5px] cursor-pointer">
+                      Please fill a localizations
+                    </div>
                   </div>
                 </div>
                 <div
@@ -261,7 +263,7 @@ export default function Search() {
                     id="calendar-timer-wrapper"
                     className="rounded-[10px] h-[50px] w-full lg:w-[220px] flex xl:flex-row flex-no-wrap mb-[10px] lg:mb-0 relative"
                   >
-                    <div className="h-[50px] w-full rounded-[10px] border lg:border-gray-900/[0.4] flex items-center pl-[10px] relative">
+                    <div className="h-[50px] w-full lg:w-[84%] rounded-[10px] border lg:border-gray-900/[0.4] flex items-center pl-[10px] relative">
                       {date === "" && (
                         <div
                           ref={DatePlaceholder}
@@ -288,21 +290,21 @@ export default function Search() {
                     <div
                       ref={InfoAboutDate}
                       onClick={handleHideInfoAboutDate}
-                      className="absolute w-full h-[0px] bg-white z-[500] text-[12px] flex items-start duration-200 overflow-hidden rounded-[10px] shadow-xl pl-[10px] pr-[4px]"
+                      className="absolute w-full lg:w-[84%] h-[0px] bg-white z-[500] text-[12px] flex items-start duration-200 overflow-hidden rounded-[10px] shadow-xl pl-[10px] pr-[4px]"
                     >
                       <div className="flex items-center">
-                        <AiFillInfoCircle className="w-[20px] h-[20px]" />
-                        <p className="px-[5px] h-full mt-[5px]">
+                        <AiFillInfoCircle className="w-[20px] h-[20px] lg:hidden " />
+                        <p className="px-[5px] h-full mt-[5px] lg:leading-[14px]">
                           You can order a taxi not eariler that 16 hours from
                           now
                         </p>
                       </div>
-                      <AiOutlineClose className="w-[20px] h-[20px]" />
+                      <AiOutlineClose className="w-[20px] h-[20px] lg:hidden" />
                     </div>
                     <div
                       onMouseEnter={handleShowInfoAboutDate}
                       onMouseLeave={handleHideInfoAboutDate}
-                      className="right-0 my-auto h-full flex items-center text-yellow-500 w-[16%]"
+                      className="right-0 my-auto h-full flex items-center text-yellow-500 w-[16%] cursor-pointer"
                     >
                       <AiFillInfoCircle className="w-full h-full ml-[15px] lg:mx-[7px]" />
                     </div>

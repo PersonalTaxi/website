@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import { GiPathDistance } from "react-icons/gi";
 import { MdOutlinePayments } from "react-icons/md";
 import { FaWpforms } from "react-icons/fa";
@@ -22,7 +21,7 @@ export default function Orderingprocess() {
       >
         <div className=" lg:w-full lg:h-5/6 h-full relative rounded-[5px] overflow-hidden flex flex-wrap">
           <div className="lg:w-1/3 w-full h-1/2 flex justify-center items-center lg:text-[20px] text-[16px] my-[10px]">
-            <div className="w-[200px] h-1/2 flex flex-col justify-center items-center">
+            <div className="w-[85%] h-1/2 flex flex-col justify-center items-center">
               <GiPathDistance className="w-[100px] h-4/6 text-yellow-500" />
               <p>
                 1. Choose localization, number of passengers and pick up date.
@@ -30,7 +29,7 @@ export default function Orderingprocess() {
             </div>
           </div>
           <div className="lg:w-1/3 w-full h-1/2 flex justify-center items-center lg:text-[20px] text-[16px] my-[10px]">
-            <div className=" w-[200px] h-1/2 flex flex-col justify-center items-center">
+            <div className="w-[85%] h-1/2 flex flex-col justify-center items-center">
               <FaWpforms className="w-[100px] h-4/6 text-yellow-500" />
               <p>
                 2. Fill form with your preferences, needs and your personal
@@ -39,7 +38,7 @@ export default function Orderingprocess() {
             </div>
           </div>
           <div className="lg:w-1/3 w-full h-1/2 flex justify-center items-center lg:text-[20px] text-[16px] my-[10px]">
-            <div className=" w-[200px] h-1/2 flex flex-col justify-center items-center">
+            <div className="w-[85%] h-1/2 flex flex-col justify-center items-center">
               <MdOutlinePayments className="w-[100px] h-4/6 text-yellow-500" />
               <p>
                 3. Pay for you road by online payment system and wait for us at
