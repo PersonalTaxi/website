@@ -136,6 +136,11 @@ export default function Orderspacifications() {
               {" "}
               Privacy Policy
             </Link>{" "}
+            and{" "}
+            <Link href="/terms" className="underline">
+              {" "}
+              Terms of our service
+            </Link>{" "}
             and agree to contact and realize my order.
           </p>
         </div>
