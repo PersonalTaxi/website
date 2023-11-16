@@ -167,7 +167,7 @@ export default function Chooseparams() {
   // END OF CALCULATING
 
   return (
-    <div className="relative bg-white mt-[90px] w-[95vw] lg:w-[1080px] mx-auto rounded-[10px] h-[1080px] lg:h-[800px] border">
+    <div className="relative bg-white mt-[90px] w-[95vw] lg:w-[1080px] mx-auto rounded-[10px] h-[1080px] lg:h-[900px] border">
       <div className="w-[80%] h-[60px] flex items-end flex-col mx-auto">
         <p className="text-[12px]"> Step 2 of 3</p>
         <div className="bg-gradient-to-r from-yellow-500 from-0% via-white via-70% to-white to-100% w-full border border-yellow-500/[0.5] h-[20px] rounded-[5px] bg-"></div>
@@ -185,11 +185,11 @@ export default function Chooseparams() {
         )}
       <div
         id="choose-cars-wrapper"
-        className=" rounded-[10px] flex w-[90vw] lg:w-[80%] mx-auto justify-between duration-200 mb-[12px] bg-white relative"
+        className=" rounded-[10px] flex w-[90vw] lg:w-[80%] mx-auto justify-between duration-200 mb-[12px] bg-white"
       >
         {/* Bloking to configure offer before chosing correct params */}
         {isFormCompleted !== "true" && (
-          <div className="bg-white/[0.85] absolute -left-[10px] w-[95vw] lg:w-[1080px] h-[1000px] z-20"></div>
+          <div className="bg-white/[0.85] absolute -left-[10px] lg:left-0 w-[95vw] lg:w-[1080px] h-[1000px] lg:h-[92%] z-20"></div>
         )}
 
         <div className="rounded-[10px] h-auto lg:h-auto w-full bg-white flex lg:justify-center ">
@@ -221,7 +221,7 @@ export default function Chooseparams() {
         </div>
       </div>
       {router.query.car === "mixed" && (
-        <div className="w-[90vw] mx-auto py-[20px] border-t border-b">
+        <div className="w-[90vw] lg:w-[80%] mx-auto py-[20px] border-t border-b">
           <p className={`${rubikFonts.className} text-[20px]`}>
             Choosed car(s) summary have:
           </p>

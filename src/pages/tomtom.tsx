@@ -430,7 +430,7 @@ export default function TomTom({
             ref={clearFrom}
             className={
               queryFrom.length > 1 && queryFrom !== null
-                ? "bg-white absolute w-[40px] h-[40px] right-0 z-10 flex items-center duration-200 justify-center text-gray-300 hover:text-gray-800"
+                ? "bg-white cursor-pointer absolute w-[40px] h-[40px] right-0 z-10 flex items-center duration-200 justify-center text-gray-300 mr-[5px] hover:text-gray-800"
                 : "hidden"
             }
           >
@@ -469,7 +469,7 @@ export default function TomTom({
             ref={clearTo}
             className={
               queryTo.length > 1 && queryTo !== null
-                ? "bg-white absolute w-[40px] h-[40px] right-0 z-10 flex items-center duration-200 justify-center text-gray-300 hover:text-gray-800"
+                ? "bg-white cursor-pointer absolute w-[40px] h-[40px] right-0 z-10 flex items-center duration-200 justify-center text-gray-300 hover:text-gray-800 mr-[2px] rounded-[5px]"
                 : "hidden"
             }
           >

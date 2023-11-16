@@ -39,7 +39,7 @@ function reducer(state: any, action: any) {
   }
 }
 
-let CarsData = { sedan: 0, van: 0 };
+let CarsData = { sedan: 0, van: 1 };
 
 export default function Carcomponent() {
   const router = useRouter();
@@ -112,13 +112,13 @@ export default function Carcomponent() {
               <div className="w-full flex pl-[5px]">
                 <BsFillPersonFill className="text-yellow-500" />
                 <p className="text-center font-semibold pl-[5px]">
-                  max 8 people
+                  max {i.passengers} people
                 </p>
               </div>
               <div className="w-full flex pl-[5px]">
                 <BsFillBagFill className="text-yellow-500" />
                 <p className=" text-center font-semibold pl-[5px]">
-                  max 7 suitcases
+                  max {i.fits} suitcases
                 </p>
               </div>
               <div className="w-full flex pl-[5px] mt-[1px]">
@@ -132,19 +132,19 @@ export default function Carcomponent() {
           </div>
         </div>
         <div id="left-wrapper" className="w-[50px]">
-          <div className="relative w-full h-[125px] flex items-center justify-around ">
+          <div className="relative w-full h-[25px] lg:h-full flex items-center justify-around ">
             <div>
               <IoIosArrowUp
                 id={i.meta}
-                className="w-[30px] text-[40px]"
+                className="w-[30px] lg:w-[50px] text-[40px] cursor-pointer"
                 onClick={increment}
               />
-              <div className="w-[30px] h-[20px] text-[20px] text-center leading-5">
+              <div className="w-[30px] lg:w-[50px] h-[20px] lg:h-[50px] text-[20px] lg:text-[30px] text-center leading-5 flex items-center justify-center">
                 {numberOfCars}
               </div>
               <IoIosArrowDown
                 id={i.meta}
-                className="w-[30px] text-[40px]"
+                className="w-[30px] lg:w-[50px]  text-[40px] cursor-pointer"
                 onClick={decrement}
               />
             </div>

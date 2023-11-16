@@ -322,7 +322,7 @@ export default function Search() {
                         className="w-[25px] h-[25px] rounded-[50%]"
                         onClick={handleDowncreaseNumber}
                       >
-                        <AiOutlineMinus className="w-full h-full" />
+                        <AiOutlineMinus className="w-full h-full cursor-pointer" />
                       </div>
                       <div className="w-[30px] h-[30px]">
                         <BsFillPersonFill className="w-full h-full text-yellow-400/[0.4]" />
@@ -334,7 +334,7 @@ export default function Search() {
                         className=" w-[25px] h-[25px] rounded-[50%]"
                         onClick={handleIncreaseNumber}
                       >
-                        <AiOutlinePlus className="w-full h-full" />
+                        <AiOutlinePlus className="w-full h-full cursor-pointer" />
                       </div>
                     </div>
                     <button
@@ -344,7 +344,7 @@ export default function Search() {
                       {!router.asPath.includes("ordering") ? (
                         <p>See offer</p>
                       ) : (
-                        <p>Update road</p>
+                        <p className="lg:leading-4">Update road</p>
                       )}
                     </button>
                   </div>
