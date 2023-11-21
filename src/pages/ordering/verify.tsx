@@ -65,11 +65,11 @@ export default function Verify() {
       if (VerifyStatus === 200) {
         //get data from databse and sand email
         router.replace({
-          pathname: "https://personaltaxi.vercel.app/ordering/succes",
+          pathname: "https://personaltaxi.pl/ordering/succes",
         });
       } else {
         router.replace({
-          pathname: "https://personaltaxi.vercel.app/ordering/failed",
+          pathname: "https://personaltaxi.pl/ordering/failed",
         });
       }
     };

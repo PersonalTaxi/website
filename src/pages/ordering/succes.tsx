@@ -73,7 +73,7 @@ export default function Succes() {
           <BsCheck2Square className="w-full h-full text-green-600" />
         </div>
         <Link
-          href="http://ptbeta.vercel.app/"
+          href="https://personaltaxi.pl/"
           className="border font-semibold px-[40px] py-[5px] bg-blue-500 text-white rounded-[20px]"
         >
           Back to home page

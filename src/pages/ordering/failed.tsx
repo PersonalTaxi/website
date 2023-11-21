@@ -11,7 +11,7 @@ export default function Succes() {
           <MdReportProblem className="w-full h-full text-red-600" />
         </div>
         <Link
-          href="https://ptbeta.vercel.app/"
+          href="https://personaltaxi.pl/"
           className="border font-semibold px-[40px] py-[5px] bg-blue-500 text-white rounded-[20px]"
         >
           Try Again

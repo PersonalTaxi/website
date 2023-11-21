@@ -3,17 +3,13 @@ import { setCookie, getCookie } from "cookies-next";
 export async function VerifyTransaction(query: any) {
   const P24 = process.env.P24_API;
 
-  let verifiedData = await fetch(
-    "https://sandbox.przelewy24.pl/api/v1/transaction/verify",
-    {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Basic ${P24}`,
-      },
-      body: query,
+  let verifiedData = await fetch("/api/verifytransactionapi", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
     },
-  );
+    body: query,
+  });
 
   console.log(verifiedData);
 
