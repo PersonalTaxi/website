@@ -39,10 +39,12 @@ export default function Payment() {
     let sessionId = UniqeNumber;
     let amount = price * 100;
     let currency = "PLN";
-    let crc = "fccb3ef343fe113a";
+    let crc = await fetch("/api/getcrc").then((res) => res.json());
+
+    // console.log(await crc.data);
 
     const querySign = async () => {
-      const DatCRC = `{"sessionId":"${sessionId}","merchantId":${merchantId},"amount":${amount},"currency":"${currency}","crc":"${crc}"}`;
+      const DatCRC = `{"sessionId":"${sessionId}","merchantId":${merchantId},"amount":${amount},"currency":"${currency}","crc":"${crc.data}"}`;
       return await sha384(DatCRC);
     };
 
@@ -73,8 +75,10 @@ export default function Payment() {
       email: "test@test.pl",
       description: "tax beta",
       country: "PL",
-      amount: amount,
+      price: price,
       currency: "PLN",
+      infoForDriver: infoForDriver,
+      UnusualThings: unusualItems,
       merchantId: 27407,
       posId: 27407,
       sessionId: sessionId,

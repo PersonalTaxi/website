@@ -1,14 +1,15 @@
 import { setCookie, getCookie } from "cookies-next";
 
 export async function VerifyTransaction(query: any) {
+  const P24 = process.env.P24_API;
+
   let verifiedData = await fetch(
     "https://sandbox.przelewy24.pl/api/v1/transaction/verify",
     {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        Authorization:
-          "Basic Mjc0MDc6MWI2NDdjYTJjYjRkZGI0ZmFmY2Q3NjgzZmM0MGZiYTY=",
+        Authorization: `Basic ${P24}`,
       },
       body: query,
     },
@@ -24,6 +25,7 @@ export async function VerifyTransaction(query: any) {
       to: ObiectForMail.orders[0].To,
       name: ObiectForMail.orders[0].firstName,
       lastname: ObiectForMail.orders[0].lastName,
+      infoForDriver: ObiectForMail.orders[0].lastName,
     });
 
     // if (!router.asPath.includes("email")) {

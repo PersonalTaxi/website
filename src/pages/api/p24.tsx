@@ -1,12 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
-// type Data = {
-//   status: number;
-//   name: any;
-//   res: any;
-// };
-
 async function Handler(req: NextApiRequest, res: NextApiResponse) {
+  const P24 = process.env.P24_API;
+  console.log("env = " + P24);
   try {
     let respond = await fetch(
       "https://sandbox.przelewy24.pl/api/v1/transaction/register",
@@ -14,8 +10,7 @@ async function Handler(req: NextApiRequest, res: NextApiResponse) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization:
-            "Basic Mjc0MDc6MWI2NDdjYTJjYjRkZGI0ZmFmY2Q3NjgzZmM0MGZiYTY=",
+          Authorization: `Basic ${P24}`,
         },
         body: req.body,
       },

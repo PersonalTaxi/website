@@ -62,11 +62,6 @@ export default function Succes() {
 
   console.log(query);
 
-  // useEffect(() => {
-  //   // const getDataFromU
-  //   const getDataFromDataBase = () => {};
-  // }, []);
-
   return (
     <div className="w-screen h-screen bg-[url('/Main_theme.png')] bg-top bg-cover bg-no-repeat flex justify-center items-center">
       <div className="w-[80%] h-[40%] flex flex-col items-center justify-center mx-auto bg-white rounded-[10px]">

@@ -48,9 +48,15 @@ export default async function Sendnotification(
       `<br>` +
       `Telefon kontaktowy: ${req.body.phone}` +
       `<br><br>` +
-      `Start: ${req.body.from}` +
+      `Początek trasy: ${req.body.from}` +
       `<br>` +
       `Miejsce docelowe: ${req.body.to}` +
+      `<br>` +
+      `<br>` +
+      `Wiadomość dla kierowcy: ${req.body.to}` +
+      `<br>` +
+      `<br>` +
+      `Opis przedmiotów niestandardowych: ${req.body.to}` +
       `<br>` +
       `Cena: ${req.body.price} zł` +
       `<br>`,

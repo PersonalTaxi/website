@@ -6,7 +6,7 @@ export async function getUrlStatus() {
   const status = await DataJson.msg;
   console.log(status);
 
-  const DataCRC = `{"sessionId":"${status.sessionId}","orderId":${status.orderId},"amount":${status.amount},"currency":"${status.currency}","crc":"fccb3ef343fe113a"}`;
+  const DataCRC = `{"sessionId":"${status.sessionId}","orderId":${status.orderId},"amount":${status.amount},"currency":"${status.currency}","crc":${process.env.CRC}}`;
   const DataKEY = await sha384(DataCRC);
   console.log(DataCRC);
 
@@ -33,4 +33,4 @@ export async function getLastTransactionsUrlStatus() {
   return status;
 }
 
-export default {getUrlStatus, getLastTransactionsUrlStatus};
+export default { getUrlStatus, getLastTransactionsUrlStatus };
