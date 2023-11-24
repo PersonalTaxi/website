@@ -25,7 +25,7 @@ import {
   AiFillInfoCircle,
   AiOutlineClose,
 } from "react-icons/ai";
-import { AppContext } from "./_app";
+import { AppContext } from "../pages/_app";
 
 type Function = {
   ShowOrHideInfoAboutMissingLocalizations: () => void;
@@ -417,8 +417,8 @@ export default function TomTom({
           <div className="flex items-center w-[90%] h-full">
             <AiFillInfoCircle className="w-[15%]" />
             <div className="h-full w-[85%] leading-4 pt-[20px]">
-              Sorry, you can only choose a route which contain a starting or
-              finishig point in Kraków commune
+              Możesz wybrać trasę której punktem początkowym lub końcowym jest
+              gmina Kraków.
             </div>
           </div>
           <AiOutlineClose classname="w-[10%]" />
@@ -444,7 +444,7 @@ export default function TomTom({
             onFocus={handleShowingList}
             onChange={handleSearchFrom}
             className="text-[15px] w-full min-h-[45px] outline-none rounded-[10px] pl-[5px] pr-[50px] overflow-ellipsis"
-            placeholder="from"
+            placeholder="Punkt startowy"
             autoComplete="off"
           ></input>
         </div>
@@ -483,7 +483,7 @@ export default function TomTom({
             onFocus={handleShowingList}
             onChange={handleSearchTo}
             className="text-[15px] w-full min-h-[45px] outline-none rounded-[10px] pl-[5px] pr-[50px] overflow-ellipsis"
-            placeholder="to"
+            placeholder="punkt końcowy"
             autoComplete="off"
           ></input>
         </div>

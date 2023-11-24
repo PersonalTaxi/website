@@ -6,9 +6,9 @@ export async function getUrlStatus() {
   const status = await DataJson.msg;
   const crc = await fetch("/api/getcrc").then((res) => res.json());
 
-  const DataCRC = `{"sessionId":"${status.sessionId}","orderId":${status.orderId},"amount":${status.amount},"currency":"${status.currency}","crc":"${crc.data}"}`;
+  const DataCRC = `{"sessionId":"${status.sessionId}","orderId":${status.orderId},"amount":${status.amount},"currency":"${status.currency}","crc":"fccb3ef343fe113a"}`;
   const DataKEY = await sha384(DataCRC);
-  console.log(DataCRC);
+  console.log(DataKEY);
 
   const query = JSON.stringify({
     merchantId: status.merchantId,

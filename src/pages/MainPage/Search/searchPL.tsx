@@ -9,7 +9,7 @@ import React, {
 import { AppContext } from "@/pages/_app";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import TomTom from "@/components/tomtom";
+import TomTomPL from "@/components/tomtomPL";
 import { BiSolidMap } from "react-icons/bi";
 import { BsCalendar3 } from "react-icons/bs";
 import { TbClockHour8 } from "react-icons/tb";
@@ -27,7 +27,7 @@ import {
 import Script from "next/script";
 import Head from "next/head";
 
-export default function Search() {
+export default function SearchPL() {
   const {
     queryFrom,
     setQueryFrom,
@@ -131,7 +131,7 @@ export default function Search() {
     if (latLangFrom !== null && latLangTo !== null) {
       router.push(
         {
-          pathname: "/ordering/summary",
+          pathname: "/pl/ordering/summary",
           query: {
             passengers: people,
             car: type,
@@ -213,9 +213,9 @@ export default function Search() {
           <div id="search-contianer-text" className="w-11/12 px-[30px]">
             <div
               id="correctInfo"
-              className="w-[120px] bg-white text-center rounded-t-[10px] "
+              className="w-[120px] bg-white text-center rounded-t-[10px]"
             >
-              Your drive:
+              Twoja trasa:
             </div>
           </div>
           <div
@@ -238,7 +238,7 @@ export default function Search() {
                     id="localizations-input-wraper"
                     className="h-full rounded-[10px] w-full flex items-center relative border lg:border-0"
                   >
-                    <TomTom
+                    <TomTomPL
                       ShowOrHideInfoAboutMissingLocalizations={
                         ShowOrHideInfoAboutMissingLocalizations
                       }
@@ -250,7 +250,7 @@ export default function Search() {
                   >
                     <AiFillInfoCircle />
                     <div className="pl-[5px] cursor-pointer">
-                      Please fill a localizations
+                      Uzupełnij lokalizacje
                     </div>
                   </div>
                 </div>
@@ -295,8 +295,7 @@ export default function Search() {
                       <div className="flex items-center">
                         <AiFillInfoCircle className="w-[20px] h-[20px] lg:hidden " />
                         <p className="px-[5px] h-full mt-[5px] lg:leading-[14px]">
-                          You can order a taxi not eariler that 16 hours from
-                          now
+                          Możesz zamówić transport nie wcześniej 16 h od teraz
                         </p>
                       </div>
                       <AiOutlineClose className="w-[20px] h-[20px] lg:hidden" />
@@ -342,9 +341,11 @@ export default function Search() {
                       className=" border-black rounded-[10px] h-[50px] w-[130px] lg:w-[190px] border-2 bg-black text-yellow-400 hover:text-black hover:bg-yellow-500 hover:border-yellow-500 duration-150 lg:ml-[15px]"
                     >
                       {!router.asPath.includes("ordering") ? (
-                        <p>See offer</p>
+                        <p className="leading-4">Pokaż oferty</p>
                       ) : (
-                        <p className="lg:leading-4">Update road</p>
+                        <p className="lg:leading-4 text-[14px]">
+                          Zaktualizuj trasę
+                        </p>
                       )}
                     </button>
                   </div>
@@ -356,7 +357,7 @@ export default function Search() {
                   <>
                     <AiOutlineCheck className="text-white bg-green-600 mr-[4px]" />
                     <p className="text-green-600 font-[500]">
-                      Conditions are up to date
+                      Warunki są poprawne
                     </p>
                   </>
                 )}
@@ -366,7 +367,7 @@ export default function Search() {
                   <>
                     <AiOutlineClose />
                     <p className="text-red-600">
-                      You have to update (button above)
+                      Zaktualizuj krteria (guzik wyżej)
                     </p>
                   </>
                 )}
@@ -376,11 +377,11 @@ export default function Search() {
           <div className="bg-white w-11/12 mx-auto lg:-mt-[3px] text-center rounded-b-[10px] text-[14px] h-[22px]">
             {((latLangFrom !== null && latLangTo === null) ||
               (latLangFrom === null && latLangTo !== null)) && (
-              <p>Drive distance: wating for localizations ...</p>
+              <p>Długość trasy: czekam na lokalizacje ...</p>
             )}
             {latLangFrom !== null && latLangTo !== null && (
               <p className=" bg-white w-11/12 mx-auto lg:-mt-[3px] text-center rounded-b-[10px] text-[14px]">
-                Drive distance {calculateDistance} km
+                Długość trasy {calculateDistance} km
               </p>
             )}
           </div>

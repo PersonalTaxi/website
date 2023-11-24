@@ -14,9 +14,9 @@ export default function Header() {
   };
   return (
     <div className="fixed z-40 h-[50px] w-screen bg-black  border-gray-900 px-[20px] flex items-center justify-center ">
-      <div className="w-[1100px] flex items-center justify-between">
+      <div className="w-[1100px] flex items-center justify-between ">
         <div>
-          <Link href="/">
+          <Link href="/pl">
             <Image
               src="/Logo.png"
               width={90}
@@ -58,21 +58,21 @@ export default function Header() {
             mobileMenuOpened={mobileMenuOpened}
           />
         </div>
-        <div className="lg:visible  lg:flex hidden text-white w-[600px] justify-evenly items-center">
+        <div className="lg:visible  lg:flex hidden text-white w-[700px] justify-evenly items-center">
           <Link
-            href="/"
+            href="/pl"
             className="cursor-pointer hover:text-yellow-500 duration-200"
           >
-            Home Page
+            Strona główna
           </Link>
           <Link
-            href="/"
+            href="/pl"
             className="cursor-pointer hover:text-yellow-500 duration-200"
           >
-            About Us
+            O nas
           </Link>
           <Link
-            href="/faq"
+            href="/pl/faq"
             className="cursor-pointer hover:text-yellow-500 duration-200"
           >
             FAQ
@@ -81,19 +81,19 @@ export default function Header() {
             href="/policy"
             className="cursor-pointer hover:text-yellow-500 duration-200"
           >
-            Privacy
+            Polityka Prywatności
           </Link>
           <Link
             href="/terms"
             className="cursor-pointer hover:text-yellow-500 duration-200"
           >
-            Terms
+            Regulamin
           </Link>
           <Link
-            href="/contact"
+            href="/pl/contact"
             className="cursor-pointer hover:text-yellow-500 duration-200"
           >
-            Contact
+            Kontakt
           </Link>
           <Link
             href="/pl/"

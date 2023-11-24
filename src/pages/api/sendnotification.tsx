@@ -53,10 +53,13 @@ export default async function Sendnotification(
       `Miejsce docelowe: ${req.body.to}` +
       `<br>` +
       `<br>` +
-      `Wiadomość dla kierowcy: ${req.body.to}` +
+      `Dystans: ${req.body.distance} km` +
       `<br>` +
       `<br>` +
-      `Opis przedmiotów niestandardowych: ${req.body.to}` +
+      `Wiadomość dla kierowcy: ${req.body.infoForDriver}` +
+      `<br>` +
+      `<br>` +
+      `Opis przedmiotów niestandardowych: ${req.body.unusualItems}` +
       `<br>` +
       `Cena: ${req.body.price} zł` +
       `<br>`,

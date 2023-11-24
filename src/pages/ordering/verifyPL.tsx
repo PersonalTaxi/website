@@ -66,11 +66,11 @@ export default function Verify() {
       if (VerifyStatus === 200) {
         //get data from databse and sand email
         router.replace({
-          pathname: "https://personaltaxi.pl/ordering/success",
+          pathname: "https://personaltaxi.pl/pl/ordering/success",
         });
       } else {
         router.replace({
-          pathname: "https://personaltaxi.pl/ordering/failed",
+          pathname: "https://personaltaxi.pl/pl/ordering/failed",
         });
       }
     };
@@ -80,9 +80,9 @@ export default function Verify() {
 
   return (
     <div className="w-screen h-screen bg-[url('/Main_theme.png')] bg-top bg-cover bg-no-repeat flex justify-center items-center">
-      <div className="w-[80%] h-[30%] flex flex-col items-center justify-center mx-auto bg-white rounded-[10px]">
+      <div className="w-[80%] lg:w-[300px] h-[30%] flex flex-col items-center justify-center mx-auto bg-white rounded-[10px]">
         <div className="text-[20px] mb-[20px]">
-          We are verifing your payment...{" "}
+          Weryfikujemy Twoją płatność...{" "}
         </div>
         <div role="status">
           <svg

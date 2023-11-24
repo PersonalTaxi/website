@@ -3,15 +3,12 @@ import { setCookie, getCookie } from "cookies-next";
 export async function VerifyTransaction(query: any) {
   const P24 = process.env.P24_API;
 
+  console.log(query);
+
   let verifiedData = await fetch("/api/verifytransactionapi", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
     body: query,
   });
-
-  console.log(verifiedData);
 
   let statusMassage;
 
@@ -20,8 +17,13 @@ export async function VerifyTransaction(query: any) {
       from: ObiectForMail.orders[0].From,
       to: ObiectForMail.orders[0].To,
       name: ObiectForMail.orders[0].firstName,
+      email: ObiectForMail.orders[0].email,
+      phone: ObiectForMail.orders[0].phone,
+      distance: ObiectForMail.orders[0].distance,
+      price: ObiectForMail.orders[0].price,
       lastname: ObiectForMail.orders[0].lastName,
-      infoForDriver: ObiectForMail.orders[0].lastName,
+      unusualItems: ObiectForMail.orders[0].unusualItems,
+      infoForDriver: ObiectForMail.orders[0].infoForDriver,
     });
 
     // if (!router.asPath.includes("email")) {
@@ -37,9 +39,12 @@ export async function VerifyTransaction(query: any) {
     // router.push("?email=true", undefined, { shallow: true });
   };
 
-  if (verifiedData.status === 200) {
-    const statusMessageToJSON = await verifiedData.json();
-    statusMassage = await statusMessageToJSON.data.status;
+  const final = await verifiedData.json();
+  console.log(await final);
+
+  if (final.data === "success") {
+    const statusMessageToJSON = await final.data;
+    statusMassage = await final.data;
 
     //send mail after succesed process
     if (statusMassage === "success") {
@@ -55,8 +60,6 @@ export async function VerifyTransaction(query: any) {
       });
       const ObiectForMail = await dataFromDG.json();
       sendEmail(ObiectForMail);
-      console.log(await ObiectForMail);
-      console.log(await statusMessageToJSON.data.status);
       const final = await verifiedData.status;
       return final;
     } else {

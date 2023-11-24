@@ -2,10 +2,10 @@ import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Head from "next/head";
-import Header from "../Header/header";
+import HeaderPL from "../../Header/headerPL";
 import RegisterInDataBase from "@/components/registerindatabase";
 import { sha384 } from "crypto-hash";
-import { AppContext } from "../_app";
+import { AppContext } from "../../_app";
 
 export default function Payment() {
   const router = useRouter();
@@ -60,7 +60,7 @@ export default function Payment() {
       email: email,
       country: "PL",
       language: "pl",
-      urlReturn: "https://personaltaxi.pl/ordering/verify",
+      urlReturn: "https://personaltaxi.pl/pl/ordering/verify",
       urlStatus: "https://ptbackend.vercel.app/",
       sign: sign,
     });
@@ -104,12 +104,12 @@ export default function Payment() {
 
   return (
     <div>
-      <Header />
+      <HeaderPL />
       <div className="w-screen flex flex-wrap">{data}</div>
       <div className='w-screen h-[180px] bg-[url("/Main_theme.png")] bg-top bg-cover bg-no-repeat flex items-center justify-center text-white relative'>
         <div className="absolute w-full h-full bg-gray-900/[0.7] z-0"></div>
         <div className="flex items-center justify-center flex-col w-[90%] z-10 mt-[30px]">
-          <p className="text-[25px] font-semibold">Summary & Payment</p>
+          <p className="text-[25px] font-semibold">Podusmowanie i płatność</p>
         </div>
       </div>
       {isFormCompleted === false && (
@@ -136,23 +136,25 @@ export default function Payment() {
                 {/* <p className="font-semibold mb-[5px]">Your route</p> */}
                 <div className="flex flex-col">
                   <div className="flex">
-                    <p className="w-[65px] font-semibold">From:</p>
+                    <p className="w-[125px] font-semibold">Start z:</p>
                     <p className="">{queryFrom}</p>
                   </div>
                   <div className="flex">
-                    <p className="w-[65px] font-semibold">To:</p>
+                    <p className="w-[125px] font-semibold">Cel podróży:</p>
                     <p className="">{queryTo}</p>
                   </div>
                   <div className="flex mt-[15px]">
-                    <p className="w-[135px] font-semibold">Date and time: </p>
+                    <p className="w-[135px] font-semibold">Data i godzina: </p>
                     <p className="">{date.replaceAll("T", " at ")}</p>
                   </div>
                   <div className="flex">
-                    <p className="w-[135px] font-semibold">Drive distance:</p>
+                    <p className="w-[135px] font-semibold">Dystans:</p>
                     <p className="">{calculateDistance} km</p>
                   </div>
                   <div className="flex">
-                    <p className="w-[135px] font-semibold pr-[5px]">Car(s): </p>
+                    <p className="w-[135px] font-semibold pr-[5px]">
+                      Samochody:{" "}
+                    </p>
                     <p className="">
                       Eco Sedan: {cars.sedan}, Van: {cars.van}
                     </p>
@@ -160,26 +162,26 @@ export default function Payment() {
                 </div>
               </div>
               <div className="w-[90%] mx-auto">
-                <p className="font-semibold my-[5px]">About You</p>
+                <p className="font-semibold my-[5px]">Dane personalne:</p>
                 <div className="flex flex-col">
                   <div className="flex">
-                    <p className="w-[100px]">Title</p>
+                    <p className="w-[100px]">Tytuł</p>
                     <p className="">{personTitle}</p>
                   </div>
                   <div className="flex">
-                    <p className="w-[100px]">First name:</p>
+                    <p className="w-[100px]">Imię:</p>
                     <p className="">{firstName}</p>
                   </div>
                   <div className="flex">
-                    <p className="w-[100px]">Last Name</p>
+                    <p className="w-[100px]">Nazwisko:</p>
                     <p className="">{lastName}</p>
                   </div>
                   <div className="flex">
-                    <p className="w-[100px]">E-mail</p>
+                    <p className="w-[100px]">E-mail:</p>
                     <p className="">{email}</p>
                   </div>
                   <div className="flex">
-                    <p className="w-[100px]">Phone</p>
+                    <p className="w-[100px]">Telefon:</p>
                     <p className="">
                       {phonePrefix} {phone}
                     </p>
@@ -187,7 +189,7 @@ export default function Payment() {
                 </div>
               </div>
               <div className="w-[90%] mx-auto flex mt-[10px] text-[20px] font-bold">
-                <p className="w-[100px]">Full price</p>
+                <p className="w-[145px]">Cena końcowa:</p>
                 <p className="">{price} zł</p>
               </div>
             </div>
@@ -196,18 +198,18 @@ export default function Payment() {
                 {/* <p className="font-semibold mb-[5px]">Your route</p> */}
                 <div className="flex flex-col">
                   <div className="flex">
-                    <p className="w-[205px] font-semibold">Flight number:</p>
+                    <p className="w-[205px] font-semibold">Numer lotu:</p>
                     <p className="w-full">{flightNumber}</p>
                   </div>
                   <div className="flex flex-col">
                     <p className="w-[235px] font-semibold">
-                      Massege to driver:
+                      Wiadomość dla kierowcy:
                     </p>
                     <p className="w-full">{infoForDriver}</p>
                   </div>
                   <div className="flex flex-col  mt-[15px]">
                     <p className="w-[235px] font-semibold">
-                      About unusual items{" "}
+                      Niestandardowe przedmioty:{" "}
                     </p>
                     <p className="">{unusualItems}</p>
                   </div>
@@ -219,7 +221,7 @@ export default function Payment() {
             className="w-[80%] lg:w-[50%] mx-auto rounded-[25px] bg-yellow-500  border border-yellow-500 text-center py-[10px] mt-[20px] text-white text-[20px] duration-200 hover:text-white hover:bg-blue-400 hover:border-transparent cursor-pointer"
             onClick={handleRedirectTpPayments}
           >
-            Pay & Order
+            Zamawiam i płacę
           </div>
         </>
       )}

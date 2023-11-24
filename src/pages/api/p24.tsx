@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 async function Handler(req: NextApiRequest, res: NextApiResponse) {
   const P24 = process.env.P24_API;
-  console.log("env = " + P24);
+
   try {
     let respond = await fetch(
       "https://sandbox.przelewy24.pl/api/v1/transaction/register",
