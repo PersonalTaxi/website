@@ -25,7 +25,7 @@ export default function Header() {
             ></Image>
           </Link>
         </div>
-        <div className="flex w-full justify-end items-center">
+        <div className="lg:hidden flex w-full justify-end items-center">
           <div className="flex border-white w-[80px] justify-evenly">
             <Link
               href="/pl/"
