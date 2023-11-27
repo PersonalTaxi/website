@@ -5,7 +5,6 @@ import AboutinmianPL from "../../components/aboutinmianPL";
 import OrderingprocessPL from "../../components/orderingprocessPL";
 import FooterPL from "../Footer/footerPL";
 import ContactformPL from "@/components/contactformPL";
-import Mobilemenu from "@/components/mobilemenu";
 
 export default function MainPL() {
   return (

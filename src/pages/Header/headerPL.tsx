@@ -72,7 +72,7 @@ export default function Header() {
             O nas
           </Link>
           <Link
-            href="/pl/faq"
+            href="/pl/aboutus"
             className="cursor-pointer hover:text-yellow-500 duration-200"
           >
             FAQ
