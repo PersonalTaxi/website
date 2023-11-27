@@ -71,7 +71,10 @@ export default function Aboutus() {
                 <p className="text-[40px]">Our mission</p>
                 <div className="w-[80px] h-[4px] bg-yellow-500"></div>
                 <p className="text-[24px] leading-6 font-[300]">
-                  "<b className="italic">We are going to be there in time".</b>{" "}
+                  "
+                  <b className="italic">
+                    &quot;We are going to be there in time&quot;.
+                  </b>{" "}
                   Our mission is to serve you the best possible taxi service.
                   After thousand courses we know what our customers need and
                   want. We would like to meet your needs as well. <br></br>
@@ -89,10 +92,10 @@ export default function Aboutus() {
                 <p className="text-[40px]">Our team</p>
                 <div className="w-[80px] h-[4px] bg-yellow-500"></div>
                 <p className="text-[24px] leading-6 font-[300] lg:text-right">
-                  "<b className="italic">"We are always ready".</b> In our team
-                  we have more than 100 expirienced drivers. If you will decide
-                  to takie our cab and go with us we will be always able to
-                  serve your order. <br></br>
+                  "<b className="italic">&quot;We are always ready&quot;.</b> In
+                  our team we have more than 100 expirienced drivers. If you
+                  will decide to takie our cab and go with us we will be always
+                  able to serve your order. <br></br>
                   <br></br>There is now doubt about that.
                 </p>
               </div>

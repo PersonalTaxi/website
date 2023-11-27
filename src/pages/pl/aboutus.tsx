@@ -71,11 +71,12 @@ export default function Aboutus() {
                 <p className="text-[40px]">Our mission</p>
                 <div className="w-[80px] h-[4px] bg-yellow-500"></div>
                 <p className="text-[24px] leading-6 font-[300]">
-                  "<b className="italic">"Będziemy zawsze na czas".</b> Naszą
-                  misją jest zreazliować dla ciebie usługę transferu z najwyższą
-                  jakością. Po ponad tysiący zrealizowanych kursów doskonale
-                  wiemy czego potrzebują nasi klienci. Odpowiemy też na Twoje
-                  potrzeby. <br></br>
+                  "
+                  <b className="italic">&quot;Będziemy zawsze na czas&quot;.</b>{" "}
+                  Naszą misją jest zreazliować dla ciebie usługę transferu z
+                  najwyższą jakością. Po ponad tysiący zrealizowanych kursów
+                  doskonale wiemy czego potrzebują nasi klienci. Odpowiemy też
+                  na Twoje potrzeby. <br></br>
                   <br></br>Możesz na nas liczyć.
                 </p>
               </div>
@@ -90,8 +91,8 @@ export default function Aboutus() {
                 <p className="text-[40px]">Our team</p>
                 <div className="w-[80px] h-[4px] bg-yellow-500"></div>
                 <p className="text-[24px] leading-6 font-[300] lg:text-right">
-                  "<b className="italic">"Jesteśmy zawsze gotowi".</b> W naszym
-                  zespole mamy ponad 100 doświadczonych kierowców.Jeśli
+                  "<b className="italic">&quot;Jesteśmy zawsze gotowi&quot;.</b>{" "}
+                  W naszym zespole mamy ponad 100 doświadczonych kierowców.Jeśli
                   zdecydujesz się na współpracę z nami będziemy zawsze gotowi
                   aby zrealizować Twoje zamówienie. <br></br>
                   <br></br>Nie ma co tego żadnych wątpliwości.
