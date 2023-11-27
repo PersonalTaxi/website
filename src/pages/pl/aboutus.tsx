@@ -71,7 +71,6 @@ export default function Aboutus() {
                 <p className="text-[40px]">Our mission</p>
                 <div className="w-[80px] h-[4px] bg-yellow-500"></div>
                 <p className="text-[24px] leading-6 font-[300]">
-                  "
                   <b className="italic">&quot;Będziemy zawsze na czas&quot;.</b>{" "}
                   Naszą misją jest zreazliować dla ciebie usługę transferu z
                   najwyższą jakością. Po ponad tysiący zrealizowanych kursów
@@ -91,7 +90,7 @@ export default function Aboutus() {
                 <p className="text-[40px]">Our team</p>
                 <div className="w-[80px] h-[4px] bg-yellow-500"></div>
                 <p className="text-[24px] leading-6 font-[300] lg:text-right">
-                  "<b className="italic">&quot;Jesteśmy zawsze gotowi&quot;.</b>{" "}
+                  <b className="italic">&quot;Jesteśmy zawsze gotowi&quot;.</b>{" "}
                   W naszym zespole mamy ponad 100 doświadczonych kierowców.Jeśli
                   zdecydujesz się na współpracę z nami będziemy zawsze gotowi
                   aby zrealizować Twoje zamówienie. <br></br>
