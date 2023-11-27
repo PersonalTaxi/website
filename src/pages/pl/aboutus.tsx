@@ -5,12 +5,12 @@ import Image from "next/image";
 import Footer from "../Footer/footer";
 import AboutuscontentPL from "@/components/aboutuscontentPL";
 
-export default function Aboutus() {
+export default function AboutusPL() {
   return (
     <>
       <Head>
         <meta http-equiv="X-UA-Compatible" content="IE=Edge"></meta>
-        <title>Personal Taxi - About Us</title>
+        <title>Personal Taxi - O Nas</title>
         <meta
           name="viewport"
           content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
@@ -39,15 +39,15 @@ export default function Aboutus() {
       <Header />
       <div className='w-screen h-auto bg-[url("/Main_theme.png")] bg-top bg-cover bg-no-repeat flex items-center justify-center text-white relative'>
         <div className="absolute w-full h-full bg-gray-900/[0.7] z-0"></div>
-        <div className="flex items-center justify-center flex-col w-[65%] h-[300px] lg:h-[400px] z-10">
+        <div className="flex items-center justify-center flex-col lg:w-[65%] w-[80%] h-[240px] lg:h-[400px] z-10">
           <p className="lg:text-[70px] text-[30px] text-center font-[300] lg:w-[800px]">
-            Obiecujemy Ci być zawsze na czas.
+            Obiecujemy Ci zawsze być na czas.
           </p>
         </div>
       </div>
-      <div className="w-screen bg-white h-auto lg:py-[80px] pb-[50px]">
+      <div className="w-screen bg-white h-auto py-[50px] pb-[50px]">
         {/* OUR MISSION */}
-        <div className="lg:w-[1100px] h-[500px] mx-auto lg:y-[50px]">
+        <div className="lg:w-[1100px] lg:h-[500px] mx-auto lg:y-[50px]">
           <div id="our-mission-container" className="flex h-full">
             <div
               id="mission-photo"
@@ -67,10 +67,10 @@ export default function Aboutus() {
               id="our-mission-desc"
               className="lg:w-1/2 w-full lg:h-[400px] px-[20px] flex flex-col justify-center items-center"
             >
-              <div className="h-[70%] flex flex-col justify-evenly">
-                <p className="text-[40px]">Our mission</p>
-                <div className="w-[80px] h-[4px] bg-yellow-500"></div>
-                <p className="text-[24px] leading-6 font-[300]">
+              <div className="h-auto flex flex-col justify-evenly">
+                <p className="text-[40px]">Nasza misja</p>
+                <div className="w-[80px] h-[4px] bg-yellow-500 my-[10px]"></div>
+                <p className="text-[24px] leading-7 font-[300]">
                   <b className="italic">&quot;Będziemy zawsze na czas&quot;.</b>{" "}
                   Naszą misją jest zreazliować dla ciebie usługę transferu z
                   najwyższą jakością. Po ponad tysiący zrealizowanych kursów
@@ -86,10 +86,10 @@ export default function Aboutus() {
         <div className="lg:w-[1100px] h-[500px] mx-auto lg:py-[50px]">
           <div id="our-mission-container" className="flex h-full">
             <div className="lg:w-1/2 w-full h-[400px] px-[20px] flex flex-col justify-center items-center">
-              <div className="h-[70%] flex flex-col justify-evenly lg:items-end">
-                <p className="text-[40px]">Our team</p>
-                <div className="w-[80px] h-[4px] bg-yellow-500"></div>
-                <p className="text-[24px] leading-6 font-[300] lg:text-right">
+              <div className="h-auto flex flex-col justify-evenly lg:items-end">
+                <p className="text-[40px]">Nasz zespoł</p>
+                <div className="w-[80px] h-[4px] bg-yellow-500 my-[10px]"></div>
+                <p className="text-[24px] leading-7 font-[300] lg:text-right">
                   <b className="italic">&quot;Jesteśmy zawsze gotowi&quot;.</b>{" "}
                   W naszym zespole mamy ponad 100 doświadczonych kierowców.Jeśli
                   zdecydujesz się na współpracę z nami będziemy zawsze gotowi
@@ -117,7 +117,9 @@ export default function Aboutus() {
         </div>
         {/* WHAT WE DO */}
         <div className="lg:w-[1100px] lg:h-[500px] h-[850px] mx-auto lg:py-[50px]">
-          <p className="text-[40px] text-center">We will do for you</p>
+          <p className="text-[40px] text-center leading-9">
+            Oto co dla Ciebie zrobimy
+          </p>
           <div className="w-full h-full flex items-center">
             <AboutuscontentPL />
           </div>
