@@ -74,7 +74,7 @@ export default function Aboutus() {
                   "
                   <b className="italic">
                     &quot;We are going to be there in time&quot;.
-                  </b>{" "}
+                  </b>
                   Our mission is to serve you the best possible taxi service.
                   After thousand courses we know what our customers need and
                   want. We would like to meet your needs as well. <br></br>
