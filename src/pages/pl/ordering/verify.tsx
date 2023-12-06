@@ -54,6 +54,14 @@ export default function Verify() {
 
   useEffect(() => {
     const fetchAnswerVerifyAndRedirect = async () => {
+      let TypeOfService;
+      if (router.asPath.includes("type=travel")) {
+        TypeOfService = await "travel";
+      }
+      if (router.asPath.includes("type=taxi")) {
+        TypeOfService = await "taxi";
+      }
+
       //sending first verify and gain urlStatus from p24
       const { status, DataKEY, query } = await getUrlStatus();
       console.log(query);
@@ -62,7 +70,7 @@ export default function Verify() {
       let ParsedQuery = JSON.parse(query);
       // let sessionsId = ParsedQuery.sessionId;
 
-      const VerifyStatus = await VerifyTransaction(query);
+      const VerifyStatus = await VerifyTransaction(TypeOfService, query);
       if (VerifyStatus === 200) {
         //get data from databse and sand email
         router.replace({
