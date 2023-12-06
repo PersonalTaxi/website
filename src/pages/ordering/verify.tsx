@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { setCookie, getCookie } from "cookies-next";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import RegisterInDataBase from "@/components/registerindatabase";
+import RegisterInDataBase from "@/components/registerintraveldatabase";
 import { getUrlStatus } from "../../components/geturlstatus";
 import VerifyTransaction from "@/components/verifyTransaction";
 import { AppContext } from "../_app";
@@ -54,6 +54,14 @@ export default function Verify() {
 
   useEffect(() => {
     const fetchAnswerVerifyAndRedirect = async () => {
+      let TypeOfService;
+      if (router.asPath.includes("type=travel")) {
+        TypeOfService = await "travel";
+      }
+      if (router.asPath.includes("type=taxi")) {
+        TypeOfService = await "taxi";
+      }
+
       //sending first verify and gain urlStatus from p24
       const { status, DataKEY, query } = await getUrlStatus();
       console.log(query);
@@ -62,7 +70,7 @@ export default function Verify() {
       let ParsedQuery = JSON.parse(query);
       // let sessionsId = ParsedQuery.sessionId;
 
-      const VerifyStatus = await VerifyTransaction(query);
+      const VerifyStatus = await VerifyTransaction(TypeOfService, query);
       if (VerifyStatus === 200) {
         //get data from databse and sand email
         router.replace({
@@ -73,6 +81,7 @@ export default function Verify() {
           pathname: "https://personaltaxi.pl/ordering/failed",
         });
       }
+      console.log(VerifyStatus);
     };
 
     fetchAnswerVerifyAndRedirect();
@@ -81,9 +90,7 @@ export default function Verify() {
   return (
     <div className="w-screen h-screen bg-[url('/Main_theme.png')] bg-top bg-cover bg-no-repeat flex justify-center items-center">
       <div className="w-[80%] h-[30%] flex flex-col items-center justify-center mx-auto bg-white rounded-[10px]">
-        <div className="text-[20px] mb-[20px]">
-          We are verifing your payment...{" "}
-        </div>
+        <div className="text-[20px] mb-[20px]">We are verifing your payment... </div>
         <div role="status">
           <svg
             aria-hidden="true"

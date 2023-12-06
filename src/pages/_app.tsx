@@ -4,6 +4,8 @@ import { createContext, useEffect, useReducer, useState } from "react";
 import Search from "./MainPage/Search/search";
 
 type QueryParams = {
+  serviceType: any;
+  setServiceType: React.Dispatch<React.SetStateAction<any>>;
   queryFrom: string;
   setQueryFrom: React.Dispatch<React.SetStateAction<string>>;
   queryTo: string;
@@ -40,9 +42,13 @@ type QueryParams = {
   setMapLatitude: React.Dispatch<React.SetStateAction<any>>;
   mapUpdated: any;
   setMapUpdated: React.Dispatch<React.SetStateAction<any>>;
+  whatIsOrdering: any;
+  setWhatIsOrdering: React.Dispatch<React.SetStateAction<any>>;
 
   sessionIdContext: any;
   setSessionIdContext: React.Dispatch<React.SetStateAction<any>>;
+  currencyTXT: any;
+  setCurrencyTXT: React.Dispatch<React.SetStateAction<any>>;
 
   // Person details
   personTitle: any;
@@ -66,6 +72,39 @@ type QueryParams = {
   setMunicipalityFrom: React.Dispatch<React.SetStateAction<any>>;
   municipalityTo: any;
   setMunicipalityTo: React.Dispatch<React.SetStateAction<any>>;
+
+  //travels
+  travelDestination: any;
+  setTravelDestination: React.Dispatch<React.SetStateAction<any>>;
+  travelLocalizationFrom: any;
+  setTravelLocalizationFrom: React.Dispatch<React.SetStateAction<any>>;
+  travelLocalizationFromLatLang: any;
+  setTravelLocalizationFromLatLang: React.Dispatch<React.SetStateAction<any>>;
+  travelDate: any;
+  setTravelDate: React.Dispatch<React.SetStateAction<any>>;
+
+  travelTime: any;
+  setTravelTime: React.Dispatch<React.SetStateAction<any>>;
+  persons: any;
+  setPersons: React.Dispatch<React.SetStateAction<any>>;
+  travelCar: any;
+  setTravelCar: React.Dispatch<React.SetStateAction<any>>;
+  travelMassage: any;
+  setTravelMassage: React.Dispatch<React.SetStateAction<any>>;
+  travelPersonTitle: any;
+  setTravelPersonTitle: React.Dispatch<React.SetStateAction<any>>;
+  travelFirstName: any;
+  setTravelFirstName: React.Dispatch<React.SetStateAction<any>>;
+  travelLastName: any;
+  setTravelLastName: React.Dispatch<React.SetStateAction<any>>;
+  travelEmail: any;
+  setTravelEmail: React.Dispatch<React.SetStateAction<any>>;
+  travelPrefixPhone: any;
+  setTravelPrefixPhone: React.Dispatch<React.SetStateAction<any>>;
+  travelPhone: any;
+  setTravelPhone: React.Dispatch<React.SetStateAction<any>>;
+  travelPrice: any;
+  setTravelPrice: React.Dispatch<React.SetStateAction<any>>;
 };
 
 export const AppContext = createContext({} as QueryParams);
@@ -75,9 +114,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const [queryTo, setQueryTo] = useState("");
   const [dateLimit, setDateLimit] = useState(() => {
     const ActualData = new Date();
-    const NewDate = ActualData.setTime(
-      ActualData.getTime() + 16 * 60 * 60 * 1000,
-    );
+    const NewDate = ActualData.setTime(ActualData.getTime() + 16 * 60 * 60 * 1000);
 
     const ReservationDate = new Date(NewDate);
     let ActualDate = ReservationDate.toISOString().slice(0, 16);
@@ -85,9 +122,7 @@ export default function App({ Component, pageProps }: AppProps) {
   });
   const [date, setDate] = useState(() => {
     const ActualData = new Date();
-    const NewDate = ActualData.setTime(
-      ActualData.getTime() + 16 * 60 * 60 * 1000,
-    );
+    const NewDate = ActualData.setTime(ActualData.getTime() + 16 * 60 * 60 * 1000);
 
     const ReservationDate = new Date(NewDate);
     // console.log(ReservationDate.toISOString());
@@ -95,6 +130,8 @@ export default function App({ Component, pageProps }: AppProps) {
 
     return StartDate;
   });
+  //type of service
+  const [serviceType, setServiceType] = useState();
   const [time, setTime] = useState("");
   const [people, setPeople] = useState(2);
   const [latLangFrom, setlatLangFrom] = useState(null);
@@ -109,6 +146,25 @@ export default function App({ Component, pageProps }: AppProps) {
   const [mapLatitude, setMapLatitude]: any = useState(40.064);
   const [mapUpdated, setMapUpdated] = useState(false);
   const [sessionIdContext, setSessionIdContext] = useState();
+  const [whatIsOrdering, setWhatIsOrdering] = useState(null);
+  const [currencyTXT, setCurrencyTXT] = useState("EUR");
+
+  //travels
+  const [travelLocalizationFrom, setTravelLocalizationFrom] = useState();
+  const [travelDestination, setTravelDestination] = useState();
+  const [travelLocalizationFromLatLang, setTravelLocalizationFromLatLang] = useState(null);
+  const [travelDate, setTravelDate] = useState(null);
+  const [travelTime, setTravelTime] = useState("15:30");
+  const [travelCar, setTravelCar] = useState("Sedan");
+  const [persons, setPersons] = useState(2);
+  const [travelMassage, setTravelMassage] = useState(null);
+  const [travelPersonTitle, setTravelPersonTitle] = useState();
+  const [travelFirstName, setTravelFirstName] = useState();
+  const [travelLastName, setTravelLastName] = useState();
+  const [travelEmail, setTravelEmail] = useState();
+  const [travelPrefixPhone, setTravelPrefixPhone] = useState("+48");
+  const [travelPhone, setTravelPhone] = useState();
+  const [travelPrice, setTravelPrice] = useState(600);
 
   //validation
   const [isFormCompleted, setIsFromCompleted] = useState(false);
@@ -129,6 +185,8 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <AppContext.Provider
       value={{
+        serviceType,
+        setServiceType,
         queryFrom,
         setQueryFrom,
         queryTo,
@@ -163,6 +221,11 @@ export default function App({ Component, pageProps }: AppProps) {
         setInfoForDriver,
         unusualItems,
         setUnusualItems,
+        whatIsOrdering,
+        setWhatIsOrdering,
+        price,
+        setPrice,
+
         //client's data
         personTitle,
         setPersonTitle,
@@ -177,8 +240,8 @@ export default function App({ Component, pageProps }: AppProps) {
         email,
         setEmail,
         //price
-        price,
-        setPrice,
+        currencyTXT,
+        setCurrencyTXT,
         municipalityFrom,
         setMunicipalityFrom,
         municipalityTo,
@@ -187,6 +250,37 @@ export default function App({ Component, pageProps }: AppProps) {
         setDateLimit,
         sessionIdContext,
         setSessionIdContext,
+        travelDestination,
+        setTravelDestination,
+        //travel
+        travelLocalizationFrom,
+        setTravelLocalizationFrom,
+        travelLocalizationFromLatLang,
+        setTravelLocalizationFromLatLang,
+        travelDate,
+        setTravelDate,
+        travelTime,
+        setTravelTime,
+        persons,
+        travelCar,
+        setTravelCar,
+        setPersons,
+        travelMassage,
+        setTravelMassage,
+        travelPersonTitle,
+        setTravelPersonTitle,
+        travelFirstName,
+        setTravelFirstName,
+        travelLastName,
+        setTravelLastName,
+        travelEmail,
+        setTravelEmail,
+        travelPrefixPhone,
+        setTravelPrefixPhone,
+        travelPhone,
+        setTravelPhone,
+        travelPrice,
+        setTravelPrice,
       }}
     >
       <Component {...pageProps} />

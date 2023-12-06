@@ -17,26 +17,15 @@ export default function Header() {
       <div className="w-[1100px] flex items-center justify-between ">
         <div>
           <Link href="/pl">
-            <Image
-              src="/Logo.png"
-              width={90}
-              height={90}
-              alt="taxi_krakow"
-            ></Image>
+            <Image src="/Logo.png" width={90} height={90} alt="taxi_krakow"></Image>
           </Link>
         </div>
         <div className="lg:hidden  flex w-full justify-end items-center">
           <div className="flex border-white w-[80px] justify-evenly">
-            <Link
-              href="/pl/"
-              className="cursor-pointer hover:text-yellow-500 duration-200"
-            >
+            <Link href="/pl/" className="cursor-pointer hover:text-yellow-500 duration-200">
               <Image src="/PLflag.jpg" width={30} height={30} alt="pl"></Image>
             </Link>
-            <Link
-              href="/"
-              className="cursor-pointer hover:text-yellow-500 duration-200"
-            >
+            <Link href="/" className="cursor-pointer hover:text-yellow-500 duration-200">
               <Image src="/ENflag.jpg" width={30} height={30} alt="pl"></Image>
             </Link>
           </div>
@@ -59,52 +48,31 @@ export default function Header() {
           />
         </div>
         <div className="lg:visible  lg:flex hidden text-white w-[700px] justify-evenly items-center">
-          <Link
-            href="/pl"
-            className="cursor-pointer hover:text-yellow-500 duration-200"
-          >
+          <Link href="/pl" className="cursor-pointer hover:text-yellow-500 duration-200">
             Strona główna
           </Link>
-          <Link
-            href="/pl"
-            className="cursor-pointer hover:text-yellow-500 duration-200"
-          >
+          <Link href="/pl" className="cursor-pointer hover:text-yellow-500 duration-200">
             O nas
           </Link>
-          <Link
-            href="/pl/aboutus"
-            className="cursor-pointer hover:text-yellow-500 duration-200"
-          >
+          <Link href="/pl/aboutus" className="cursor-pointer hover:text-yellow-500 duration-200">
             FAQ
           </Link>
-          <Link
-            href="/policy"
-            className="cursor-pointer hover:text-yellow-500 duration-200"
-          >
+          <Link href="/pl/travels" className="cursor-pointer hover:text-yellow-500 duration-200">
+            Travels
+          </Link>
+          <Link href="/policy" className="cursor-pointer hover:text-yellow-500 duration-200">
             Polityka Prywatności
           </Link>
-          <Link
-            href="/terms"
-            className="cursor-pointer hover:text-yellow-500 duration-200"
-          >
+          <Link href="/terms" className="cursor-pointer hover:text-yellow-500 duration-200">
             Regulamin
           </Link>
-          <Link
-            href="/pl/contact"
-            className="cursor-pointer hover:text-yellow-500 duration-200"
-          >
+          <Link href="/pl/contact" className="cursor-pointer hover:text-yellow-500 duration-200">
             Kontakt
           </Link>
-          <Link
-            href="/pl/"
-            className="cursor-pointer hover:text-yellow-500 duration-200"
-          >
+          <Link href="/pl/" className="cursor-pointer hover:text-yellow-500 duration-200">
             <Image src="/PLflag.jpg" width={30} height={30} alt="pl"></Image>
           </Link>
-          <Link
-            href="/"
-            className="cursor-pointer hover:text-yellow-500 duration-200"
-          >
+          <Link href="/" className="cursor-pointer hover:text-yellow-500 duration-200">
             <Image src="/ENflag.jpg" width={30} height={30} alt="pl"></Image>
           </Link>
         </div>

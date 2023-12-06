@@ -9,7 +9,7 @@ type Data = {
   name: string;
 };
 
-export default async function Sendnotification(
+export default async function SendnotificationTravel(
   req: NextApiRequest,
   res: NextApiResponse<Data>,
 ) {
@@ -39,30 +39,30 @@ export default async function Sendnotification(
   const mailData = {
     from: "Opłacono kurs",
     to: "m.marszalek@wearebrave.pl",
-    subject: `Wiadomość ze strony od: ${req.body.name} ${req.body.lastname}`,
+    subject: `Zamówienie wycieczki do ${req.body.travel_to}: ${req.body.first_name} ${req.body.last_name}`,
     text: "Hello. This email is for your email verification.",
     html:
-      `Imię i nazwisko / firma: ${req.body.name} ${req.body.lastname}` +
+      `Imię i nazwisko / firma: ${req.body.first_name} ${req.body.last_name}` +
       `<br>` +
       `Email kontaktowy: ${req.body.email}` +
       `<br>` +
       `Telefon kontaktowy: ${req.body.phone}` +
       `<br><br>` +
-      `Początek trasy: ${req.body.from}` +
+      `Miejsce odbioru klienta: ${req.body.pick_up_from_localization}` +
       `<br>` +
-      `Miejsce docelowe: ${req.body.to}` +
-      `<br>` +
-      `<br>` +
-      `Dystans: ${req.body.distance} km` +
+      `Godzina odbioru klienta: ${req.body.travel_starts_to}` +
       `<br>` +
       `<br>` +
-      `Wiadomość dla kierowcy: ${req.body.infoForDriver}` +
+      `Klient chce być na miejscu o godzinie: ${req.body.pick_up_at_hour}` +
       `<br>` +
       `<br>` +
-      `Opis przedmiotów niestandardowych: ${req.body.unusualItems}` +
+      `Wiadomość dla kierowcy: ${req.body.info_for_driver}` +
       `<br>` +
-      `Cena: ${req.body.price} zł` +
-      `<br>`,
+      `<br>` +
+      `Opis przedmiotów niestandardowych: ${req.body.info_for_driver}`,
+    // `<br>` +
+    // `Cena: ${req.body.price} zł` +
+    // `<br>`,
   };
 
   await transporter.sendMail(mailData, function (err: string, info: string) {

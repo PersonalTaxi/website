@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { setCookie, getCookie } from "cookies-next";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import RegisterInDataBase from "@/components/registerindatabase";
+import RegisterInDataBase from "@/components/registerintraveldatabase";
 import { getUrlStatus } from "../../../components/geturlstatus";
 import VerifyTransaction from "@/components/verifyTransaction";
 import { AppContext } from "../../_app";
@@ -81,9 +81,7 @@ export default function Verify() {
   return (
     <div className="w-screen h-screen bg-[url('/Main_theme.png')] bg-top bg-cover bg-no-repeat flex justify-center items-center">
       <div className="w-[80%] lg:w-[350px] h-[30%] flex flex-col items-center justify-center mx-auto bg-white rounded-[10px]">
-        <div className="text-[20px] mb-[20px]">
-          Weryfikujemy Twoją płatność...{" "}
-        </div>
+        <div className="text-[20px] mb-[20px]">Weryfikujemy Twoją płatność... </div>
         <div role="status">
           <svg
             aria-hidden="true"

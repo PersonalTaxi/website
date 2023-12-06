@@ -1,4 +1,4 @@
-export async function RegisterInDataBase(DataForDatabase: any) {
+export async function RegisterInTaxiDataBase(DataForDatabase: any) {
   fetch("/api/mongopost", {
     method: "POST",
     headers: {
@@ -8,4 +8,4 @@ export async function RegisterInDataBase(DataForDatabase: any) {
   });
 }
 
-export default RegisterInDataBase;
+export default RegisterInTaxiDataBase;

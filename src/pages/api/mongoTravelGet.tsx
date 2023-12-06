@@ -1,14 +1,14 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { connectMongoDB } from "../../../libs/mongodb";
-import Order from "../../../models/taxi";
+import Travel from "../../../models/travel";
 
 export async function POST(req: NextApiRequest, res: NextApiResponse) {
   console.log(req.body);
   await connectMongoDB();
-  const Taxi = await Order.find({ sessionId: req.body });
-  const newID = await Taxi[0]._id;
-  await Order.findByIdAndUpdate(newID, { isPayed: true });
-  res.status(200).json({ Taxi });
+  const TravelData = await Travel.find({ sessionId: req.body });
+  const newID = await TravelData[0]._id;
+  await Travel.findByIdAndUpdate(newID, { isPayed: true });
+  res.status(200).json({ Travel });
 }
 
 export default POST;

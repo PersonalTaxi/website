@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import Head from "next/head";
 import Header from "../Header/header";
-import RegisterInDataBase from "@/components/registerindatabase";
+import RegisterInTaxiDataBase from "@/components/registerintaxidatabase";
 import { sha384 } from "crypto-hash";
 import { AppContext } from "../_app";
 
@@ -11,6 +11,7 @@ export default function Payment() {
   const router = useRouter();
 
   const {
+    serviceType,
     queryFrom,
     queryTo,
     date,
@@ -22,23 +23,39 @@ export default function Payment() {
     email,
     phone,
     phonePrefix,
-    price,
     isFormCompleted,
+    whatIsOrdering,
+    setWhatIsOrdering,
     sessionIdContext,
     setSessionIdContext,
     flightNumber,
     unusualItems,
     infoForDriver,
+    currencyTXT,
+    setCurrencyTXT,
+    price,
+    setPrice,
+
+    //travel
+    travelDate,
+    travelTime,
+    travelDestination,
+    travelLocalizationFrom,
+    travelFirstName,
+    travelLastName,
+    travelEmail,
+    travelPrefixPhone,
+    travelPhone,
   } = useContext(AppContext);
 
   const [data, setData] = useState();
 
-  const handleRedirectTpPayments = async () => {
+  const handleRedirectToPayments = async () => {
     let merchantId = 27407;
     const UniqeNumber = Date.now().toString();
     let sessionId = UniqeNumber;
     let amount = price * 100;
-    let currency = "PLN";
+    let currency = currencyTXT;
     let crc = await fetch("/api/getcrc").then((res) => res.json());
 
     // console.log(await crc.data);
@@ -50,42 +67,58 @@ export default function Payment() {
 
     const sign = await querySign();
 
+    let CountryISO = "PL";
+    if (router.asPath.includes("pl")) {
+      CountryISO = "PL";
+    } else {
+      CountryISO = "EN";
+    }
+
+    let type;
+
+    if (serviceType === "travel") {
+      type = "travel";
+    } else {
+      type = "taxi";
+    }
+
     let query = JSON.stringify({
       merchantId: 27407,
       posId: 27407,
       sessionId: sessionId,
       amount: amount,
-      currency: "PLN",
+      currency: currencyTXT,
       description: "ordering taxi",
       email: email,
-      country: "PL",
-      language: "pl",
-      urlReturn: "https://personaltaxi.pl/ordering/verify",
+      country: CountryISO,
+      language: "en",
+      urlReturn: `http://localhost:3000/ordering/verify?type=taxi`,
       urlStatus: "https://ptbackend.vercel.app/",
       sign: sign,
     });
 
     //register order details in MongoDB
-    const DataForDatabase = JSON.stringify({
+
+    const DataForDatabaseTravel = JSON.stringify({
       From: queryFrom,
       To: queryTo,
       distance: calculateDistance,
       firstName: firstName,
       lastName: lastName,
       email: email,
-      description: "ordering taxi",
+      description: "Taxi order",
       country: "PL",
       price: price,
       currency: "PLN",
       infoForDriver: infoForDriver,
-      unusualItems: unusualItems,
+      unusualItems: "nie dotyczy",
       merchantId: 27407,
       posId: 27407,
       sessionId: sessionId,
       sign: sign,
     });
 
-    await RegisterInDataBase(DataForDatabase);
+    await RegisterInTaxiDataBase(DataForDatabaseTravel);
 
     let res = await fetch("/api/p24", {
       method: "POST",
@@ -95,12 +128,8 @@ export default function Payment() {
     const token = await res.json();
     console.log(token.msg);
 
-    router.replace(
-      `https://sandbox.przelewy24.pl/trnRequest/${token.msg.data.token}`,
-    );
+    router.replace(`https://sandbox.przelewy24.pl/trnRequest/${token.msg.data.token}`);
   };
-
-  console.log(isFormCompleted);
 
   return (
     <div>
@@ -188,7 +217,9 @@ export default function Payment() {
               </div>
               <div className="w-[90%] mx-auto flex mt-[10px] text-[20px] font-bold">
                 <p className="w-[100px]">Full price</p>
-                <p className="">{price} zł</p>
+                <p className="">
+                  {price} {currencyTXT}
+                </p>
               </div>
             </div>
             <div className="w-screen lg:w-[40%] flex justify-center items-center flex-col pt-[20px]">
@@ -200,15 +231,11 @@ export default function Payment() {
                     <p className="w-full">{flightNumber}</p>
                   </div>
                   <div className="flex flex-col">
-                    <p className="w-[235px] font-semibold">
-                      Massege to driver:
-                    </p>
+                    <p className="w-[235px] font-semibold">Massege to driver:</p>
                     <p className="w-full">{infoForDriver}</p>
                   </div>
                   <div className="flex flex-col  mt-[15px]">
-                    <p className="w-[235px] font-semibold">
-                      About unusual items{" "}
-                    </p>
+                    <p className="w-[235px] font-semibold">About unusual items </p>
                     <p className="">{unusualItems}</p>
                   </div>
                 </div>
@@ -217,7 +244,7 @@ export default function Payment() {
           </div>
           <div
             className="w-[80%] lg:w-[50%] mx-auto rounded-[25px] bg-yellow-500  border border-yellow-500 text-center py-[10px] mt-[20px] text-white text-[20px] duration-200 hover:text-white hover:bg-blue-400 hover:border-transparent cursor-pointer"
-            onClick={handleRedirectTpPayments}
+            onClick={handleRedirectToPayments}
           >
             Pay & Order
           </div>

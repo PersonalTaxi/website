@@ -54,26 +54,14 @@ export default function Summary() {
           name="viewport"
           content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
         ></meta>
-        <link
-          rel="stylesheet"
-          type="text/css"
-          href="/cdn.web-sdk-maps/maps.css"
-        ></link>
-        <link
-          rel="stylesheet"
-          type="text/css"
-          href="../assets/ui-library/index.css"
-        ></link>
+        <link rel="stylesheet" type="text/css" href="/cdn.web-sdk-maps/maps.css"></link>
+        <link rel="stylesheet" type="text/css" href="../assets/ui-library/index.css"></link>
         <link
           rel="stylesheet"
           type="text/css"
           href="/cdn.web-sdk-plugin-searchbox/SearchBox.css"
         ></link>
-        <link
-          rel="stylesheet"
-          type="text/css"
-          href="../assets/ui-library/icons-css/poi.css"
-        ></link>
+        <link rel="stylesheet" type="text/css" href="../assets/ui-library/icons-css/poi.css"></link>
       </Head>
       <Header />
       <div

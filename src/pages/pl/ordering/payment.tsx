@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import Head from "next/head";
 import HeaderPL from "../../Header/headerPL";
-import RegisterInDataBase from "@/components/registerindatabase";
+import RegisterInDataBase from "@/components/registerintraveldatabase";
 import { sha384 } from "crypto-hash";
 import { AppContext } from "../../_app";
 
@@ -95,9 +95,7 @@ export default function Payment() {
     const token = await res.json();
     console.log(token.msg);
 
-    router.replace(
-      `https://sandbox.przelewy24.pl/trnRequest/${token.msg.data.token}`,
-    );
+    router.replace(`https://sandbox.przelewy24.pl/trnRequest/${token.msg.data.token}`);
   };
 
   console.log(isFormCompleted);
@@ -152,9 +150,7 @@ export default function Payment() {
                     <p className="">{calculateDistance} km</p>
                   </div>
                   <div className="flex">
-                    <p className="w-[135px] font-semibold pr-[5px]">
-                      Samochody:{" "}
-                    </p>
+                    <p className="w-[135px] font-semibold pr-[5px]">Samochody: </p>
                     <p className="">
                       Eco Sedan: {cars.sedan}, Van: {cars.van}
                     </p>
@@ -202,15 +198,11 @@ export default function Payment() {
                     <p className="w-full">{flightNumber}</p>
                   </div>
                   <div className="flex flex-col">
-                    <p className="w-[235px] font-semibold">
-                      Wiadomość dla kierowcy:
-                    </p>
+                    <p className="w-[235px] font-semibold">Wiadomość dla kierowcy:</p>
                     <p className="w-full">{infoForDriver}</p>
                   </div>
                   <div className="flex flex-col  mt-[15px]">
-                    <p className="w-[235px] font-semibold">
-                      Niestandardowe przedmioty:{" "}
-                    </p>
+                    <p className="w-[235px] font-semibold">Niestandardowe przedmioty: </p>
                     <p className="">{unusualItems}</p>
                   </div>
                 </div>

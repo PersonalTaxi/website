@@ -15,15 +15,22 @@ import { LiaHotelSolid } from "react-icons/lia";
 import { IoMdRestaurant } from "react-icons/io";
 import { BiSolidMap } from "react-icons/bi";
 import { AiFillCloseSquare, AiFillInfoCircle, AiOutlineClose } from "react-icons/ai";
-import { AppContext } from "../pages/_app";
+import { AppContext } from "../../pages/_app";
 
-type Function = {
-  ShowOrHideInfoAboutMissingLocalizations: () => void;
-};
+interface Props {
+  localizationIsUnknow: any;
+  setLocalizationIsUnknow: React.Dispatch<React.SetStateAction<any>>;
+  travelLocalizationFrom: any;
+  setTravelLocalizationFrom: React.Dispatch<React.SetStateAction<any>>;
+}
 
-export default function TomTom({ ShowOrHideInfoAboutMissingLocalizations }: Function) {
+export default function TomTom({
+  localizationIsUnknow,
+  setLocalizationIsUnknow,
+  travelLocalizationFrom,
+  setTravelLocalizationFrom,
+}: Props) {
   const router = useRouter();
-  const [dataFromFetch, setDataFromFetch] = useState();
 
   const {
     queryFrom,
@@ -54,14 +61,15 @@ export default function TomTom({ ShowOrHideInfoAboutMissingLocalizations }: Func
     setMunicipalityFrom,
     municipalityTo,
     setMunicipalityTo,
+    travelLocalizationFromLatLang,
+    setTravelLocalizationFromLatLang,
   } = useContext(AppContext);
 
-  const [dataToFetch, setDataToFetch]: any = useState([]);
-  const [activeQuery, setActiveQuery] = useState("");
-  const [focused, setFocused] = useState("");
+  const [focused, setFocused] = useState(false);
+  const [queryingTravel, setQueryingTravel] = useState("");
+  const [travelListQuery, setTravelListQuery] = useState();
 
-  const debouncedSearchFrom = useDebounce(queryFrom, 150);
-  const debouncedSearchTo = useDebounce(queryTo, 150);
+  const debouncedSearch = useDebounce(queryingTravel, 150);
 
   const [permissionedMunicipality, setPermissionedMunicipality] = useState([
     "Krakow",
@@ -70,7 +78,7 @@ export default function TomTom({ ShowOrHideInfoAboutMissingLocalizations }: Func
   ]);
   const [correctRoad, setCorrectRoad] = useState(true);
 
-  const FromList: any = useRef();
+  const travelList: any = useRef();
   const inputFrom: any = useRef();
   const inputTo: any = useRef();
   const ToList: any = useRef();
@@ -79,93 +87,30 @@ export default function TomTom({ ShowOrHideInfoAboutMissingLocalizations }: Func
   const suggest: any = useRef();
   const CloseInfoAbourRoute: any = useRef();
 
-  const handleSearchFrom = (e: any) => {
-    setQueryFrom(e.target.value);
-    FromList.current.style.display = "block";
-    setActiveQuery("From");
-    setlatLangFrom(null);
-  };
-
-  const handleSearchTo = (e: any) => {
-    setlatLangTo(null);
-    setQueryTo(e.target.value);
-    ToList.current.style.display = "block";
-    setActiveQuery("To");
-  };
-
   const handleChosingParam = (e: any, i: any) => {
-    console.log(e.target.getAttribute("data-name"));
-    console.log(e.target.id);
-
-    if (e.target.id === "From") {
-      setMunicipalityFrom(i.address.municipality);
-      setlatLangFrom([i.position.lat, i.position.lon]);
-      setQueryFrom(e.target.getAttribute("data-name"));
-      FromList.current.style.display = "none";
-    }
-    if (e.target.id === "To") {
-      setMunicipalityTo(i.address.municipality);
-      setlatLangTo([i.position.lat, i.position.lon]);
-      setQueryTo(e.target.getAttribute("data-name"));
-      ToList.current.style.display = "none";
-    }
-
-    ShowOrHideInfoAboutMissingLocalizations();
+    setQueryingTravel(e.target.getAttribute("data-name"));
+    setFocused(false);
+    setTravelLocalizationFrom(e.target.getAttribute("data-name"));
+    setTravelLocalizationFromLatLang([
+      e.target.getAttribute("data-value-lat"),
+      e.target.getAttribute("data-value-lon"),
+    ]);
   };
+  console.log(travelLocalizationFromLatLang);
 
-  const calculateDistances = useCallback(() => {
-    if (latLangFrom !== null && latLangTo !== null) {
-      console.log(latLangFrom, latLangTo);
-      let data = fetch(
-        `https://api.tomtom.com/routing/1/calculateRoute/${latLangFrom}:${latLangTo}/json?key=cjmuWSfVTrJfOGj7AcXvMLU8R8i1Q9cF`,
-        {
-          method: "GET",
-        },
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          // console.log(data)
-          setCalculateDistance(Math.round(data.routes[0].summary.lengthInMeters / 1000));
-        });
-    } else {
-      setCalculateDistance(null);
-    }
-  }, [latLangFrom, latLangTo]);
+  const handleSearching = (e: any) => {
+    setFocused(true);
+    setQueryingTravel(e.target.value);
+  };
 
   const handleShowingList = (e: any) => {
+    setFocused(true);
     const TargetName = e.target.name;
-
-    if (TargetName === "From") {
-      setFocused("From");
-      FromList.current.style.display = "block";
-      setActiveQuery("From");
-    }
-
-    if (TargetName === "To") {
-      setFocused("To");
-      ToList.current.style.display = "block";
-      setActiveQuery("To");
-    }
   };
 
   const handleHidingList = (e: any) => {
+    setFocused(false);
     const RefName = e.target.name;
-
-    if (RefName === "From") {
-      setFocused("");
-      FromList.current.style.display = "none";
-      if (latLangFrom === null) {
-        setQueryFrom("");
-      }
-    }
-
-    if (RefName === "To") {
-      setFocused("");
-      ToList.current.style.display = "none";
-      if (latLangTo === null) {
-        setQueryTo("");
-      }
-    }
   };
 
   // handling X (clear) buttons in localization inputs
@@ -175,27 +120,13 @@ export default function TomTom({ ShowOrHideInfoAboutMissingLocalizations }: Func
     setlatLangFrom(null);
   };
 
-  const clearToQuery = () => {
-    setMunicipalityTo("Kraków");
-    setQueryTo("");
-    setlatLangTo(null);
-  };
   //END of handling X (clear) buttons in localization inputs
 
   useEffect(() => {
     let query: any;
     let RestricionOne: any;
     let RestricionTwo: any;
-
-    if (activeQuery === "From") {
-      query = queryFrom;
-    }
-
-    if (activeQuery === "To") {
-      query = queryTo;
-      RestricionOne = "Kraków";
-      RestricionTwo = "Zabierzów";
-    }
+    query = queryingTravel;
 
     function fetchData() {
       fetch(
@@ -215,13 +146,14 @@ export default function TomTom({ ShowOrHideInfoAboutMissingLocalizations }: Func
           }
         })
         .then((data) => {
-          console.log(data);
+          // console.log(data);
+          // console.log(data);
           const newData = data.map((i: any, key: any) => {
             let icon;
             let POI;
             let Specifics = i.address.freeformAddress;
             let StreetName = i.address.streetName;
-            let StreetNumber = 2;
+            let StreetNumber = i.address.streetNumber;
             let City = "";
 
             if (i.address.municipalitySubdivision) {
@@ -233,21 +165,19 @@ export default function TomTom({ ShowOrHideInfoAboutMissingLocalizations }: Func
 
             //Contions to show icon
             if (i.type === "POI") {
+              // StreetNumber = i.address.streetNumber;
               if (i.poi.name === "Kraków John Paul II International Airport") {
                 POI = "Kraków Airport";
-              } else if (i.poi.categories[0] !== "airport") {
-                POI = `${i.poi.name}, ${i.address.freeformAddress}`;
               } else {
                 POI = i.poi.name;
               }
-              // StreetNumber = i.address.streetNumber;
             }
             if (i.type === "Street") {
               POI = `${StreetName},${StreetName}`;
             }
             if (i.type === "Point Address") {
               // StreetNumber = i.address.streetNumber;
-              POI = `${City}, ${StreetName} ${StreetNumber}`;
+              POI = `${City}`;
             }
             // else {
             //   StreetNumber = i.address.streetNumber
@@ -298,7 +228,7 @@ export default function TomTom({ ShowOrHideInfoAboutMissingLocalizations }: Func
               <div
                 key={key}
                 ref={suggest}
-                id={activeQuery}
+                id="travel"
                 data-name={POI}
                 data-value-lat={lat}
                 data-value-lon={lon}
@@ -309,7 +239,7 @@ export default function TomTom({ ShowOrHideInfoAboutMissingLocalizations }: Func
                 <div
                   ref={suggest}
                   // onClick={(e:any) => handleChosingParam(e,i)}
-                  id={activeQuery}
+                  id="travel"
                   data-name={POI}
                   className="w-[30px] h-full p-[5px] flex justify-center items-center"
                 >
@@ -318,14 +248,14 @@ export default function TomTom({ ShowOrHideInfoAboutMissingLocalizations }: Func
                 <div
                   ref={suggest}
                   // onClick={(e:any) => handleChosingParam(e,i)}
-                  id={activeQuery}
+                  id="travel"
                   data-name={POI}
                   className="flex flex-col w-full justify-center"
                 >
                   <div
                     ref={suggest}
                     // onClick={(e:any) => handleChosingParam(e,i)}
-                    id={activeQuery}
+                    id="travel"
                     data-name={POI}
                     className="font-bold text-[13px] w-full leading-[12px]"
                   >
@@ -334,7 +264,7 @@ export default function TomTom({ ShowOrHideInfoAboutMissingLocalizations }: Func
                   <div
                     ref={suggest}
                     // onClick={(e:any) => handleChosingParam(e,i)}
-                    id={activeQuery}
+                    id="travel"
                     data-name={POI}
                     className="text-[10px] w-full z-20 leading-[12px]"
                   >
@@ -345,45 +275,13 @@ export default function TomTom({ ShowOrHideInfoAboutMissingLocalizations }: Func
               </div>
             );
           });
-
-          if (activeQuery === "From") {
-            setDataFromFetch(newData);
-          }
-          if (activeQuery === "To") {
-            setDataToFetch(newData);
-          }
+          setTravelListQuery(newData);
         });
     }
-
-    if (activeQuery === "From" && queryFrom.length > 3) {
+    if (queryingTravel.length > 2) {
       fetchData();
     }
-
-    if (activeQuery === "To" && queryTo.length > 3) {
-      fetchData();
-    }
-  }, [debouncedSearchFrom, debouncedSearchTo]);
-
-  useEffect(() => {
-    calculateDistances();
-
-    if (
-      (permissionedMunicipality.includes(municipalityFrom) &&
-        !permissionedMunicipality.includes(municipalityTo)) ||
-      (!permissionedMunicipality.includes(municipalityFrom) &&
-        permissionedMunicipality.includes(municipalityTo)) ||
-      (permissionedMunicipality.includes(municipalityFrom) &&
-        permissionedMunicipality.includes(municipalityTo))
-    ) {
-      setCorrectRoad(true);
-    } else {
-      setCorrectRoad(false);
-      setQueryFrom("");
-      setQueryTo("");
-      setlatLangFrom(null);
-      setlatLangTo(null);
-    }
-  }, [latLangFrom, latLangTo]);
+  }, [debouncedSearch]);
 
   const handleClosingInfoAboutRoute = () => {
     setCorrectRoad(true);
@@ -393,25 +291,25 @@ export default function TomTom({ ShowOrHideInfoAboutMissingLocalizations }: Func
 
   return (
     <div className="flex flex-col lg:flex-row w-full">
-      <div className="w-full h-[47px] flex flex-col rounded-r-[10px] ">
+      <div className="w-full h-[47px] flex flex-col rounded-r-[10px]">
         <div
           className={
             correctRoad === true
               ? "absolute w-full h-[0px] mx-auto bg-white z-40 rounded-[10px] flex items-start justify-between overflow-hidden duration-300"
-              : "absolute w-full h-[100%] shadow-[0px_0px_15px_2px_rgba(0,0,0,0.3)] mx-auto bg-white z-40 rounded-[10px] flex items-start justify-between overflow-hidden duration-300"
+              : "absolute w-full h-[98%] mx-auto bg-white z-40 rounded-[10px] flex items-start justify-between overflow-hidden duration-300"
           }
           onClick={handleClosingInfoAboutRoute}
         >
-          <div className="flex items-center justify-center w-[90%] h-full">
-            <AiFillInfoCircle className="w-[6%] h-full mr-[10px]" />
-            <div className="h-full w-[85%] leading-4 pt-[20px] lg:pt-[0px] flex items-center">
+          <div className="flex items-center w-[90%] h-full">
+            <AiFillInfoCircle className="w-[15%]" />
+            <div className="h-full w-[85%] leading-4 pt-[20px]">
               Sorry, you can only choose a route which contain a starting or finishig point in
               Kraków commune
             </div>
           </div>
-          <AiOutlineClose className="mr-[5px] mt-[5px] cursor-pointer" />
+          <AiOutlineClose classname="w-[10%]" />
         </div>
-        <div className="flex justify-center items-center lg:border border-gray-900/[0.4] rounded-[10px] relative lg:w-11/12">
+        <div className="flex justify-center items-center border border-gray-900/[0.4] rounded-[10px] relative lg:w-12/12">
           <BiSolidMap className="w-[30px] h-[30px] text-yellow-500/[0.4]" />
           <div
             onClick={clearFromQuery}
@@ -426,68 +324,29 @@ export default function TomTom({ ShowOrHideInfoAboutMissingLocalizations }: Func
           </div>
           <input
             ref={inputFrom}
-            // type="text"
             name="From"
             onBlur={handleHidingList}
-            value={queryFrom}
+            value={queryingTravel}
             onFocus={handleShowingList}
-            onChange={handleSearchFrom}
-            className="text-[15px] w-full  min-h-[45px] outline-none rounded-[10px] pl-[5px] pr-[50px] leading-[15px]"
-            placeholder="from"
+            onChange={handleSearching}
+            className="text-[15px] w-full min-h-[45px] outline-none rounded-[10px] pl-[5px] pr-[50px] overflow-ellipsis"
+            placeholder="find the starting location"
             autoComplete="off"
           ></input>
         </div>
         <div
           // onMouseDown={(e) => e.preventDefault()}
-          ref={FromList}
+          ref={travelList}
           className={
-            queryFrom.length > 2 && queryFrom !== null && focused === "From"
-              ? "absolute w-[102%] -left-[1%] top-[50px] border-2 border-yellow-500 rounded-[10px] bg-white z-30"
+            queryingTravel.length > 2 && focused === true
+              ? "absolute w-[400px] top-[225px] border-2 border-yellow-500 rounded-[10px] bg-white z-30"
               : "hidden overflow-hidden"
           }
         >
-          {dataFromFetch}
+          {travelListQuery}
         </div>
       </div>
       <div className="h-[1px] lg:hidden bg-gray-400/[0.3] w-11/12 mx-auto"></div>
-      <div className="w-full h-[47px] flex flex-col z-20 rounded-r-[10px] relative lg:w-11/12">
-        <div className="flex justify-center items-center lg:border border-gray-900/[0.4] rounded-[10px]">
-          <BiSolidMap className="w-[30px] h-[30px] text-yellow-500/[0.4]" />
-          <div
-            onClick={clearToQuery}
-            ref={clearTo}
-            className={
-              queryTo.length > 1 && queryTo !== null
-                ? "bg-white cursor-pointer absolute w-[40px] h-[40px] right-0 z-10 flex items-center duration-200 justify-center text-gray-300 hover:text-gray-800 mr-[2px] rounded-[5px]"
-                : "hidden"
-            }
-          >
-            <AiFillCloseSquare className="w-[90%] h-[90%]" />
-          </div>
-          <input
-            ref={inputTo}
-            name="To"
-            onBlur={handleHidingList}
-            value={queryTo}
-            onFocus={handleShowingList}
-            onChange={handleSearchTo}
-            className="text-[15px] w-full min-h-[45px] outline-none rounded-[10px] pl-[5px] pr-[50px] overflow-ellipsis"
-            placeholder="to"
-            autoComplete="off"
-          ></input>
-        </div>
-        <div
-          ref={ToList}
-          className={
-            queryTo?.length > 4 && queryTo !== null && focused === "To"
-              ? "absolute w-[102%] -left-[1%] top-[50px] border-2 border-yellow-500 rounded-[10px] bg-white"
-              : "hidden overflow-hidden"
-          }
-          onMouseDown={(e) => e.preventDefault()}
-        >
-          {dataToFetch}
-        </div>
-      </div>
     </div>
   );
 }

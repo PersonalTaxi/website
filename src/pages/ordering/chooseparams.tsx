@@ -1,10 +1,4 @@
-import React, {
-  useContext,
-  useEffect,
-  useReducer,
-  useRef,
-  useState,
-} from "react";
+import React, { useContext, useEffect, useReducer, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Orderspacifications from "../MainPage/Search/orderspecifications";
@@ -70,6 +64,8 @@ export default function Chooseparams() {
     setTime,
     people,
     setPeople,
+    whatIsOrdering,
+    setWhatIsOrdering,
     latLangFrom,
     setlatLangFrom,
     latLangTo,
@@ -88,6 +84,8 @@ export default function Chooseparams() {
     setUnusualItems,
     flightNumber,
     setFlightNumber,
+    currencyTXT,
+    setCurrencyTXT,
   } = useContext(AppContext);
 
   const [combi, setCombi] = useState(false);
@@ -126,10 +124,14 @@ export default function Chooseparams() {
   };
 
   const handleOrdering = (e: any) => {
+    setWhatIsOrdering("Taxi transfer");
     e.preventDefault();
     // setCars(state);
     setPrice(FinalPrice);
-    router.replace("/ordering/payment");
+    router.replace({
+      pathname: "/ordering/payment",
+      query: { type: "taxi" },
+    });
   };
 
   const handleHidingingInfoAboutCorrectFromsBeforeOrdering = () => {
@@ -165,12 +167,6 @@ export default function Chooseparams() {
     }
   }, [router.query.passengers]);
 
-  // useEffect(() => {
-  //   if (state.sedan === 0) {
-  //     setCombi(false);
-  //   }
-  // }, [state]);
-
   //calculating final price
   let distanceAboveMin = 0;
 
@@ -178,12 +174,32 @@ export default function Chooseparams() {
     distanceAboveMin = calculateDistance - 20;
   }
 
-  let FinalPrice =
-    cars.van * 149 +
-    cars.van * distanceAboveMin * 7 +
-    (cars.sedan * 129 + cars.sedan * distanceAboveMin * 7);
+  let FinalPrice = 0;
+
+  if (currencyTXT === "EUR") {
+    (FinalPrice =
+      (cars.van * 149 +
+        cars.van * distanceAboveMin * 7 +
+        (cars.sedan * 129 + cars.sedan * distanceAboveMin * 7)) /
+      4),
+      4;
+    setPrice(FinalPrice);
+  } else {
+    FinalPrice =
+      cars.van * 149 +
+      cars.van * distanceAboveMin * 7 +
+      (cars.sedan * 129 + cars.sedan * distanceAboveMin * 7);
+    setPrice(FinalPrice);
+  }
 
   // END OF CALCULATING
+
+  const handleChangeToPLN = () => {
+    setCurrencyTXT("PLN");
+  };
+  const handleChangeToEUR = () => {
+    setCurrencyTXT("EUR");
+  };
 
   return (
     <div className="relative bg-white mt-[90px] w-[95vw] lg:w-[1080px] mx-auto rounded-[10px] h-[1250px] lg:h-[900px] border">
@@ -197,9 +213,7 @@ export default function Chooseparams() {
         parseInt(passengersFromQuery) === people && (
           <div className="absolute bg-red-600 text-white w-[92vw] lg:w-[1080px] -top-[60px] left-0 right-0 mx-auto px-[4px] rounded-[3px] flex justify-center items-center h-[40px]">
             <AiFillInfoCircle />
-            <p className="pl-[4px]">
-              Find a seat(s) for {PersonsLeft} person(s) yet.
-            </p>
+            <p className="pl-[4px]">Find a seat(s) for {PersonsLeft} person(s) yet.</p>
           </div>
         )}
       <div
@@ -241,9 +255,7 @@ export default function Chooseparams() {
       </div>
       {router.query.car === "mixed" && (
         <div className="w-[90vw] lg:w-[80%] mx-auto py-[20px] border-t border-b">
-          <p className={`${rubikFonts.className} text-[20px]`}>
-            Choosed car(s) summary have:
-          </p>
+          <p className={`${rubikFonts.className} text-[20px]`}>Choosed car(s) summary have:</p>
           <div>
             <div id="seats-summary-wrapper" className=" flex items-center">
               <BsFillPersonFill className="text-yellow-500 w-[30px] h-[20px]" />
@@ -256,10 +268,7 @@ export default function Chooseparams() {
           </div>
         </div>
       )}
-      <form
-        onSubmit={handleOrdering}
-        className="w-[90vw] lg:w-[75%] h-[300px] mx-auto my-[10px]"
-      >
+      <form onSubmit={handleOrdering} className="w-[90vw] lg:w-[75%] h-[300px] mx-auto my-[10px]">
         <p className="font-[700] text-[16px]">Order details:</p>
         <div id="form-wrapper" className="flex flex-col lg:flex-row">
           <div id="flight-messege-container" className="lg:w-1/2 lg:mt-[5px]">
@@ -279,9 +288,9 @@ export default function Chooseparams() {
               >
                 <AiOutlineClose className="w-[20px] h-[20px] float-right" />
                 <p>
-                  By writing down number of your flight we will be able to
-                  monitoring departures time and get your from the airport at
-                  right time. After departure our waiting time is up to 60 mins.
+                  By writing down number of your flight we will be able to monitoring departures
+                  time and get your from the airport at right time. After departure our waiting time
+                  is up to 60 mins.
                 </p>
               </div>
               <div
@@ -293,9 +302,7 @@ export default function Chooseparams() {
               </div>
             </div>
             <div className=" border-blue-900 w-full h-[120px] flex items-start flex-col mt-[20px] px-[7px] lg:pr-[25px]">
-              <div className="text-[16px]">
-                FIll if you have any non-standard bags:
-              </div>
+              <div className="text-[16px]">FIll if you have any non-standard bags:</div>
               <textarea
                 value={unusualItems}
                 onChange={handleAddingUnusualItems}
@@ -338,9 +345,34 @@ export default function Chooseparams() {
                 ></div>
               </Link>
             )}
-          <button className="float-right flex h-[50px] px-[10px] py-[5px] bg-yellow-500 text-white items-center justify-center rounded-[10px] border duration-200  border-yellow-500 hover:bg-white hover:text-yellow-500">
-            <p>Start ordering for {FinalPrice} zł </p>
-          </button>
+          <div className="flex flex-col w-full justify-center items-center">
+            <button className="float-right flex h-[50px] px-[10px] py-[5px] bg-yellow-500 text-white items-center justify-center rounded-[10px] border duration-200  border-yellow-500 hover:bg-white hover:text-yellow-500">
+              <p>
+                Start ordering for {price} {currencyTXT}
+              </p>
+            </button>
+            <div
+              id="price"
+              className="bg-yellow-500 rounded-r-[5px] text-center text-white -ml-[15px] w-full"
+            >
+              {currencyTXT === "EUR" && (
+                <p
+                  className="text-[12px] bg-white text-black cursor-pointer"
+                  onClick={handleChangeToPLN}
+                >
+                  Switch to PLN
+                </p>
+              )}
+              {currencyTXT === "PLN" && (
+                <p
+                  className="text-[12px] bg-white text-black cursor-pointer"
+                  onClick={handleChangeToEUR}
+                >
+                  Switch to EUR
+                </p>
+              )}
+            </div>
+          </div>
         </div>
       </form>
     </div>

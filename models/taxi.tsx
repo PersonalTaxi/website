@@ -22,5 +22,5 @@ const OrderSchema = new Schema({
   isPayed: { type: Boolean, default: false },
 });
 
-const Order = mongoose.models.Order || mongoose.model("Order", OrderSchema);
-export default Order;
+const Taxi = mongoose.models.Taxi || mongoose.model("Taxi", OrderSchema);
+export default Taxi;

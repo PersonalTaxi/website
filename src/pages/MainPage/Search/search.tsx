@@ -1,11 +1,4 @@
-import React, {
-  useState,
-  useRef,
-  useMemo,
-  useCallback,
-  useEffect,
-  useContext,
-} from "react";
+import React, { useState, useRef, useMemo, useCallback, useEffect, useContext } from "react";
 import { AppContext } from "@/pages/_app";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -19,11 +12,7 @@ import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { BsFillPersonFill } from "react-icons/bs";
 import { AiFillInfoCircle } from "react-icons/ai";
 import { TbCalendarTime } from "react-icons/tb";
-import {
-  AiOutlineClose,
-  AiOutlineFieldTime,
-  AiOutlineCheck,
-} from "react-icons/ai";
+import { AiOutlineClose, AiOutlineFieldTime, AiOutlineCheck } from "react-icons/ai";
 import Script from "next/script";
 import Head from "next/head";
 
@@ -104,11 +93,7 @@ export default function Search() {
       InfoAboutFillLocations.current.style.display = "flex";
     }
 
-    if (
-      latLangFrom !== null &&
-      latLangTo !== null &&
-      SearchButtonWasClicked === true
-    ) {
+    if (latLangFrom !== null && latLangTo !== null && SearchButtonWasClicked === true) {
       InfoAboutFillLocations.current.style.display = "none";
     }
   };
@@ -156,16 +141,8 @@ export default function Search() {
       if (latLangFrom === null) return false;
       if (latLangTo === null) return false;
       if (dateLimit > date) return false;
-      if (
-        passengersFromQuery !== people &&
-        !router.asPath.includes("passengers")
-      )
-        return false;
-      if (
-        passengersFromQuery !== people &&
-        router.asPath.includes("passengers")
-      )
-        return false;
+      if (passengersFromQuery !== people && !router.asPath.includes("passengers")) return false;
+      if (passengersFromQuery !== people && router.asPath.includes("passengers")) return false;
 
       CompleteStatus = "true";
     };
@@ -202,19 +179,13 @@ export default function Search() {
           content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
         ></meta>
       </Head>
-      <div
-        className="w-screen lg:w-[1180px] z-20 mt-[12px] mx-auto"
-        id="specifics"
-      >
+      <div className="w-screen lg:w-[1180px] z-20 mt-[12px] mx-auto" id="specifics">
         <div
           id="search-wraper"
           className="w-full flex flex-col justify-center items-center relative"
         >
           <div id="search-contianer-text" className="w-11/12 px-[30px]">
-            <div
-              id="correctInfo"
-              className="w-[120px] bg-white text-center rounded-t-[10px] "
-            >
+            <div id="correctInfo" className="w-[120px] bg-white text-center rounded-t-[10px] ">
               Your drive:
             </div>
           </div>
@@ -249,9 +220,7 @@ export default function Search() {
                     className="absolute hidden h-[20px] text-red-800 items-center text-[14px]"
                   >
                     <AiFillInfoCircle />
-                    <div className="pl-[5px] cursor-pointer">
-                      Please fill a localizations
-                    </div>
+                    <div className="pl-[5px] cursor-pointer">Please fill a localizations</div>
                   </div>
                 </div>
                 <div
@@ -295,8 +264,7 @@ export default function Search() {
                       <div className="flex items-center">
                         <AiFillInfoCircle className="w-[20px] h-[20px] lg:hidden " />
                         <p className="px-[5px] h-full mt-[5px] lg:leading-[14px]">
-                          You can order a taxi not eariler that 16 hours from
-                          now
+                          You can order a taxi not eariler that 16 hours from now
                         </p>
                       </div>
                       <AiOutlineClose className="w-[20px] h-[20px] lg:hidden" />
@@ -355,9 +323,7 @@ export default function Search() {
                 {isFormCompleted === "true" && (
                   <>
                     <AiOutlineCheck className="text-white bg-green-600 mr-[4px]" />
-                    <p className="text-green-600 font-[500]">
-                      Conditions are up to date
-                    </p>
+                    <p className="text-green-600 font-[500]">Conditions are up to date</p>
                   </>
                 )}
 
@@ -365,9 +331,7 @@ export default function Search() {
                 {parseInt(passengersFromQuery) !== people && (
                   <>
                     <AiOutlineClose />
-                    <p className="text-red-600">
-                      You have to update (button above)
-                    </p>
+                    <p className="text-red-600">You have to update (button above)</p>
                   </>
                 )}
               </div>
