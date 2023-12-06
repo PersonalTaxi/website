@@ -218,8 +218,8 @@ export default function TravelSummary() {
                   <b>Final Price</b> {travelPrice} zł
                 </div>
                 <p className="italic text-[12px] mt-[20px]">
-                  You've also confirmed Privacy Policy and Terms. By clicking button below you will
-                  confirm all above information and start making an order with payment.{" "}
+                  You&lsquo;ve also confirmed Privacy Policy and Terms. By clicking button below you
+                  will confirm all above information and start making an order with payment.{" "}
                 </p>
               </div>
               <button

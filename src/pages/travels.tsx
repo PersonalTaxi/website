@@ -35,6 +35,7 @@ export default function Travels() {
       <div id="Faq-wrapper" className="border w-screen min-h-[400px] z-20 relative flex flex-col">
         {TravelsList.map((i) => (
           <Travelcomponent
+            key={i.name}
             name={i.name}
             type={i.type}
             descriptionEN={i.descriptionEN}
