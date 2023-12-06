@@ -182,7 +182,7 @@ export default function Travelcomponent({
                 <div className="flex">
                   <FaCar />
                   <p className="text-[12px] ml-[5px]">
-                    We'll drive you to the place then wait for you.
+                    We&apos;ll drive you to the place then wait for you.
                   </p>
                 </div>
                 <div className="flex">

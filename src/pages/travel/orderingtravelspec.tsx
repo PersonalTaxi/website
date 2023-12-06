@@ -136,9 +136,9 @@ export default function Orderingtravelspecifics({
                 className="cursor-pointer"
               ></input>
               <p className="leading-[10px] text-[10px] pl-[5px]">
-                Check this box if you don't know localization yet. You also declare that it will be
-                in Cracow commune and you will send this localization via mail or phone as soon as I
-                know it.
+                Check this box if you don&lsquo;t know localization yet. You also declare that it
+                will be in Cracow commune and you will send this localization via mail or phone as
+                soon as I know it.
               </p>
             </div>
             <div
