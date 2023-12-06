@@ -21,7 +21,7 @@ export default function Mobilemenu({ setMobileMenuOpened, mobileMenuOpened }: Qu
       <div className="w-full h-[50px] px-[15px] flex items-center justify-between bg-black">
         <div>
           <Link href={router.asPath.includes("pl") ? "/pl" : "/"}>
-            <Image src="logo_personal_2.png" width={100} height={100} alt="taxi_krakow"></Image>
+            <Image src="/logo_personal_2.png" width={100} height={100} alt="taxi_krakow"></Image>
           </Link>
         </div>
         <AiOutlineClose className="w-[30px] h-[30px] text-white" onClick={handleClosingMenu} />

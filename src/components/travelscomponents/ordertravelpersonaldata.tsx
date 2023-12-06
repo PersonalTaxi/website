@@ -29,6 +29,8 @@ export default function Ordertravelspec() {
     travelPrice,
     currencyTXT,
     setCurrencyTXT,
+    finalTravelPrice,
+    setFinalTravelPrice,
   } = useContext(AppContext);
 
   const [data, setData] = useState([{ country: "Poland" }, { code: "+48" }, { emoji: "🇵🇱" }]);
@@ -38,8 +40,6 @@ export default function Ordertravelspec() {
     setTravelPrefixPhone(e.target.value);
     console.log(e.target.value);
   };
-
-  console.log(travelPrice);
 
   const countriesData = countries.sort((a, b) =>
     parseInt(a.dial_code.slice(1)) > parseInt(b.dial_code.slice(1)) ? 1 : -1,
@@ -72,7 +72,7 @@ export default function Ordertravelspec() {
               type="radio"
               className="mr-[4px] w-[20px] h-[20px] cursor-pointer"
               onChange={handlePersonTitle}
-              // required
+              required
             ></input>
             <label>Mr.</label>
           </div>
@@ -90,19 +90,19 @@ export default function Ordertravelspec() {
         <input
           placeholder="First name"
           className="border border-gray-400 w-full pl-[10px] h-[40px] mb-[20px] rounded-[5px] placeholder-gray-400 outline-none"
-          // required
+          required
           onChange={(e) => setTravelFirstName(e.target.value)}
         ></input>
         <input
           placeholder="Last name"
           className="border border-gray-400 w-full pl-[10px] h-[40px] mb-[20px] rounded-[5px] placeholder-gray-400 outline-none"
-          // required
+          required
           onChange={(e) => setTravelLastName(e.target.value)}
         ></input>
         <input
           placeholder="Your email"
           className="border border-gray-400 w-full pl-[10px] h-[40px] mb-[20px] rounded-[5px] placeholder-gray-400 outline-none"
-          // required
+          required
           onChange={(e) => setTravelEmail(e.target.value)}
         ></input>
         <div className="flex h-[40px] w-full relative">
@@ -117,14 +117,14 @@ export default function Ordertravelspec() {
             placeholder="Your phone (only digists)"
             className="border-r border-t border-b border-gray-400 w-full pl-[10px] h-[40px] mb-[20px] rounded-r-[5px] placeholder-gray-400 outline-none"
             type="phone"
-            // required
+            required
             onChange={(e) => setTravelPhone(e.target.value)}
           ></input>
         </div>
         <div className="w-full flex items-start p-[5px] mt-[10px]">
           <input
             type="checkbox"
-            // required
+            required
             className="w-[20px] h-[20px] mr-[5px] cursor-pointer"
           ></input>
           <p className="leading-4 w-full">
@@ -136,7 +136,7 @@ export default function Ordertravelspec() {
         <div className="w-full flex items-start p-[5px] mt-[10px]">
           <input
             type="checkbox"
-            // required
+            required
             className="w-[20px] h-[20px] mr-[5px] cursor-pointer"
           ></input>
           <p className="leading-4 w-full">
@@ -154,7 +154,7 @@ export default function Ordertravelspec() {
           </p>
         </div>
         <div className="mt-[30px] text-[24px] font-bold bg-yellow-300/[0.2] text-center">
-          Final price: {travelPrice} {currencyTXT}
+          Final price: {finalTravelPrice} {currencyTXT}
         </div>
         {/* <div className="w-full flex flex-col justify-center items-center mt-[30px]">
           <div id="info" className="flex justify-center items-center">

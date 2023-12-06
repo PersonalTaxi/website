@@ -37,6 +37,8 @@ export default function TravelSummary() {
     whatIsOrdering,
     travelPrice,
     serviceType,
+    currencyTXT,
+    finalTravelPrice,
   } = useContext(AppContext);
 
   const router = useRouter();
@@ -72,8 +74,8 @@ export default function TravelSummary() {
     let merchantId = 27407;
     const UniqeNumber = Date.now().toString();
     let sessionId = UniqeNumber;
-    let amount = travelPrice * 100;
-    let currency = "PLN";
+    let amount = finalTravelPrice * 100;
+    let currency = currencyTXT;
     let crc = await fetch("/api/getcrc").then((res) => res.json());
 
     // console.log(await crc.data);
@@ -90,12 +92,12 @@ export default function TravelSummary() {
       posId: 27407,
       sessionId: sessionId,
       amount: amount,
-      currency: "PLN",
+      currency: currencyTXT,
       description: "ordering taxi",
       email: travelEmail,
       country: "PL",
       language: "pl",
-      urlReturn: `http://localhost:3000/ordering/verify?type=travel`,
+      urlReturn: `http://personaltaxi.pl/ordering/verify?type=travel`,
       urlStatus: "https://ptbackend.vercel.app/",
       sign: sign,
     });
@@ -215,7 +217,7 @@ export default function TravelSummary() {
               </div>
               <div>
                 <div className="mt-[30px]">
-                  <b>Final Price</b> {travelPrice} zł
+                  <b>Final Price</b> {finalTravelPrice} {currencyTXT}
                 </div>
                 <p className="italic text-[12px] mt-[20px]">
                   You&lsquo;ve also confirmed Privacy Policy and Terms. By clicking button below you
@@ -226,7 +228,7 @@ export default function TravelSummary() {
                 className="bg-blue-300 px-[30px] py-[5px] rounded-[10px] text-[20px] mt-[30px]"
                 onClick={handleStartPayment}
               >
-                Pay & Order for {travelPrice} zł
+                Pay & Order for {finalTravelPrice} {currencyTXT}
               </button>
             </div>
           </div>

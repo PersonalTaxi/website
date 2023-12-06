@@ -44,6 +44,8 @@ export default function Travelcomponent({
     setCurrencyTXT,
     travelPrice,
     setTravelPrice,
+    finalTravelPrice,
+    setFinalTravelPrice,
   } = useContext(AppContext);
 
   const handleMoreDetails = () => {
@@ -56,11 +58,9 @@ export default function Travelcomponent({
 
   const ActualPrice = () => {
     if (currencyTXT === "EUR") {
-      setTravelPrice(Math.round(price / 4.4));
       return Math.round(price / 4.4);
     }
     if (currencyTXT === "PLN") {
-      setTravelPrice(price);
       return price;
     }
   };
@@ -69,15 +69,25 @@ export default function Travelcomponent({
 
   const handleChangingCurrency = () => {
     if (currencyTXT === "EUR") {
+      setFinalTravelPrice(Math.round(price / 4.4));
       setCurrencyTXT("PLN");
     }
     if (currencyTXT === "PLN") {
+      setFinalTravelPrice(travelPrice);
       setCurrencyTXT("EUR");
     }
   };
+  console.log(travelPrice);
 
   const handleChosingTravel = (e: any) => {
-    setTravelPrice(price);
+    if (currencyTXT === "EUR") {
+      setTravelPrice(Math.round(price / 4.4));
+      setFinalTravelPrice(Math.round(price / 4.4));
+    }
+    if (currencyTXT === "PLN") {
+      setTravelPrice(price);
+      setFinalTravelPrice(price);
+    }
     const direction = e.target.getAttribute("id");
     setTravelDestination(direction);
     router.push({ pathname: "/travel/ordering", query: { destination: direction } });

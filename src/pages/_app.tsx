@@ -105,6 +105,8 @@ type QueryParams = {
   setTravelPhone: React.Dispatch<React.SetStateAction<any>>;
   travelPrice: any;
   setTravelPrice: React.Dispatch<React.SetStateAction<any>>;
+  finalTravelPrice: any;
+  setFinalTravelPrice: any;
 };
 
 export const AppContext = createContext({} as QueryParams);
@@ -165,6 +167,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const [travelPrefixPhone, setTravelPrefixPhone] = useState("+48");
   const [travelPhone, setTravelPhone] = useState();
   const [travelPrice, setTravelPrice] = useState(600);
+  const [finalTravelPrice, setFinalTravelPrice] = useState();
 
   //validation
   const [isFormCompleted, setIsFromCompleted] = useState(false);
@@ -281,6 +284,8 @@ export default function App({ Component, pageProps }: AppProps) {
         setTravelPhone,
         travelPrice,
         setTravelPrice,
+        finalTravelPrice,
+        setFinalTravelPrice,
       }}
     >
       <Component {...pageProps} />

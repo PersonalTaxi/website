@@ -17,7 +17,7 @@ export default function Header() {
       <div className="w-[1100px] flex items-center justify-between ">
         <div>
           <Link href="/pl">
-            <Image src="/Logo.png" width={90} height={90} alt="taxi_krakow"></Image>
+            <Image src="/logo_personal_2.png" width={90} height={90} alt="taxi_krakow"></Image>
           </Link>
         </div>
         <div className="lg:hidden  flex w-full justify-end items-center">
@@ -57,7 +57,7 @@ export default function Header() {
           <Link href="/pl/aboutus" className="cursor-pointer hover:text-yellow-500 duration-200">
             FAQ
           </Link>
-          <Link href="/pl/travels" className="cursor-pointer hover:text-yellow-500 duration-200">
+          <Link href="#" className="cursor-pointer hover:text-yellow-500 duration-200">
             Travels
           </Link>
           <Link href="/policy" className="cursor-pointer hover:text-yellow-500 duration-200">

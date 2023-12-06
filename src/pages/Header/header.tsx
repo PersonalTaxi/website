@@ -28,7 +28,7 @@ export default function Header() {
       <div className="w-[1100px] flex items-center justify-between">
         <div className="border-white h-full">
           <Link href="/">
-            <Image src="/Logo_personal_2.png" width={170} height={150} alt="taxi_krakow"></Image>
+            <Image src="/logo_personal_2.png" width={170} height={150} alt="taxi_krakow"></Image>
           </Link>
         </div>
         <div className="lg:hidden flex w-full justify-end items-center">

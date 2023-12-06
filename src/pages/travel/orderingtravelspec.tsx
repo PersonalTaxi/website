@@ -33,8 +33,10 @@ export default function Orderingtravelspecifics({
   persons,
   setPersons,
 }: Props) {
+  const { travelPrice, setTravelPrice, currencyTXT, finalTravelPrice, setFinalTravelPrice } =
+    useContext(AppContext);
+
   const [localizationIsUnknow, setLocalizationIsUnknow] = useState(false);
-  const { travelPrice, setTravelPrice } = useContext(AppContext);
   const infoAboutCars: any = useRef();
 
   const handleDontKnowingAddress = () => {
@@ -48,9 +50,9 @@ export default function Orderingtravelspecifics({
     }
 
     if (persons > 3) {
-      setTravelPrice(800);
+      setFinalTravelPrice(Math.round(travelPrice * 1.3333));
     } else {
-      setTravelPrice(600);
+      setFinalTravelPrice(travelPrice);
     }
   };
 
@@ -59,9 +61,9 @@ export default function Orderingtravelspecifics({
       setPersons(persons - 1);
     }
     if (persons <= 5) {
-      setTravelPrice(600);
+      setFinalTravelPrice(travelPrice);
     } else {
-      setTravelPrice(800);
+      setFinalTravelPrice(Math.round(travelPrice * 1.3333));
     }
   };
 
