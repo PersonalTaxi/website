@@ -9,10 +9,7 @@ interface QueryParams {
   setMobileMenuOpened: React.Dispatch<React.SetStateAction<any>>;
 }
 
-export default function Mobilemenu({
-  setMobileMenuOpened,
-  mobileMenuOpened,
-}: QueryParams) {
+export default function Mobilemenu({ setMobileMenuOpened, mobileMenuOpened }: QueryParams) {
   const handleClosingMenu = () => {
     setMobileMenuOpened(false);
   };
@@ -24,18 +21,10 @@ export default function Mobilemenu({
       <div className="w-full h-[50px] px-[15px] flex items-center justify-between bg-black">
         <div>
           <Link href={router.asPath.includes("pl") ? "/pl" : "/"}>
-            <Image
-              src="/Logo.png"
-              width={100}
-              height={100}
-              alt="taxi_krakow"
-            ></Image>
+            <Image src="logo_personal_2.png" width={100} height={100} alt="taxi_krakow"></Image>
           </Link>
         </div>
-        <AiOutlineClose
-          className="w-[30px] h-[30px] text-white"
-          onClick={handleClosingMenu}
-        />
+        <AiOutlineClose className="w-[30px] h-[30px] text-white" onClick={handleClosingMenu} />
       </div>
       <div></div>
       <div
@@ -43,15 +32,8 @@ export default function Mobilemenu({
         className="w-full h-[70vh] mx-auto flex items-center justify-center text-[24px]"
       >
         <div className="w-[80%] h-full flex flex-col items-center justify-center">
-          <Link
-            href={router.asPath.includes("pl") ? "/pl" : "/"}
-            onClick={handleClosingMenu}
-          >
-            {router.asPath.includes("pl") ? (
-              <p>Strona główna</p>
-            ) : (
-              <p>Home Page</p>
-            )}
+          <Link href={router.asPath.includes("pl") ? "/pl" : "/"} onClick={handleClosingMenu}>
+            {router.asPath.includes("pl") ? <p>Strona główna</p> : <p>Home Page</p>}
           </Link>
           <Link
             href={router.asPath.includes("pl") ? "/pl/aboutus" : "/aboutus"}
@@ -65,19 +47,14 @@ export default function Mobilemenu({
           >
             FAQ
           </Link>
+          <Link href="/travels" className="cursor-pointer hover:text-yellow-500 duration-200">
+            Travels
+          </Link>
           <Link href="policy" onClick={handleClosingMenu}>
-            {router.asPath.includes("pl") ? (
-              <p>Polityka Prywatności</p>
-            ) : (
-              <p>Provacy Policy</p>
-            )}
+            {router.asPath.includes("pl") ? <p>Polityka Prywatności</p> : <p>Provacy Policy</p>}
           </Link>
           <Link href="terms" onClick={handleClosingMenu}>
-            {router.asPath.includes("pl") ? (
-              <p>Regulamin usług</p>
-            ) : (
-              <p>Terms</p>
-            )}
+            {router.asPath.includes("pl") ? <p>Regulamin usług</p> : <p>Terms</p>}
           </Link>
           <Link
             href={router.asPath.includes("pl") ? "/pl/contact" : "/contact"}
