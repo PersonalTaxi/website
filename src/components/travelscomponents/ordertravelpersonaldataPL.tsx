@@ -5,7 +5,7 @@ import countries from "../../data/countries.json";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { RiErrorWarningFill } from "react-icons/ri";
 
-export default function Ordertravelspec() {
+export default function OrdertravelspecPL() {
   const {
     time,
     setTime,
@@ -63,7 +63,7 @@ export default function Ordertravelspec() {
     // As form element
     <div className="bg-white w-full lg:w-1/2 mx-auto pt-[15px] lg:p-[0px]">
       <div className="w-[85%] m-[30px]">
-        <p className="mb-[25px] font-bold">A few informations about you:</p>
+        <p className="mb-[25px] font-bold">Dane personalne:</p>
         <div className="flex mb-[25px]">
           <div className="w-[70px] flex items-center">
             <input
@@ -74,7 +74,7 @@ export default function Ordertravelspec() {
               onChange={handlePersonTitle}
               required
             ></input>
-            <label>Mr.</label>
+            <label>Pan</label>
           </div>
           <div className="w-[70px] flex items-center">
             <input
@@ -84,23 +84,23 @@ export default function Ordertravelspec() {
               className="mr-[4px] w-[20px] h-[20px] cursor-pointer"
               required
             ></input>
-            <label>Mrs.</label>
+            <label>Pani</label>
           </div>
         </div>
         <input
-          placeholder="First name"
+          placeholder="Imię"
           className="border border-gray-400 w-full pl-[10px] h-[40px] mb-[20px] rounded-[5px] placeholder-gray-400 outline-none"
           required
           onChange={(e) => setTravelFirstName(e.target.value)}
         ></input>
         <input
-          placeholder="Last name"
+          placeholder="Nazwisko"
           className="border border-gray-400 w-full pl-[10px] h-[40px] mb-[20px] rounded-[5px] placeholder-gray-400 outline-none"
           required
           onChange={(e) => setTravelLastName(e.target.value)}
         ></input>
         <input
-          placeholder="Your email"
+          placeholder="Adres e-mail"
           className="border border-gray-400 w-full pl-[10px] h-[40px] mb-[20px] rounded-[5px] placeholder-gray-400 outline-none"
           required
           onChange={(e) => setTravelEmail(e.target.value)}
@@ -114,7 +114,7 @@ export default function Ordertravelspec() {
             <MdOutlineKeyboardArrowDown />
           </select>
           <input
-            placeholder="Your phone (only digists)"
+            placeholder="Numer telefonu"
             className="border-r border-t border-b border-gray-400 w-full pl-[10px] h-[40px] mb-[20px] rounded-r-[5px] placeholder-gray-400 outline-none"
             type="phone"
             required
@@ -128,9 +128,10 @@ export default function Ordertravelspec() {
             className="w-[20px] h-[20px] mr-[5px] cursor-pointer"
           ></input>
           <p className="leading-4 w-full">
-            I confirm that I understand I have to buy any tour tickets, meals and else on my own. I
-            also confirm that I have tickets or at least confirmed date an hour as allowing me to
-            make the tour.
+            Potwierdzam, że rozumiem, że muszę zakupić wszystkie bilety wycieczkowe, posiłki itp
+            rzeczy we własnym zakresie. Również potwierdzam, że mam zakupione bilety lub
+            przynajmniej potwierdzoną możliwość odbycia planowanej podróży o wskazanej dacie i
+            godzinie.
           </p>
         </div>
         <div className="w-full flex items-start p-[5px] mt-[10px]">
@@ -140,21 +141,21 @@ export default function Ordertravelspec() {
             className="w-[20px] h-[20px] mr-[5px] cursor-pointer"
           ></input>
           <p className="leading-4 w-full">
-            I accept the{" "}
+            Akcpetuję
             <Link href="/policy" className="underline">
               {" "}
-              Privacy Policy
+              Politykę prywatności
             </Link>{" "}
-            and{" "}
+            oraz
             <Link href="/terms" className="underline">
               {" "}
-              Terms of our service
+              Regulamin usług
             </Link>{" "}
-            and agree to contact and realize my order.
+            oraz wyrażam zogodę na kontakt i realizację zamówienia.
           </p>
         </div>
         <div className="mt-[30px] text-[24px] font-bold bg-yellow-300/[0.2] text-center">
-          Final price: {finalTravelPrice} {currencyTXT}
+          Cena końcowa: {finalTravelPrice} {currencyTXT}
         </div>
       </div>
     </div>

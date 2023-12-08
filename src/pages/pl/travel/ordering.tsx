@@ -1,15 +1,14 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
-import Header from "../Header/header";
-import Faqelement from "../Faq/faqelement";
-import Footer from "../Footer/footer";
-import { AppContext } from "../_app";
-import Orderingtravelspec from "../../components/travelscomponents/orderingtravelspec";
-import Ordertravelperson from "@/components/travelscomponents/ordertravelpersonaldata";
+import HeaderPL from "../../Header/headerPL";
+import Footer from "../../Footer/footer";
+import { AppContext } from "../../_app";
+import OrderingtravelspecPL from "../../../components/travelscomponents/orderingtravelspecPL";
+import OrdertravelpersonPL from "@/components/travelscomponents/ordertravelpersonaldataPL";
 import { RiErrorWarningFill } from "react-icons/ri";
 
-export default function TravelOrdering() {
+export default function TravelOrderingPL() {
   const {
     travelDestination,
     setTravelDestination,
@@ -76,7 +75,7 @@ export default function TravelOrdering() {
     <>
       <Head>
         <meta http-equiv="X-UA-Compatible" content="IE=Edge"></meta>
-        <title>Personal Taxi - FAQ</title>
+        <title>Personal Taxi - Zamówienie </title>
         <meta
           name="viewport"
           content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
@@ -90,12 +89,12 @@ export default function TravelOrdering() {
         ></link>
         <link rel="stylesheet" type="text/css" href="../assets/ui-library/icons-css/poi.css"></link>
       </Head>
-      <Header />
+      <HeaderPL />
       <div className='w-screen h-[200px] bg-[url("/travel_bg_top.png")] bg-top bg-cover bg-no-repeat flex items-center justify-center text-white relative'>
         <div className="absolute w-full h-full bg-gray-900/[0.7] z-0"></div>
         <div className="flex items-center justify-center flex-col lg:w-[65%] z-10">
           <p className="lg:text-[40px] text-[30px] mt-[40px] lg:font-semibold text-center">
-            Your travel to <br></br> {router.query.destination}
+            Podróż do <br></br> {router.query.destination}
           </p>
         </div>
       </div>
@@ -103,7 +102,7 @@ export default function TravelOrdering() {
         <div id="ordering-wrapper" className="lg:w-[900px] w-screen mx-auto border flex">
           <form className="w-full flex flex-col" onSubmit={handleSummary}>
             <div className="flex flex-col lg:flex-row">
-              <Orderingtravelspec
+              <OrderingtravelspecPL
                 travelDate={travelDate}
                 setTravelDate={setTravelDate}
                 travelTime={travelTime}
@@ -117,18 +116,18 @@ export default function TravelOrdering() {
                 persons={persons}
                 setPersons={setPersons}
               />
-              <Ordertravelperson />
+              <OrdertravelpersonPL />
             </div>
             <div className="w-full flex flex-col justify-center items-center mb-[30px]">
               <div id="info" className="flex justify-center items-center">
                 <RiErrorWarningFill className="lg:w-[40px] w-[25px] h-auto text-red-600" />
                 <p className="italic pl-[10px] leading-4 text-[11px] lg:text-auto w-[80%]">
-                  Befor you will click button please check carefully if all fields are filled
-                  correctly, then click button below.
+                  Zanim klikniesz przycisk niżej sprawdź uważnie, czy wszystkie pola są uzupełnione
+                  poprawnie.
                 </p>
               </div>
-              <button className="px-[30px] bg-blue-400 text-white w-[250px] py-[10px] rounded-[10px]">
-                Order Summary
+              <button className="px-[30px] bg-blue-400 text-white w-[300px] py-[10px] rounded-[10px]">
+                Podsumowanie zamówienia
               </button>
             </div>
           </form>

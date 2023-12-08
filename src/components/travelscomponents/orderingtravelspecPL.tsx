@@ -2,8 +2,8 @@ import React, { useContext, useRef, useState } from "react";
 import { BsFillPersonFill } from "react-icons/bs";
 import { AiFillInfoCircle } from "react-icons/ai";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
-import TomTomTravels from "../../components/travelscomponents/tomtomTravels";
-import { AppContext } from "../_app";
+import TomTomTravels from "./tomtomTravels";
+import { AppContext } from "../../pages/_app";
 
 interface Props {
   travelDate: any;
@@ -19,7 +19,7 @@ interface Props {
   persons: any;
   setPersons: React.Dispatch<React.SetStateAction<any>>;
 }
-export default function Orderingtravelspecifics({
+export default function OrderingtravelspecificsPL({
   travelDate,
   setTravelDate,
   travelTime,
@@ -41,8 +41,14 @@ export default function Orderingtravelspecifics({
 
   const handleDontKnowingAddress = () => {
     setLocalizationIsUnknow(!localizationIsUnknow);
-    setTravelLocalizationFrom("");
+    if (localizationIsUnknow === false) {
+      setTravelLocalizationFrom("idk");
+    } else {
+      setTravelLocalizationFrom("empty");
+    }
   };
+
+  console.log(travelLocalizationFrom);
 
   const handleIncrisingPersons = () => {
     if (persons > 0 && persons < 8) {
@@ -91,8 +97,8 @@ export default function Orderingtravelspecifics({
       <div id="conditions-container" className="m-[30px]">
         <div id="data-time-wrapper" className="flex flex-col">
           <label className="text-[14px] mb-[3px]">
-            <b>When you have to be in the place?</b>
-            <br></br> (or when does your tour start?)
+            <b>Kiedy musisz być na miejscu?</b>
+            <br></br> (lub kiedy zaczyna się wycieczka?)
           </label>
           <div className="flex justify-between">
             <input
@@ -112,7 +118,7 @@ export default function Orderingtravelspecifics({
         <div id="localization-wrapper" className="mt-[30px] w-full">
           <div className="flex flex-col items-start w-full">
             <label className="text-[14px] mb-[3px]">
-              <b>From where you want to us pick you up?</b>
+              <b>Lokalizacja z której mamy Cię odebrać:</b>
             </label>
             {localizationIsUnknow === false ? (
               <div id="Localization-search" className="flex justify-start items-center w-full">
@@ -128,7 +134,7 @@ export default function Orderingtravelspecifics({
               </div>
             ) : (
               <div className="italic bg-yellow-300">
-                You will send us localization to office@personaltaxi.pl as soon as possible
+                Wyślesz nam lokalizację na office@personaltaxi.pl najszybciej jak będzie to możliwe.
               </div>
             )}
             <div id="input-continer" className="flex items-start justify-normal mt-[4px]">
@@ -138,9 +144,9 @@ export default function Orderingtravelspecifics({
                 className="cursor-pointer"
               ></input>
               <p className="leading-[10px] text-[10px] pl-[5px]">
-                Check this box if you don&lsquo;t know localization yet. You also declare that it
-                will be in Cracow commune and you will send this localization via mail or phone as
-                soon as I know it.
+                Zaznacz jeśli nie znasz jeszcze lokalizacji. Jednocześnie deklarujesz, że będzie ona
+                w gminie Kraków lub Zabierzów i przekażesz nam ją mailowo lub telefonicznie tak
+                szybko jak ją poznasz.
               </p>
             </div>
             <div
@@ -160,7 +166,7 @@ export default function Orderingtravelspecifics({
                 </p>
               </div>
               <label className="text-[14px] mb-[3px] w-[150px] leading-4 pl-[10px]">
-                <b>How many people are going?</b>
+                <b>Ile osób będzie transferowanych?</b>
               </label>
 
               <div
@@ -194,7 +200,7 @@ export default function Orderingtravelspecifics({
                 value={travelMassage}
                 onChange={handlePuttingMassege}
                 className="border-gray-900/[0.4] border h-[200px] w-full leading-5 p-[3px] rounded-[10px]"
-                placeholder="You can add here some important information about your needs, prefences or uncommon items which you want to take up. "
+                placeholder="Możesz dodać tutaj wszelkie informacje o swoich potrzebach, prefernacjach, nietypowych przedmiotach (jeśli takie przewozisz)."
               ></textarea>
             </div>
           </div>

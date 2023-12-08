@@ -152,14 +152,14 @@ export default function App({ Component, pageProps }: AppProps) {
   const [currencyTXT, setCurrencyTXT] = useState("EUR");
 
   //travels
-  const [travelLocalizationFrom, setTravelLocalizationFrom] = useState();
+  const [travelLocalizationFrom, setTravelLocalizationFrom] = useState("empty");
   const [travelDestination, setTravelDestination] = useState();
-  const [travelLocalizationFromLatLang, setTravelLocalizationFromLatLang] = useState(null);
-  const [travelDate, setTravelDate] = useState(null);
+  const [travelLocalizationFromLatLang, setTravelLocalizationFromLatLang] = useState();
+  const [travelDate, setTravelDate] = useState();
   const [travelTime, setTravelTime] = useState("15:30");
   const [travelCar, setTravelCar] = useState("Sedan");
   const [persons, setPersons] = useState(2);
-  const [travelMassage, setTravelMassage] = useState(null);
+  const [travelMassage, setTravelMassage] = useState();
   const [travelPersonTitle, setTravelPersonTitle] = useState();
   const [travelFirstName, setTravelFirstName] = useState();
   const [travelLastName, setTravelLastName] = useState();

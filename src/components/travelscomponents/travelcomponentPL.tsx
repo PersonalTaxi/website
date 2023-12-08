@@ -7,8 +7,11 @@ import { useRouter } from "next/router";
 
 interface Props {
   name: any;
+  namePL: any;
   type: any;
+  typePL: any;
   descriptionEN: any;
+  descriptionPL: any;
   photo: any;
   price: any;
   timeFromKrakow: any;
@@ -16,13 +19,16 @@ interface Props {
   totalTripLenght: any;
   MainTravelTime: any;
   languages: any;
-  DetailsIncludesEN: any;
+  DetailsIncludesPL: any;
 }
 
-export default function Travelcomponent({
+export default function TravelcomponentPL({
   name,
   type,
+  typePL,
+  namePL,
   descriptionEN,
+  descriptionPL,
   photo,
   price,
   timeFromKrakow,
@@ -30,7 +36,7 @@ export default function Travelcomponent({
   totalTripLenght,
   MainTravelTime,
   languages,
-  DetailsIncludesEN,
+  DetailsIncludesPL,
 }: Props) {
   const MoreInfo: any = useRef();
   const [moreInfoIsShowed, setMoreInfoIsShowed] = useState(false);
@@ -90,7 +96,7 @@ export default function Travelcomponent({
     }
     const direction = e.target.getAttribute("id");
     setTravelDestination(direction);
-    router.push({ pathname: "/travel/ordering", query: { destination: direction } });
+    router.push({ pathname: "/pl/travel/ordering", query: { destination: direction } });
   };
 
   return (
@@ -109,15 +115,15 @@ export default function Travelcomponent({
           }
         >
           <div className="p-[20px]">
-            <p className="text-[20px] font-semibold">Price includes:</p>
-            {DetailsIncludesEN}
+            <p className="text-[20px] font-semibold">Cena zawiera:</p>
+            {DetailsIncludesPL}
             <p className="text-[18px] mt-[8px] font-semibold">
               {" "}
-              Main tour time up to: {MainTravelTime}
+              Przybliżony czas wycieczki głównej: {MainTravelTime}
             </p>
             <p className="text-[18px] my-[2px] font-semibold">
               {" "}
-              Approximately total tour time: {totalTripLenght}
+              Przybliżony czas całej wycieczki (wraz z dojazdem): {totalTripLenght}
             </p>
           </div>
         </div>
@@ -133,10 +139,10 @@ export default function Travelcomponent({
           </div>
           <div id="travel-desc" className="lg:w-[60%] lg:h-[60%]">
             <div className=" border-gray-900 text-[30px] lg:text-right py-[2px] text-center text-[#E1AD58]">
-              {name}
+              {namePL}
               <br></br>
               <div className="flex flex-row-reverse justify-center lg:justify-start">
-                <p className="text-[14px] font-bold">{type}</p>
+                <p className="text-[14px] font-bold">{typePL}</p>
                 <div id="languages" className="h-[20px] lg:w-[200px] flex justify-end mx-[4px]">
                   {languages?.includes("PL") && (
                     <Image
@@ -169,7 +175,7 @@ export default function Travelcomponent({
               </div>
             </div>
             <div className="lg:pl-[40px] py-[8px] flex flex-col items-end">
-              <p>{descriptionEN}</p>
+              <p>{descriptionPL}</p>
             </div>
           </div>
         </div>
@@ -178,31 +184,29 @@ export default function Travelcomponent({
             <div className="flex flex-col lg:flex-row">
               <div className="flex">
                 <div className="lg:w-[120px] w-1/2 lg:h-[90%] h-[100px] border-r-2 border-yellow-500 flex flex-col justify-evenly my-[5px]">
-                  <p className="leading-4">From Cracow</p>
+                  <p className="leading-4">Z Krakowa</p>
                   <p className="text-[30px] font-bold leading-7">{totalLengthDistance}</p>
                   <p className="leading-4">{timeFromKrakow}</p>
                 </div>
                 <div className="lg:w-[174px] w-1/2 lg:h-[90%] h-[100px]   border-r-2 flex flex-col justify-evenly border-yellow-500 my-[5px] px-[10px]">
-                  <p className="leading-4">Tour time</p>
+                  <p className="leading-4">Czas wycieczki</p>
                   <p className="text-[30px] font-bold leading-7">{MainTravelTime}</p>
-                  <p className="leading-4">{totalTripLenght} with transfer</p>
+                  <p className="leading-4">{totalTripLenght} z dojazdem</p>
                 </div>
               </div>
               <div className="lg:w-[390px] w-full lg:h-[90%] h-[70px]  flex flex-col justify-evenly border-yellow-500 my-[5px] px-[10px]">
                 <div className="flex">
                   <FaCar />
-                  <p className="text-[12px] ml-[5px]">
-                    We&apos;ll drive you to the place then wait for you.
-                  </p>
+                  <p className="text-[12px] ml-[5px]">Transport w obie strony.</p>
                 </div>
                 <div className="flex">
                   <FaTicketAlt />
-                  <p className="text-[12px] ml-[5px]">You must have already purchased a ticket.</p>
+                  <p className="text-[12px] ml-[5px]">Musisz kupić bilety we własnym zakresie</p>
                 </div>
                 <div className="flex">
                   <IoMdPin />
                   <p className="text-[12px] ml-[5px]">
-                    The starting point of travel must be in Cracow commune.
+                    Trasa musi zaczynać się w gminie Kraków lub Zabierzów.
                   </p>
                 </div>
               </div>
@@ -212,21 +216,25 @@ export default function Travelcomponent({
                 onClick={handleMoreDetails}
                 className="border-gray-900 bg-white rounded-[10px] px-[10px] py-[2px] text-center text-[20px] cursor-pointer text-black border-2 mb-[2px] z-10 hover:text-white hover:bg-[#E1AD58] duration-200 hover:border-[#E1AD58]"
               >
-                {moreInfoIsShowed === true ? <p>Less details</p> : <p className="">More details</p>}
+                {moreInfoIsShowed === true ? (
+                  <p>Mniej info</p>
+                ) : (
+                  <p className="">Więcej informacji</p>
+                )}
               </div>
               <div
                 id={name}
                 className=" border-blue-600 bg-[#E1AD58] text-white rounded-[10px] py-[2px] text-center text-[20px] cursor-pointer duration-200   hover:bg-blue-400"
                 onClick={handleChosingTravel}
               >
-                Order for {FinaPrice} {currencyTXT}
+                Zamów za {FinaPrice} {currencyTXT}
               </div>
               {currencyTXT === "EUR" && (
                 <p
                   className="text-[12px] italic bg-white text-black w-full text-center cursor-pointer"
                   onClick={handleChangingCurrency}
                 >
-                  Change to PLN
+                  Zmień na PLN
                 </p>
               )}
               {currencyTXT === "PLN" && (
@@ -234,7 +242,7 @@ export default function Travelcomponent({
                   className="text-[12px] italic bg-white text-black w-full text-center cursor-pointer"
                   onClick={handleChangingCurrency}
                 >
-                  Change to EUR
+                  Zmień na EUR
                 </p>
               )}
             </div>

@@ -1,13 +1,13 @@
 import React, { useContext, useState } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
-import Header from "../Header/header";
-import Footer from "../Footer/footer";
-import { AppContext } from "../_app";
+import HeaderPL from "../../Header/headerPL";
+import Footer from "../../Footer/footer";
+import { AppContext } from "../../_app";
 import RegisterInTravelDataBase from "@/components/registerintraveldatabase";
 import { IoIosWarning } from "react-icons/io";
-import Link from "next/link";
 import { sha384 } from "crypto-hash";
+import Link from "next/link";
 
 export default function TravelSummary() {
   const {
@@ -148,7 +148,7 @@ export default function TravelSummary() {
     <>
       <Head>
         <meta http-equiv="X-UA-Compatible" content="IE=Edge"></meta>
-        <title>Personal Taxi - FAQ</title>
+        <title>Personal Taxi - Podsumowanie podróży</title>
         <meta
           name="viewport"
           content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
@@ -162,48 +162,50 @@ export default function TravelSummary() {
         ></link>
         <link rel="stylesheet" type="text/css" href="../assets/ui-library/icons-css/poi.css"></link>
       </Head>
-      <Header />
+      <HeaderPL />
       <div className='w-screen h-[200px] bg-[url("/travel_bg_top.png")] bg-top bg-cover bg-no-repeat flex items-center justify-center text-white relative'>
         <div className="absolute w-full h-full bg-gray-900/[0.7] z-0"></div>
         <div className="flex items-center justify-center flex-col lg:w-[65%] z-10">
-          <p className="lg:text-[40px] text-[30px] mt-[40px] font-semibold">Your travel Summary</p>
+          <p className="lg:text-[40px] text-[30px] mt-[40px] font-semibold">
+            Podsumowanie zamówienia
+          </p>
         </div>
       </div>
       {isDataCompleted === true && (
         <div id="summary-wrapper" className="w-screen min-h-[400px] z-20 relative my-[20px]">
           <div id="ordering-wrapper" className="lg:w-[700px] w-[90%] mx-auto flex flex-col">
             <div>
-              <p className="text-[24px] text-center w-full font-bold">Dear {travelFirstName}!</p>
-              <p className="mt-[10px]">
-                You are about to go with us to {router.query.destination}!
-              </p>
+              <p className="text-[24px] text-center w-full font-bold">{travelFirstName}!</p>
+              <p className="mt-[10px]">Zamierzasz jechać z nami do {router.query.destination}!</p>
               <p className="mt-[10px] font-semibold">How it will looks like?</p>
               <p className="mt-[5px]">
-                <p>1. We will drive you two-ways. </p>
+                <p>1. Zawieziemy Cię w obie strony </p>
                 <p>
-                  2. While your main tour we will be waiting for you. This tour should take aprox
-                  3:50 h.
+                  2. Poczekamy na Ciebie podczas aż do zakończenia Twojej wycieczki, która powinna
+                  potrwać ok 3:50 h.
                 </p>
                 <p>
-                  3. You choosed that on this trip will go <b>{persons} </b>people. So we will go by{" "}
-                  {travelCar}
+                  3. Na wycieczkie jedzie łącznie <b>{persons} </b>osoby/osób. Dlatego pojedziecie
+                  samochodem typu {travelCar}
                 </p>
-                <p>4. All tickets you have to buy on your own.</p>
                 <p>
-                  5. If you want to be in <b>{router.query.destination}</b> on <b>{travelDate}</b>{" "}
-                  at <b>{travelTime} hour</b> we have to leave earlier enought so we will pick you
-                  up from <b>{travelLocalizationFrom}</b> on at{" "}
+                  4. Wszystkie bilety musisz kupić we własnym zakresie, są one dodatkowym kosztem
+                </p>
+                <p>
+                  5. Jeśli chcesz być w <b>{router.query.destination}</b> dnia <b>{travelDate}</b> o
+                  godzinie<b>{travelTime} </b> musimy wyjechać odpowiednio wcześniej dla będziemy po
+                  Ciebie<b>{travelLocalizationFrom}</b> o godzinie
                   <b>
-                    {PickupHour}:{PickupMins} hour.
+                    {PickupHour}:{PickupMins}.
                   </b>
                 </p>
               </p>
             </div>
             <div id="personal-data-travel" className="mt-[20px]">
-              <p className="font-bold mb-[10px]">Check if your personal data is correct:</p>
+              <p className="font-bold mb-[10px]">Sprawdź czy Twje dane są poprawne</p>
               <div id="name-and-forname">
                 <p>
-                  <b>Full name: </b>
+                  <b>Imię i nazwisko: </b>
                   {travelFirstName} {travelLastName}
                 </p>
               </div>
@@ -214,24 +216,25 @@ export default function TravelSummary() {
               </div>
               <div id="name-and-forname">
                 <p>
-                  <b>Phone: </b>
+                  <b>Telefon: </b>
                   {travelPrefixPhone} {travelPhone}
                 </p>
               </div>
               <div>
                 <div className="mt-[30px]">
-                  <b>Final Price</b> {finalTravelPrice} {currencyTXT}
+                  <b>Cenna końcowa:</b> {finalTravelPrice} {currencyTXT}
                 </div>
                 <p className="italic text-[12px] mt-[20px]">
-                  You&lsquo;ve also confirmed Privacy Policy and Terms. By clicking button below you
-                  will confirm all above information and start making an order with payment.{" "}
+                  Wyraziłeś zgodę na naszą politykę prywatności oraz warunki świadczenia usług.
+                  Klikając przycisk niżej potwierdzasz, że wszystkie dane są poprawne i przejdziesz
+                  do realizacji zamówienia i płatności.
                 </p>
               </div>
               <button
                 className="bg-blue-300 px-[30px] py-[5px] rounded-[10px] text-[20px] mt-[30px]"
                 onClick={handleStartPayment}
               >
-                Pay & Order for {finalTravelPrice} {currencyTXT}
+                Zapłać i zamów za {finalTravelPrice} {currencyTXT}
               </button>
             </div>
           </div>
@@ -241,12 +244,12 @@ export default function TravelSummary() {
         <div className="w-screen h-auto flex justify-center items-center py-[60px]">
           <div className="flex flex-col items-center p-[40px]">
             <IoIosWarning className="text-red-600 w-[90px] h-[90px] mb-[20px]" />
-            <div className="text-[20px]">Something went wrong :(</div>
+            <div className="text-[20px]">Coś poszło nie tak :(</div>
             <Link
-              href="/travels"
+              href="/pl/travels"
               className="bg-blue-400 text-white text-[20px] px-[10px] py-[3px] rounded-[10px] mt-[10px]"
             >
-              Try again
+              Spróbuj jeszcze raz
             </Link>
           </div>
         </div>

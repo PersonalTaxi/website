@@ -47,8 +47,12 @@ export default function Mobilemenu({ setMobileMenuOpened, mobileMenuOpened }: Qu
           >
             FAQ
           </Link>
-          <Link href="/travels" className="cursor-pointer hover:text-yellow-500 duration-200">
-            Travels
+          <Link
+            href={router.asPath.includes("pl") ? "/travels" : "/pl/travels"}
+            onClick={handleClosingMenu}
+            // className="cursor-pointer hover:text-yellow-500 duration-200"
+          >
+            {router.asPath.includes("pl") ? <p>Wycieczki</p> : <p>Travels</p>}
           </Link>
           <Link href="policy" onClick={handleClosingMenu}>
             {router.asPath.includes("pl") ? <p>Polityka Prywatności</p> : <p>Provacy Policy</p>}

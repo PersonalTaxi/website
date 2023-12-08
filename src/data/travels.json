@@ -1,7 +1,9 @@
 [
   {
     "name": "Auschwitz-Birkenau",
+    "namePL": "Auschwitz-Birkenau",
     "type": "ticket tour",
+    "typePL": "wycieczki biletowe lub prywatne",
     "descriptionPL": "Przez cały czas istnienia Auschwitz pełnił funkcję obozu koncentracyjnego, stając się z biegiem czasu największym niemieckim obozem. Władze okupacyjne w pierwszym okresie istnienia obozu kierowały do niego przede wszystkim polskich więźniów politycznych, uznanych za szczególnie niebezpiecznych, w tym społecznych i duchowych przywódców, przedstawicieli inteligencji, kultury i nauki, uczestników ruchu oporu, oficerów. ",
     "photo": "/aufchwitz.png",
     "descriptionEN": "Throughout its existence, Auschwitz served as a concentration camp, becoming over time the largest German camp. The occupation authorities in the first period of the camp's existence directed to it primarily Polish political prisoners, considered particularly dangerous, including social and spiritual leaders, representatives of the intelligentsia, culture and science, participants in the resistance movement, and officers.",
@@ -18,8 +20,10 @@
   },
   {
     "name": "Zakopane City",
+    "namePL": "Zakopane",
     "type": "free tour, tickets tours",
-    "descriptionPL": "położone jest na Pogórzu Spisko-Gubałowskim, w Rowie Podtatrzańskim oraz w Tatrach, nad kilkoma potokami, których wody ostatecznie wpadają do rzeki Zakopianka (dopływu Białego Dunajca). Jest najwyżej położonym miastem Polski. W granicach administracyjnych miasta znajduje się część Tatr (z najwyższym punktem jakim jest wierzchołek Świnicy – 2301 m n.p.m.). ",
+    "typePL": "wycieczki biletowe lub prywatne",
+    "descriptionPL": "Położone jest na Pogórzu Spisko-Gubałowskim, w Rowie Podtatrzańskim oraz w Tatrach, nad kilkoma potokami, których wody ostatecznie wpadają do rzeki Zakopianka (dopływu Białego Dunajca). Jest najwyżej położonym miastem Polski. W granicach administracyjnych miasta znajduje się część Tatr (z najwyższym punktem jakim jest wierzchołek Świnicy – 2301 m n.p.m.). ",
     "descriptionEN": "It is located in the Spisko-Gubalowka Foothills, in the Podtatrzanski Trench and the Tatra Mountains, on several streams whose waters eventually flow into the Zakopianka River (a tributary of the Bialy Dunajec River). It is the highest located city in Poland. Within the administrative boundaries of the city is a part of the Tatra Mountains (with the highest point being the top of Świnica - 2301 meters above sea level). ",
     "DetailsIncludesPL": "Przejazd do zakopanego, oczekiwanie na państwa podczas zwiedzania. Cena nie obejmuje wszelkich kosztów biletów wstępu do obiektów, kosztów przewodników, posiłków itp. Należy je zakupić i/lub zaplanować we własnym zakresie.",
     "DetailsIncludesEN": "Transfer to Zakopane, waiting for you during the tour. The price does not include any costs of entry tickets to the facilities, costs of guides, meals, etc. They should be purchased and/or planned on your own.",
@@ -34,8 +38,10 @@
     "languages": ["PL", "EN"]
   },
   {
-    "name": "Wieliczka - salt mine",
+    "name": "Kopalnia Soli Wieliczka",
+    "namePL": "Wieliczka - kopalnia soli",
     "type": "free tour, tickets tours",
+    "typePL": "wycieczki biletowe lub prywatne",
     "descriptionPL": "położone jest na Pogórzu Spisko-Gubałowskim, w Rowie Podtatrzańskim oraz w Tatrach, nad kilkoma potokami, których wody ostatecznie wpadają do rzeki Zakopianka (dopływu Białego Dunajca). Jest najwyżej położonym miastem Polski. W granicach administracyjnych miasta znajduje się część Tatr (z najwyższym punktem jakim jest wierzchołek Świnicy – 2301 m n.p.m.). ",
     "descriptionEN": "It is located in the Spisko-Gubalowka Foothills, in the Podtatrzanski Trench and the Tatra Mountains, on several streams whose waters eventually flow into the Zakopianka River (a tributary of the Bialy Dunajec River). It is the highest located city in Poland. Within the administrative boundaries of the city is a part of the Tatra Mountains (with the highest point being the top of Świnica - 2301 meters above sea level). ",
     "DetailsIncludesPL": "Przejazd do zakopanego, oczekiwanie na państwa podczas zwiedzania. Cena nie obejmuje wszelkich kosztów biletów wstępu do obiektów, kosztów przewodników, posiłków itp. Należy je zakupić i/lub zaplanować we własnym zakresie.",

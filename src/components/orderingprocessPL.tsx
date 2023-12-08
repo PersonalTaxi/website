@@ -15,35 +15,26 @@ export default function OrderingprocessPL() {
         </div>
         <div className="absolute w-[50px] h-[50px] rounded-[10px] bg-yellow-500/[0.3] top-[40px] -left-[20px] rotate-45"></div>
       </div>
-      <div
-        id="aboutus-wrapper"
-        className="lg:w-[1080px] mx-auto flex px-[15px]"
-      >
+      <div id="aboutus-wrapper" className="lg:w-[1080px] mx-auto flex px-[15px]">
         <div className=" lg:w-full lg:h-5/6 h-full relative rounded-[5px] overflow-hidden flex flex-wrap">
           <div className="lg:w-1/3 w-full h-1/2 flex justify-center items-center lg:text-[20px] text-[16px] my-[10px]">
             <div className="w-[85%] h-1/2 flex flex-col justify-center items-center">
               <GiPathDistance className="w-[100px] h-4/6 text-yellow-500" />
-              <p>
-                1. Wybierz lokalizację, liczbę pasażerów oraz datę transferu.
-              </p>
+              <p>1. Wybierz lokalizację, liczbę pasażerów oraz datę transferu.</p>
             </div>
           </div>
           <div className="lg:w-1/3 w-full h-1/2 flex justify-center items-center lg:text-[20px] text-[16px] my-[10px]">
             <div className="w-[85%] h-1/2 flex flex-col justify-center items-center">
               <FaWpforms className="w-[100px] h-4/6 text-yellow-500" />
               <p>
-                2. Uzupenij formularz o dodatkowe informacje oraz własne
-                prefenrcje, dane osobowe.
+                2. Uzupenij formularz o dodatkowe informacje oraz własne preferencje, dane osobowe.
               </p>
             </div>
           </div>
           <div className="lg:w-1/3 w-full h-1/2 flex justify-center items-center lg:text-[20px] text-[16px] my-[10px]">
             <div className="w-[85%] h-1/2 flex flex-col justify-center items-center">
               <MdOutlinePayments className="w-[100px] h-4/6 text-yellow-500" />
-              <p>
-                3. Opłać kurs online i czekaj na nas o wyznaczonym czasie we
-                wskazanym miejscu.
-              </p>
+              <p>3. Opłać kurs online i czekaj na nas o wyznaczonym czasie we wskazanym miejscu.</p>
             </div>
           </div>
         </div>

@@ -17,7 +17,7 @@ export default function Header() {
       <div className="w-[1100px] flex items-center justify-between ">
         <div>
           <Link href="/pl">
-            <Image src="/logo_personal_2.png" width={90} height={90} alt="taxi_krakow"></Image>
+            <Image src="/logo_personal_2.png" width={170} height={150} alt="taxi_krakow"></Image>
           </Link>
         </div>
         <div className="lg:hidden  flex w-full justify-end items-center">
@@ -47,18 +47,18 @@ export default function Header() {
             mobileMenuOpened={mobileMenuOpened}
           />
         </div>
-        <div className="lg:visible  lg:flex hidden text-white w-[700px] justify-evenly items-center">
+        <div className="lg:visible  lg:flex hidden text-white w-[800px] justify-evenly items-center">
           <Link href="/pl" className="cursor-pointer hover:text-yellow-500 duration-200">
             Strona główna
           </Link>
           <Link href="/pl" className="cursor-pointer hover:text-yellow-500 duration-200">
             O nas
           </Link>
-          <Link href="/pl/aboutus" className="cursor-pointer hover:text-yellow-500 duration-200">
+          {/* <Link href="/pl/aboutus" className="cursor-pointer hover:text-yellow-500 duration-200">
             FAQ
-          </Link>
-          <Link href="#" className="cursor-pointer hover:text-yellow-500 duration-200">
-            Travels
+          </Link> */}
+          <Link href="/pl/travels" className="cursor-pointer hover:text-yellow-500 duration-200">
+            Wycieczki
           </Link>
           <Link href="/policy" className="cursor-pointer hover:text-yellow-500 duration-200">
             Polityka Prywatności

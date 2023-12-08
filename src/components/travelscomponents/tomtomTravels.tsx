@@ -330,7 +330,9 @@ export default function TomTom({
             onFocus={handleShowingList}
             onChange={handleSearching}
             className="text-[15px] w-full min-h-[45px] outline-none rounded-[10px] pl-[5px] pr-[50px] overflow-ellipsis"
-            placeholder="find the starting location"
+            placeholder={
+              router.asPath.includes("/pl/") ? "Znajdź lokalizację" : "find the starting location"
+            }
             autoComplete="off"
           ></input>
         </div>
