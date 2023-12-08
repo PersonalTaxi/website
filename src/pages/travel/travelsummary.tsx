@@ -73,6 +73,15 @@ export default function TravelSummary() {
 
   CeckIfAllDataIsCollected();
 
+  let Localization;
+
+  if (travelLocalizationFrom === "idk") {
+    Localization =
+      "(localization will be sent by mail to office@personaltaxi.pl as soon as possible)";
+  } else {
+    Localization = travelLocalizationFrom;
+  }
+
   const handleStartPayment = async () => {
     let merchantId = 27407;
     const UniqeNumber = Date.now().toString();

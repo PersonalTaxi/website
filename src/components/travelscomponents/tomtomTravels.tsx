@@ -128,9 +128,17 @@ export default function TomTom({
     let RestricionTwo: any;
     query = queryingTravel;
 
+    let SearchLanguage = "pl-PL";
+
+    if (router.asPath.includes("/pl/")) {
+      SearchLanguage = "pl-PL";
+    } else {
+      SearchLanguage = "en-US";
+    }
+
     function fetchData() {
       fetch(
-        `https://api.tomtom.com/search/2/search/${query}.json?maxFuzzyLevel=2&key=cjmuWSfVTrJfOGj7AcXvMLU8R8i1Q9cF&setCountry=PL&limit107&language=en-US`,
+        `https://api.tomtom.com/search/2/search/${query}.json?maxFuzzyLevel=2&key=cjmuWSfVTrJfOGj7AcXvMLU8R8i1Q9cF&setCountry=PL&limit107&language=${SearchLanguage}`,
         {
           method: "GET",
         },
@@ -142,11 +150,20 @@ export default function TomTom({
         .then((resData) => {
           // console.log(resData);
           if (resData) {
-            return resData.filter((i: any) => i.address.municipality !== RestricionOne);
+            return resData.filter((municipality: any) => {
+              if (
+                municipality.address?.municipality !== "Zabierzów" &&
+                municipality.address?.municipality !== "Krakow"
+              ) {
+                return false;
+              } else {
+                return municipality;
+              }
+            });
           }
         })
         .then((data) => {
-          // console.log(data);
+          console.log(data);
           // console.log(data);
           const newData = data.map((i: any, key: any) => {
             let icon;

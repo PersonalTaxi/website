@@ -73,6 +73,14 @@ export default function TravelSummary() {
 
   CeckIfAllDataIsCollected();
 
+  let Localization;
+
+  if (travelLocalizationFrom === "idk") {
+    Localization = "(lokalizacja zostanie niezwłocznie wysłana mailowo na office@personaltaxi.pl)";
+  } else {
+    Localization = travelLocalizationFrom;
+  }
+
   const handleStartPayment = async () => {
     let merchantId = 27407;
     const UniqeNumber = Date.now().toString();
@@ -194,7 +202,7 @@ export default function TravelSummary() {
                 <p>
                   5. Jeśli chcesz być w <b>{router.query.destination}</b> dnia <b>{travelDate}</b> o
                   godzinie<b>{travelTime} </b> musimy wyjechać odpowiednio wcześniej dla będziemy po
-                  Ciebie<b>{travelLocalizationFrom}</b> o godzinie
+                  Ciebie <b>{Localization}</b> o godzinie
                   <b>
                     {PickupHour}:{PickupMins}.
                   </b>
