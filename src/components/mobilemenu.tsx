@@ -36,7 +36,7 @@ export default function Mobilemenu({ setMobileMenuOpened, mobileMenuOpened }: Qu
             {router.asPath.includes("pl") ? <p>Strona główna</p> : <p>Home Page</p>}
           </Link>
           <Link
-            href={router.asPath.includes("pl") ? "/pl/aboutus" : "/aboutus"}
+            href={router.asPath.includes("pl") ? "/aboutus" : "/pl/aboutus"}
             onClick={handleClosingMenu}
           >
             {router.asPath.includes("pl") ? <p>O Nas</p> : <p>About Us</p>}
@@ -61,7 +61,7 @@ export default function Mobilemenu({ setMobileMenuOpened, mobileMenuOpened }: Qu
             {router.asPath.includes("pl") ? <p>Regulamin usług</p> : <p>Terms</p>}
           </Link>
           <Link
-            href={router.asPath.includes("pl") ? "/pl/contact" : "/contact"}
+            href={router.asPath.includes("pl") ? "/contact" : "/pl/contact"}
             onClick={handleClosingMenu}
           >
             {router.asPath.includes("pl") ? <p>Kontakt</p> : <p>Contact</p>}
