@@ -157,7 +157,7 @@ export default function TravelSummary() {
     <>
       <Head>
         <meta http-equiv="X-UA-Compatible" content="IE=Edge"></meta>
-        <title>Personal Taxi - FAQ</title>
+        <title>Personal Taxi - Travel Summary</title>
         <meta
           name="viewport"
           content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"

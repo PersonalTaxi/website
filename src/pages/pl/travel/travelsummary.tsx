@@ -185,7 +185,7 @@ export default function TravelSummary() {
             <div>
               <p className="text-[24px] text-center w-full font-bold">{travelFirstName}!</p>
               <p className="mt-[10px]">Zamierzasz jechać z nami do {router.query.destination}!</p>
-              <p className="mt-[10px] font-semibold">How it will looks like?</p>
+              <p className="mt-[10px] font-semibold">Jak to będzie wyglądać</p>
               <p className="mt-[5px]">
                 <p>1. Zawieziemy Cię w obie strony </p>
                 <p>
@@ -210,7 +210,7 @@ export default function TravelSummary() {
               </p>
             </div>
             <div id="personal-data-travel" className="mt-[20px]">
-              <p className="font-bold mb-[10px]">Sprawdź czy Twje dane są poprawne</p>
+              <p className="font-bold mb-[10px]">Sprawdź czy Twje dane są poprawne.</p>
               <div id="name-and-forname">
                 <p>
                   <b>Imię i nazwisko: </b>
