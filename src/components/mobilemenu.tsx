@@ -36,19 +36,19 @@ export default function Mobilemenu({ setMobileMenuOpened, mobileMenuOpened }: Qu
             {router.asPath.includes("pl") ? <p>Strona główna</p> : <p>Home Page</p>}
           </Link>
           <Link
-            href={router.asPath.includes("pl") ? "/aboutus" : "/pl/aboutus"}
+            href={router.asPath.includes("pl") ? "/pl/aboutus" : "/aboutus"}
             onClick={handleClosingMenu}
           >
             {router.asPath.includes("pl") ? <p>O Nas</p> : <p>About Us</p>}
           </Link>
-          <Link
+          {/* <Link
             href={router.asPath.includes("pl") ? "/faq" : "/pl/faq"}
             onClick={handleClosingMenu}
           >
             FAQ
-          </Link>
+          </Link> */}
           <Link
-            href={router.asPath.includes("pl") ? "/travels" : "/pl/travels"}
+            href={router.asPath.includes("pl") ? "/pl/travels" : "/travels"}
             onClick={handleClosingMenu}
             // className="cursor-pointer hover:text-yellow-500 duration-200"
           >
@@ -61,7 +61,7 @@ export default function Mobilemenu({ setMobileMenuOpened, mobileMenuOpened }: Qu
             {router.asPath.includes("pl") ? <p>Regulamin usług</p> : <p>Terms</p>}
           </Link>
           <Link
-            href={router.asPath.includes("pl") ? "/contact" : "/pl/contact"}
+            href={router.asPath.includes("pl") ? "/pl/contact" : "/contact"}
             onClick={handleClosingMenu}
           >
             {router.asPath.includes("pl") ? <p>Kontakt</p> : <p>Contact</p>}
