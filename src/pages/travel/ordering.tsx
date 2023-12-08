@@ -70,6 +70,7 @@ export default function TravelOrdering() {
 
   useEffect(() => {
     setTravelLocalizationFrom("empty");
+    checkValuesAndRedirect();
   }, []);
 
   return (
