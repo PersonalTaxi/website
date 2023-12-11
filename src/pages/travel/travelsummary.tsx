@@ -41,6 +41,7 @@ export default function TravelSummary() {
     serviceType,
     currencyTXT,
     finalTravelPrice,
+    howEarly,
   } = useContext(AppContext);
 
   const router = useRouter();
@@ -48,7 +49,7 @@ export default function TravelSummary() {
   const [isDataCompleted, setIsDataCompleted] = useState(false);
   const time = travelTime.split(":");
   const ToMinutes: number = time[0] * 60 + parseInt(time[1]);
-  const PickupTime = ToMinutes - 40;
+  const PickupTime = ToMinutes - howEarly;
   const PickupHour = Math.floor(PickupTime / 60);
   const PickupMins = PickupTime % 60;
 

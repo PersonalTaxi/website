@@ -43,6 +43,7 @@ export default function TravelsPL() {
             descriptionPL={i.descriptionPL}
             photo={i.photo}
             price={i.price}
+            howEarlierWeHaveToLeave={i.howEarlierWeHaveToLeave}
             timeFromKrakow={i.timeFromKrakow}
             totalLengthDistance={i.totalLengthDistance}
             totalTripLenght={i.totalTripLenght}

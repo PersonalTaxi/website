@@ -15,6 +15,7 @@
     "MainTravelTime": "3:30 h",
     "startHours": "9:00",
     "price": 600,
+    "howEarlierWeHaveToLeave": 120,
     "maxTime": "4",
     "languages": ["PL", "EN", "RU"]
   },
@@ -34,6 +35,7 @@
     "MainTravelTime": "5:00 h",
     "start-hours": "9:00",
     "price": 800,
+    "howEarlierWeHaveToLeave": 240,
     "maxTime": "4",
     "languages": ["PL", "EN"]
   },
@@ -53,6 +55,7 @@
     "MainTravelTime": "3:00 h",
     "start-hours": "9:00",
     "price": 300,
+    "howEarlierWeHaveToLeave": 60,
     "maxTime": "4",
     "languages": ["PL", "EN"]
   }

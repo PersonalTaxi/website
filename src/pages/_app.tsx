@@ -106,7 +106,9 @@ type QueryParams = {
   travelPrice: any;
   setTravelPrice: React.Dispatch<React.SetStateAction<any>>;
   finalTravelPrice: any;
-  setFinalTravelPrice: any;
+  setFinalTravelPrice: React.Dispatch<React.SetStateAction<any>>;
+  howEarly: any;
+  setHowEarly: React.Dispatch<React.SetStateAction<any>>;
 };
 
 export const AppContext = createContext({} as QueryParams);
@@ -168,6 +170,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const [travelPhone, setTravelPhone] = useState();
   const [travelPrice, setTravelPrice] = useState(600);
   const [finalTravelPrice, setFinalTravelPrice] = useState();
+  const [howEarly, setHowEarly] = useState();
 
   //validation
   const [isFormCompleted, setIsFromCompleted] = useState(false);
@@ -286,6 +289,8 @@ export default function App({ Component, pageProps }: AppProps) {
         setTravelPrice,
         finalTravelPrice,
         setFinalTravelPrice,
+        howEarly,
+        setHowEarly,
       }}
     >
       <Component {...pageProps} />

@@ -20,6 +20,7 @@ interface Props {
   MainTravelTime: any;
   languages: any;
   DetailsIncludesPL: any;
+  howEarlierWeHaveToLeave: any;
 }
 
 export default function TravelcomponentPL({
@@ -36,6 +37,7 @@ export default function TravelcomponentPL({
   totalTripLenght,
   MainTravelTime,
   languages,
+  howEarlierWeHaveToLeave,
   DetailsIncludesPL,
 }: Props) {
   const MoreInfo: any = useRef();
@@ -52,6 +54,8 @@ export default function TravelcomponentPL({
     setTravelPrice,
     finalTravelPrice,
     setFinalTravelPrice,
+    howEarly,
+    setHowEarly,
   } = useContext(AppContext);
 
   const handleMoreDetails = () => {
@@ -83,9 +87,9 @@ export default function TravelcomponentPL({
       setCurrencyTXT("EUR");
     }
   };
-  console.log(travelPrice);
 
   const handleChosingTravel = (e: any) => {
+    setHowEarly(howEarlierWeHaveToLeave);
     if (currencyTXT === "EUR") {
       setTravelPrice(Math.round(price / 4.4));
       setFinalTravelPrice(Math.round(price / 4.4));
