@@ -12,20 +12,22 @@ body {
   box-sizing: border-box;
 }
 
-/* ::-webkit-calendar-picker-indicator {
-    filter: invert(81%) sepia(62%) saturate(2996%) hue-rotate(351deg) brightness(106%) contrast(84%) opacity(35%);
-    width: 30px;
-    height: 30px;
-} */
+::-webkit-calendar-picker-indicator {
+  filter: invert(83%) sepia(54%) saturate(510%) hue-rotate(356deg) brightness(96%) contrast(108%)
+    opacity(80%);
+  height: 25px;
+  width: 25px;
+}
 
 input[type="date"],
 [type="time"] {
   background-color: transparent;
+  -webkit-calendar-picker-indicator: yellow;
   color: black;
   content: "yolo";
-  /* -webkit-appearance: none;
-    -moz-appearance:    none;
-    appearance:         none; */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 input[type="date"]::placeholder {

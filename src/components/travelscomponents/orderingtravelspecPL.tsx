@@ -38,6 +38,7 @@ export default function OrderingtravelspecificsPL({
 
   const [localizationIsUnknow, setLocalizationIsUnknow] = useState(false);
   const infoAboutCars: any = useRef();
+  const infoAboutLocalization: any = useRef();
 
   const handleDontKnowingAddress = () => {
     setLocalizationIsUnknow(!localizationIsUnknow);
@@ -47,8 +48,6 @@ export default function OrderingtravelspecificsPL({
       setTravelLocalizationFrom("empty");
     }
   };
-
-  console.log(travelLocalizationFrom);
 
   const handleIncrisingPersons = () => {
     if (persons > 0 && persons < 8) {
@@ -92,12 +91,20 @@ export default function OrderingtravelspecificsPL({
     infoAboutCars.current.style.display = "none";
   };
 
+  const showInfoAboutLocalization = () => {
+    infoAboutLocalization.current.style.display = "block";
+  };
+
+  const hideInfoAboutLocalization = () => {
+    infoAboutLocalization.current.style.display = "none";
+  };
+
   return (
     <div className="lg:w-1/2 w-screen">
       <div id="conditions-container" className="m-[30px]">
         <div id="data-time-wrapper" className="flex flex-col">
           <label className="text-[14px] mb-[3px]">
-            <b>Kiedy musisz być na miejscu?</b>
+            <b className="text-[16px]">Kiedy musisz być na miejscu?</b>
             <br></br> (lub kiedy zaczyna się wycieczka?)
           </label>
           <div className="flex justify-between">
@@ -116,6 +123,15 @@ export default function OrderingtravelspecificsPL({
           </div>
         </div>
         <div id="localization-wrapper" className="mt-[30px] w-full">
+          <div
+            ref={infoAboutLocalization}
+            className="absolute hidden w-[360px] h-auto shadow-[0px_0px_15px_2px_rgba(0,0,0,0.3)] bg-white z-10 rounded-[10px] p-[12px]"
+          >
+            <p className="leading-5">
+              Punktem startowym (miejscem z którego będziemy mogli Cię odebrać) może być wyłącznie
+              lokalizacja w gminie Kraków lub gminie Zabierzów.
+            </p>
+          </div>
           <div className="flex flex-col items-start w-full">
             <label className="text-[14px] mb-[3px]">
               <b>Lokalizacja z której mamy Cię odebrać:</b>
@@ -129,7 +145,11 @@ export default function OrderingtravelspecificsPL({
                   setTravelLocalizationFrom={setTravelLocalizationFrom}
                 />
                 <div className="mx-[5px] w-[25px] h-full cursor-pointer">
-                  <AiFillInfoCircle className="w-full h-full text-yellow-300" />
+                  <AiFillInfoCircle
+                    className="w-full h-full text-yellow-300"
+                    onMouseEnter={showInfoAboutLocalization}
+                    onMouseLeave={hideInfoAboutLocalization}
+                  />
                 </div>
               </div>
             ) : (
@@ -158,11 +178,11 @@ export default function OrderingtravelspecificsPL({
                 className="hidden p-[12px] absolute lg:w-[350px] w-[270px] h-auto left-[30px] bg-white shadow-[0px_0px_15px_2px_rgba(0,0,0,0.3)] rounded-[10px] leading-5"
               >
                 <p>
-                  You can choose up to 8 people. Number of people determines which car will be
-                  chosen for this trip. For max 4 people you will go by <b>Eco Sedan</b>. By if you
-                  choose number of people between 5 and 8 you will go by <b>Mini Van</b> and price
-                  will be little higher. If you want to go with more than 8 people - please make an
-                  next order.
+                  Wycieczkę możesz zamówić dla maksymalnie 8 osób. Od libczy osób zależy typ
+                  samochodu. Dla maksymalnie 4 osób będzie to <b>Eco Sedan</b>, natomiast jeśli
+                  rezerwacja będzie dotyczyć od 5 - 8 osób będzie to <b>Mini Van</b> cena będzie
+                  nieco wyższa. Jeśli chciałbyś złożyć zamówienie dla większej liczby osób niż 8 -
+                  złóż kolejne zamówienie.
                 </p>
               </div>
               <label className="text-[14px] mb-[3px] w-[150px] leading-4 pl-[10px]">
@@ -199,8 +219,8 @@ export default function OrderingtravelspecificsPL({
               <textarea
                 value={travelMassage}
                 onChange={handlePuttingMassege}
-                className="border-gray-900/[0.4] border h-[200px] w-full leading-5 p-[3px] rounded-[10px]"
-                placeholder="Możesz dodać tutaj wszelkie informacje o swoich potrzebach, prefernacjach, nietypowych przedmiotach (jeśli takie przewozisz)."
+                className="border-gray-900/[0.4] border h-[200px] w-full leading-5 p-[8px] rounded-[10px]"
+                placeholder="Tutaj możesz dodać tutaj wszelkie informacje o swoich potrzebach, prefernacjach, nietypowych przedmiotach (jeśli takie przewozisz)."
               ></textarea>
             </div>
           </div>

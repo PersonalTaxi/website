@@ -190,7 +190,9 @@ export default function TravelSummary() {
                 <p>1. Zawieziemy Cię w obie strony </p>
                 <p>
                   2. Poczekamy na Ciebie podczas aż do zakończenia Twojej wycieczki, która powinna
-                  potrwać ok 3:50 h.
+                  potrwać ok 3:50 h.git init git add . git commit -m "first commit" git branch -M
+                  main git remote add origin https://github.com/Marlonbrando3/personaltaxi.git git
+                  push -u origin main
                 </p>
                 <p>
                   3. Na wycieczkie jedzie łącznie <b>{persons} </b>osoby/osób. Dlatego pojedziecie

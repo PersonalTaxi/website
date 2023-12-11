@@ -38,6 +38,7 @@ export default function Orderingtravelspecifics({
 
   const [localizationIsUnknow, setLocalizationIsUnknow] = useState(false);
   const infoAboutCars: any = useRef();
+  const infoAboutLocalization: any = useRef();
 
   const handleDontKnowingAddress = () => {
     setLocalizationIsUnknow(!localizationIsUnknow);
@@ -86,12 +87,20 @@ export default function Orderingtravelspecifics({
     infoAboutCars.current.style.display = "none";
   };
 
+  const showInfoAboutLocalization = () => {
+    infoAboutLocalization.current.style.display = "block";
+  };
+
+  const hideInfoAboutLocalization = () => {
+    infoAboutLocalization.current.style.display = "none";
+  };
+
   return (
     <div className="lg:w-1/2 w-screen">
       <div id="conditions-container" className="m-[30px]">
         <div id="data-time-wrapper" className="flex flex-col">
           <label className="text-[14px] mb-[3px]">
-            <b>When you have to be in the place?</b>
+            <b className="text-[16px]">When you have to be in the place?</b>
             <br></br> (or when does your tour start?)
           </label>
           <div className="flex justify-between">
@@ -99,7 +108,7 @@ export default function Orderingtravelspecifics({
               type="date"
               value={travelDate}
               onChange={handleDate}
-              className="border border-gray-900/[0.4] w-[55%] h-[45px] text-[15px] pl-[5px] outline-none z-10 rounded-[10px] bg-transparent"
+              className="border border-gray-900/[0.4] w-[55%] h-[45px] text-[15px] pl-[5px] outline-none z-10 rounded-[10px] text-red-900 customIcon"
             ></input>
             <input
               type="time"
@@ -110,6 +119,15 @@ export default function Orderingtravelspecifics({
           </div>
         </div>
         <div id="localization-wrapper" className="mt-[30px] w-full">
+          <div
+            ref={infoAboutLocalization}
+            className="absolute hidden w-[360px] h-auto shadow-[0px_0px_15px_2px_rgba(0,0,0,0.3)] bg-white z-10 rounded-[10px] p-[12px]"
+          >
+            <p className="leading-5">
+              The starting point of travel (the place from we well be able to pick you up ) has to
+              be only in Crakow or Zabierzow comunne.
+            </p>
+          </div>
           <div className="flex flex-col items-start w-full">
             <label className="text-[14px] mb-[3px]">
               <b>From where you want to us pick you up?</b>
@@ -123,7 +141,11 @@ export default function Orderingtravelspecifics({
                   setTravelLocalizationFrom={setTravelLocalizationFrom}
                 />
                 <div className="mx-[5px] w-[25px] h-full cursor-pointer">
-                  <AiFillInfoCircle className="w-full h-full text-yellow-300" />
+                  <AiFillInfoCircle
+                    className="w-full h-full text-yellow-300"
+                    onMouseEnter={showInfoAboutLocalization}
+                    onMouseLeave={hideInfoAboutLocalization}
+                  />
                 </div>
               </div>
             ) : (
@@ -193,7 +215,7 @@ export default function Orderingtravelspecifics({
               <textarea
                 value={travelMassage}
                 onChange={handlePuttingMassege}
-                className="border-gray-900/[0.4] border h-[200px] w-full leading-5 p-[3px] rounded-[10px]"
+                className="border-gray-900/[0.4] border h-[200px] w-full leading-5 p-[8px] rounded-[10px]"
                 placeholder="You can add here some important information about your needs, prefences or uncommon items which you want to take up. "
               ></textarea>
             </div>

@@ -99,8 +99,11 @@ export default function TravelOrderingPL() {
           </p>
         </div>
       </div>
-      <div id="Faq-wrapper" className=" border w-screen min-h-[400px] z-20 relative">
-        <div id="ordering-wrapper" className="lg:w-[900px] w-screen mx-auto border flex">
+      <div id="Faq-wrapper" className="w-screen min-h-[400px] z-20 relative">
+        <div
+          id="ordering-wrapper"
+          className="lg:w-[900px] w-screen mx-auto flex lg:shadow-2xl lg:my-[25px] lg:rounded-[10px]"
+        >
           <form className="w-full flex flex-col" onSubmit={handleSummary}>
             <div className="flex flex-col lg:flex-row">
               <OrderingtravelspecPL
@@ -127,7 +130,7 @@ export default function TravelOrderingPL() {
                   poprawnie.
                 </p>
               </div>
-              <button className="px-[30px] bg-blue-400 text-white w-[300px] py-[10px] rounded-[10px]">
+              <button className="px-[30px] bg-blue-400 text-white w-[300px] py-[10px] rounded-[10px] border-2 border-blue-400 hover:bg-white hover:text-black hover:border-black">
                 Podsumowanie zamówienia
               </button>
             </div>

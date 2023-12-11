@@ -148,12 +148,13 @@ export default function TomTom({
           return resData.results.filter((i: any) => i.type !== "Geography" && i.type !== "Street");
         })
         .then((resData) => {
-          // console.log(resData);
+          console.log(resData);
           if (resData) {
             return resData.filter((municipality: any) => {
               if (
                 municipality.address?.municipality !== "Zabierzów" &&
-                municipality.address?.municipality !== "Krakow"
+                municipality.address?.municipality !== "Krakow" &&
+                municipality.address?.municipality !== "Kraków"
               ) {
                 return false;
               } else {

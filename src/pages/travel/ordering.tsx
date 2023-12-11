@@ -64,7 +64,7 @@ export default function TravelOrdering() {
 
   const checkValuesAndRedirect = () => {
     if (finalTravelPrice === undefined) {
-      router.push({ pathname: "/pl/travels" });
+      router.push({ pathname: "/travels" });
     }
   };
 
@@ -77,7 +77,7 @@ export default function TravelOrdering() {
     <>
       <Head>
         <meta http-equiv="X-UA-Compatible" content="IE=Edge"></meta>
-        <title>Personal Taxi - FAQ</title>
+        <title>Personal Taxi - Travel ordering</title>
         <meta
           name="viewport"
           content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
@@ -101,7 +101,10 @@ export default function TravelOrdering() {
         </div>
       </div>
       <div id="Faq-wrapper" className=" border w-screen min-h-[400px] z-20 relative">
-        <div id="ordering-wrapper" className="lg:w-[900px] w-screen mx-auto border flex">
+        <div
+          id="ordering-wrapper"
+          className="lg:w-[900px] w-screen mx-auto lg:shadow-2xl lg:my-[25px] rounded-[10px] flex"
+        >
           <form className="w-full flex flex-col" onSubmit={handleSummary}>
             <div className="flex flex-col lg:flex-row">
               <Orderingtravelspec
@@ -128,7 +131,7 @@ export default function TravelOrdering() {
                   correctly, then click button below.
                 </p>
               </div>
-              <button className="px-[30px] bg-blue-400 text-white w-[250px] py-[10px] rounded-[10px]">
+              <button className="px-[30px] bg-blue-400 text-white w-[250px] py-[10px] rounded-[10px] duration-200 border-2 border-blue-400 hover:bg-white hover:text-black hover:border-black">
                 Order Summary
               </button>
             </div>
