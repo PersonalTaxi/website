@@ -4,6 +4,8 @@ import { AiFillInfoCircle } from "react-icons/ai";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import TomTomTravels from "./tomtomTravels";
 import { AppContext } from "../../pages/_app";
+import { FaRegCalendarAlt } from "react-icons/fa";
+import { MdOutlineAccessTimeFilled } from "react-icons/md";
 
 interface Props {
   travelDate: any;
@@ -108,24 +110,30 @@ export default function OrderingtravelspecificsPL({
             <br></br> (lub kiedy zaczyna się wycieczka?)
           </label>
           <div className="flex justify-between">
-            <input
-              type="date"
-              value={travelDate}
-              onChange={handleDate}
-              className="border border-gray-900/[0.4] w-[55%] h-[45px] text-[15px] pl-[5px] outline-none z-10 rounded-[10px] bg-transparent"
-            ></input>
-            <input
-              type="time"
-              value={travelTime}
-              onChange={handleTime}
-              className="border border-gray-900/[0.4] w-[37%] h-[45px] text-[15px] pl-[5px] outline-none z-10 rounded-[10px] bg-transparent"
-            ></input>
+            <div className="w-[55%] h-[45px] relative">
+              <input
+                type="date"
+                value={travelDate}
+                onChange={handleDate}
+                className="border border-gray-900/[0.4] w-full h-[45px] text-[15px] pl-[5px] outline-none z-10 rounded-[10px] bg-transparent"
+              ></input>
+              <FaRegCalendarAlt className="absolute top-0 right-2 h-[45px] text-yellow-400 lg:hidden" />
+            </div>
+            <div className="w-[37%] h-[45px] relative">
+              <input
+                type="time"
+                value={travelTime}
+                onChange={handleTime}
+                className="border border-gray-900/[0.4] w-full h-[45px] text-[15px] pl-[5px] outline-none z-10 rounded-[10px] bg-transparent"
+              ></input>
+              <MdOutlineAccessTimeFilled className="absolute top-0 right-2 h-[45px] text-yellow-400 lg:hidden" />
+            </div>
           </div>
         </div>
         <div id="localization-wrapper" className="mt-[30px] w-full">
           <div
             ref={infoAboutLocalization}
-            className="absolute hidden w-[360px] h-auto shadow-[0px_0px_15px_2px_rgba(0,0,0,0.3)] bg-white z-10 rounded-[10px] p-[12px]"
+            className="absolute hidden lg:w-[360px] w-[280px] h-auto shadow-[0px_0px_15px_2px_rgba(0,0,0,0.3)] bg-white z-10 rounded-[10px] p-[12px]"
           >
             <p className="leading-5">
               Punktem startowym (miejscem z którego będziemy mogli Cię odebrać) może być wyłącznie
