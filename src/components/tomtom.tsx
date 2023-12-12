@@ -261,7 +261,7 @@ export default function TomTom({ ShowOrHideInfoAboutMissingLocalizations }: Func
               // StreetNumber = i.address.streetNumber;
             }
             if (i.type === "Street") {
-              POI = `${StreetName},${StreetName}`;
+              POI = `${StreetName}`;
             }
             if (i.type === "Point Address") {
               // StreetNumber = i.address.streetNumber;
