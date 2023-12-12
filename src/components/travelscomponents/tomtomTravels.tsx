@@ -138,19 +138,19 @@ export default function TomTom({
 
     function fetchData() {
       fetch(
-        `https://api.tomtom.com/search/2/search/${query}.json?maxFuzzyLevel=2&key=cjmuWSfVTrJfOGj7AcXvMLU8R8i1Q9cF&setCountry=PL&limit107&language=${SearchLanguage}`,
+        `https://api.tomtom.com/search/2/search/${query}.json?maxFuzzyLevel=2&key=cjmuWSfVTrJfOGj7AcXvMLU8R8i1Q9cF&countrySet=PL&limit10&language=${SearchLanguage}`,
         {
           method: "GET",
         },
       )
         .then((res) => res.json())
-        .then((resData) => {
-          return resData.results.filter((i: any) => i.type !== "Geography" && i.type !== "Street");
-        })
+        // .then((resData) => {
+        //   return resData.results.filter((i: any) => i.type !== "Geography" && i.type !== "Street");
+        // })
         .then((resData) => {
           console.log(resData);
           if (resData) {
-            return resData.filter((municipality: any) => {
+            return resData.results.filter((municipality: any) => {
               if (
                 municipality.address?.municipality !== "Zabierzów" &&
                 municipality.address?.municipality !== "Krakow" &&
@@ -191,11 +191,14 @@ export default function TomTom({
               }
             }
             if (i.type === "Street") {
-              POI = `${StreetName},${StreetName}`;
+              POI = `${StreetName}`;
             }
             if (i.type === "Point Address") {
               // StreetNumber = i.address.streetNumber;
               POI = `${City}`;
+            }
+            if (i.type === "Geography") {
+              POI = `${i.address.municipality}`;
             }
             // else {
             //   StreetNumber = i.address.streetNumber
@@ -359,7 +362,7 @@ export default function TomTom({
           ref={travelList}
           className={
             queryingTravel.length > 2 && focused === true
-              ? "absolute w-[400px] top-[225px] border-2 border-yellow-500 rounded-[10px] bg-white z-30"
+              ? "absolute w-[400px] top-[250px] border-2 border-yellow-500 rounded-[10px] bg-white z-30"
               : "hidden overflow-hidden"
           }
         >

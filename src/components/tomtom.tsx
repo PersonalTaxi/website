@@ -197,21 +197,39 @@ export default function TomTom({ ShowOrHideInfoAboutMissingLocalizations }: Func
       RestricionTwo = "Zabierzów";
     }
 
+    let SearchLanguage = "pl-PL";
+
+    if (router.asPath.includes("/pl/")) {
+      SearchLanguage = "pl-PL";
+    } else {
+      SearchLanguage = "en-US";
+    }
+
     function fetchData() {
       fetch(
-        `https://api.tomtom.com/search/2/search/${query}.json?maxFuzzyLevel=2&key=cjmuWSfVTrJfOGj7AcXvMLU8R8i1Q9cF&setCountry=PL&limit107&language=en-US`,
+        `https://api.tomtom.com/search/2/search/${query}.json?key=cjmuWSfVTrJfOGj7AcXvMLU8R8i1Q9cF&countrySet=PL,DE&limit10&language=${SearchLanguage}`,
         {
           method: "GET",
         },
       )
         .then((res) => res.json())
-        .then((resData) => {
-          return resData.results.filter((i: any) => i.type !== "Geography" && i.type !== "Street");
-        })
+        // .then((resData) => {
+        //   return resData.results.filter((i: any) => i.type !== "Street");
+        // })
         .then((resData) => {
           // console.log(resData);
           if (resData) {
-            return resData.filter((i: any) => i.address.municipality !== RestricionOne);
+            return resData.results.filter((municipality: any) => {
+              if (
+                municipality.address?.municipality !== "Zabierzów" &&
+                municipality.address?.municipality !== "Krakow" &&
+                municipality.address?.municipality !== "Kraków"
+              ) {
+                return false;
+              } else {
+                return municipality;
+              }
+            });
           }
         })
         .then((data) => {
@@ -221,7 +239,7 @@ export default function TomTom({ ShowOrHideInfoAboutMissingLocalizations }: Func
             let POI;
             let Specifics = i.address.freeformAddress;
             let StreetName = i.address.streetName;
-            let StreetNumber = 2;
+            let StreetNumber = i.address?.StreetNumber;
             let City = "";
 
             if (i.address.municipalitySubdivision) {
@@ -235,7 +253,7 @@ export default function TomTom({ ShowOrHideInfoAboutMissingLocalizations }: Func
             if (i.type === "POI") {
               if (i.poi.name === "Kraków John Paul II International Airport") {
                 POI = "Kraków Airport";
-              } else if (i.poi.categories[0] !== "airport") {
+              } else if (i.poi.categories[0] === "market") {
                 POI = `${i.poi.name}, ${i.address.freeformAddress}`;
               } else {
                 POI = i.poi.name;
@@ -248,6 +266,9 @@ export default function TomTom({ ShowOrHideInfoAboutMissingLocalizations }: Func
             if (i.type === "Point Address") {
               // StreetNumber = i.address.streetNumber;
               POI = `${City}, ${StreetName} ${StreetNumber}`;
+            }
+            if (i.type === "Geography") {
+              POI = `${i.address.municipality}`;
             }
             // else {
             //   StreetNumber = i.address.streetNumber
@@ -393,23 +414,23 @@ export default function TomTom({ ShowOrHideInfoAboutMissingLocalizations }: Func
 
   return (
     <div className="flex flex-col lg:flex-row w-full">
-      <div className="w-full h-[47px] flex flex-col rounded-r-[10px] ">
+      <div className="w-full h-[47px] flex flex-col rounded-r-[10px]">
         <div
           className={
             correctRoad === true
               ? "absolute w-full h-[0px] mx-auto bg-white z-40 rounded-[10px] flex items-start justify-between overflow-hidden duration-300"
-              : "absolute w-full h-[100%] shadow-[0px_0px_15px_2px_rgba(0,0,0,0.3)] mx-auto bg-white z-40 rounded-[10px] flex items-start justify-between overflow-hidden duration-300"
+              : "absolute w-full h-[98%] mx-auto bg-white z-40 rounded-[10px] flex items-start justify-between overflow-hidden duration-300"
           }
           onClick={handleClosingInfoAboutRoute}
         >
-          <div className="flex items-center justify-center w-[90%] h-full">
-            <AiFillInfoCircle className="w-[6%] h-full mr-[10px]" />
-            <div className="h-full w-[85%] leading-4 pt-[20px] lg:pt-[0px] flex items-center">
+          <div className="flex items-center w-[90%] h-full">
+            <AiFillInfoCircle className="w-[15%]" />
+            <div className="h-full w-[85%] leading-4 pt-[20px]">
               Sorry, you can only choose a route which contain a starting or finishig point in
               Kraków commune
             </div>
           </div>
-          <AiOutlineClose className="mr-[5px] mt-[5px] cursor-pointer" />
+          <AiOutlineClose classname="w-[10%]" />
         </div>
         <div className="flex justify-center items-center lg:border border-gray-900/[0.4] rounded-[10px] relative lg:w-11/12">
           <BiSolidMap className="w-[30px] h-[30px] text-yellow-500/[0.4]" />
