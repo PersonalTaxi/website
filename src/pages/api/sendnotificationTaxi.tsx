@@ -14,6 +14,7 @@ export default async function SendnotificationTaxi(
   res: NextApiResponse<Data>,
 ) {
   let transporter = await nodemailer.createTransport({
+    name: "serwer141299",
     port: 465,
     host: "mail-serwer141299.lh.pl",
     // secure: true,
@@ -75,7 +76,7 @@ export default async function SendnotificationTaxi(
 
   const mailToCustomerDataPL = {
     from: "Potwierdzenie zamówienia - Personal Taxi",
-    to: "m.marszalek@wearebrave.pl",
+    to: req.body.email,
     subject: `Zamówienie transferu / Taxi`,
     text: "Hello. This email is for your email verification.",
     html:
