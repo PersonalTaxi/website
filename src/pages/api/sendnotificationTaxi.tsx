@@ -75,7 +75,7 @@ export default async function SendnotificationTaxi(
 
   const mailToCustomerDataPL = {
     from: "Potwierdzenie zamówienia - Personal Taxi",
-    to: "marek.marszalek85@gmail.com",
+    to: "m.marszalek@wearebrave.pl",
     subject: `Zamówienie transferu / Taxi`,
     text: "Hello. This email is for your email verification.",
     html:
