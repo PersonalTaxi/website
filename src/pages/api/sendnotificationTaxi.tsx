@@ -17,7 +17,7 @@ export default async function SendnotificationTaxi(
     name: "www.wearebrave.pl",
     port: 465,
     host: "mail-serwer141299.lh.pl",
-    // secure: true,
+    secure: true,
     tls: {
       ciphers: "SSLv3",
     },
