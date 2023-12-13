@@ -37,32 +37,40 @@ export default async function SendnotificationTaxi(
   });
 
   const mailData = {
-    from: "Opłacono kurs",
+    from: "Zamówienie na kurs",
     to: "m.marszalek@wearebrave.pl",
-    subject: `Wiadomość ze strony od: ${req.body.name} ${req.body.lastname}`,
+    subject: `Zamówienie transferu od: ${req.body.name} ${req.body.lastname}`,
     text: "Hello. This email is for your email verification.",
     html:
+      `Id zamówienia (również sesja w P24): ${req.body.id}` +
+      `<br>` +
       `Imię i nazwisko / firma: ${req.body.name} ${req.body.lastname}` +
       `<br>` +
-      `Email kontaktowy: ${req.body.email}` +
+      `Email: ${req.body.email}` +
       `<br>` +
-      `Telefon kontaktowy: ${req.body.phone}` +
+      `Telefon: ${req.body.phone}` +
       `<br><br>` +
       `Początek trasy: ${req.body.from}` +
       `<br>` +
-      `Miejsce docelowe: ${req.body.to}` +
+      `Geolokalizacja: ${req.body.startFromGEO} (<a href="https://www.google.com/maps/place/${req.body.startFromGEO}">Pokaż w Google Maps</a>)` +
+      `<br> ---` +
       `<br>` +
+      `Koniec trasy: ${req.body.to}` +
+      `<br>` +
+      `Geolokalizacja: ${req.body.directionGEO} (<a href="https://www.google.com/maps/place/${req.body.directionGEO}">Pokaż w Google Maps</a>)` +
+      `<br> ---` +
       `<br>` +
       `Dystans: ${req.body.distance} km` +
       `<br>` +
       `<br>` +
       `Wiadomość dla kierowcy: ${req.body.infoForDriver}` +
       `<br>` +
-      `<br>` +
       `Opis przedmiotów niestandardowych: ${req.body.unusualItems}` +
+      `<br> ---` +
       `<br>` +
       `Cena: ${req.body.price} zł` +
-      `<br>`,
+      `<br>` +
+      `<p><a href="https://www.google.com/maps/dir/${req.body.startFromGEO}/${req.body.directionGEO}">Trasa Google Maps</a></p>`,
   };
 
   await transporter.sendMail(mailData, function (err: string, info: string) {

@@ -1,6 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 
 const OrderSchema = new Schema({
+  id: String,
   From: String,
   To: String,
   distance: String,
@@ -19,6 +20,8 @@ const OrderSchema = new Schema({
   sessionId: String,
   orderId: String,
   sign: String,
+  startFromGeo: [Number],
+  directionGeo: [Number],
   isPayed: { type: Boolean, default: false },
 });
 

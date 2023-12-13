@@ -14,6 +14,8 @@ export default function Payment() {
     serviceType,
     queryFrom,
     queryTo,
+    latLangFrom,
+    latLangTo,
     date,
     cars,
     calculateDistance,
@@ -92,33 +94,38 @@ export default function Payment() {
       email: email,
       country: CountryISO,
       language: "en",
-      urlReturn: `http://personaltaxi.pl/ordering/verify?type=taxi`,
+      urlReturn: `http://localhost:3000/ordering/verify?type=taxi`,
       urlStatus: "https://ptbackend.vercel.app/",
       sign: sign,
     });
 
     //register order details in MongoDB
 
-    const DataForDatabaseTravel = JSON.stringify({
+    const DataForDatabaseTaxi = JSON.stringify({
+      id: sessionIdContext,
       From: queryFrom,
       To: queryTo,
       distance: calculateDistance,
       firstName: firstName,
       lastName: lastName,
       email: email,
+      phone: `${phonePrefix} ${phone}`,
       description: "Taxi order",
       country: "PL",
       price: price,
       currency: "PLN",
       infoForDriver: infoForDriver,
-      unusualItems: "nie dotyczy",
+      unusualItems: unusualItems,
       merchantId: 27407,
       posId: 27407,
       sessionId: sessionId,
+      orderId: "working...",
       sign: sign,
+      startFromGeo: latLangFrom,
+      directionGeo: latLangTo,
     });
 
-    await RegisterInTaxiDataBase(DataForDatabaseTravel);
+    await RegisterInTaxiDataBase(DataForDatabaseTaxi);
 
     let res = await fetch("/api/p24", {
       method: "POST",

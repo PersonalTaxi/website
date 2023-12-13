@@ -8,7 +8,7 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
   const TaxiData = await Taxi.find({ sessionId: req.body });
   const newID = await TaxiData[0]._id;
   await Taxi.findByIdAndUpdate(newID, { isPayed: true });
-  res.status(200).json({ Taxi });
+  res.status(200).json({ TaxiData });
 }
 
 export default POST;

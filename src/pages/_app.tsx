@@ -143,8 +143,8 @@ export default function App({ Component, pageProps }: AppProps) {
   const [cars, setCars] = useState({ sedan: 0, van: 0 });
   const [calculateDistance, setCalculateDistance] = useState(null);
   const [flightNumber, setFlightNumber] = useState(null);
-  const [infoForDriver, setInfoForDriver] = useState(null);
-  const [unusualItems, setUnusualItems] = useState(null);
+  const [infoForDriver, setInfoForDriver] = useState();
+  const [unusualItems, setUnusualItems] = useState();
   const [SearchButtonWasClicked, setSearchButtonWasClicked] = useState(false);
   const [mapLongitude, setMapLongitude]: any = useState(19.945);
   const [mapLatitude, setMapLatitude]: any = useState(40.064);

@@ -1,6 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 
 const TravelSchema = new Schema({
+  id: String,
   Travel_to: String,
   Travel_date: String,
   Tour_start_at: String,
@@ -24,6 +25,7 @@ const TravelSchema = new Schema({
   sessionId: String,
   orderId: String,
   sign: String,
+  startGeo: String,
   isPayed: { type: Boolean, default: false },
 });
 

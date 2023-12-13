@@ -12,18 +12,22 @@ export async function VerifyTransaction(TypeOfService: any, query: any) {
 
   const sendEmail = async (ObiectForMail: any) => {
     let dataForMail;
+    console.log(ObiectForMail);
     if (TypeOfService === "taxi") {
       dataForMail = await JSON.stringify({
-        from: ObiectForMail.orders[0].From,
-        to: ObiectForMail.orders[0].To,
-        name: ObiectForMail.orders[0].firstName,
-        email: ObiectForMail.orders[0].email,
-        phone: ObiectForMail.orders[0].phone,
-        distance: ObiectForMail.orders[0].distance,
-        price: ObiectForMail.orders[0].price,
-        lastname: ObiectForMail.orders[0].lastName,
-        unusualItems: ObiectForMail.orders[0].unusualItems,
-        infoForDriver: ObiectForMail.orders[0].infoForDriver,
+        id: ObiectForMail.TaxiData[0].sessionId,
+        from: ObiectForMail.TaxiData[0].From,
+        to: ObiectForMail.TaxiData[0].To,
+        name: ObiectForMail.TaxiData[0].firstName,
+        email: ObiectForMail.TaxiData[0].email,
+        phone: ObiectForMail.TaxiData[0].phone,
+        distance: ObiectForMail.TaxiData[0].distance,
+        price: ObiectForMail.TaxiData[0].price,
+        lastname: ObiectForMail.TaxiData[0].lastName,
+        unusualItems: ObiectForMail.TaxiData[0].unusualItems,
+        infoForDriver: ObiectForMail.TaxiData[0].infoForDriver,
+        startFromGEO: ObiectForMail.TaxiData[0].startFromGeo,
+        directionGEO: ObiectForMail.TaxiData[0].directionGeo,
       });
 
       await fetch("/api/sendnotificationTaxi", {
@@ -77,30 +81,35 @@ export async function VerifyTransaction(TypeOfService: any, query: any) {
       const SesionIdFromQuery = queryToParse.sessionId;
       setCookie("P24", SesionIdFromQuery);
 
-      //create data from DataBase varable
-      let dataFromDB;
+      //create data from DataBase variable
+      const dataFromDB = async () => {
+        //check what the service covers
+        let dataFrom;
+        if (TypeOfService === "travel") {
+          dataFrom = await fetch("/api/mongoTravelGet", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: SesionIdFromQuery,
+          });
+          return await dataFrom.json();
+        }
 
-      //check what the service covers
-      if (TypeOfService === "travel") {
-        dataFromDB = await fetch("/api/mongoTravelGet", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: SesionIdFromQuery,
-        });
-      }
-      if (TypeOfService === "taxi") {
-        dataFromDB = await fetch("/api/mongoTaxiGet", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: SesionIdFromQuery,
-        });
-      }
+        if (TypeOfService === "taxi") {
+          dataFrom = await fetch("/api/mongoTaxiGet", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: SesionIdFromQuery,
+          });
+          // return await dataTaxi.json();
+          return await dataFrom.json();
+        }
+      };
 
-      const ObiectForMail = await dataFromDB?.json();
+      const ObiectForMail = await dataFromDB();
       console.log(dataFromDB);
       sendEmail(ObiectForMail);
       const final = await verifiedData.status;

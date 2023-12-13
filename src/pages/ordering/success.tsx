@@ -60,8 +60,6 @@ export default function Success() {
     price: price,
   });
 
-  console.log(query);
-
   return (
     <div className="w-screen h-screen bg-[url('/Main_theme.png')] bg-top bg-cover bg-no-repeat flex justify-center items-center">
       <div className="w-[80%] lg:w-[300px] h-[50%] flex flex-col items-center justify-center mx-auto bg-white rounded-[10px]">

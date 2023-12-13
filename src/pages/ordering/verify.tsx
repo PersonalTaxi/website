@@ -8,7 +8,6 @@ import VerifyTransaction from "@/components/verifyTransaction";
 import { AppContext } from "../_app";
 
 export default function Verify() {
-  const [VeryficationStatus, setVerificationStatus]: any = useState();
   const router = useRouter();
 
   const {
@@ -54,8 +53,10 @@ export default function Verify() {
 
   useEffect(() => {
     const fetchAnswerVerifyAndRedirect = async () => {
+      console.log("render");
       let TypeOfService;
       if (router.asPath.includes("type=travel")) {
+        console.log("render");
         TypeOfService = await "travel";
       }
       if (router.asPath.includes("type=taxi")) {
@@ -64,18 +65,18 @@ export default function Verify() {
 
       //sending first verify and gain urlStatus from p24
       const { status, DataKEY, query } = await getUrlStatus();
-      console.log(query);
 
       //sending data to verify payment and sending email after
       let ParsedQuery = JSON.parse(query);
       // let sessionsId = ParsedQuery.sessionId;
 
       const VerifyStatus = await VerifyTransaction(TypeOfService, query);
+      console.log(VerifyStatus);
       if (VerifyStatus === 200) {
-        //get data from databse and sand email
-        router.replace({
-          pathname: "https://personaltaxi.pl/ordering/success",
-        });
+        console.log(VerifyStatus);
+        // router.replace({
+        //   pathname: "https://personaltaxi.pl/ordering/success",
+        // });
       } else {
         router.replace({
           pathname: "https://personaltaxi.pl/ordering/failed",

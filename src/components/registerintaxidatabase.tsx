@@ -1,5 +1,5 @@
 export async function RegisterInTaxiDataBase(DataForDatabase: any) {
-  fetch("/api/mongopost", {
+  fetch("/api/mongoTaxiPost", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

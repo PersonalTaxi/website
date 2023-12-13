@@ -83,11 +83,15 @@ export default function TomTom({ ShowOrHideInfoAboutMissingLocalizations }: Func
     setQueryFrom(e.target.value);
     FromList.current.style.display = "block";
     setActiveQuery("From");
-    setlatLangFrom(null);
+    if (latLangFrom !== null) {
+      setlatLangFrom(null);
+    }
   };
 
   const handleSearchTo = (e: any) => {
-    setlatLangTo(null);
+    if (latLangFrom !== null) {
+      setlatLangTo(null);
+    }
     setQueryTo(e.target.value);
     ToList.current.style.display = "block";
     setActiveQuery("To");
@@ -112,6 +116,9 @@ export default function TomTom({ ShowOrHideInfoAboutMissingLocalizations }: Func
 
     ShowOrHideInfoAboutMissingLocalizations();
   };
+
+  console.log(latLangFrom);
+  console.log(latLangTo);
 
   const calculateDistances = useCallback(() => {
     if (latLangFrom !== null && latLangTo !== null) {
@@ -216,25 +223,25 @@ export default function TomTom({ ShowOrHideInfoAboutMissingLocalizations }: Func
         // .then((resData) => {
         //   return resData.results.filter((i: any) => i.type !== "Street");
         // })
-        .then((resData) => {
-          // console.log(resData);
-          if (resData) {
-            return resData.results.filter((municipality: any) => {
-              if (
-                municipality.address?.municipality !== "Zabierzów" &&
-                municipality.address?.municipality !== "Krakow" &&
-                municipality.address?.municipality !== "Kraków"
-              ) {
-                return false;
-              } else {
-                return municipality;
-              }
-            });
-          }
-        })
+        // .then((resData) => {
+        //   // console.log(resData);
+        //   if (resData) {
+        //     return resData.results.filter((municipality: any) => {
+        //       if (
+        //         municipality.address?.municipality !== "Zabierzów" &&
+        //         municipality.address?.municipality !== "Krakow" &&
+        //         municipality.address?.municipality !== "Kraków"
+        //       ) {
+        //         return false;
+        //       } else {
+        //         return municipality;
+        //       }
+        //     });
+        //   }
+        // })
         .then((data) => {
-          console.log(data);
-          const newData = data.map((i: any, key: any) => {
+          // console.log(data);
+          const newData = data.results.map((i: any, key: any) => {
             let icon;
             let POI;
             let Specifics = i.address.freeformAddress;
