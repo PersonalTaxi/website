@@ -75,7 +75,7 @@ export default async function SendnotificationTaxi(
   };
 
   const mailToCustomerDataPL = {
-    from: "Potwierdzenie zamówienia - Personal Taxi",
+    from: req.body.email,
     to: req.body.email,
     subject: `Zamówienie transferu / Taxi`,
     text: "Hello. This email is for your email verification.",
