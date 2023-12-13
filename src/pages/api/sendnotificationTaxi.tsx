@@ -75,7 +75,7 @@ export default async function SendnotificationTaxi(
 
   const mailToCustomerDataPL = {
     from: "Potwierdzenie zamówienia - Personal Taxi",
-    to: req.body.email,
+    to: "marek.marszalek85@gmail.com",
     subject: `Zamówienie transferu / Taxi`,
     text: "Hello. This email is for your email verification.",
     html:
@@ -180,6 +180,7 @@ export default async function SendnotificationTaxi(
       return res.status(200);
     }
   });
+
   await transporter.sendMail(mailToCustomerDataEN, function (err: string, info: string) {
     console.log("wysyłam");
     if (err) {
