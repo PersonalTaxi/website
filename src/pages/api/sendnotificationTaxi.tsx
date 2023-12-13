@@ -14,9 +14,9 @@ export default async function SendnotificationTaxi(
   res: NextApiResponse<Data>,
 ) {
   let transporter = await nodemailer.createTransport({
-    name: "mail.wearebrave.pl",
+    name: "personaltaxi.pl",
     port: 465,
-    host: "mail-serwer141299.lh.pl",
+    host: "personaltaxi.pl",
     secure: true,
     // tls: {
     //   ciphers: "SSLv3",
@@ -75,7 +75,7 @@ export default async function SendnotificationTaxi(
   };
 
   const mailToCustomerDataPL = {
-    from: '"Personal Taxi" <m.marszalek@wearebrave.pl>',
+    from: '"Personal Taxi" <orders@personaltaxi.pl',
     to: req.body.email,
     subject: `Potwierdzenie opłacenia zamówienia`,
     text: "Hello. This email is for your email verification.",
@@ -117,7 +117,7 @@ export default async function SendnotificationTaxi(
   const mailToCustomerDataEN = {
     from: '"Personal Taxi" <m.marszalek@wearebrave.pl>',
     to: req.body.email,
-    subject: `Confrimation of order and payment. `,
+    subject: `Confirmation of order and payment.`,
     text: "Hello. This email is for your email verification.",
     html:
       `<p>We confirm that your order and payment was already made correctly and has been givin a ID number: ${req.body.id}. You don't have to do anything with this massage but keep it please. <br>You can find the order summary below.</p>` +
