@@ -18,9 +18,9 @@ export default async function SendnotificationTaxi(
     port: 465,
     host: "mail-serwer141299.lh.pl",
     secure: true,
-    tls: {
-      ciphers: "SSLv3",
-    },
+    // tls: {
+    //   ciphers: "SSLv3",
+    // },
     auth: {
       user: process.env.MAIL, // generated ethereal user
       pass: process.env.PASS, // generated ethereal password
