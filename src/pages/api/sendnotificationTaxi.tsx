@@ -14,9 +14,9 @@ export default async function SendnotificationTaxi(
   res: NextApiResponse<Data>,
 ) {
   let transporter = await nodemailer.createTransport({
-    name: "dominikorz.nazwa.pl",
+    name: "domikorz.nazwa.pl",
     port: 465,
-    host: "dominikorz.nazwa.pl",
+    host: "domikorz.nazwa.pl",
     secure: true,
     // tls: {
     //   ciphers: "SSLv3",
