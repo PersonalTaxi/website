@@ -75,13 +75,12 @@ export default async function SendnotificationTaxi(
   };
 
   const mailToCustomerDataPL = {
-    from: '"Potwierdzenie złożenia zamówienia" <m.marszalek@wearebrave.pl>',
+    from: '"Personal Taxi" <m.marszalek@wearebrave.pl>',
     to: req.body.email,
-    subject: `Zamówienie transferu / Taxi`,
+    subject: `Potwierdzenie opłacenia zamówienia`,
     text: "Hello. This email is for your email verification.",
     html:
-      `<p>Nieniejszym potwierdzamy, że Twoje zamówienie zostało złożone, otrzymało ono numer ID: ${req.body.id}. Płatność zostałą zrealizowana poprawnie. Nie musisz nic robić z Tą wiadomości ale zachowaj w razie ewentualnych niejasności. <br>Poniżej znajdziesz podsumowanie swojego zamówienia.</p>` +
-      `<br>` +
+      `<p>Nieniejszym potwierdzamy, że Twoje zamówienie zostało złożone i otrzymało numer ID: ${req.body.id}. <br>Płatność została zrealizowana poprawnie. <br>Nie musisz nic robić z Tą wiadomości ale zachowaj ją. <br>Poniżej znajdziesz podsumowanie swojego zamówienia.</p>` +
       `<br>` +
       `Id Twojego zamówienia: ${req.body.id}` +
       `<br>` +
@@ -110,50 +109,52 @@ export default async function SendnotificationTaxi(
       `Opis przedmiotów niestandardowych: ${req.body.unusualItems}` +
       `<br> ---` +
       `<br>` +
-      `Cena: ${req.body.price} zł` +
+      `Cena: ${req.body.price} ${req.query.currency}` +
       `<br>` +
       `<p> Prosimy o sprawdzenie czy wszystko zostało zrealizowane poprawnie. <br>W razie potrzeby jakichkolwiek korekt, uzyskania dodatkowych informacji lub ich zmiany skontaktuj się z nami mailowo poprzez adres office@personaltaxi.pl.<br><br> Widzimy się już niebawem!</p>`,
   };
 
   const mailToCustomerDataEN = {
-    from: "Potwierdzenie zamówienia - Personal Taxi",
+    from: '"Personal Taxi" <m.marszalek@wearebrave.pl>',
     to: req.body.email,
-    subject: `Zamówienie transferu / Taxi`,
+    subject: `Confrimation of order and payment. `,
     text: "Hello. This email is for your email verification.",
     html:
-      `<p>Nieniejszym potwierdzamy, że Twoje zamówienie zostało złożone, otrzymało ono numer ID: ${req.body.id}. Płatność zostałą zrealizowana poprawnie. Nie musisz nic robić z Tą wiadomości ale zachowaj w razie ewentualnych niejasności. <br>Poniżej znajdziesz podsumowanie swojego zamówienia.</p>` +
+      `<p>We confirm that your order and payment was already made correctly and has been givin a ID number: ${req.body.id}. You don't have to do anything with this massage but keep it please. <br>You can find the order summary below.</p>` +
       `<br>` +
       `<br>` +
-      `Id Twojego zamówienia: ${req.body.id}` +
+      `Order ID: ${req.body.id}` +
       `<br>` +
       `<br>` +
-      `Imię i nazwisko: ${req.body.name} ${req.body.lastname}` +
+      `Full name: ${req.body.name} ${req.body.lastname}` +
       `<br>` +
       `Email: ${req.body.email}` +
       `<br>` +
-      `Telefon: ${req.body.phone}` +
+      `Phone: ${req.body.phone}` +
       `<br><br>` +
-      `Początek trasy: ${req.body.from}` +
+      `Start point: ${req.body.from}` +
       `<br>` +
-      `Geolokalizacja: ${req.body.startFromGEO} (<a href="https://www.google.com/maps/place/${req.body.startFromGEO}">Pokaż w Google Maps</a>)` +
+      `Geolocalization: ${req.body.startFromGEO} (<a href="https://www.google.com/maps/place/${req.body.startFromGEO}">Pokaż w Google Maps</a>)` +
       `<br> ---` +
       `<br>` +
-      `Koniec trasy: ${req.body.to}` +
+      `Finish point: ${req.body.to}` +
       `<br>` +
-      `Geolokalizacja: ${req.body.directionGEO} (<a href="https://www.google.com/maps/place/${req.body.directionGEO}">Pokaż w Google Maps</a>)` +
+      `Geolocalization: ${req.body.directionGEO} (<a href="https://www.google.com/maps/place/${req.body.directionGEO}">Pokaż w Google Maps</a>)` +
       `<br> ---` +
       `<br>` +
-      `Dystans: ${req.body.distance} km` +
+      `Distance: ${req.body.distance} km` +
       `<br>` +
       `<br>` +
-      `Wiadomość dla kierowcy: ${req.body.infoForDriver}` +
+      `Massege for driver: ${req.body.infoForDriver}` +
       `<br>` +
-      `Opis przedmiotów niestandardowych: ${req.body.unusualItems}` +
+      `Some unusial items: ${req.body.unusualItems}` +
       `<br> ---` +
       `<br>` +
-      `Cena: ${req.body.price} zł` +
+      `Price: ${req.body.price} ${req.query.currency}` +
       `<br>` +
-      `<p> Prosimy o sprawdzenie czy wszystko zostało zrealizowane poprawnie. <br>W razie potrzeby jakichkolwiek korekt, uzyskania dodatkowych informacji lub ich zmiany skontaktuj się z nami mailowo poprzez adres office@personaltaxi.pl.<br><br> Widzimy się już niebawem!</p>`,
+      `<p> 
+      We request to check if order was realized correctly. <br> In case of any needs, corrections, obtaining addicional information or changing it please contact us with mail to office@personaltaxi.pl.<br>
+      See you soon!</p>`,
   };
 
   await transporter.sendMail(mailToCompanyData, function (err: string, info: string) {
@@ -169,29 +170,33 @@ export default async function SendnotificationTaxi(
     }
   });
 
-  await transporter.sendMail(mailToCustomerDataPL, function (err: string, info: string) {
-    console.log("wysyłam");
-    if (err) {
-      console.log("błąd: " + err);
-      res.json(JSON.parse(noworking));
-      return res.status(500);
-    } else {
-      console.log("działa");
-      res.json(JSON.parse(working));
-      return res.status(200);
-    }
-  });
+  if (req.query.language === "PL") {
+    await transporter.sendMail(mailToCustomerDataPL, function (err: string, info: string) {
+      console.log("wysyłam");
+      if (err) {
+        console.log("błąd: " + err);
+        res.json(JSON.parse(noworking));
+        return res.status(500);
+      } else {
+        console.log("działa");
+        res.json(JSON.parse(working));
+        return res.status(200);
+      }
+    });
+  }
 
-  await transporter.sendMail(mailToCustomerDataEN, function (err: string, info: string) {
-    console.log("wysyłam");
-    if (err) {
-      console.log("błąd: " + err);
-      res.json(JSON.parse(noworking));
-      return res.status(500);
-    } else {
-      console.log("działa");
-      res.json(JSON.parse(working));
-      return res.status(200);
-    }
-  });
+  if (req.query.language === "EN") {
+    await transporter.sendMail(mailToCustomerDataEN, function (err: string, info: string) {
+      console.log("wysyłam");
+      if (err) {
+        console.log("błąd: " + err);
+        res.json(JSON.parse(noworking));
+        return res.status(500);
+      } else {
+        console.log("działa");
+        res.json(JSON.parse(working));
+        return res.status(200);
+      }
+    });
+  }
 }
