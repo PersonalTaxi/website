@@ -185,15 +185,16 @@ export default function Search() {
         `https://api.tomtom.com/search/2/search/${crd.latitude},${crd.longitude}.json?key=cjmuWSfVTrJfOGj7AcXvMLU8R8i1Q9cF&countrySet=PL,DE&limit=10&language=en-US`,
       );
       const data = await Localization.json();
-      const finalAdress = data?.results.map((i: any) => {
-        console.log(i);
-        if (i.type === "Point Address") {
-          return i.address.freeformAddress;
+      let finalAdress = "";
+      data?.results.map((i: any) => {
+        if (i.type === "Point Address" && finalAdress === "") {
+          finalAdress = i.address.freeformAddress;
         }
       });
 
       setlatLangFrom([crd.latitude, crd.longitude]);
       setQueryFrom(finalAdress);
+      console.log(finalAdress);
       // console.log(`Latitude : ${crd.latitude}`);
       // console.log(`Longitude: ${crd.longitude}`);
       // console.log(`More or less ${crd.accuracy} meters.`);
