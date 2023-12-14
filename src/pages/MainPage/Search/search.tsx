@@ -190,7 +190,7 @@ export default function Search() {
     function error(err: any) {
       console.warn(`ERROR(${err.code}): ${err.message}`);
     }
-
+    navigator.permissions.query({ name: "push" });
     navigator.permissions.query({ name: "geolocation" });
 
     navigator.geolocation.getCurrentPosition(success, error, options);
