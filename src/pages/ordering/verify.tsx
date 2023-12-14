@@ -83,9 +83,9 @@ export default function Verify() {
       console.log(VerifyStatus);
       if (VerifyStatus === 200) {
         console.log(VerifyStatus);
-        // router.replace({
-        //   pathname: "https://personaltaxi.pl/ordering/success",
-        // });
+        router.replace({
+          pathname: "https://personaltaxi.pl/ordering/success",
+        });
       } else {
         router.replace({
           pathname: "https://personaltaxi.pl/ordering/failed",
