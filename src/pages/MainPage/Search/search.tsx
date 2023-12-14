@@ -191,6 +191,10 @@ export default function Search() {
       console.warn(`ERROR(${err.code}): ${err.message}`);
     }
 
+    navigator.permissions.query({ name: "geolocation" }).then(function (result) {
+      /* result.status = "prompt" */
+    });
+
     navigator.geolocation.getCurrentPosition(success, error, options);
   };
 
