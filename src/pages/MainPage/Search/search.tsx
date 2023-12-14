@@ -169,7 +169,7 @@ export default function Search() {
     InfoAboutDate.current.style.height = "0px";
   };
 
-  useEffect(() => {
+  const FindMe = () => {
     const options = {
       enableHighAccuracy: true,
       timeout: 5000,
@@ -180,6 +180,8 @@ export default function Search() {
       const crd = pos.coords;
 
       console.log("Your current position is:");
+      setlatLangFrom([crd.latitude, crd.longitude]);
+      setQueryFrom("Actual localization");
       console.log(`Latitude : ${crd.latitude}`);
       console.log(`Longitude: ${crd.longitude}`);
       console.log(`More or less ${crd.accuracy} meters.`);
@@ -190,7 +192,7 @@ export default function Search() {
     }
 
     navigator.geolocation.getCurrentPosition(success, error, options);
-  }, []);
+  };
 
   return (
     <>
@@ -222,7 +224,7 @@ export default function Search() {
             >
               <div
                 id="form-elements-wraper"
-                className="w-full h-[260px] md:h-auto flex flex-col lg:flex-row justify-evenly items-center mx-auto"
+                className="w-full h-[260px] md:h-auto flex flex-col lg:flex-row justify-evenly items-center mx-auto relative"
               >
                 <div
                   id="from-to"
@@ -341,7 +343,12 @@ export default function Search() {
                   </div>
                 </div>
               </div>
-              {/* <div onClick={FindMe}>GEO</div> */}
+              <div
+                onClick={FindMe}
+                className="bg-yellow-400 border cursor-pointer border-yellow-400 font-semi-bold absolute top-[1px] md:top-auto md:bottom-2 md:left-[60px] left-[170px] md:py-[2px] px-[8px] md:rounded-[7px] rounded-t-[7px] shadow-md text-gray-500 hover:border-yellow-900 hover:bg-white hover:text-black duration-200 -z-10 md:z-auto"
+              >
+                Find my localization{" "}
+              </div>
               {/* Comuniate if data is collected */}
               <div className="flex justify-center items-center -top-[40px] w-screen h-[20px] ">
                 {isFormCompleted === "true" && (
