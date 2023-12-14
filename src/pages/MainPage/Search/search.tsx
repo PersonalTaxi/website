@@ -190,9 +190,12 @@ export default function Search() {
 
     function error(err: any) {
       console.warn(`ERROR(${err.code}): ${err.message}`);
+      alert(
+        "You did not give permission to use your localization. Please change your browser settings, or choose localization from search filed",
+      );
     }
-    navigator.permissions.query({ name: "push" });
-    navigator.permissions.query({ name: "geolocation" });
+    // navigator.permissions.query({ name: "push" });
+    // navigator.permissions.query({ name: "geolocation" });
 
     navigator.geolocation.getCurrentPosition(success, error, options);
   };
