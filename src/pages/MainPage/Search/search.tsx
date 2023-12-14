@@ -175,6 +175,7 @@ export default function Search() {
       timeout: 5000,
       maximumAge: 0,
     };
+    console.log("doopa");
 
     function success(pos: any) {
       const crd = pos.coords;
@@ -350,9 +351,9 @@ export default function Search() {
               </div>
               <div
                 onClick={FindMe}
-                className="bg-yellow-400 border cursor-pointer border-yellow-400 font-semi-bold absolute top-[1px] md:top-auto md:bottom-2 md:left-[60px] left-[170px] md:py-[2px] px-[8px] md:rounded-[7px] rounded-t-[7px] shadow-md text-gray-500 hover:border-yellow-900 hover:bg-white hover:text-black duration-200 -z-10 md:z-auto"
+                className="bg-yellow-400 border cursor-pointer border-yellow-400 font-semi-bold absolute top-[1px] md:top-auto md:bottom-2 md:left-[60px] left-[170px] md:py-[2px] py-[0px] h-[22.5px] px-[8px] md:rounded-[7px] rounded-t-[7px] md:shadow-md text-gray-500 hover:border-yellow-900 hover:bg-white hover:text-black duration-200 md:z-auto"
               >
-                Find my localization{" "}
+                <p>Find my localization</p>
               </div>
               {/* Comuniate if data is collected */}
               <div className="flex justify-center items-center -top-[40px] w-screen h-[20px] ">
