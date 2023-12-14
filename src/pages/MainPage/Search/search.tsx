@@ -169,13 +169,6 @@ export default function Search() {
     InfoAboutDate.current.style.height = "0px";
   };
 
-  const FindMe = async () => {
-    router.push("/?findlocation", undefined, { shallow: true });
-    // let data = await fetch("/api/findlocalization");
-    // let dane = await data.json()
-    // console.log(dane.data);
-  };
-
   useEffect(() => {
     const options = {
       enableHighAccuracy: true,

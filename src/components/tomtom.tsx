@@ -241,22 +241,22 @@ export default function TomTom({ ShowOrHideInfoAboutMissingLocalizations }: Func
             }
           });
         })
-        .then((resData) => {
-          console.log(resData);
-          if (resData) {
-            return resData.filter((municipality: any) => {
-              if (
-                municipality.address?.municipality !== "Zabierzów" &&
-                municipality.address?.municipality !== "Krakow" &&
-                municipality.address?.municipality !== "Kraków"
-              ) {
-                return false;
-              } else {
-                return municipality;
-              }
-            });
-          }
-        })
+        // .then((resData) => {
+        //   console.log(resData);
+        //   if (resData) {
+        //     return resData.filter((municipality: any) => {
+        //       if (
+        //         municipality.address?.municipality !== "Zabierzów" &&
+        //         municipality.address?.municipality !== "Krakow" &&
+        //         municipality.address?.municipality !== "Kraków"
+        //       ) {
+        //         return false;
+        //       } else {
+        //         return municipality;
+        //       }
+        //     });
+        //   }
+        // })
         .then((data) => {
           console.log(data);
           const newData = data?.map((i: any, key: any) => {
