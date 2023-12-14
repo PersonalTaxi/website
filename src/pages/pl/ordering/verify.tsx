@@ -50,16 +50,26 @@ export default function Verify() {
     setPhonePrefix,
     price,
     setPrice,
+    currencyTXT,
   } = useContext(AppContext);
 
   useEffect(() => {
     const fetchAnswerVerifyAndRedirect = async () => {
       let TypeOfService;
+      let Language;
       if (router.asPath.includes("type=travel")) {
+        console.log("render");
         TypeOfService = await "travel";
       }
       if (router.asPath.includes("type=taxi")) {
         TypeOfService = await "taxi";
+      }
+      if (router.asPath.includes("/pl/")) {
+        console.log("render");
+        Language = "PL";
+      }
+      if (!router.asPath.includes("/pl/")) {
+        Language = "EN";
       }
 
       //sending first verify and gain urlStatus from p24
@@ -70,7 +80,7 @@ export default function Verify() {
       let ParsedQuery = JSON.parse(query);
       // let sessionsId = ParsedQuery.sessionId;
 
-      const VerifyStatus = await VerifyTransaction(TypeOfService, query);
+      const VerifyStatus = await VerifyTransaction(TypeOfService, Language, currencyTXT, query);
       if (VerifyStatus === 200) {
         //get data from databse and sand email
         router.replace({
