@@ -174,7 +174,6 @@ export default function Search() {
       enableHighAccuracy: true,
       timeout: 5000,
       maximumAge: 0,
-      Permissions: "geolocation",
     };
 
     function success(pos: any) {
