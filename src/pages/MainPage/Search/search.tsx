@@ -177,16 +177,27 @@ export default function Search() {
     };
     console.log("doopa");
 
-    function success(pos: any) {
+    const success = async (pos: any) => {
       const crd = pos.coords;
 
       console.log("Your current position is:");
+      let Localization = await fetch(
+        `https://api.tomtom.com/search/2/search/${crd.latitude},${crd.longitude}.json?key=cjmuWSfVTrJfOGj7AcXvMLU8R8i1Q9cF&countrySet=PL,DE&limit=10&language=en-US`,
+      );
+      const data = await Localization.json();
+      const finalAdress = data?.results.map((i: any) => {
+        console.log(i);
+        if (i.type === "Point Address") {
+          return i.address.freeformAddress;
+        }
+      });
+
       setlatLangFrom([crd.latitude, crd.longitude]);
-      setQueryFrom("Actual localization");
-      console.log(`Latitude : ${crd.latitude}`);
-      console.log(`Longitude: ${crd.longitude}`);
-      console.log(`More or less ${crd.accuracy} meters.`);
-    }
+      setQueryFrom(finalAdress);
+      // console.log(`Latitude : ${crd.latitude}`);
+      // console.log(`Longitude: ${crd.longitude}`);
+      // console.log(`More or less ${crd.accuracy} meters.`);
+    };
 
     function error(err: any) {
       console.warn(`ERROR(${err.code}): ${err.message}`);
@@ -351,7 +362,7 @@ export default function Search() {
               </div>
               <div
                 onClick={FindMe}
-                className="bg-yellow-400 border cursor-pointer border-yellow-400 font-semi-bold absolute top-[1px] md:top-auto md:bottom-2 md:left-[60px] left-[170px] md:py-[2px] py-[0px] h-[22.5px] px-[8px] md:rounded-[7px] rounded-t-[7px] md:shadow-md text-gray-500 hover:border-yellow-900 hover:bg-white hover:text-black duration-200 md:z-auto"
+                className="bg-yellow-400 border cursor-pointer border-yellow-400 font-semi-bold absolute top-[1px] md:top-auto md:bottom-2 md:left-[60px] left-[170px] md:py-[2px] py-[0px] h-[22.5px] md:h-auto px-[8px] md:rounded-[7px] rounded-t-[7px] md:shadow-md text-gray-500 hover:border-yellow-900 hover:bg-white hover:text-black duration-200 md:z-auto"
               >
                 <p>Find my localization</p>
               </div>
