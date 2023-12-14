@@ -1,15 +1,8 @@
-import React, {
-  useState,
-  useRef,
-  useMemo,
-  useCallback,
-  useEffect,
-  useContext,
-} from "react";
+import React, { useState, useRef, useMemo, useCallback, useEffect, useContext } from "react";
 import { AppContext } from "@/pages/_app";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import TomTomPL from "@/components/tomtomPL";
+import TomTom from "@/components/tomtom";
 import { BiSolidMap } from "react-icons/bi";
 import { BsCalendar3 } from "react-icons/bs";
 import { TbClockHour8 } from "react-icons/tb";
@@ -19,11 +12,7 @@ import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { BsFillPersonFill } from "react-icons/bs";
 import { AiFillInfoCircle } from "react-icons/ai";
 import { TbCalendarTime } from "react-icons/tb";
-import {
-  AiOutlineClose,
-  AiOutlineFieldTime,
-  AiOutlineCheck,
-} from "react-icons/ai";
+import { AiOutlineClose, AiOutlineFieldTime, AiOutlineCheck } from "react-icons/ai";
 import Script from "next/script";
 import Head from "next/head";
 
@@ -104,11 +93,7 @@ export default function SearchPL() {
       InfoAboutFillLocations.current.style.display = "flex";
     }
 
-    if (
-      latLangFrom !== null &&
-      latLangTo !== null &&
-      SearchButtonWasClicked === true
-    ) {
+    if (latLangFrom !== null && latLangTo !== null && SearchButtonWasClicked === true) {
       InfoAboutFillLocations.current.style.display = "none";
     }
   };
@@ -156,16 +141,8 @@ export default function SearchPL() {
       if (latLangFrom === null) return false;
       if (latLangTo === null) return false;
       if (dateLimit > date) return false;
-      if (
-        passengersFromQuery !== people &&
-        !router.asPath.includes("passengers")
-      )
-        return false;
-      if (
-        passengersFromQuery !== people &&
-        router.asPath.includes("passengers")
-      )
-        return false;
+      if (passengersFromQuery !== people && !router.asPath.includes("passengers")) return false;
+      if (passengersFromQuery !== people && router.asPath.includes("passengers")) return false;
 
       CompleteStatus = "true";
     };
@@ -202,19 +179,13 @@ export default function SearchPL() {
           content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
         ></meta>
       </Head>
-      <div
-        className="w-screen lg:w-[1180px] z-20 mt-[12px] mx-auto"
-        id="specifics"
-      >
+      <div className="w-screen lg:w-[1180px] z-20 mt-[12px] mx-auto" id="specifics">
         <div
           id="search-wraper"
           className="w-full flex flex-col justify-center items-center relative"
         >
           <div id="search-contianer-text" className="w-11/12 px-[30px]">
-            <div
-              id="correctInfo"
-              className="w-[120px] bg-white text-center rounded-t-[10px]"
-            >
+            <div id="correctInfo" className="w-[120px] bg-white text-center rounded-t-[10px]">
               Twoja trasa:
             </div>
           </div>
@@ -238,7 +209,7 @@ export default function SearchPL() {
                     id="localizations-input-wraper"
                     className="h-full rounded-[10px] w-full flex items-center relative border lg:border-0"
                   >
-                    <TomTomPL
+                    <TomTom
                       ShowOrHideInfoAboutMissingLocalizations={
                         ShowOrHideInfoAboutMissingLocalizations
                       }
@@ -249,9 +220,7 @@ export default function SearchPL() {
                     className="absolute hidden h-[20px] text-red-800 items-center text-[14px]"
                   >
                     <AiFillInfoCircle />
-                    <div className="pl-[5px] cursor-pointer">
-                      Uzupełnij lokalizacje
-                    </div>
+                    <div className="pl-[5px] cursor-pointer">Uzupełnij lokalizacje</div>
                   </div>
                 </div>
                 <div
@@ -343,9 +312,7 @@ export default function SearchPL() {
                       {!router.asPath.includes("ordering") ? (
                         <p className="leading-4">Pokaż oferty</p>
                       ) : (
-                        <p className="lg:leading-4 text-[14px]">
-                          Zaktualizuj trasę
-                        </p>
+                        <p className="lg:leading-4 text-[14px]">Zaktualizuj trasę</p>
                       )}
                     </button>
                   </div>
@@ -356,9 +323,7 @@ export default function SearchPL() {
                 {isFormCompleted === "true" && (
                   <>
                     <AiOutlineCheck className="text-white bg-green-600 mr-[4px]" />
-                    <p className="text-green-600 font-[500]">
-                      Warunki są poprawne
-                    </p>
+                    <p className="text-green-600 font-[500]">Warunki są poprawne</p>
                   </>
                 )}
 
@@ -366,9 +331,7 @@ export default function SearchPL() {
                 {parseInt(passengersFromQuery) !== people && (
                   <>
                     <AiOutlineClose />
-                    <p className="text-red-600">
-                      Zaktualizuj krteria (guzik wyżej)
-                    </p>
+                    <p className="text-red-600">Zaktualizuj krteria (guzik wyżej)</p>
                   </>
                 )}
               </div>

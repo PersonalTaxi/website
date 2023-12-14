@@ -11,56 +11,65 @@ export default function Verify() {
   const router = useRouter();
 
   const {
-    queryFrom,
-    setQueryFrom,
-    queryTo,
-    setQueryTo,
-    date,
-    setDate,
-    time,
-    setTime,
-    people,
-    setPeople,
-    latLangFrom,
-    setlatLangFrom,
-    latLangTo,
-    setlatLangTo,
-    cars,
-    setCars,
-    calculateDistance,
-    setCalculateDistance,
-    isFormCompleted,
-    setIsFromCompleted,
-    SearchButtonWasClicked,
-    setSearchButtonWasClicked,
-    dateLimit,
-    setDateLimit,
-    personTitle,
-    setPersonTitle,
-    firstName,
-    setFirstName,
-    lastName,
-    setLastName,
-    email,
-    setEmail,
-    phone,
-    setPhone,
-    phonePrefix,
-    setPhonePrefix,
-    price,
-    setPrice,
+    // queryFrom,
+    // setQueryFrom,
+    // queryTo,
+    // setQueryTo,
+    // date,
+    // setDate,
+    // time,
+    // setTime,
+    // people,
+    // setPeople,
+    // latLangFrom,
+    // setlatLangFrom,
+    // latLangTo,
+    // setlatLangTo,
+    // cars,
+    // setCars,
+    // calculateDistance,
+    // setCalculateDistance,
+    // isFormCompleted,
+    // setIsFromCompleted,
+    // SearchButtonWasClicked,
+    // setSearchButtonWasClicked,
+    // dateLimit,
+    // setDateLimit,
+    // personTitle,
+    // setPersonTitle,
+    // firstName,
+    // setFirstName,
+    // lastName,
+    // setLastName,
+    // email,
+    // setEmail,
+    // phone,
+    // setPhone,
+    // phonePrefix,
+    // setPhonePrefix,
+    // price,
+    // setPrice,
+    currencyTXT,
   } = useContext(AppContext);
 
   useEffect(() => {
     const fetchAnswerVerifyAndRedirect = async () => {
       console.log("render");
       let TypeOfService;
+      let Language;
       if (router.asPath.includes("type=travel")) {
         console.log("render");
         TypeOfService = await "travel";
       }
       if (router.asPath.includes("type=taxi")) {
         TypeOfService = await "taxi";
+      }
+      if (router.asPath.includes("/pl/")) {
+        console.log("render");
+        Language = "PL";
+      }
+      if (!router.asPath.includes("/pl/")) {
+        Language = "EN";
       }
 
       //sending first verify and gain urlStatus from p24
@@ -70,7 +79,7 @@ export default function Verify() {
       let ParsedQuery = JSON.parse(query);
       // let sessionsId = ParsedQuery.sessionId;
 
-      const VerifyStatus = await VerifyTransaction(TypeOfService, query);
+      const VerifyStatus = await VerifyTransaction(TypeOfService, Language, currencyTXT, query);
       console.log(VerifyStatus);
       if (VerifyStatus === 200) {
         console.log(VerifyStatus);

@@ -180,7 +180,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
   const [email, setEmail] = useState();
-  const [phonePrefix, setPhonePrefix] = useState();
+  const [phonePrefix, setPhonePrefix] = useState("+48");
   const [phone, setPhone] = useState();
 
   const [municipalityFrom, setMunicipalityFrom] = useState("Kraków");

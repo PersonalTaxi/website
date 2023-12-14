@@ -44,7 +44,11 @@ export default function Orderspacifications() {
 
   const countriesMap = countriesData.map((i) => {
     return (
-      <option key={i.name} className="flex w-full justify-center">
+      <option
+        key={i.name}
+        className="flex w-full justify-center"
+        selected={i.dial_code === "+48" ? true : false}
+      >
         <div className="w-[30px]">{i.emoji}</div>
         {/* <div>{i.name}</div> */}
         <div className="mx-[8px]"> {i.dial_code}</div>

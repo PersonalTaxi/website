@@ -3,21 +3,13 @@ import { setCookie, getCookie } from "cookies-next";
 import { useRouter } from "next/router";
 import { useContext } from "react";
 
-export async function VerifyTransaction(TypeOfService: any, query: any) {
+export async function VerifyTransaction(
+  TypeOfService: any,
+  Language: any,
+  currencyTXT: any,
+  query: any,
+) {
   const P24 = process.env.P24_API;
-
-  const { currencyTXT } = useContext(AppContext);
-
-  const router = useRouter();
-
-  const language = () => {
-    if (router.asPath.includes("/pl/")) {
-      return "EN";
-    }
-    if (!router.asPath.includes("/pl/")) {
-      return "PL";
-    }
-  };
 
   let verifiedData = await fetch("/api/verifytransactionapi", {
     method: "POST",
@@ -44,7 +36,7 @@ export async function VerifyTransaction(TypeOfService: any, query: any) {
         infoForDriver: ObiectForMail.TaxiData[0].infoForDriver,
         startFromGEO: ObiectForMail.TaxiData[0].startFromGeo,
         directionGEO: ObiectForMail.TaxiData[0].directionGeo,
-        language: language(),
+        language: Language,
         currency: currencyTXT,
       });
 
@@ -73,7 +65,7 @@ export async function VerifyTransaction(TypeOfService: any, query: any) {
         phone_prefix: "String",
         phone: "String",
         info_for_driver: "String",
-        language: language(),
+        language: Language,
         currency: currencyTXT,
       });
 

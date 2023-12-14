@@ -169,6 +169,36 @@ export default function Search() {
     InfoAboutDate.current.style.height = "0px";
   };
 
+  const FindMe = async () => {
+    router.push("/?findlocation", undefined, { shallow: true });
+    // let data = await fetch("/api/findlocalization");
+    // let dane = await data.json()
+    // console.log(dane.data);
+  };
+
+  useEffect(() => {
+    const options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0,
+    };
+
+    function success(pos: any) {
+      const crd = pos.coords;
+
+      console.log("Your current position is:");
+      console.log(`Latitude : ${crd.latitude}`);
+      console.log(`Longitude: ${crd.longitude}`);
+      console.log(`More or less ${crd.accuracy} meters.`);
+    }
+
+    function error(err: any) {
+      console.warn(`ERROR(${err.code}): ${err.message}`);
+    }
+
+    navigator.geolocation.getCurrentPosition(success, error, options);
+  }, []);
+
   return (
     <>
       <Head>
@@ -318,6 +348,7 @@ export default function Search() {
                   </div>
                 </div>
               </div>
+              {/* <div onClick={FindMe}>GEO</div> */}
               {/* Comuniate if data is collected */}
               <div className="flex justify-center items-center -top-[40px] w-screen h-[20px] ">
                 {isFormCompleted === "true" && (

@@ -18,9 +18,9 @@ export default async function SendnotificationTaxi(
     port: 465,
     host: "domikorz.nazwa.pl",
     secure: true,
-    tls: {
-      ciphers: "SSLv3",
-    },
+    // tls: {
+    //   ciphers: "SSLv3",
+    // },
     auth: {
       user: process.env.MAIL, // generated ethereal user
       pass: process.env.PASS, // generated ethereal password
@@ -38,8 +38,8 @@ export default async function SendnotificationTaxi(
   });
 
   const mailToCompanyData = {
-    from: "Zamówienie na kurs",
-    to: "m.marszalek@wearebrave.pl",
+    from: "Zamówienie na transfer",
+    to: "orders@personaltaxi.pl",
     subject: `Zamówienie transferu od: ${req.body.name} ${req.body.lastname}`,
     text: "Hello. This email is for your email verification.",
     html:
@@ -170,7 +170,7 @@ export default async function SendnotificationTaxi(
     }
   });
 
-  if (req.query.language === "PL") {
+  if (req.body.language === "PL") {
     await transporter.sendMail(mailToCustomerDataPL, function (err: string, info: string) {
       console.log("wysyłam");
       if (err) {
@@ -185,7 +185,7 @@ export default async function SendnotificationTaxi(
     });
   }
 
-  if (req.query.language === "EN") {
+  if (req.body.language === "EN") {
     await transporter.sendMail(mailToCustomerDataEN, function (err: string, info: string) {
       console.log("wysyłam");
       if (err) {
