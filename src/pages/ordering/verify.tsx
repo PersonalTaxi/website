@@ -79,19 +79,19 @@ export default function Verify() {
       let ParsedQuery = JSON.parse(query);
       // let sessionsId = ParsedQuery.sessionId;
 
-      // const VerifyStatus = await VerifyTransaction(TypeOfService, Language, currencyTXT, query);
-      // console.log(VerifyStatus);
-      // if (VerifyStatus === 200) {
-      //   console.log(VerifyStatus);
-      //   router.replace({
-      //     pathname: "http://localhost:3000/ordering/success",
-      //   });
-      // } else {
-      //   router.replace({
-      //     pathname: "http://localhost:3000/ordering/failed",
-      //   });
-      // }
-      // console.log(VerifyStatus);
+      const VerifyStatus = await VerifyTransaction(TypeOfService, Language, currencyTXT, query);
+      console.log(VerifyStatus);
+      if (VerifyStatus === 200) {
+        console.log(VerifyStatus);
+        router.replace({
+          pathname: "https://personaltaxi.pl/ordering/success",
+        });
+      } else {
+        router.replace({
+          pathname: "https://personaltaxi.pl/ordering/failed",
+        });
+      }
+      console.log(VerifyStatus);
     };
 
     fetchAnswerVerifyAndRedirect();

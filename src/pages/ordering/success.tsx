@@ -65,7 +65,10 @@ export default function Success() {
       <div className="w-[80%] lg:w-[300px] h-[50%] flex flex-col items-center justify-center mx-auto bg-white rounded-[10px]">
         <div className="text-[20px] mb-[20px] text-center px-[10px]">
           <p className="font-bold">Payment successful!</p> We&apos;ve send you an email with order
-          details. <p className="text-[12px] font-bold">If you don't recive an e-mail please contact us to office@personaltaxi.pl</p>
+          details.{" "}
+          <p className="text-[12px] font-bold">
+            If you don&apos;t recive an e-mail please contact us to office@personaltaxi.pl
+          </p>
         </div>
         <div role="status" className="w-[140px] h-[140px]">
           <BsCheck2Square className="w-full h-full text-green-600" />

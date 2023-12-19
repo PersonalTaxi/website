@@ -97,7 +97,7 @@ export default function Payment() {
       email: email,
       country: CountryISO,
       language: "en",
-      urlReturn: `http://localhost:3000/ordering/verify?type=taxi`,
+      urlReturn: `https://personaltaxi.pl/ordering/verify?type=taxi`,
       urlStatus: "https://ptbackend.vercel.app/",
       sign: sign,
     });
