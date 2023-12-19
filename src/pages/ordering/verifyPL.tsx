@@ -97,7 +97,7 @@ export default function Verify() {
 
   return (
     <div className="w-screen h-screen bg-[url('/Main_theme.png')] bg-top bg-cover bg-no-repeat flex justify-center items-center">
-      <div className="w-[80%] lg:w-[300px] h-[30%] flex flex-col items-center justify-center mx-auto bg-white rounded-[10px]">
+      <div className="w-[80%] lg:w-[28%]  h-[30%] flex flex-col items-center justify-center mx-auto bg-white rounded-[10px]">
         <div className="text-[20px] mb-[20px]">Weryfikujemy Twoją płatność... </div>
         <div role="status">
           <svg
