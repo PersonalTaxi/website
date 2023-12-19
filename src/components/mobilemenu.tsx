@@ -47,13 +47,13 @@ export default function Mobilemenu({ setMobileMenuOpened, mobileMenuOpened }: Qu
           >
             FAQ
           </Link> */}
-          <Link
+          {/* <Link
             href={router.asPath.includes("pl") ? "/pl/travels" : "/travels"}
             onClick={handleClosingMenu}
             // className="cursor-pointer hover:text-yellow-500 duration-200"
           >
             {router.asPath.includes("pl") ? <p>Wycieczki</p> : <p>Travels</p>}
-          </Link>
+          </Link> */}
           <Link href="policy" onClick={handleClosingMenu}>
             {router.asPath.includes("pl") ? <p>Polityka Prywatności</p> : <p>Provacy Policy</p>}
           </Link>

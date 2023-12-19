@@ -61,9 +61,13 @@ export default async function SendnotificationTaxi(
       `Geolokalizacja: ${req.body.directionGEO} (<a href="https://www.google.com/maps/place/${req.body.directionGEO}">Pokaż w Google Maps</a>)` +
       `<br> ---` +
       `<br>` +
+      `Data i godzina: ${req.body.date}` +
+      `<br> ---` +
+      `<br>` +
       `Dystans: ${req.body.distance} km` +
       `<br>` +
       `<br>` +
+      `Numer lotu: ${req.body.flightNumber}` +
       `Wiadomość dla kierowcy: ${req.body.infoForDriver}` +
       `<br>` +
       `Opis przedmiotów niestandardowych: ${req.body.unusualItems}` +
@@ -101,8 +105,13 @@ export default async function SendnotificationTaxi(
       `Geolokalizacja: ${req.body.directionGEO} (<a href="https://www.google.com/maps/place/${req.body.directionGEO}">Pokaż w Google Maps</a>)` +
       `<br> ---` +
       `<br>` +
+      `<br> ---` +
+      `<br>` +
+      `Data i godzina: ${req.body.date}` +
       `Dystans: ${req.body.distance} km` +
       `<br>` +
+      `<br>` +
+      `Numer lotu: ${req.body.flightNumber}` +
       `<br>` +
       `Wiadomość dla kierowcy: ${req.body.infoForDriver}` +
       `<br>` +
@@ -120,7 +129,7 @@ export default async function SendnotificationTaxi(
     subject: `Confirmation of order and payment.`,
     text: "Hello. This email is for your email verification.",
     html:
-      `<p>We confirm that your order and payment was already made correctly and has been givin a ID number: ${req.body.id}. You don't have to do anything with this massage but keep it please. <br>You can find the order summary below.</p>` +
+      `<p>We confirm that your order and payment was already made correctly and has been givin an ID number: ${req.body.id}. You don't have to do anything with this massage but keep it please. <br>You can find the order summary below.</p>` +
       `<br>` +
       `<br>` +
       `Order ID: ${req.body.id}` +
@@ -142,8 +151,13 @@ export default async function SendnotificationTaxi(
       `Geolocalization: ${req.body.directionGEO} (<a href="https://www.google.com/maps/place/${req.body.directionGEO}">Pokaż w Google Maps</a>)` +
       `<br> ---` +
       `<br>` +
+      `Date and hour: ${req.body.date}` +
+      `<br> ---` +
+      `<br>` +
       `Distance: ${req.body.distance} km` +
       `<br>` +
+      `<br>` +
+      `Flight number: ${req.body.flightNumber}` +
       `<br>` +
       `Massege for driver: ${req.body.infoForDriver}` +
       `<br>` +

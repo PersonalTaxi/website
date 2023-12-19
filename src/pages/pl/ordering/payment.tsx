@@ -32,8 +32,9 @@ export default function Payment() {
   } = useContext(AppContext);
 
   const [data, setData] = useState();
+  const [redirecting, setRedirecting] = useState(false);
 
-  const handleRedirectTpPayments = async () => {
+  const handleRedirectToPayments = async () => {
     let merchantId = 27407;
     const UniqeNumber = Date.now().toString();
     let sessionId = UniqeNumber;
@@ -87,6 +88,8 @@ export default function Payment() {
 
     await RegisterInDataBase(DataForDatabase);
 
+    setRedirecting(true);
+
     let res = await fetch("/api/p24", {
       method: "POST",
       body: query,
@@ -97,8 +100,6 @@ export default function Payment() {
 
     router.replace(`https://sandbox.przelewy24.pl/trnRequest/${token.msg.data.token}`);
   };
-
-  console.log(isFormCompleted);
 
   return (
     <div>
@@ -210,10 +211,15 @@ export default function Payment() {
             </div>
           </div>
           <div
-            className="w-[80%] lg:w-[50%] mx-auto rounded-[25px] bg-yellow-500  border border-yellow-500 text-center py-[10px] mt-[20px] text-white text-[20px] duration-200 hover:text-white hover:bg-blue-400 hover:border-transparent cursor-pointer"
-            onClick={handleRedirectTpPayments}
+            className={
+              redirecting === false
+                ? "w-[80%] md:w-[20%] mx-auto rounded-[25px] bg-yellow-500 border-2 border-yellow-500 text-center py-[10px] mt-[20px] text-white text-[20px] duration-200 hover:text-black hover:bg-white hover:border-transparent hover:border-gray-900 cursor-pointer"
+                : "w-[80%] md:w-[20%] mx-auto rounded-[25px] border-gray-900 text-center py-[10px] mt-[20px] text-black text-[20px] duration-200 hover:text-black cursor-pointer"
+            }
+            onClick={handleRedirectToPayments}
           >
-            Zamawiam i płacę
+            {redirecting === false && <p>Zamówienie i płatność</p>}
+            {redirecting === true && <p>Przekierowuję do płatności...</p>}
           </div>
         </>
       )}

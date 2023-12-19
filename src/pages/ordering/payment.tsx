@@ -51,6 +51,7 @@ export default function Payment() {
   } = useContext(AppContext);
 
   const [data, setData] = useState();
+  const [redirecting, setRedirecting] = useState(false);
 
   const handleRedirectToPayments = async () => {
     let merchantId = 27407;
@@ -59,6 +60,8 @@ export default function Payment() {
     let amount = price * 100;
     let currency = currencyTXT;
     let crc = await fetch("/api/getcrc").then((res) => res.json());
+
+    setRedirecting(true);
 
     // console.log(await crc.data);
 
@@ -94,7 +97,7 @@ export default function Payment() {
       email: email,
       country: CountryISO,
       language: "en",
-      urlReturn: `https://personaltaxi.pl/ordering/verify?type=taxi`,
+      urlReturn: `http://localhost:3000/ordering/verify?type=taxi`,
       urlStatus: "https://ptbackend.vercel.app/",
       sign: sign,
     });
@@ -106,6 +109,7 @@ export default function Payment() {
       From: queryFrom,
       To: queryTo,
       distance: calculateDistance,
+      dateAndTime: date,
       firstName: firstName,
       lastName: lastName,
       email: email,
@@ -114,6 +118,7 @@ export default function Payment() {
       country: "PL",
       price: price,
       currency: "PLN",
+      flightNumber: flightNumber,
       infoForDriver: infoForDriver,
       unusualItems: unusualItems,
       merchantId: 27407,
@@ -242,7 +247,7 @@ export default function Payment() {
                     <p className="w-full">{infoForDriver}</p>
                   </div>
                   <div className="flex flex-col  mt-[15px]">
-                    <p className="w-[235px] font-semibold">About unusual items </p>
+                    <p className="w-[235px] font-semibold">About unusual items: </p>
                     <p className="">{unusualItems}</p>
                   </div>
                 </div>
@@ -250,10 +255,15 @@ export default function Payment() {
             </div>
           </div>
           <div
-            className="w-[80%] lg:w-[50%] mx-auto rounded-[25px] bg-yellow-500  border border-yellow-500 text-center py-[10px] mt-[20px] text-white text-[20px] duration-200 hover:text-white hover:bg-blue-400 hover:border-transparent cursor-pointer"
+            className={
+              redirecting === false
+                ? "w-[80%] md:w-[20%] mx-auto rounded-[25px] bg-yellow-500 border-2 border-yellow-500 text-center py-[10px] mt-[20px] text-white text-[20px] duration-200 hover:text-black hover:bg-white hover:border-transparent hover:border-gray-900 cursor-pointer"
+                : "w-[80%] md:w-[20%] mx-auto rounded-[25px] border-gray-900 text-center py-[10px] mt-[20px] text-black text-[20px] duration-200 hover:text-black cursor-pointer"
+            }
             onClick={handleRedirectToPayments}
           >
-            Pay & Order
+            {redirecting === false && <p>Pay & Order</p>}
+            {redirecting === true && <p>Redirecting to payment...</p>}
           </div>
         </>
       )}

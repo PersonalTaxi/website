@@ -195,9 +195,6 @@ export default function Search() {
       setlatLangFrom([crd.latitude, crd.longitude]);
       setQueryFrom(finalAdress);
       console.log(finalAdress);
-      // console.log(`Latitude : ${crd.latitude}`);
-      // console.log(`Longitude: ${crd.longitude}`);
-      // console.log(`More or less ${crd.accuracy} meters.`);
     };
 
     function error(err: any) {

@@ -109,12 +109,7 @@ export default function Chooseparams() {
     passenger = 1;
   }
 
-  //setting cars
-
-  // setCars(settingCars);
-  //end of setting cars
   let PersonsLeft = passenger - (cars.sedan * 4 + cars.van * 8);
-  console.log(PersonsLeft);
 
   const handleShowInfoAboutFlight = () => {
     handleFlightinfo.current.style.display = "block";
@@ -143,17 +138,21 @@ export default function Chooseparams() {
   };
 
   const handleAddingFlightNumber = (e: any) => {
-    setFlightNumber(e.target.value);
-    console.log(e.target.value);
+    if (e.target.value === "") setFlightNumber("");
+    else setFlightNumber(e.target.value);
   };
 
   const handleAddingUnusualItems = (e: any) => {
+    if (e.target.value === "") setUnusualItems("");
     setUnusualItems(e.target.value);
   };
 
   const handleAddingInfoForDriver = (e: any) => {
-    setInfoForDriver(e.target.value);
+    if (e.target.value === "") setInfoForDriver("");
+    else setInfoForDriver(e.target.value);
   };
+
+  console.log(infoForDriver);
 
   useEffect(() => {
     let settingCars;
@@ -202,7 +201,7 @@ export default function Chooseparams() {
   };
 
   return (
-    <div className="relative bg-white mt-[90px] w-[95vw] lg:w-[1080px] mx-auto rounded-[10px] h-[1250px] lg:h-[900px] border">
+    <div className="relative bg-white mt-[90px] w-[95vw] lg:w-[1080px] mx-auto rounded-[10px] h-[1250px] lg:h-[900px] shadow-xl">
       <div className="w-[80%] h-[60px] flex items-end flex-col mx-auto">
         <p className="text-[12px]"> Step 2 of 3</p>
         <div className="bg-gradient-to-r from-yellow-500 from-0% via-white via-70% to-white to-100% w-full border border-yellow-500/[0.5] h-[20px] rounded-[5px] bg-"></div>

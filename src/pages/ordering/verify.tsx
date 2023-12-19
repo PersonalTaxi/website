@@ -79,19 +79,19 @@ export default function Verify() {
       let ParsedQuery = JSON.parse(query);
       // let sessionsId = ParsedQuery.sessionId;
 
-      const VerifyStatus = await VerifyTransaction(TypeOfService, Language, currencyTXT, query);
-      console.log(VerifyStatus);
-      if (VerifyStatus === 200) {
-        console.log(VerifyStatus);
-        router.replace({
-          pathname: "https://personaltaxi.pl/ordering/success",
-        });
-      } else {
-        router.replace({
-          pathname: "https://personaltaxi.pl/ordering/failed",
-        });
-      }
-      console.log(VerifyStatus);
+      // const VerifyStatus = await VerifyTransaction(TypeOfService, Language, currencyTXT, query);
+      // console.log(VerifyStatus);
+      // if (VerifyStatus === 200) {
+      //   console.log(VerifyStatus);
+      //   router.replace({
+      //     pathname: "http://localhost:3000/ordering/success",
+      //   });
+      // } else {
+      //   router.replace({
+      //     pathname: "http://localhost:3000/ordering/failed",
+      //   });
+      // }
+      // console.log(VerifyStatus);
     };
 
     fetchAnswerVerifyAndRedirect();
@@ -99,7 +99,7 @@ export default function Verify() {
 
   return (
     <div className="w-screen h-screen bg-[url('/Main_theme.png')] bg-top bg-cover bg-no-repeat flex justify-center items-center">
-      <div className="w-[80%] h-[30%] flex flex-col items-center justify-center mx-auto bg-white rounded-[10px]">
+      <div className="w-[28%] h-[30%] flex flex-col items-center justify-center mx-auto bg-white rounded-[10px]">
         <div className="text-[20px] mb-[20px]">We are verifing your payment... </div>
         <div role="status">
           <svg
