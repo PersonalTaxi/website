@@ -205,8 +205,6 @@ export default function TomTom({ ShowOrHideInfoAboutMissingLocalizations }: Func
       }
     }
 
-    console.log(query);
-
     if (activeQuery === "To") {
       query = queryTo;
       RestricionOne = "Kraków";
@@ -220,8 +218,6 @@ export default function TomTom({ ShowOrHideInfoAboutMissingLocalizations }: Func
     } else {
       SearchLanguage = "en-US";
     }
-
-    console.log(SearchLanguage);
 
     function fetchData() {
       fetch(
@@ -266,7 +262,7 @@ export default function TomTom({ ShowOrHideInfoAboutMissingLocalizations }: Func
                   "Międzynarodowy Port Lotniczy Imienia Jana Pawła II Kraków-Balice"
                 ) {
                   if (SearchLanguage === "pl-PL") {
-                    POI = "Kraków Airport, Balice (PL)";
+                    POI = "Kraków Lotnisko, Balice (PL)";
                   }
                 }
                 if (SearchLanguage === "en-US") {
@@ -455,24 +451,33 @@ export default function TomTom({ ShowOrHideInfoAboutMissingLocalizations }: Func
   return (
     <div className="flex flex-col lg:flex-row w-full">
       <div className="w-full h-[47px] flex flex-col rounded-r-[10px]">
+        {/* Info about choosing bad road */}
         <div
           className={
             correctRoad === true
               ? "absolute w-full h-[0px] mx-auto bg-white z-40 rounded-[10px] flex items-start justify-between overflow-hidden duration-300"
-              : "absolute w-full h-[98%] mx-auto bg-white z-40 rounded-[10px] flex items-start justify-between overflow-hidden duration-300"
+              : "absolute w-full h-[100%] mx-auto bg-white z-40 rounded-[10px] flex items-start justify-between overflow-hidden duration-300 shadow-md"
           }
           onClick={handleClosingInfoAboutRoute}
         >
           <div className="flex items-center w-[90%] h-full">
-            <AiFillInfoCircle className="w-[15%]" />
-            <div className="h-full w-[85%] leading-4 pt-[20px]">
-              Sorry, you can only choose a route which contain a starting or finishig point in
-              Kraków commune
-            </div>
+            <AiFillInfoCircle className="w-[15%] lg:h-[30px] text-red-500" />
+            {router.asPath.includes("/pl") ? (
+              <div className="h-full lg:h-auto w-[95%] leading-4 pt-[20px] md:pt-[0px]">
+                Przepraszamy, trasa musi się zaczynać lub kończyć w gminie Kraków lub Zabierzów.
+              </div>
+            ) : (
+              <div className="h-full lg:h-auto w-[95%] leading-4 pt-[20px] md:pt-[0px]">
+                Sorry, you can only choose a route that contain a starting or ending point in Cracow
+                (Kraków) or Zabierzów commune.
+              </div>
+            )}
           </div>
           <AiOutlineClose classname="w-[10%]" />
         </div>
-        <div className="flex justify-center items-center lg:border border-gray-900/[0.4] rounded-[10px] relative lg:w-11/12">
+
+        {/* INPUT FROM */}
+        <div className="flex justify-center items-center lg:border border-gray-900/[0.4] rounded-[10px] relative lg:w-[98.5%]">
           <BiSolidMap className="w-[30px] h-[30px] text-yellow-500/[0.4]" />
           <div
             onClick={clearFromQuery}
@@ -503,7 +508,7 @@ export default function TomTom({ ShowOrHideInfoAboutMissingLocalizations }: Func
           ref={FromList}
           className={
             queryFrom.length > 2 && queryFrom !== null && focused === "From"
-              ? "absolute w-[102%] -left-[1%] top-[50px] border-2 border-yellow-500 rounded-[10px] bg-white z-30"
+              ? "absolute w-[102%] -left-[1%] top-[50px] border-2 border-yellow-500 rounded-[10px] bg-white z-40"
               : "hidden overflow-hidden"
           }
         >
@@ -511,7 +516,9 @@ export default function TomTom({ ShowOrHideInfoAboutMissingLocalizations }: Func
         </div>
       </div>
       <div className="h-[1px] lg:hidden bg-gray-400/[0.3] w-11/12 mx-auto"></div>
-      <div className="w-full h-[47px] flex flex-col z-20 rounded-r-[10px] relative lg:w-11/12">
+
+      {/* INPUT TO */}
+      <div className="w-full h-[47px] flex flex-col rounded-r-[10px] relative lg:w-[98.5%]">
         <div className="flex justify-center items-center lg:border border-gray-900/[0.4] rounded-[10px]">
           <BiSolidMap className="w-[30px] h-[30px] text-yellow-500/[0.4]" />
           <div
@@ -540,8 +547,8 @@ export default function TomTom({ ShowOrHideInfoAboutMissingLocalizations }: Func
         <div
           ref={ToList}
           className={
-            queryTo?.length > 4 && queryTo !== null && focused === "To"
-              ? "absolute w-[102%] -left-[1%] top-[50px] border-2 border-yellow-500 rounded-[10px] bg-white"
+            queryTo?.length > 4 && queryTo !== null && focused === "To" && dataToFetch.length > 0
+              ? "absolute w-[102%] -left-[1%] top-[50px] border-2 border-yellow-500 rounded-[10px] bg-white z-40"
               : "hidden overflow-hidden"
           }
           onMouseDown={(e) => e.preventDefault()}

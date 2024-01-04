@@ -1,10 +1,4 @@
-import React, {
-  useRef,
-  useState,
-  useEffect,
-  useContext,
-  useCallback,
-} from "react";
+import React, { useRef, useState, useEffect, useContext, useCallback } from "react";
 import { useRouter } from "next/router";
 import useDebounce from "@/hooks/useDebounce";
 
@@ -18,22 +12,22 @@ import {
   MdLocalParking,
 } from "react-icons/md";
 import { LiaHotelSolid } from "react-icons/lia";
+import { MdDirectionsRailwayFilled } from "react-icons/md";
+import { GoOrganization } from "react-icons/go";
+import { FaBus } from "react-icons/fa";
+import { MdMuseum } from "react-icons/md";
+import { FaMapMarked } from "react-icons/fa";
 import { IoMdRestaurant } from "react-icons/io";
 import { BiSolidMap } from "react-icons/bi";
-import {
-  AiFillCloseSquare,
-  AiFillInfoCircle,
-  AiOutlineClose,
-} from "react-icons/ai";
+import { FaShoppingBag } from "react-icons/fa";
+import { AiFillCloseSquare, AiFillInfoCircle, AiOutlineClose } from "react-icons/ai";
 import { AppContext } from "../pages/_app";
 
 type Function = {
   ShowOrHideInfoAboutMissingLocalizations: () => void;
 };
 
-export default function TomTom({
-  ShowOrHideInfoAboutMissingLocalizations,
-}: Function) {
+export default function TomTom({ ShowOrHideInfoAboutMissingLocalizations }: Function) {
   const router = useRouter();
   const [dataFromFetch, setDataFromFetch] = useState();
 
@@ -95,11 +89,15 @@ export default function TomTom({
     setQueryFrom(e.target.value);
     FromList.current.style.display = "block";
     setActiveQuery("From");
-    setlatLangFrom(null);
+    if (latLangFrom !== null) {
+      setlatLangFrom(null);
+    }
   };
 
   const handleSearchTo = (e: any) => {
-    setlatLangTo(null);
+    if (latLangFrom !== null) {
+      setlatLangTo(null);
+    }
     setQueryTo(e.target.value);
     ToList.current.style.display = "block";
     setActiveQuery("To");
@@ -137,9 +135,7 @@ export default function TomTom({
         .then((res) => res.json())
         .then((data) => {
           // console.log(data)
-          setCalculateDistance(
-            Math.round(data.routes[0].summary.lengthInMeters / 1000),
-          );
+          setCalculateDistance(Math.round(data.routes[0].summary.lengthInMeters / 1000));
         });
     } else {
       setCalculateDistance(null);
@@ -203,6 +199,10 @@ export default function TomTom({
 
     if (activeQuery === "From") {
       query = queryFrom;
+      query = query.toLowerCase();
+      if (query.includes("cracow")) {
+        query = query.replace("cracow", "Krakow");
+      }
     }
 
     if (activeQuery === "To") {
@@ -211,35 +211,40 @@ export default function TomTom({
       RestricionTwo = "Zabierzów";
     }
 
+    let SearchLanguage = "pl-PL";
+
+    if (router.asPath.includes("/pl")) {
+      SearchLanguage = "pl-PL";
+    } else {
+      SearchLanguage = "en-US";
+    }
+
     function fetchData() {
       fetch(
-        `https://api.tomtom.com/search/2/search/${query}.json?maxFuzzyLevel=2&key=cjmuWSfVTrJfOGj7AcXvMLU8R8i1Q9cF&setCountry=PL&limit107&language=en-US`,
+        `https://api.tomtom.com/search/2/search/${query}.json?maxFuzzyLevel=2&key=cjmuWSfVTrJfOGj7AcXvMLU8R8i1Q9cF&setCountry=PL&limit107&language=${SearchLanguage}`,
         {
           method: "GET",
         },
       )
         .then((res) => res.json())
         .then((resData) => {
-          return resData.results.filter(
-            (i: any) => i.type !== "Geography" && i.type !== "Street",
-          );
-        })
-        .then((resData) => {
-          // console.log(resData);
-          if (resData) {
-            return resData.filter(
-              (i: any) => i.address.municipality !== RestricionOne,
-            );
-          }
+          return resData?.results.filter((i: any) => {
+            console.log(i.address);
+            if (i.type === "Geography") return false;
+            if (i.address.streetNumber === undefined) return false;
+            else {
+              return i;
+            }
+          });
         })
         .then((data) => {
           // console.log(data);
           const newData = data.map((i: any, key: any) => {
             let icon;
             let POI;
-            let Specifics = i.address.freeformAddress;
-            let StreetName = i.address.streetName;
-            let StreetNumber = 2;
+            let Specifics = i?.address?.freeformAddress;
+            let StreetName = i?.address?.streetName;
+            let StreetNumber = i?.address?.streetNumber;
             let City = "";
 
             if (i.address.municipalitySubdivision) {
@@ -249,60 +254,100 @@ export default function TomTom({
             }
             let { lat, lon } = i.position;
 
-            //Contions to show icon
+            //GENERATE NAMES FOR POI OBIECTS
             if (i.type === "POI") {
-              // StreetNumber = i.address.streetNumber;
-              POI = i.poi.name;
+              if (i.poi.categories[0] === "airport") {
+                if (
+                  i.poi.name === "Kraków John Paul II International Airport" ||
+                  "Międzynarodowy Port Lotniczy Imienia Jana Pawła II Kraków-Balice"
+                ) {
+                  if (SearchLanguage === "pl-PL") {
+                    POI = "Kraków Lotnisko, Balice (PL)";
+                  }
+                }
+                if (SearchLanguage === "en-US") {
+                  POI = "Krakow Airport, Balice (PL)";
+                }
+              } else {
+                POI = `${i.poi.name}, ${i.address.freeformAddress}`;
+              }
+
+              //if its now POI
+              if (i.poi.categories[0] === "market") {
+                POI = `${i.poi.name}, ${StreetName}, ${StreetNumber}`;
+                // StreetNumber = i.address.streetNumber;
+              }
             }
+
+            //GENERATE NAMES FOR STREET OBIECTS
             if (i.type === "Street") {
-              POI = `${StreetName},${StreetName}`;
+              POI = `${StreetName}`;
             }
+
+            //GENERATE NAMES FOR ADRESS OBIECTS
             if (i.type === "Point Address") {
               // StreetNumber = i.address.streetNumber;
               POI = `${City}, ${StreetName} ${StreetNumber}`;
             }
-            // else {
-            //   StreetNumber = i.address.streetNumber
-            //   POI = i.address.municipality
-            // }
 
-            if (!i.poi) {
-              icon = <MdPlace className="h-full" />;
-            } else {
+            //setting icons
+            if (i.type === "POI") {
               if (i.poi.categories[0] === "airport") {
                 icon = <MdLocalAirport className="w-full h-full" />;
-              }
-              if (i.poi.categories[0] === "hotel") {
+              } else if (i.poi.categories[0] === "hotel") {
                 icon = <LiaHotelSolid className="w-full h-full" />;
-              }
-              if (i.poi.categories[0] === "rent-a-car facility") {
+              } else if (i.poi.categories[0] === "rent-a-car facility") {
                 icon = (
                   <>
                     <MdDirectionsCar />
                     <MdAttachMoney />
                   </>
                 );
-              }
-              if (i.poi.categories[0].includes("parking")) {
+              } else if (i.poi.categories[0].includes("parking")) {
                 icon = <MdLocalParking />;
-              }
-              if (
+              } else if (i.poi.categories[0].includes("market")) {
+                icon = <FaShoppingBag />;
+              } else if (
+                i.poi.categories[0].includes("important tourist attraction") ||
+                i.poi.categories[1]?.includes("important tourist attraction")
+              ) {
+                icon = <FaMapMarked />;
+              } else if (
+                i.poi.categories[0].includes("museum") ||
+                i.poi.categories[1]?.includes("museum")
+              ) {
+                icon = <MdMuseum />;
+              } else if (
+                i.poi.categories[0].includes("international") ||
+                i.poi.categories[1]?.includes("international")
+              ) {
+                icon = <MdDirectionsRailwayFilled />;
+              } else if (
+                i.poi.categories[0].includes("company") ||
+                i.poi.categories[1]?.includes("company")
+              ) {
+                icon = <GoOrganization />;
+              } else if (
+                i.poi.categories[0].includes("bus stop") ||
+                i.poi.categories[1]?.includes("bus stop")
+              ) {
+                icon = <FaBus />;
+              } else if (
                 i.poi.categories[0].includes("restaurant") ||
+                i.poi.categories[1]?.includes("restaurant") ||
                 i.poi.categories[0].includes("fusion") ||
-                i.poi.categories[0].includes("italian")
+                i.poi.categories[1]?.includes("fusion") ||
+                i.poi.categories[0].includes("italian") ||
+                i.poi.categories[1]?.includes("italian") ||
+                i.poi.categories[0].includes("café/pub") ||
+                i.poi.categories[1]?.includes("café/pub")
               ) {
                 icon = <IoMdRestaurant />;
-              } else if (
-                i.poi.categories[0] !== "airport" &&
-                i.poi.categories[0] !== "hotel" &&
-                i.poi.categories[0] !== "rent-a-car facility" &&
-                !i.poi.categories[0].includes("parking") &&
-                !i.poi.categories[0].includes("restaurant") &&
-                !i.poi.categories[0].includes("fusion") &&
-                !i.poi.categories[0].includes("italian")
-              ) {
+              } else {
                 icon = <MdPlace className="h-full" />;
               }
+            } else {
+              icon = <MdPlace className="h-full" />;
             }
             //END - Contions to show icon
 
@@ -408,17 +453,16 @@ export default function TomTom({
       <div className="w-full h-[47px] flex flex-col rounded-r-[10px]">
         <div
           className={
-            correctRoad === true
+            correctRoad === false
               ? "absolute w-full h-[0px] mx-auto bg-white z-40 rounded-[10px] flex items-start justify-between overflow-hidden duration-300"
               : "absolute w-full h-[98%] mx-auto bg-white z-40 rounded-[10px] flex items-start justify-between overflow-hidden duration-300"
           }
           onClick={handleClosingInfoAboutRoute}
         >
           <div className="flex items-center w-[90%] h-full">
-            <AiFillInfoCircle className="w-[15%]" />
-            <div className="h-full w-[85%] leading-4 pt-[20px]">
-              Możesz wybrać trasę której punktem początkowym lub końcowym jest
-              gmina Kraków.
+            <AiFillInfoCircle className="w-[15%] lg:h-[30px] text-red-500" />
+            <div className="h-full lg:h-auto w-[85%] leading-4 pt-[20px] md:pt-[0px]">
+              Możesz wybrać trasę której punktem początkowym lub końcowym jest gmina Kraków.
             </div>
           </div>
           <AiOutlineClose classname="w-[10%]" />

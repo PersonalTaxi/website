@@ -86,9 +86,9 @@ export default function Chooseparams() {
     setFlightNumber,
     currencyTXT,
     setCurrencyTXT,
+    combi,
+    setCombi,
   } = useContext(AppContext);
-
-  const [combi, setCombi] = useState(false);
 
   const InfoAbout: any = useRef();
   const handleFlightinfo: any = useRef();
@@ -245,7 +245,7 @@ export default function Chooseparams() {
             type="checkbox"
             checked={combi}
             onChange={handleCombiCheckBox}
-            className="w-[17px] h-[17px] accent-yellow-500 bg-white"
+            className="w-[17px] h-[17px] accent-yellow-500 bg-white cursor-pointer"
           ></input>
           <label id="combi-type" className="ml-[4px] font-semibold text-[14px]">
             I need a combi cab

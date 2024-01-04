@@ -15,6 +15,8 @@
     "MainTravelTime": "3:30 h",
     "startHours": "9:00",
     "price": 600,
+    "premium":790,
+    "van":890,
     "howEarlierWeHaveToLeave": 120,
     "maxTime": "4",
     "languages": ["PL", "EN", "RU"]
@@ -34,7 +36,9 @@
     "totalTripLenght": "11:40 h",
     "MainTravelTime": "5:00 h",
     "start-hours": "9:00",
-    "price": 800,
+    "price": 890,
+    "premium": 990,
+    "van": 1090,
     "howEarlierWeHaveToLeave": 240,
     "maxTime": "4",
     "languages": ["PL", "EN"]
@@ -54,7 +58,9 @@
     "totalTripLenght": "4:00 h",
     "MainTravelTime": "3:00 h",
     "start-hours": "9:00",
-    "price": 300,
+    "price": 290,
+    "premium": 320,
+    "van": 350,
     "howEarlierWeHaveToLeave": 60,
     "maxTime": "4",
     "languages": ["PL", "EN"]

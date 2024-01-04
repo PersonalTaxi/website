@@ -40,6 +40,7 @@ export default function Search() {
     setSearchButtonWasClicked,
     dateLimit,
     setDateLimit,
+    setMunicipalityFrom,
   } = useContext(AppContext);
 
   const router = useRouter();
@@ -56,6 +57,7 @@ export default function Search() {
   const InfoAboutFillLocations = useRef<any | null>(null);
   const DatePlaceholder: any = useRef();
   const InfoAboutDate: any = useRef();
+  const InfoAboutPeople: any = useRef();
 
   const handleHidePlaceholderDivDate = () => {
     // DatePlaceholder.current.style.display = "none"
@@ -169,6 +171,14 @@ export default function Search() {
     InfoAboutDate.current.style.height = "0px";
   };
 
+  const handleShowInfoAboutPeople = () => {
+    InfoAboutPeople.current.style.height = "auto";
+  };
+
+  const handleHideInfoAboutPeople = () => {
+    InfoAboutPeople.current.style.height = "0px";
+  };
+
   const FindMe = () => {
     const options = {
       enableHighAccuracy: true,
@@ -189,6 +199,7 @@ export default function Search() {
       data?.results.map((i: any) => {
         if (i.type === "Point Address" && finalAdress === "") {
           finalAdress = i.address.freeformAddress;
+          setMunicipalityFrom(i.address.municipality);
         }
       });
 
@@ -231,11 +242,11 @@ export default function Search() {
           </div>
           <div
             id="search-contianer"
-            className="bg-white w-11/12 rounded-t-[15px] h-auto border-red-200 -m-[1px] lg:p-[10px] shadow-2xl"
+            className="bg-white w-11/12 rounded-t-[15px] h-auto border-red-200 -m-[1px] md:p-[10px] shadow-2xl"
           >
             <form
               onSubmit={handleSendForm}
-              className="w-full h-full flex flex-col justify-evenly items-center mx-auto "
+              className="w-full h-full flex flex-col lg:flex-row justify-evenly items-center mx-auto"
             >
               <div
                 id="form-elements-wraper"
@@ -243,7 +254,7 @@ export default function Search() {
               >
                 <div
                   id="from-to"
-                  className="rounded-[10px] h-[100px] lg:h-auto w-10/12 lg:border-0 relative"
+                  className="rounded-[10px] h-[100px] lg:h-auto w-10/12 lg:w-[590px] lg:border relative"
                 >
                   <div
                     id="localizations-input-wraper"
@@ -260,19 +271,21 @@ export default function Search() {
                     className="absolute hidden h-[20px] text-red-800 items-center text-[14px]"
                   >
                     <AiFillInfoCircle />
-                    <div className="pl-[5px] cursor-pointer">Please fill a localizations</div>
+                    <div className="pl-[5px] cursor-pointer md:text-[12px]">
+                      Please fill both localizations
+                    </div>
                   </div>
                 </div>
                 <div
                   id="wrapper-for-bottom-search"
                   className="w-10/12 lg:w-auto lg:flex items-center justify-center lg:pl-[10px]"
                 >
-                  {/* Date*/}
+                  {/* Date and time */}
                   <div
                     id="calendar-timer-wrapper"
-                    className="rounded-[10px] h-[50px] w-full lg:w-[220px] flex xl:flex-row flex-no-wrap mb-[10px] lg:mb-0 relative"
+                    className="rounded-[10px] h-[50px] w-full lg:w-[220px] flex lg:flex-row flex-no-wrap mb-[10px] lg:mb-0 relative flex-row-reverse justify-end"
                   >
-                    <div className="h-[50px] w-full lg:w-[84%] rounded-[10px] border lg:border-gray-900/[0.4] flex items-center pl-[10px] relative">
+                    <div className="h-[50px] w-full lg:w-[90%] rounded-[10px] border lg:border-gray-900/[0.4] flex items-center pl-[10px] relative ml-[7px] md:ml-[0px]">
                       {date === "" && (
                         <div
                           ref={DatePlaceholder}
@@ -312,42 +325,68 @@ export default function Search() {
                     <div
                       onMouseEnter={handleShowInfoAboutDate}
                       onMouseLeave={handleHideInfoAboutDate}
-                      className="right-0 my-auto h-full flex items-center text-yellow-500 w-[16%] cursor-pointer"
+                      className="my-auto h-[30px] flex items-center text-yellow-500 w-[30px] cursor-pointer"
                     >
-                      <AiFillInfoCircle className="w-full h-full ml-[15px] lg:mx-[7px]" />
+                      <AiFillInfoCircle className="w-[30px] h-[30px] lg:mx-[5px]" />
                     </div>
                   </div>
+
                   {/* Persons do drive */}
                   <div
                     id="person-and-submit-wraper"
-                    className="rounded-[10px] h-[50px] w-full lg:w-[220px] flex justify-between"
+                    className="rounded-[10px] h-[50px] w-full lg:w-[240px] flex justify-between"
                   >
                     <div
                       id="person-and-submit-wraper"
-                      className="rounded-[10px] h-[50px] w-6/12 xl:w-[270px] border lg:border-gray-900/[0.4] flex justify-center items-center"
+                      className="h-[50px] w-[250px] xl:w-[270px] flex justify-end items-center relative flex-row-reverse lg:flex-row"
                     >
+                      <div className="flex border lg:border-gray-900/[0.4] rounded-[10px] h-full justify-center items-center ml-[7px] md:ml-[0px] relative">
+                        <div
+                          className="w-[25px] h-[25px] rounded-[50%]"
+                          onClick={handleDowncreaseNumber}
+                        >
+                          <AiOutlineMinus className="w-full h-full cursor-pointer" />
+                        </div>
+                        <div className="w-[30px] h-[30px]">
+                          <BsFillPersonFill className="w-full h-full text-yellow-400/[0.4]" />
+                        </div>
+                        <div className="w-[30px] h-[30px] text-[22px] leading-7 text-center duration-200">
+                          {people}
+                        </div>
+                        <div
+                          className=" w-[25px] h-[25px] rounded-[50%]"
+                          onClick={handleIncreaseNumber}
+                        >
+                          <AiOutlinePlus className="w-full h-full cursor-pointer" />
+                        </div>
+                      </div>
                       <div
-                        className="w-[25px] h-[25px] rounded-[50%]"
-                        onClick={handleDowncreaseNumber}
+                        ref={InfoAboutPeople}
+                        onClick={handleHideInfoAboutDate}
+                        className="absolute w-[140%] md:right-[100px] top-[40px] left-0 lg:w-[400px] h-[0px] bg-white z-[600] text-[12px] lg:text-[18px] flex items-start duration-200 overflow-hidden rounded-[10px] shadow-xl pl-[10px] pr-[4px]"
                       >
-                        <AiOutlineMinus className="w-full h-full cursor-pointer" />
-                      </div>
-                      <div className="w-[30px] h-[30px]">
-                        <BsFillPersonFill className="w-full h-full text-yellow-400/[0.4]" />
-                      </div>
-                      <div className="w-[30px] h-[30px] text-[22px] leading-7 text-center duration-200">
-                        {people}
+                        <div className="flex items-center ">
+                          <AiFillInfoCircle className="w-[20px] h-[20px] lg:hidden " />
+                          <p className="p-[5px] h-full mt-[5px] lg:leading-[26px]">
+                            In single order you can reserve one transfer for maximum 9 people . If
+                            you need to order more than one car or cars for more than 9 people
+                            please make an new order for rest of your group or contact us via phone
+                            to +48 690 04 80 80 or mail to office@personaltaxi.pl
+                          </p>
+                        </div>
+                        <AiOutlineClose className="w-[20px] h-[20px] lg:hidden" />
                       </div>
                       <div
-                        className=" w-[25px] h-[25px] rounded-[50%]"
-                        onClick={handleIncreaseNumber}
+                        onMouseEnter={handleShowInfoAboutPeople}
+                        onMouseLeave={handleHideInfoAboutPeople}
+                        className="my-auto h-[30px] flex items-center text-yellow-500 w-[30px] cursor-pointer"
                       >
-                        <AiOutlinePlus className="w-full h-full cursor-pointer" />
+                        <AiFillInfoCircle className="w-[30px] h-[30px] lg:mx-[5px]" />
                       </div>
                     </div>
                     <button
                       id="person-and-submit-wraper"
-                      className=" border-black rounded-[10px] h-[50px] w-[130px] lg:w-[190px] border-2 bg-black text-yellow-400 hover:text-black hover:bg-yellow-500 hover:border-yellow-500 duration-150 lg:ml-[15px]"
+                      className=" border-black rounded-[10px] h-[50px] w-[130px] lg:w-[190px] border-2 bg-black text-yellow-400 hover:text-black hover:bg-yellow-500 hover:border-yellow-500 duration-150 lg:ml-[0px]"
                     >
                       {!router.asPath.includes("ordering") ? (
                         <p>See offer</p>
@@ -360,7 +399,7 @@ export default function Search() {
               </div>
               <div
                 onClick={FindMe}
-                className="bg-yellow-400 border cursor-pointer border-yellow-400 font-semi-bold absolute top-[1px] md:top-auto md:bottom-2 md:left-[60px] left-[170px] md:py-[2px] py-[0px] h-[22.5px] md:h-auto px-[8px] md:rounded-[7px] rounded-t-[7px] md:shadow-md text-gray-500 hover:border-yellow-900 hover:bg-white hover:text-black duration-200 md:z-auto"
+                className="bg-yellow-400 border cursor-pointer border-yellow-400 font-semi-bold absolute top-[1px] md:top-auto md:bottom-2 md:left-[60px] left-[170px] md:py-[2px] py-[0px] h-[22.5px] md:h-auto px-[8px] md:rounded-[7px] rounded-t-[7px] md:shadow-md text-gray-500 hover:border-yellow-900 hover:bg-white hover:text-black duration-200 md:z-auto md:text-[12px]"
               >
                 <p>Find my localization</p>
               </div>

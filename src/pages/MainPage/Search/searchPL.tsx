@@ -40,6 +40,7 @@ export default function SearchPL() {
     setSearchButtonWasClicked,
     dateLimit,
     setDateLimit,
+    setMunicipalityFrom,
   } = useContext(AppContext);
 
   const router = useRouter();
@@ -169,16 +170,49 @@ export default function SearchPL() {
     InfoAboutDate.current.style.height = "0px";
   };
 
+  const FindMe = () => {
+    const options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0,
+    };
+    console.log("doopa");
+
+    const success = async (pos: any) => {
+      const crd = pos.coords;
+
+      console.log("Your current position is:");
+      let Localization = await fetch(
+        `https://api.tomtom.com/search/2/search/${crd.latitude},${crd.longitude}.json?key=cjmuWSfVTrJfOGj7AcXvMLU8R8i1Q9cF&countrySet=PL,DE&limit=10&language=en-US`,
+      );
+      const data = await Localization.json();
+      let finalAdress = "";
+      data?.results.map((i: any) => {
+        if (i.type === "Point Address" && finalAdress === "") {
+          finalAdress = i.address.freeformAddress;
+          setMunicipalityFrom(i.address.municipality);
+        }
+      });
+
+      setlatLangFrom([crd.latitude, crd.longitude]);
+      setQueryFrom(finalAdress);
+      console.log(finalAdress);
+    };
+
+    function error(err: any) {
+      console.warn(`ERROR(${err.code}): ${err.message}`);
+      alert(
+        "You did not give permission to use your localization. Please change your browser settings, or choose localization from search filed",
+      );
+    }
+    // navigator.permissions.query({ name: "push" });
+    // navigator.permissions.query({ name: "geolocation" });
+
+    navigator.geolocation.getCurrentPosition(success, error, options);
+  };
+
   return (
     <>
-      <Head>
-        <meta http-equiv="X-UA-Compatible" content="IE=Edge"></meta>
-        <title>Your best drive</title>
-        <meta
-          name="viewport"
-          content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
-        ></meta>
-      </Head>
       <div className="w-screen lg:w-[1180px] z-20 mt-[12px] mx-auto" id="specifics">
         <div
           id="search-wraper"
@@ -318,12 +352,18 @@ export default function SearchPL() {
                   </div>
                 </div>
               </div>
+              <div
+                onClick={FindMe}
+                className="bg-yellow-400 border cursor-pointer border-yellow-400 font-semi-bold absolute top-[1px] md:top-auto md:bottom-2 md:left-[60px] left-[170px] md:py-[2px] py-[0px] h-[22.5px] md:h-auto px-[8px] md:rounded-[7px] rounded-t-[7px] md:shadow-md text-gray-500 hover:border-yellow-900 hover:bg-white hover:text-black duration-200 md:z-auto md:text-[12px]"
+              >
+                <p>Znajdź moją lokalizację</p>
+              </div>
               {/* Comuniate if data is collected */}
               <div className="flex justify-center items-center -top-[40px] w-screen h-[20px] ">
                 {isFormCompleted === "true" && (
                   <>
                     <AiOutlineCheck className="text-white bg-green-600 mr-[4px]" />
-                    <p className="text-green-600 font-[500]">Warunki są poprawne</p>
+                    <p className="text-green-600 font-[500]">Parametry są poprawne</p>
                   </>
                 )}
 

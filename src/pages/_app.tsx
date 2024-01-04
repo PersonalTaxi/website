@@ -1,7 +1,6 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import { createContext, useEffect, useReducer, useState } from "react";
-import Search from "./MainPage/Search/search";
+import { createContext, useState } from "react";
 
 type QueryParams = {
   serviceType: any;
@@ -109,6 +108,9 @@ type QueryParams = {
   setFinalTravelPrice: React.Dispatch<React.SetStateAction<any>>;
   howEarly: any;
   setHowEarly: React.Dispatch<React.SetStateAction<any>>;
+
+  combi: any;
+  setCombi: React.Dispatch<React.SetStateAction<any>>;
 };
 
 export const AppContext = createContext({} as QueryParams);
@@ -185,6 +187,8 @@ export default function App({ Component, pageProps }: AppProps) {
 
   const [municipalityFrom, setMunicipalityFrom] = useState("Kraków");
   const [municipalityTo, setMunicipalityTo] = useState("Kraków");
+
+  const [combi, setCombi] = useState(false);
 
   //price
   const [price, setPrice] = useState();
@@ -291,6 +295,8 @@ export default function App({ Component, pageProps }: AppProps) {
         setFinalTravelPrice,
         howEarly,
         setHowEarly,
+        combi,
+        setCombi,
       }}
     >
       <Component {...pageProps} />
