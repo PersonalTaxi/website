@@ -129,7 +129,7 @@ export default function LocalizationLoader({
         {foundedLocalization !== "" && (
           <div>
             <div className="flex flex-col lg:flex-row">
-              <p className="font-bold lg:mb-[15px]">We've find you here: &nbsp;</p>{" "}
+              <p className="font-bold lg:mb-[15px]">We&apos;ve find you here: &nbsp;</p>{" "}
               {foundedLocalization}
             </div>
           </div>
