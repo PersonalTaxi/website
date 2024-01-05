@@ -97,7 +97,7 @@ export default function LocalizationLoader({
         className={
           foundedLocalization !== ""
             ? "lg:w-[800px] w-[95vw] duration-100 h-[500px] border bg-white mx-auto flex items-center justify-center mt-[10vh] rounded-[10px] p-[10px] flex-col overflow-hidden"
-            : "lg:w-[400px] h-[100px] duration-200 border bg-white mx-auto flex items-center justify-center mt-[40vh] rounded-[10px] p-[10px] flex-col"
+            : "lg:w-[400px] w-[95vw] h-[100px] duration-200 border bg-white mx-auto flex items-center justify-center mt-[40vh] rounded-[10px] p-[10px] flex-col"
         }
       >
         {foundedLocalization === "" && (
@@ -128,7 +128,7 @@ export default function LocalizationLoader({
         )}
         {foundedLocalization !== "" && (
           <div>
-            <div className="flex flex-col lg:flex-row">
+            <div className="flex flex-col lg:flex-row w-[90%] lg:w-full mx-auto">
               <p className="font-bold lg:mb-[15px]">We&apos;ve find you here: &nbsp;</p>{" "}
               {foundedLocalization}
             </div>
@@ -144,10 +144,12 @@ export default function LocalizationLoader({
           }
         ></div>
         {foundedLocalization !== "" && (
-          <div className="lg:w-[700px] w-[99%] mx-auto leading-4 lg:leading-auto my-[15px]">
-            Please, check founded localization carefully! If it is ok you add it as param using
-            button below. If not, please refresh site and try again or add your localization
-            manually.
+          <div className="lg:w-[700px] w-full mx-auto leading-4 lg:leading-auto my-[15px]">
+            <p className="w-[90%] lg:w-full mx-auto">
+              Please, check founded localization carefully! If it is ok you add it as param using
+              button below. If not, please refresh site and try again or add your localization
+              manually.
+            </p>
             <div className="flex flex-start">
               <div
                 onClick={addLocalizationAsStartingPoint}
