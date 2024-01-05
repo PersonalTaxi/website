@@ -1,10 +1,4 @@
-import React, {
-  useContext,
-  useEffect,
-  useReducer,
-  useRef,
-  useState,
-} from "react";
+import React, { useContext, useEffect, useReducer, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import OrderspacificationsPL from "../MainPage/Search/orderspecificationsPL";
@@ -239,9 +233,7 @@ export default function ChooseparamsPL() {
       </div>
       {router.query.car === "mixed" && (
         <div className="w-[90vw] lg:w-[80%] mx-auto py-[20px] border-t border-b">
-          <p className={`${rubikFonts.className} text-[20px]`}>
-            Wybrane auta pozwolą;
-          </p>
+          <p className={`${rubikFonts.className} text-[20px]`}>Wybrane auta pozwolą;</p>
           <div>
             <div id="seats-summary-wrapper" className=" flex items-center">
               <BsFillPersonFill className="text-yellow-500 w-[30px] h-[20px]" />
@@ -254,10 +246,7 @@ export default function ChooseparamsPL() {
           </div>
         </div>
       )}
-      <form
-        onSubmit={handleOrdering}
-        className="w-[90vw] lg:w-[75%] h-[300px] mx-auto my-[10px]"
-      >
+      <form onSubmit={handleOrdering} className="w-[90vw] lg:w-[75%] h-[300px] mx-auto my-[10px]">
         <p className="font-[700] text-[16px]">Szczegóły zamówienia:</p>
         <div id="form-wrapper" className="flex flex-col lg:flex-row">
           <div id="flight-messege-container" className="lg:w-1/2 lg:mt-[5px]">
@@ -277,9 +266,8 @@ export default function ChooseparamsPL() {
               >
                 <AiOutlineClose className="w-[20px] h-[20px] float-right" />
                 <p>
-                  Dzięki uzupełnieniu numeru lotu będziemy mogli monitorować
-                  terminy przylotów i odebrać Cię z lotniska na czas. Po
-                  lądowaniu czekamy na Ciebie do 60 min.
+                  Dzięki uzupełnieniu numeru lotu będziemy mogli monitorować terminy przylotów i
+                  odebrać Cię z lotniska na czas. Po lądowaniu czekamy na Ciebie do 60 min.
                 </p>
               </div>
               <div
@@ -291,9 +279,7 @@ export default function ChooseparamsPL() {
               </div>
             </div>
             <div className=" border-blue-900 w-full h-[120px] flex items-start flex-col mt-[20px] px-[7px] lg:pr-[25px]">
-              <div className="text-[16px]">
-                Uzupełnij jeśli posiadasz niestandardowy bagaż:
-              </div>
+              <div className="text-[16px]">Uzupełnij jeśli posiadasz niestandardowy bagaż:</div>
               <textarea
                 value={unusualItems}
                 onChange={handleAddingUnusualItems}

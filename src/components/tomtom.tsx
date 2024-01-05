@@ -450,7 +450,7 @@ export default function TomTom({ ShowOrHideInfoAboutMissingLocalizations }: Func
 
   return (
     <div className="flex flex-col lg:flex-row w-full">
-      <div className="w-full h-[47px] flex flex-col rounded-r-[10px]">
+      <div className="w-full h-[50px] flex flex-col rounded-r-[10px]">
         {/* Info about choosing bad road */}
         <div
           className={
@@ -498,7 +498,7 @@ export default function TomTom({ ShowOrHideInfoAboutMissingLocalizations }: Func
             value={queryFrom}
             onFocus={handleShowingList}
             onChange={handleSearchFrom}
-            className="text-[15px] w-full  min-h-[45px] outline-none rounded-[10px] pl-[5px] pr-[50px] leading-[15px]"
+            className="text-[15px] w-full  min-h-[47px] outline-none rounded-[10px] pl-[5px] pr-[50px] leading-[15px]"
             placeholder="from"
             autoComplete="off"
           ></input>
@@ -539,7 +539,7 @@ export default function TomTom({ ShowOrHideInfoAboutMissingLocalizations }: Func
             value={queryTo}
             onFocus={handleShowingList}
             onChange={handleSearchTo}
-            className="text-[15px] w-full min-h-[45px] outline-none rounded-[10px] pl-[5px] pr-[50px] overflow-ellipsis"
+            className="text-[15px] w-full min-h-[47px] outline-none rounded-[10px] pl-[5px] pr-[50px] overflow-ellipsis"
             placeholder="to"
             autoComplete="off"
           ></input>

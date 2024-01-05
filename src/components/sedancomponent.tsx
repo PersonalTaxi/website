@@ -48,7 +48,6 @@ export default function Sedancomponent() {
     setCurrencyTXT("EUR");
   };
 
-  console.log(CountPrice);
   return (
     <div className="w-full h-full flex border-blue-900">
       <div className="relative lg:w-5/12 w-1/2 h-full ">

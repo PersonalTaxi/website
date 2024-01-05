@@ -41,6 +41,12 @@ export default function Search() {
     dateLimit,
     setDateLimit,
     setMunicipalityFrom,
+    lookingForLocalization,
+    setLookingForLocalization,
+    foundedLocalization,
+    setFoundedLocalization,
+    foundedLocalizationLatLang,
+    setFoundedLocalizationLatLang,
   } = useContext(AppContext);
 
   const router = useRouter();
@@ -58,6 +64,7 @@ export default function Search() {
   const DatePlaceholder: any = useRef();
   const InfoAboutDate: any = useRef();
   const InfoAboutPeople: any = useRef();
+  const windowWithLocalization: any = useRef();
 
   const handleHidePlaceholderDivDate = () => {
     // DatePlaceholder.current.style.display = "none"
@@ -70,7 +77,7 @@ export default function Search() {
   }, [people]);
 
   const handleIncreaseNumber = useCallback(() => {
-    if (people < 40) {
+    if (people < 8) {
       return [setPeople(people + 1)];
     }
   }, [people]);
@@ -180,6 +187,8 @@ export default function Search() {
   };
 
   const FindMe = () => {
+    setLookingForLocalization(true);
+
     const options = {
       enableHighAccuracy: true,
       timeout: 5000,
@@ -202,9 +211,11 @@ export default function Search() {
           setMunicipalityFrom(i.address.municipality);
         }
       });
+      setFoundedLocalization(finalAdress);
+      setFoundedLocalizationLatLang([crd.longitude, crd.latitude]);
 
-      setlatLangFrom([crd.latitude, crd.longitude]);
-      setQueryFrom(finalAdress);
+      // setlatLangFrom([crd.latitude, crd.longitude]);
+      // setQueryFrom(finalAdress);
       console.log(finalAdress);
     };
 
@@ -230,11 +241,13 @@ export default function Search() {
           content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
         ></meta>
       </Head>
-      <div className="w-screen lg:w-[1180px] z-20 mt-[12px] mx-auto" id="specifics">
+      <div className="w-screen lg:w-[1180px] z-20 mt-[12px] mx-auto relative" id="specifics">
         <div
           id="search-wraper"
           className="w-full flex flex-col justify-center items-center relative"
         >
+          {/* COMUNICATE WITH LOCALIZATION */}
+
           <div id="search-contianer-text" className="w-11/12 px-[30px]">
             <div id="correctInfo" className="w-[120px] bg-white text-center rounded-t-[10px] ">
               Your drive:
@@ -242,11 +255,11 @@ export default function Search() {
           </div>
           <div
             id="search-contianer"
-            className="bg-white w-11/12 rounded-t-[15px] h-auto border-red-200 -m-[1px] md:p-[10px] shadow-2xl"
+            className="bg-white w-11/12 rounded-t-[15px] lg:h-[100px] border-red-200 -m-[1px] md:p-[10px] shadow-2xl"
           >
             <form
               onSubmit={handleSendForm}
-              className="w-full h-full flex flex-col lg:flex-row justify-evenly items-center mx-auto"
+              className="w-full h-full flex flex-col lg:flex-row justify-evenly items-start mx-auto"
             >
               <div
                 id="form-elements-wraper"
@@ -254,11 +267,11 @@ export default function Search() {
               >
                 <div
                   id="from-to"
-                  className="rounded-[10px] h-[100px] lg:h-auto w-10/12 lg:w-[590px] lg:border relative"
+                  className="rounded-[10px] h-[100px] lg:h-auto w-10/12 lg:w-[590px] relative border lg:border-0"
                 >
                   <div
                     id="localizations-input-wraper"
-                    className="h-full rounded-[10px] w-full flex items-center relative border lg:border-0"
+                    className="h-full rounded-[10px] w-full flex items-center relative lg:border-0"
                   >
                     <TomTom
                       ShowOrHideInfoAboutMissingLocalizations={
@@ -283,7 +296,7 @@ export default function Search() {
                   {/* Date and time */}
                   <div
                     id="calendar-timer-wrapper"
-                    className="rounded-[10px] h-[50px] w-full lg:w-[220px] flex lg:flex-row flex-no-wrap mb-[10px] lg:mb-0 relative flex-row-reverse justify-end"
+                    className="rounded-[10px] h-[50px] w-full lg:w-[220px] flex lg:flex-row flex-no-wrap mb-[10px] lg:mb-0 relative flex-row-reverse justify-end lg:ml-[3px]"
                   >
                     <div className="h-[50px] w-full lg:w-[90%] rounded-[10px] border lg:border-gray-900/[0.4] flex items-center pl-[10px] relative ml-[7px] md:ml-[0px]">
                       {date === "" && (
@@ -312,7 +325,7 @@ export default function Search() {
                     <div
                       ref={InfoAboutDate}
                       onClick={handleHideInfoAboutDate}
-                      className="absolute w-full lg:w-[84%] h-[0px] bg-white z-[500] text-[12px] flex items-start duration-200 overflow-hidden rounded-[10px] shadow-xl pl-[10px] pr-[4px]"
+                      className="absolute -left-[10px] w-full lg:w-[93%] h-[0px] bg-white z-[500] text-[12px] flex items-start duration-200 overflow-hidden rounded-[10px] shadow-xl pl-[10px] pr-[4px]"
                     >
                       <div className="flex items-center">
                         <AiFillInfoCircle className="w-[20px] h-[20px] lg:hidden " />
@@ -340,9 +353,9 @@ export default function Search() {
                       id="person-and-submit-wraper"
                       className="h-[50px] w-[250px] xl:w-[270px] flex justify-end items-center relative flex-row-reverse lg:flex-row"
                     >
-                      <div className="flex border lg:border-gray-900/[0.4] rounded-[10px] h-full justify-center items-center ml-[7px] md:ml-[0px] relative">
+                      <div className="flex border lg:border-gray-900/[0.4] rounded-[10px] h-full justify-evenly items-center ml-[7px] md:ml-[0px] relative px-[4px]">
                         <div
-                          className="w-[25px] h-[25px] rounded-[50%]"
+                          className="w-[25px] h-[25px] rounded-[50%] border"
                           onClick={handleDowncreaseNumber}
                         >
                           <AiOutlineMinus className="w-full h-full cursor-pointer" />
@@ -354,7 +367,7 @@ export default function Search() {
                           {people}
                         </div>
                         <div
-                          className=" w-[25px] h-[25px] rounded-[50%]"
+                          className=" w-[25px] h-[25px] rounded-[50%] border"
                           onClick={handleIncreaseNumber}
                         >
                           <AiOutlinePlus className="w-full h-full cursor-pointer" />
@@ -363,7 +376,7 @@ export default function Search() {
                       <div
                         ref={InfoAboutPeople}
                         onClick={handleHideInfoAboutDate}
-                        className="absolute w-[140%] md:right-[100px] top-[40px] left-0 lg:w-[400px] h-[0px] bg-white z-[600] text-[12px] lg:text-[18px] flex items-start duration-200 overflow-hidden rounded-[10px] shadow-xl pl-[10px] pr-[4px]"
+                        className="absolute w-[140%] md:-left-[200px] top-[50px] left-0 lg:w-[400px] h-[0px] bg-white z-[600] text-[12px] lg:text-[18px] flex items-start duration-200 overflow-hidden rounded-[10px] shadow-xl pl-[10px] pr-[4px]"
                       >
                         <div className="flex items-center ">
                           <AiFillInfoCircle className="w-[20px] h-[20px] lg:hidden " />
@@ -403,24 +416,24 @@ export default function Search() {
               >
                 <p>Find my localization</p>
               </div>
-              {/* Comuniate if data is collected */}
-              <div className="flex justify-center items-center -top-[40px] w-screen h-[20px] ">
-                {isFormCompleted === "true" && (
-                  <>
-                    <AiOutlineCheck className="text-white bg-green-600 mr-[4px]" />
-                    <p className="text-green-600 font-[500]">Conditions are up to date</p>
-                  </>
-                )}
-
-                {/* Comuniate if data is NOT collected */}
-                {parseInt(passengersFromQuery) !== people && (
-                  <>
-                    <AiOutlineClose />
-                    <p className="text-red-600">You have to update (button above)</p>
-                  </>
-                )}
-              </div>
             </form>
+            {/* Comuniate if data is collected */}
+            <div className="absolute flex justify-center items-center lg:top-[90px] bottom-[16px] w-[90vw] lg:w-[1065px] h-[24px]">
+              {isFormCompleted === "true" && (
+                <>
+                  <AiOutlineCheck className="text-white bg-green-600 mr-[4px]" />
+                  <p className="text-green-600 font-[500]">Conditions are up to date</p>
+                </>
+              )}
+
+              {/* Comuniate if data is NOT collected */}
+              {parseInt(passengersFromQuery) !== people && (
+                <>
+                  <AiOutlineClose />
+                  <p className="text-red-600">You have to update (button above)</p>
+                </>
+              )}
+            </div>
           </div>
           <div className="bg-white w-11/12 mx-auto lg:-mt-[3px] text-center rounded-b-[10px] text-[14px] h-[22px]">
             {((latLangFrom !== null && latLangTo === null) ||

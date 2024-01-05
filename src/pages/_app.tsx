@@ -19,9 +19,9 @@ type QueryParams = {
   setPeople: React.Dispatch<React.SetStateAction<number>>;
   latLangFrom: any;
   setlatLangFrom: React.Dispatch<React.SetStateAction<any>>;
-  latLangTo: any;
   cars: any;
   setCars: React.Dispatch<React.SetStateAction<any>>;
+  latLangTo: any;
   setlatLangTo: React.Dispatch<React.SetStateAction<any>>;
   calculateDistance: any;
   setCalculateDistance: React.Dispatch<React.SetStateAction<any>>;
@@ -111,6 +111,12 @@ type QueryParams = {
 
   combi: any;
   setCombi: React.Dispatch<React.SetStateAction<any>>;
+  lookingForLocalization: any;
+  setLookingForLocalization: React.Dispatch<React.SetStateAction<any>>;
+  foundedLocalization: any;
+  setFoundedLocalization: React.Dispatch<React.SetStateAction<any>>;
+  foundedLocalizationLatLang: any;
+  setFoundedLocalizationLatLang: React.Dispatch<React.SetStateAction<any>>;
 };
 
 export const AppContext = createContext({} as QueryParams);
@@ -189,6 +195,9 @@ export default function App({ Component, pageProps }: AppProps) {
   const [municipalityTo, setMunicipalityTo] = useState("Kraków");
 
   const [combi, setCombi] = useState(false);
+  const [lookingForLocalization, setLookingForLocalization] = useState(false);
+  const [foundedLocalization, setFoundedLocalization] = useState("");
+  const [foundedLocalizationLatLang, setFoundedLocalizationLatLang] = useState();
 
   //price
   const [price, setPrice] = useState();
@@ -297,6 +306,12 @@ export default function App({ Component, pageProps }: AppProps) {
         setHowEarly,
         combi,
         setCombi,
+        lookingForLocalization,
+        setLookingForLocalization,
+        foundedLocalization,
+        setFoundedLocalization,
+        foundedLocalizationLatLang,
+        setFoundedLocalizationLatLang,
       }}
     >
       <Component {...pageProps} />
