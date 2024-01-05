@@ -18,7 +18,7 @@ type QueryParams = {
   setFoundedLocalizationLatLang: React.Dispatch<React.SetStateAction<any>>;
 };
 
-export default function localizationLoader({
+export default function LocalizationLoader({
   latLangFrom,
   setlatLangFrom,
   latLangTo,
