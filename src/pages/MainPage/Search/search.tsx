@@ -425,13 +425,12 @@ export default function Search() {
               )}
 
               {/* Comuniate if data is NOT collected */}
-              {parseInt(passengersFromQuery) !== people &&
-                router.asPath.includes("ordering") && (
-                  <>
-                    <AiOutlineClose className="bg-red-600 text-white mr-[4px]" />
-                    <p className="text-red-600">{descriptions.conditionsIncorrect}</p>
-                  </>,
-                )}
+              {parseInt(passengersFromQuery) !== people && router.asPath.includes("ordering") && (
+                <>
+                  <AiOutlineClose className="bg-red-600 text-white mr-[4px]" />
+                  <p className="text-red-600">{descriptions.conditionsIncorrect}</p>
+                </>
+              )}
             </div>
           </div>
           <div className="bg-white w-11/12 mx-auto lg:-mt-[3px] text-center rounded-b-[10px] text-[14px] h-[22px]">
