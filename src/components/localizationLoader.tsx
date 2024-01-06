@@ -101,7 +101,7 @@ export default function LocalizationLoader({
           .setLngLat(foundedLocalizationLatLang)
           .addTo(map);
 
-        mapElement.current.addEventListener("mouseup", async () => {
+        const actualizeLocalizatiom = async () => {
           const newLatLangMarker = await marker.getLngLat();
           console.log(newLatLangMarker);
           if (newLatLangMarker !== foundedLocalizationLatLang) {
@@ -110,7 +110,10 @@ export default function LocalizationLoader({
             setFoundedLocalization(Dolo.adress);
             setFoundedLocalizationLatLang([Dolo.lonlat.lat, Dolo.lonlat.lon]);
           }
-        });
+        };
+
+        mapElement.current.addEventListener("mouseup", actualizeLocalizatiom);
+        mapElement.current.addEventListener("touchend", actualizeLocalizatiom);
 
         return () => map.remove();
       }
@@ -158,7 +161,7 @@ export default function LocalizationLoader({
         )}
         {foundedLocalization !== "" && (
           <div>
-            <div className="flex flex-col lg:flex-row w-[90%] lg:w-full mx-auto">
+            <div className="flex flex-col lg:flex-row justify-start w-[80vw] lg:w-[700px] mx-auto">
               <p className="font-bold lg:mb-[15px]">
                 {descriptions.FINDME_POPUP_founded_localization}&nbsp;
               </p>
