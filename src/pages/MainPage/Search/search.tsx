@@ -15,6 +15,7 @@ import { TbCalendarTime } from "react-icons/tb";
 import { AiOutlineClose, AiOutlineFieldTime, AiOutlineCheck } from "react-icons/ai";
 import Script from "next/script";
 import Head from "next/head";
+import Languages from "../../../data/lagnauges.json";
 
 export default function Search() {
   const {
@@ -50,6 +51,16 @@ export default function Search() {
   } = useContext(AppContext);
 
   const router = useRouter();
+
+  const setDescLanguage = () => {
+    if (router.asPath.includes("/pl")) {
+      return Languages.PL[0];
+    } else {
+      return Languages.EN[0];
+    }
+  };
+
+  const [descriptions, setDescriptions] = useState(setDescLanguage());
 
   let passengersFromQuery: any = 2;
 
@@ -225,22 +236,12 @@ export default function Search() {
         "You did not give permission to use your localization. Please change your browser settings, or choose localization from search filed",
       );
     }
-    // navigator.permissions.query({ name: "push" });
-    // navigator.permissions.query({ name: "geolocation" });
 
     navigator.geolocation.getCurrentPosition(success, error, options);
   };
 
   return (
     <>
-      <Head>
-        <meta http-equiv="X-UA-Compatible" content="IE=Edge"></meta>
-        <title>Your best drive</title>
-        <meta
-          name="viewport"
-          content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
-        ></meta>
-      </Head>
       <div className="w-screen lg:w-[1180px] z-20 mt-[12px] mx-auto relative" id="specifics">
         <div
           id="search-wraper"
@@ -250,7 +251,7 @@ export default function Search() {
 
           <div id="search-contianer-text" className="w-11/12 px-[30px]">
             <div id="correctInfo" className="w-[120px] bg-white text-center rounded-t-[10px] ">
-              Your drive:
+              {descriptions.SearchClaim}
             </div>
           </div>
           <div
@@ -285,7 +286,7 @@ export default function Search() {
                   >
                     <AiFillInfoCircle />
                     <div className="pl-[5px] cursor-pointer md:text-[12px]">
-                      Please fill both localizations
+                      {descriptions.infoAboutMissingLocalizations}
                     </div>
                   </div>
                 </div>
@@ -381,10 +382,7 @@ export default function Search() {
                         <div className="flex items-center ">
                           <AiFillInfoCircle className="w-[20px] h-[20px] lg:hidden " />
                           <p className="p-[5px] h-full mt-[5px] lg:leading-[26px]">
-                            In single order you can reserve one transfer for maximum 9 people . If
-                            you need to order more than one car or cars for more than 9 people
-                            please make an new order for rest of your group or contact us via phone
-                            to +48 690 04 80 80 or mail to office@personaltaxi.pl
+                            {descriptions.infoAboutPeople}
                           </p>
                         </div>
                         <AiOutlineClose className="w-[20px] h-[20px] lg:hidden" />
@@ -402,9 +400,9 @@ export default function Search() {
                       className=" border-black rounded-[10px] h-[50px] w-[130px] lg:w-[190px] border-2 bg-black text-yellow-400 hover:text-black hover:bg-yellow-500 hover:border-yellow-500 duration-150 lg:ml-[0px]"
                     >
                       {!router.asPath.includes("ordering") ? (
-                        <p>See offer</p>
+                        <p>{descriptions.searchButtonUpdated}</p>
                       ) : (
-                        <p className="lg:leading-4">Update road</p>
+                        <p className="lg:leading-4">{descriptions.searchButtonNonUpdated}</p>
                       )}
                     </button>
                   </div>
@@ -414,7 +412,7 @@ export default function Search() {
                 onClick={FindMe}
                 className="bg-yellow-400 border cursor-pointer border-yellow-400 font-semi-bold absolute top-[1px] md:top-auto md:bottom-2 md:left-[60px] left-[170px] md:py-[2px] py-[0px] h-[22.5px] md:h-auto px-[8px] md:rounded-[7px] rounded-t-[7px] md:shadow-md text-gray-500 hover:border-yellow-900 hover:bg-white hover:text-black duration-200 md:z-auto md:text-[12px]"
               >
-                <p>Find my localization</p>
+                <p>{descriptions.localizator}</p>
               </div>
             </form>
             {/* Comuniate if data is collected */}
@@ -422,7 +420,7 @@ export default function Search() {
               {isFormCompleted === "true" && (
                 <>
                   <AiOutlineCheck className="text-white bg-green-600 mr-[4px]" />
-                  <p className="text-green-600 font-[500]">Conditions are up to date</p>
+                  <p className="text-green-600 font-[500]">{descriptions.conditionsIncorrect}</p>
                 </>
               )}
 
@@ -430,7 +428,7 @@ export default function Search() {
               {parseInt(passengersFromQuery) !== people && (
                 <>
                   <AiOutlineClose />
-                  <p className="text-red-600">You have to update (button above)</p>
+                  <p className="text-red-600">{descriptions.conditionsIncorrect}</p>
                 </>
               )}
             </div>

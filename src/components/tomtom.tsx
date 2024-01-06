@@ -104,8 +104,8 @@ export default function TomTom({ ShowOrHideInfoAboutMissingLocalizations }: Func
   };
 
   const handleChosingParam = (e: any, i: any) => {
-    console.log(e.target.getAttribute("data-name"));
-    console.log(e.target.id);
+    // console.log(e.target.getAttribute("data-name"));
+    // console.log(e.target.id);
 
     if (e.target.id === "From") {
       setMunicipalityFrom(i.address.municipality);
@@ -125,7 +125,7 @@ export default function TomTom({ ShowOrHideInfoAboutMissingLocalizations }: Func
 
   const calculateDistances = useCallback(() => {
     if (latLangFrom !== null && latLangTo !== null) {
-      console.log(latLangFrom, latLangTo);
+      // console.log(latLangFrom, latLangTo);
       let data = fetch(
         `https://api.tomtom.com/routing/1/calculateRoute/${latLangFrom}:${latLangTo}/json?key=cjmuWSfVTrJfOGj7AcXvMLU8R8i1Q9cF`,
         {
@@ -229,7 +229,7 @@ export default function TomTom({ ShowOrHideInfoAboutMissingLocalizations }: Func
         .then((res) => res.json())
         .then((resData) => {
           return resData?.results.filter((i: any) => {
-            console.log(i.address);
+            // console.log(i.address);
             if (i.type === "Geography") return false;
             if (i.address.streetNumber === undefined) return false;
             else {
@@ -238,7 +238,7 @@ export default function TomTom({ ShowOrHideInfoAboutMissingLocalizations }: Func
           });
         })
         .then((data) => {
-          console.log(data);
+          // console.log(data);
           const newData = data?.map((i: any, key: any) => {
             let icon;
             let POI;

@@ -1,0 +1,40 @@
+{
+  "PL": [
+    {
+      "SearchClaim": "Twoja trasa",
+      "localizator": "Znajdź mnie",
+      "infoAboutPeople": "W pojedynczym zamówieniu możesz zarezerwować jeden transfer dla maksymalnie 9 osób. Jeżeli chcesz zamówić więcej niż jeden samochód lub samochody na więcej niż 9 osób prosimy o złożenie nowego zamówienia dla reszty grupy lub o kontakt telefoniczny pod numerem +48 690 04 80 80 lub mailowy na adres office@personaltaxi.pl",
+      "infoAboutDate": "Możesz złożyć zamówienie z datą i godziną nie wcześniejniej niż za 16 godzin od teraz.",
+      "infoAboutMissingLocalizations": "Uzupełnij obie lokalizacje",
+      "searchButtonUpdated": "Pokaż oferty",
+      "searchButtonNonUpdated": "Aktualizuj",
+      "conditionsCorrect": "Parametry poprawne",
+      "conditionsIncorrect": "Zaktualizuj parametry",
+      "FINDME_POPUP_founded_localization": "Znaleźliśmy Cię tutaj: ",
+      "FINDME_POPUP_info": "Proszę dokładnie sprawdzić założoną lokalizację! Jeśli wszystko jest w porządku, dodaj go jako parametr za pomocą przycisku poniżej. Jeśli nie, odśwież witrynę i spróbuj ponownie lub dodaj lokalizację ręcznie.",
+      "FINDME_POPUP_loader": "Szukamy Cię...",
+      "FINDME_POPUP_add_as_start": "Dodaj jako punkt startowy",
+      "FINDME_POPUP_add_as_end": "Dodaj jako punkt końcowy",
+      "FINDME_POPUP_add_manually": "Zamknij i dodaj ręcznie"
+    }
+  ],
+  "EN": [
+    {
+      "SearchClaim": "Your drive",
+      "localizator": "Find my localization",
+      "infoAboutPeople": "In single order you can reserve one transfer for maximum 9 people. If you need to order more than one car or cars for more than 9 people please make an new order for rest of your group or contact us via phone to +48 690 04 80 80 or mail to office@personaltaxi.pl",
+      "infoAboutDate": "You can order a taxi not eariler that 16 hours from now",
+      "infoAboutMissingLocalizations": "Please fill both localizations",
+      "searchButtonUpdated": "Show offer",
+      "searchButtonNonUpdated": "Update offer",
+      "conditionsCorrect": "Params are correct",
+      "conditionsIncorrect": "You have to update (button above)",
+      "FINDME_POPUP_founded_localization": "We've found your here:",
+      "FINDME_POPUP_info": "Please, check founded localization carefully! If it is ok you add it as param using button below. If not, please refresh site and try again or add your localization manually.",
+      "FINDME_POPUP_loader": "We are looking for you...",
+      "FINDME_POPUP_add_as_start": "Add as s starting point",
+      "FINDME_POPUP_add_as_end": "Add as s ending point",
+      "FINDME_POPUP_add_manually": "Close and add manually"
+    }
+  ]
+}

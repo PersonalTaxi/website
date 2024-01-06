@@ -1,5 +1,8 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, createElement } from "react";
+import { useRouter } from "next/router";
 import "@tomtom-international/web-sdk-maps/dist/maps.css";
+import Languages from "../data/lagnauges.json";
+import { Findme } from "../functions/findme";
 
 type QueryParams = {
   latLangFrom: any;
@@ -34,12 +37,25 @@ export default function LocalizationLoader({
   foundedLocalizationLatLang,
   setFoundedLocalizationLatLang,
 }: QueryParams) {
+  const router = useRouter();
+
+  //TomTom Map params
   const [mapLongitude, setMapLongitude] = useState(-121.91599);
   const [mapLatitude, setMapLatitude] = useState(37.36765);
   const [mapZoom, setMapZoom] = useState(15);
   const [map, setMap] = useState({});
 
   const mapElement: any = useRef();
+
+  const setDescLanguage = () => {
+    if (router.asPath.includes("/pl")) {
+      return Languages.PL[0];
+    } else {
+      return Languages.EN[0];
+    }
+  };
+
+  const [descriptions, setDescriptions] = useState(setDescLanguage());
 
   const handleClosingLocalizationWindow = () => {
     setLookingForLocalization(false);
@@ -50,6 +66,7 @@ export default function LocalizationLoader({
     setlatLangFrom(foundedLocalizationLatLang);
     setTimeout(() => {
       setLookingForLocalization(false);
+      setFoundedLocalization("");
     }, 500);
   };
 
@@ -58,6 +75,7 @@ export default function LocalizationLoader({
     setlatLangTo(foundedLocalizationLatLang);
     setTimeout(() => {
       setLookingForLocalization(false);
+      setFoundedLocalization("");
     }, 500);
   };
 
@@ -76,17 +94,28 @@ export default function LocalizationLoader({
         });
 
         setMap(map);
-        const marker = await new tt.Marker({
-          draggable: true,
-        })
+        const marketIcon = document.createElement("div");
+        marketIcon.className = "w-[50px] h-[74px] bg-[url('/localization_map.png')] bg-contain";
+        const marker = await new tt.Marker({ element: marketIcon, draggable: true })
           .setLngLat(foundedLocalizationLatLang)
           .addTo(map);
+
+        mapElement.current.addEventListener("mouseup", async () => {
+          const newLatLangMarker = await marker.getLngLat();
+          console.log(newLatLangMarker);
+          if (newLatLangMarker !== foundedLocalizationLatLang) {
+            const Dolo = await Findme(newLatLangMarker);
+            console.log(Dolo);
+            setFoundedLocalization(Dolo.adress);
+            setFoundedLocalizationLatLang([Dolo.lonlat.lat, Dolo.lonlat.lon]);
+          }
+        });
 
         return () => map.remove();
       }
     };
     handleMap();
-  }, [foundedLocalizationLatLang]);
+  }, [foundedLocalization !== ""]);
 
   return (
     <div
@@ -104,7 +133,7 @@ export default function LocalizationLoader({
           <button
             disabled
             type="button"
-            className="text-black text-[35px] hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center"
+            className="text-black text-[35px] focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 dark:focus:ring-blue-800 inline-flex items-center"
           >
             <svg
               aria-hidden="true"
@@ -123,13 +152,15 @@ export default function LocalizationLoader({
                 fill="currentColor"
               />
             </svg>
-            We are looking for you...
+            {descriptions.FINDME_POPUP_loader}
           </button>
         )}
         {foundedLocalization !== "" && (
           <div>
             <div className="flex flex-col lg:flex-row w-[90%] lg:w-full mx-auto">
-              <p className="font-bold lg:mb-[15px]">We&apos;ve find you here: &nbsp;</p>{" "}
+              <p className="font-bold lg:mb-[15px]">
+                {descriptions.FINDME_POPUP_founded_localization}&nbsp;
+              </p>
               {foundedLocalization}
             </div>
           </div>
@@ -139,35 +170,31 @@ export default function LocalizationLoader({
           ref={mapElement}
           className={
             foundedLocalization === ""
-              ? "hidden h-[300px] lg:w-[700px] w-[90%] mx-auto"
-              : "block h-[300px] lg:w-[700px] w-[90%] mx-auto"
+              ? "hidden lg:h-[500px] lg:w-[700px] w-[90%] mx-auto"
+              : "block lg:h-[500px] lg:w-[700px] w-[90%] mx-auto"
           }
         ></div>
         {foundedLocalization !== "" && (
           <div className="lg:w-[700px] w-full mx-auto leading-4 lg:leading-auto my-[15px]">
-            <p className="w-[90%] lg:w-full mx-auto">
-              Please, check founded localization carefully! If it is ok you add it as param using
-              button below. If not, please refresh site and try again or add your localization
-              manually.
-            </p>
+            <p className="w-[90%] lg:w-full mx-auto">{descriptions.FINDME_POPUP_info}</p>
             <div className="flex flex-start">
               <div
                 onClick={addLocalizationAsStartingPoint}
                 className="border px-[10px] py-[2px] m-[5px] cursor-pointer rounded-[5px] bg-gray-400 text-white leading-4 lg:leading-auto"
               >
-                Add as a start point
+                {descriptions.FINDME_POPUP_add_as_start}
               </div>
               <div
                 onClick={addLocalizationAsEndingPoint}
                 className="border px-[10px] py-[2px] m-[5px] cursor-pointer rounded-[5px] bg-gray-400 text-white leading-4 lg:leading-auto"
               >
-                Add as an end point
+                {descriptions.FINDME_POPUP_add_as_end}
               </div>
               <div
                 onClick={handleClosingLocalizationWindow}
                 className="border px-[10px] py-[2px] m-[5px] cursor-pointer rounded-[5px] bg-gray-400 text-white leading-4 lg:leading-auto"
               >
-                Close and add manualy
+                {descriptions.FINDME_POPUP_add_manually}
               </div>
             </div>
           </div>
