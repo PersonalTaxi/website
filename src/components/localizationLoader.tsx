@@ -59,6 +59,7 @@ export default function LocalizationLoader({
 
   const handleClosingLocalizationWindow = () => {
     setLookingForLocalization(false);
+    setFoundedLocalization("");
   };
 
   const addLocalizationAsStartingPoint = () => {
@@ -170,8 +171,8 @@ export default function LocalizationLoader({
           ref={mapElement}
           className={
             foundedLocalization === ""
-              ? "hidden lg:h-[500px] lg:w-[700px] w-[90%] mx-auto"
-              : "block lg:h-[500px] lg:w-[700px] w-[90%] mx-auto"
+              ? "hidden lg:h-[500px] lg:w-[700px] w-[90%] h-[500px] mx-auto"
+              : "block lg:h-[500px] lg:w-[700px] w-[90%] h-[500px] mx-auto"
           }
         ></div>
         {foundedLocalization !== "" && (
