@@ -10,6 +10,8 @@
       "searchButtonNonUpdated": "Aktualizuj",
       "conditionsCorrect": "Parametry poprawne",
       "conditionsIncorrect": "Zaktualizuj parametry",
+      "calculate_distance_missing": "Dystans trasy - czekam na obie lokalizacje",
+      "calculate_distance_filled": "Dystans trasy:",
       "FINDME_POPUP_founded_localization": "Znaleźliśmy Cię tutaj: ",
       "FINDME_POPUP_info": "Proszę dokładnie sprawdzić założoną lokalizację! Jeśli wszystko jest w porządku, dodaj go jako parametr za pomocą przycisku poniżej. Jeśli nie, odśwież witrynę i spróbuj ponownie lub dodaj lokalizację ręcznie.",
       "FINDME_POPUP_loader": "Szukamy Cię...",
@@ -20,7 +22,7 @@
   ],
   "EN": [
     {
-      "SearchClaim": "Your drive",
+      "SearchClaim": "Your route",
       "localizator": "Find my localization",
       "infoAboutPeople": "In single order you can reserve one transfer for maximum 9 people. If you need to order more than one car or cars for more than 9 people please make an new order for rest of your group or contact us via phone to +48 690 04 80 80 or mail to office@personaltaxi.pl",
       "infoAboutDate": "You can order a taxi not eariler that 16 hours from now",
@@ -29,6 +31,8 @@
       "searchButtonNonUpdated": "Update offer",
       "conditionsCorrect": "Params are correct",
       "conditionsIncorrect": "You have to update (button above)",
+      "calculate_distance_missing": "Drive distance - wating for both localizations",
+      "calculate_distance_filled": "Drive distance:",
       "FINDME_POPUP_founded_localization": "We've found your here:",
       "FINDME_POPUP_info": "Please, check founded localization carefully! If it is ok you add it as param using button below. If not, please refresh site and try again or add your localization manually.",
       "FINDME_POPUP_loader": "We are looking for you...",

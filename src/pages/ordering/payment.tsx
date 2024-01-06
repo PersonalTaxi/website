@@ -281,7 +281,7 @@ export default function Payment() {
               className={
                 redirecting === false
                   ? "w-[80%] md:w-[20%] mx-auto rounded-[25px] bg-yellow-500 border-2 border-yellow-500 text-center py-[10px] mt-[20px] text-white text-[20px] duration-200 hover:text-black hover:bg-white hover:border-gray-900 cursor-pointer"
-                  : "w-[80%] md:w-[20%] mx-auto rounded-[25px] border-gray-900 text-center py-[10px] mt-[20px] text-black text-[20px] duration-200 hover:text-black cursor-pointer"
+                  : "w-[80%] md:w-[20%] mx-auto rounded-[25px] bg-white text-center py-[10px] mt-[20px] text-black text-[20px] duration-200 hover:text-black cursor-pointer"
               }
               onClick={handleRedirectToPayments}
             >

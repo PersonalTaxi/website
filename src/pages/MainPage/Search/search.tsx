@@ -417,30 +417,31 @@ export default function Search() {
             </form>
             {/* Comuniate if data is collected */}
             <div className="absolute flex justify-center items-center lg:top-[90px] bottom-[16px] w-[90vw] lg:w-[1065px] h-[24px]">
-              {isFormCompleted === "true" && (
+              {isFormCompleted === "true" && router.asPath.includes("ordering") && (
                 <>
                   <AiOutlineCheck className="text-white bg-green-600 mr-[4px]" />
-                  <p className="text-green-600 font-[500]">{descriptions.conditionsIncorrect}</p>
+                  <p className="text-green-600 font-[500]">{descriptions.conditionsCorrect}</p>
                 </>
               )}
 
               {/* Comuniate if data is NOT collected */}
-              {parseInt(passengersFromQuery) !== people && (
-                <>
-                  <AiOutlineClose />
-                  <p className="text-red-600">{descriptions.conditionsIncorrect}</p>
-                </>
-              )}
+              {parseInt(passengersFromQuery) !== people &&
+                router.asPath.includes("ordering") && (
+                  <>
+                    <AiOutlineClose className="bg-red-600 text-white mr-[4px]" />
+                    <p className="text-red-600">{descriptions.conditionsIncorrect}</p>
+                  </>,
+                )}
             </div>
           </div>
           <div className="bg-white w-11/12 mx-auto lg:-mt-[3px] text-center rounded-b-[10px] text-[14px] h-[22px]">
             {((latLangFrom !== null && latLangTo === null) ||
               (latLangFrom === null && latLangTo !== null)) && (
-              <p>Drive distance: wating for localizations ...</p>
+              <p>{descriptions.calculate_distance_missing}</p>
             )}
             {latLangFrom !== null && latLangTo !== null && (
               <p className=" bg-white w-11/12 mx-auto lg:-mt-[3px] text-center rounded-b-[10px] text-[14px]">
-                Drive distance {calculateDistance} km
+                {descriptions.calculate_distance_filled} {calculateDistance} km
               </p>
             )}
           </div>
