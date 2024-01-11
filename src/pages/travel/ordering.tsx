@@ -2,15 +2,30 @@ import React, { useContext, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Header from "../Header/header";
-import Faqelement from "../Faq/faqelement";
 import Footer from "../Footer/footer";
 import { AppContext } from "../_app";
-import Orderingtravelspec from "../../components/travelscomponents/orderingtravelspec";
-import Ordertravelperson from "@/components/travelscomponents/ordertravelpersonaldata";
+import LocalizationLoader from "../../components/localizationLoader";
+import OrderingTravelParams from "../../components/travelscomponents/orderingtravelparams";
+import OrderingTravelPersonalData from "@/components/travelscomponents/orderingtravelpersonaldata";
 import { RiErrorWarningFill } from "react-icons/ri";
 
 export default function TravelOrdering() {
   const {
+    latLangFrom,
+    setlatLangFrom,
+    latLangTo,
+    setlatLangTo,
+    queryFrom,
+    setQueryFrom,
+    queryTo,
+    setQueryTo,
+    lookingForLocalization,
+    setLookingForLocalization,
+    foundedLocalization,
+    setFoundedLocalization,
+    foundedLocalizationLatLang,
+    setFoundedLocalizationLatLang,
+    travelId,
     travelDestination,
     setTravelDestination,
     travelLocalizationFrom,
@@ -41,23 +56,25 @@ export default function TravelOrdering() {
   const router = useRouter();
   const direction = router.query.destination;
 
+  console.log(travelId);
+
   const handleSummary = (e: any) => {
     e.preventDefault();
     console.log(travelLocalizationFrom);
     if (travelDate === undefined) {
-      alert("Nie wszystkie pola są uzupełnione");
+      alert("Not all fields are filled propertly");
       return false;
     }
     if (travelTime === undefined) {
-      alert("Nie wszystkie pola są uzupełnione");
+      alert("Not all fields are filled propertly");
       return false;
     }
     if (travelLocalizationFrom === "empty") {
-      alert("Nie wszystkie pola są uzupełnione");
+      alert("Not all fields are filled propertly");
       return false;
     }
     router.push({
-      pathname: "/pl/travel/travelsummary",
+      pathname: "/travel/travelsummary",
       query: { destination: direction },
     });
   };
@@ -69,12 +86,30 @@ export default function TravelOrdering() {
   };
 
   useEffect(() => {
-    setTravelLocalizationFrom("empty");
+    // setTravelLocalizationFrom("");
     checkValuesAndRedirect();
   }, []);
 
   return (
     <>
+      {lookingForLocalization === true && (
+        <LocalizationLoader
+          latLangFrom={latLangFrom}
+          setlatLangFrom={setlatLangFrom}
+          latLangTo={latLangTo}
+          setlatLangTo={setlatLangTo}
+          queryFrom={queryFrom}
+          setQueryFrom={setQueryFrom}
+          queryTo={queryTo}
+          setQueryTo={setQueryTo}
+          lookingForLocalization={lookingForLocalization}
+          setLookingForLocalization={setLookingForLocalization}
+          foundedLocalization={foundedLocalization}
+          setFoundedLocalization={setFoundedLocalization}
+          foundedLocalizationLatLang={foundedLocalizationLatLang}
+          setFoundedLocalizationLatLang={setFoundedLocalizationLatLang}
+        />
+      )}
       <Head>
         <meta http-equiv="X-UA-Compatible" content="IE=Edge"></meta>
         <title>Personal Taxi - Travel ordering</title>
@@ -107,7 +142,7 @@ export default function TravelOrdering() {
         >
           <form className="w-full flex flex-col" onSubmit={handleSummary}>
             <div className="flex flex-col lg:flex-row">
-              <Orderingtravelspec
+              <OrderingTravelParams
                 travelDate={travelDate}
                 setTravelDate={setTravelDate}
                 travelTime={travelTime}
@@ -115,20 +150,19 @@ export default function TravelOrdering() {
                 travelLocalizationFrom={travelLocalizationFrom}
                 setTravelLocalizationFrom={setTravelLocalizationFrom}
                 travelMassage={travelMassage}
-                setTravelMassage={travelMassage}
+                setTravelMassage={setTravelMassage}
                 travelLocalizationFromLatLang={travelLocalizationFromLatLang}
                 setTravelLocalizationFromLatLang={setTravelLocalizationFromLatLang}
                 persons={persons}
                 setPersons={setPersons}
               />
-              <Ordertravelperson />
+              <OrderingTravelPersonalData />
             </div>
             <div className="w-full flex flex-col justify-center items-center mb-[30px]">
               <div id="info" className="flex justify-center items-center">
-                <RiErrorWarningFill className="lg:w-[40px] w-[25px] h-auto text-red-600" />
-                <p className="italic pl-[10px] leading-4 text-[11px] lg:text-auto w-[80%]">
-                  Befor you will click button please check carefully if all fields are filled
-                  correctly, then click button below.
+                <RiErrorWarningFill className="lg:w-[30px] w-[25px] h-auto text-red-600" />
+                <p className="italic pl-[10px] leading-4 text-[11px] lg:text-[12px] md:w-[100%] w-[80%]">
+                  Befor clicking please check carefully if all fields are completed correctly.
                 </p>
               </div>
               <button className="px-[30px] bg-blue-400 text-white w-[250px] py-[10px] rounded-[10px] duration-200 border-2 border-blue-400 hover:bg-white hover:text-black hover:border-black">

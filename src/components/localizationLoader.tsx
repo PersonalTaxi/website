@@ -1,8 +1,10 @@
-import React, { useState, useRef, useEffect, createElement } from "react";
+import React, { useState, useRef, useEffect, createElement, useContext } from "react";
 import { useRouter } from "next/router";
 import "@tomtom-international/web-sdk-maps/dist/maps.css";
-import Languages from "../data/lagnauges.json";
+import Languages from "../data/languages.json";
 import { Findme } from "../functions/findme";
+import { AppContext } from "@/pages/_app";
+import { AiFillInfoCircle } from "react-icons/ai";
 
 type QueryParams = {
   latLangFrom: any;
@@ -19,6 +21,8 @@ type QueryParams = {
   setFoundedLocalization: React.Dispatch<React.SetStateAction<any>>;
   foundedLocalizationLatLang: any;
   setFoundedLocalizationLatLang: React.Dispatch<React.SetStateAction<any>>;
+  travelMunicipalityFrom: any;
+  setTravelMunicipalityFrom: React.Dispatch<React.SetStateAction<any>>;
 };
 
 export default function LocalizationLoader({
@@ -40,10 +44,20 @@ export default function LocalizationLoader({
   const router = useRouter();
 
   //TomTom Map params
-  const [mapLongitude, setMapLongitude] = useState(-121.91599);
-  const [mapLatitude, setMapLatitude] = useState(37.36765);
+  const [isInCommune, setIsInCommune] = useState(true);
   const [mapZoom, setMapZoom] = useState(15);
   const [map, setMap] = useState({});
+
+  const infoAboutWrongLocalization: any = useRef();
+
+  const {
+    travelLocalizationFrom,
+    setTravelLocalizationFrom,
+    travelLocalizationFromLatLang,
+    setTravelLocalizationFromLatLang,
+    travelMunicipality,
+    setTravelMunicipality,
+  } = useContext(AppContext);
 
   const mapElement: any = useRef();
 
@@ -63,17 +77,30 @@ export default function LocalizationLoader({
   };
 
   const addLocalizationAsStartingPoint = () => {
-    setQueryFrom(foundedLocalization);
-    setlatLangFrom(foundedLocalizationLatLang);
-    setTimeout(() => {
-      setLookingForLocalization(false);
-      setFoundedLocalization("");
-    }, 500);
+    console.log(foundedLocalizationLatLang);
+    if (router.asPath.includes("travel")) {
+      setTravelLocalizationFrom(foundedLocalization);
+      setTravelLocalizationFromLatLang([
+        foundedLocalizationLatLang[1],
+        foundedLocalizationLatLang[0],
+      ]);
+      setTimeout(() => {
+        setLookingForLocalization(false);
+        setFoundedLocalization("");
+      }, 500);
+    } else {
+      setQueryFrom(foundedLocalization);
+      setlatLangFrom([foundedLocalizationLatLang[1], foundedLocalizationLatLang[0]]);
+      setTimeout(() => {
+        setLookingForLocalization(false);
+        setFoundedLocalization("");
+      }, 500);
+    }
   };
 
   const addLocalizationAsEndingPoint = () => {
     setQueryTo(foundedLocalization);
-    setlatLangTo(foundedLocalizationLatLang);
+    setlatLangTo([foundedLocalizationLatLang[1], foundedLocalizationLatLang[0]]);
     setTimeout(() => {
       setLookingForLocalization(false);
       setFoundedLocalization("");
@@ -82,6 +109,21 @@ export default function LocalizationLoader({
 
   useEffect(() => {
     console.log("render");
+
+    const checkIfCommuneIsCorrect = (newGeolocalization: any) => {
+      if (router.asPath.includes("travel")) {
+        if (
+          newGeolocalization.commune !== "Krakow" &&
+          newGeolocalization.commune !== "Kraków" &&
+          newGeolocalization.commune !== "Zabierzów"
+        ) {
+          setIsInCommune(false);
+        } else {
+          setIsInCommune(true);
+        }
+      }
+    };
+
     const handleMap = async () => {
       if (foundedLocalization !== "") {
         const element = document.createElement("div");
@@ -94,6 +136,8 @@ export default function LocalizationLoader({
           zoom: mapZoom,
         });
 
+        checkIfCommuneIsCorrect(travelMunicipality);
+
         setMap(map);
         const marketIcon = document.createElement("div");
         marketIcon.className = "w-[50px] h-[74px] bg-[url('/localization_map.png')] bg-contain";
@@ -105,10 +149,15 @@ export default function LocalizationLoader({
           const newLatLangMarker = await marker.getLngLat();
           console.log(newLatLangMarker);
           if (newLatLangMarker !== foundedLocalizationLatLang) {
-            const Dolo = await Findme(newLatLangMarker);
-            console.log(Dolo);
-            setFoundedLocalization(Dolo.adress);
-            setFoundedLocalizationLatLang([Dolo.lonlat.lat, Dolo.lonlat.lon]);
+            const newGeolocalization = await Findme(newLatLangMarker);
+
+            setFoundedLocalization(newGeolocalization.adress);
+            setFoundedLocalizationLatLang([
+              newGeolocalization.lonlat.lon,
+              newGeolocalization.lonlat.lat,
+            ]);
+
+            checkIfCommuneIsCorrect(newGeolocalization);
           }
         };
 
@@ -160,13 +209,22 @@ export default function LocalizationLoader({
           </button>
         )}
         {foundedLocalization !== "" && (
-          <div>
+          <div className="lg:mb-[15px]">
             <div className="flex flex-col lg:flex-row justify-start w-[80vw] lg:w-[700px] mx-auto">
-              <p className="font-bold lg:mb-[15px]">
-                {descriptions.FINDME_POPUP_founded_localization}&nbsp;
-              </p>
+              <p className="font-bold">{descriptions.FINDME_POPUP_founded_localization}&nbsp;</p>
               {foundedLocalization}
             </div>
+            {isInCommune === false && (
+              <div
+                ref={infoAboutWrongLocalization}
+                className="flex items-center italic text-[14px] underline"
+              >
+                <AiFillInfoCircle className="text-red-600 mr-[10px]" />
+                <p>
+                  Adres musi istnieć w gminie Kraków lub Zabierzów, nie możesz wybrać tego adresu.
+                </p>
+              </div>
+            )}
           </div>
         )}
 
@@ -182,18 +240,24 @@ export default function LocalizationLoader({
           <div className="lg:w-[700px] w-full mx-auto leading-4 lg:leading-auto my-[15px]">
             <p className="w-[90%] lg:w-full mx-auto">{descriptions.FINDME_POPUP_info}</p>
             <div className="flex flex-start">
-              <div
-                onClick={addLocalizationAsStartingPoint}
-                className="border px-[10px] py-[2px] m-[5px] cursor-pointer rounded-[5px] bg-gray-400 text-white leading-4 lg:leading-auto"
-              >
-                {descriptions.FINDME_POPUP_add_as_start}
-              </div>
-              <div
-                onClick={addLocalizationAsEndingPoint}
-                className="border px-[10px] py-[2px] m-[5px] cursor-pointer rounded-[5px] bg-gray-400 text-white leading-4 lg:leading-auto"
-              >
-                {descriptions.FINDME_POPUP_add_as_end}
-              </div>
+              {isInCommune === true && (
+                <div
+                  onClick={addLocalizationAsStartingPoint}
+                  className="border px-[10px] py-[2px] m-[5px] cursor-pointer rounded-[5px] bg-gray-400 text-white leading-4 lg:leading-auto"
+                >
+                  {!router.asPath.includes("travel")
+                    ? descriptions.FINDME_POPUP_add_as_start
+                    : "Add as starting point"}
+                </div>
+              )}
+              {!router.asPath.includes("travel") && (
+                <div
+                  onClick={addLocalizationAsEndingPoint}
+                  className="border px-[10px] py-[2px] m-[5px] cursor-pointer rounded-[5px] bg-gray-400 text-white leading-4 lg:leading-auto"
+                >
+                  {descriptions.FINDME_POPUP_add_as_end}
+                </div>
+              )}
               <div
                 onClick={handleClosingLocalizationWindow}
                 className="border px-[10px] py-[2px] m-[5px] cursor-pointer rounded-[5px] bg-gray-400 text-white leading-4 lg:leading-auto"

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useReducer, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import Orderspacifications from "../MainPage/Search/orderspecifications";
+import Orderspacifications from "../MainPage/Search/orderpersonaldetails";
 import { Ubuntu } from "next/font/google";
 import Sedan from "@/components/sedancomponent";
 import Van from "@/components/vancomponent";

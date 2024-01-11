@@ -38,31 +38,43 @@ export default async function SendnotificationTravel(
 
   const mailData = {
     from: "Opłacono kurs",
-    to: "m.marszalek@wearebrave.pl",
-    subject: `Zamówienie wycieczki do ${req.body.travel_to}: ${req.body.first_name} ${req.body.last_name}`,
+    to: "orders@personaltaxi.pl",
+    subject: `Zamówienie wycieczki do ${req.body.travel_to} - ${req.body.first_name} ${req.body.last_name}`,
     text: "Hello. This email is for your email verification.",
     html:
+      `<b>Wpłynęło i zostało opłacone zamówienie na obsługę wycieczki o nr id:${req.body.id}</b>` +
+      `<br><br>` +
+      `<b>Dane klienta</b>` +
+      `<br><br>` +
       `Imię i nazwisko / firma: ${req.body.first_name} ${req.body.last_name}` +
       `<br>` +
       `Email kontaktowy: ${req.body.email}` +
       `<br>` +
       `Telefon kontaktowy: ${req.body.phone}` +
       `<br><br>` +
-      `Miejsce odbioru klienta: ${req.body.pick_up_from_localization}` +
+      `<br><br>` +
+      `<b>Szczegóły zamówienia</b>` +
+      `<br><br>` +
+      `Wycieczka do: ${req.body.travel_to}` +
       `<br>` +
-      `Godzina odbioru klienta: ${req.body.travel_starts_to}` +
+      `Odbędzie się dnia: ${req.body.date} i zaczyna (klient musi być na miejscu) o godzinie ${req.body.time}.` +
       `<br>` +
+      `Miejsce odbioru klienta: ${req.body.pick_up_from_localization} (Google Maps: ${req.body.geo})` +
       `<br>` +
-      `Klient chce być na miejscu o godzinie: ${req.body.pick_up_at_hour}` +
+      `Godzina odbioru klienta: ${req.body.pick_up_at_hour}` +
+      `<br>` +
+      `Liczba osób: ${req.body.people}` +
+      `<br>` +
+      `Samochód: ${req.body.car}` +
       `<br>` +
       `<br>` +
       `Wiadomość dla kierowcy: ${req.body.info_for_driver}` +
       `<br>` +
       `<br>` +
-      `Opis przedmiotów niestandardowych: ${req.body.info_for_driver}`,
-    // `<br>` +
-    // `Cena: ${req.body.price} zł` +
-    // `<br>`,
+      `Opis przedmiotów niestandardowych: ${req.body.info_for_driver}` +
+      `<br>` +
+      `Cena: ${req.body.price} zł` +
+      `<br>`,
   };
 
   await transporter.sendMail(mailData, function (err: string, info: string) {

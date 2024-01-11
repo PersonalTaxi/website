@@ -15,7 +15,7 @@ import { TbCalendarTime } from "react-icons/tb";
 import { AiOutlineClose, AiOutlineFieldTime, AiOutlineCheck } from "react-icons/ai";
 import Script from "next/script";
 import Head from "next/head";
-import Languages from "../../../data/lagnauges.json";
+import Languages from "../../../data/languages.json";
 
 export default function Search() {
   const {
@@ -224,9 +224,6 @@ export default function Search() {
       });
       setFoundedLocalization(finalAdress);
       setFoundedLocalizationLatLang([crd.longitude, crd.latitude]);
-
-      // setlatLangFrom([crd.latitude, crd.longitude]);
-      // setQueryFrom(finalAdress);
       console.log(finalAdress);
     };
 

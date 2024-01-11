@@ -18,6 +18,7 @@ import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { BiSolidMap } from "react-icons/bi";
 import Footer from "../Footer/footer";
 import { AppContext } from "../_app";
+import LocalizationLoader from "@/components/localizationLoader";
 
 const rubikFonts = Ubuntu({
   subsets: ["latin"],
@@ -33,13 +34,18 @@ export default function Summary() {
   const {
     latLangFrom,
     setlatLangFrom,
-    mapLongitude,
-    setMapLongitude,
-    mapLatitude,
-    setMapLatitude,
-    mapUpdated,
-    setMapUpdated,
-    SearchButtonWasClicked,
+    latLangTo,
+    setlatLangTo,
+    queryFrom,
+    setQueryFrom,
+    queryTo,
+    setQueryTo,
+    lookingForLocalization,
+    setLookingForLocalization,
+    foundedLocalization,
+    setFoundedLocalization,
+    foundedLocalizationLatLang,
+    setFoundedLocalizationLatLang,
     setSearchButtonWasClicked,
   } = useContext(AppContext);
 
@@ -47,6 +53,24 @@ export default function Summary() {
 
   return (
     <div className={`${MontserratFont.className}`}>
+      {lookingForLocalization === true && (
+        <LocalizationLoader
+          latLangFrom={latLangFrom}
+          setlatLangFrom={setlatLangFrom}
+          latLangTo={latLangTo}
+          setlatLangTo={setlatLangTo}
+          queryFrom={queryFrom}
+          setQueryFrom={setQueryFrom}
+          queryTo={queryTo}
+          setQueryTo={setQueryTo}
+          lookingForLocalization={lookingForLocalization}
+          setLookingForLocalization={setLookingForLocalization}
+          foundedLocalization={foundedLocalization}
+          setFoundedLocalization={setFoundedLocalization}
+          foundedLocalizationLatLang={foundedLocalizationLatLang}
+          setFoundedLocalizationLatLang={setFoundedLocalizationLatLang}
+        />
+      )}
       <Head>
         <meta http-equiv="X-UA-Compatible" content="IE=Edge"></meta>
         <title>Your best drive</title>
@@ -64,6 +88,7 @@ export default function Summary() {
         <link rel="stylesheet" type="text/css" href="../assets/ui-library/icons-css/poi.css"></link>
       </Head>
       <Header />
+
       <div
         id="search-wrapper-ordering"
         className='pt-[100px] relative h-[1700px] lg:h-auto bg-[url("/Main_theme.png")] bg-top bg-cover bg-no-repeat bg-fixed'

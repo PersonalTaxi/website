@@ -4,38 +4,54 @@ import Head from "next/head";
 import HeaderPL from "../../Header/headerPL";
 import Footer from "../../Footer/footer";
 import { AppContext } from "../../_app";
-import OrderingtravelspecPL from "../../../components/travelscomponents/orderingtravelspecPL";
-import OrdertravelpersonPL from "@/components/travelscomponents/ordertravelpersonaldataPL";
+import OrderingTravelParams from "../../../components/travelscomponents/orderingtravelparams";
+import Ordertravelperson from "@/components/travelscomponents/orderingtravelpersonaldata";
+import LocalizationLoader from "@/components/localizationLoader";
 import { RiErrorWarningFill } from "react-icons/ri";
 
 export default function TravelOrderingPL() {
-  const {
-    travelDestination,
-    setTravelDestination,
-    travelLocalizationFrom,
-    setTravelLocalizationFrom,
-    travelLocalizationFromLatLang,
-    setTravelLocalizationFromLatLang,
-    travelDate,
-    setTravelDate,
-    travelTime,
-    setTravelTime,
-    persons,
-    setPersons,
-    travelMassage,
-    setTravelMassage,
-    travelFirstName,
-    setTravelFirstName,
-    travelLastName,
-    setTravelLastName,
-    travelEmail,
-    setTravelEmail,
-    travelPrefixPhone,
-    setTravelPrefixPhone,
-    travelPhone,
-    setTravelPhone,
-    finalTravelPrice,
-  } = useContext(AppContext);
+const {
+  latLangFrom,
+  setlatLangFrom,
+  latLangTo,
+  setlatLangTo,
+  queryFrom,
+  setQueryFrom,
+  queryTo,
+  setQueryTo,
+  lookingForLocalization,
+  setLookingForLocalization,
+  foundedLocalization,
+  setFoundedLocalization,
+  foundedLocalizationLatLang,
+  setFoundedLocalizationLatLang,
+  travelId,
+  travelDestination,
+  setTravelDestination,
+  travelLocalizationFrom,
+  setTravelLocalizationFrom,
+  travelLocalizationFromLatLang,
+  setTravelLocalizationFromLatLang,
+  travelDate,
+  setTravelDate,
+  travelTime,
+  setTravelTime,
+  persons,
+  setPersons,
+  travelMassage,
+  setTravelMassage,
+  travelFirstName,
+  setTravelFirstName,
+  travelLastName,
+  setTravelLastName,
+  travelEmail,
+  setTravelEmail,
+  travelPrefixPhone,
+  setTravelPrefixPhone,
+  travelPhone,
+  setTravelPhone,
+  finalTravelPrice,
+} = useContext(AppContext);
 
   const router = useRouter();
   const direction = router.query.destination;
@@ -68,12 +84,30 @@ export default function TravelOrderingPL() {
   };
 
   useEffect(() => {
-    setTravelLocalizationFrom("empty");
+    // setTravelLocalizationFrom("");
     checkValuesAndRedirect();
   }, []);
 
   return (
     <>
+      {lookingForLocalization === true && (
+        <LocalizationLoader
+          latLangFrom={latLangFrom}
+          setlatLangFrom={setlatLangFrom}
+          latLangTo={latLangTo}
+          setlatLangTo={setlatLangTo}
+          queryFrom={queryFrom}
+          setQueryFrom={setQueryFrom}
+          queryTo={queryTo}
+          setQueryTo={setQueryTo}
+          lookingForLocalization={lookingForLocalization}
+          setLookingForLocalization={setLookingForLocalization}
+          foundedLocalization={foundedLocalization}
+          setFoundedLocalization={setFoundedLocalization}
+          foundedLocalizationLatLang={foundedLocalizationLatLang}
+          setFoundedLocalizationLatLang={setFoundedLocalizationLatLang}
+        />
+      )}
       <Head>
         <meta http-equiv="X-UA-Compatible" content="IE=Edge"></meta>
         <title>Personal Taxi - Zamówienie </title>
@@ -106,7 +140,7 @@ export default function TravelOrderingPL() {
         >
           <form className="w-full flex flex-col" onSubmit={handleSummary}>
             <div className="flex flex-col lg:flex-row">
-              <OrderingtravelspecPL
+              <OrderingTravelParams
                 travelDate={travelDate}
                 setTravelDate={setTravelDate}
                 travelTime={travelTime}
@@ -120,12 +154,12 @@ export default function TravelOrderingPL() {
                 persons={persons}
                 setPersons={setPersons}
               />
-              <OrdertravelpersonPL />
+              <Ordertravelperson />
             </div>
             <div className="w-full flex flex-col justify-center items-center mb-[30px]">
               <div id="info" className="flex justify-center items-center">
-                <RiErrorWarningFill className="lg:w-[40px] w-[25px] h-auto text-red-600" />
-                <p className="italic pl-[10px] leading-4 text-[11px] lg:text-auto w-[80%]">
+                <RiErrorWarningFill className="lg:w-[30px] w-[25px] h-auto text-red-600" />
+                <p className="italic pl-[10px] leading-4 text-[11px] lg:text-[12px] md:w-[100%] w-[80%]">
                   Zanim klikniesz przycisk niżej sprawdź uważnie, czy wszystkie pola są uzupełnione
                   poprawnie.
                 </p>

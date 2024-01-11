@@ -123,18 +123,20 @@ export default function TomTom({ ShowOrHideInfoAboutMissingLocalizations }: Func
     ShowOrHideInfoAboutMissingLocalizations();
   };
 
+  console.log(latLangFrom);
+
   const calculateDistances = useCallback(() => {
     if (latLangFrom !== null && latLangTo !== null) {
-      // console.log(latLangFrom, latLangTo);
+      console.log(latLangFrom, latLangTo);
       let data = fetch(
-        `https://api.tomtom.com/routing/1/calculateRoute/${latLangFrom}:${latLangTo}/json?key=cjmuWSfVTrJfOGj7AcXvMLU8R8i1Q9cF`,
+        `https://api.tomtom.com/routing/1/calculateRoute/${latLangFrom}:${latLangTo}/json?key=adAkl09WHcOiZEvvFkaGPPHrYtJF6Wz1`,
         {
           method: "GET",
         },
       )
         .then((res) => res.json())
         .then((data) => {
-          // console.log(data)
+          console.log(data);
           setCalculateDistance(Math.round(data.routes[0].summary.lengthInMeters / 1000));
         });
     } else {

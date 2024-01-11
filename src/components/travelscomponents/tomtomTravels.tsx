@@ -66,10 +66,9 @@ export default function TomTom({
   } = useContext(AppContext);
 
   const [focused, setFocused] = useState(false);
-  const [queryingTravel, setQueryingTravel] = useState("");
   const [travelListQuery, setTravelListQuery] = useState();
 
-  const debouncedSearch = useDebounce(queryingTravel, 150);
+  const debouncedSearch = useDebounce(travelLocalizationFrom, 150);
 
   const [permissionedMunicipality, setPermissionedMunicipality] = useState([
     "Krakow",
@@ -88,7 +87,7 @@ export default function TomTom({
   const CloseInfoAbourRoute: any = useRef();
 
   const handleChosingParam = (e: any, i: any) => {
-    setQueryingTravel(e.target.getAttribute("data-name"));
+    // setQueryingTravel(e.target.getAttribute("data-name"));
     setFocused(false);
     setTravelLocalizationFrom(e.target.getAttribute("data-name"));
     setTravelLocalizationFromLatLang([
@@ -96,12 +95,13 @@ export default function TomTom({
       e.target.getAttribute("data-value-lon"),
     ]);
   };
-  console.log(travelLocalizationFromLatLang);
 
   const handleSearching = (e: any) => {
     setFocused(true);
-    setQueryingTravel(e.target.value);
+    setTravelLocalizationFrom(e.target.value);
   };
+
+  console.log(travelLocalizationFrom);
 
   const handleShowingList = (e: any) => {
     setFocused(true);
@@ -126,11 +126,11 @@ export default function TomTom({
     let query: any;
     let RestricionOne: any;
     let RestricionTwo: any;
-    query = queryingTravel;
+    query = travelLocalizationFrom;
 
     let SearchLanguage = "pl-PL";
 
-    if (router.asPath.includes("/pl/")) {
+    if (router.asPath.includes("/pl")) {
       SearchLanguage = "pl-PL";
     } else {
       SearchLanguage = "en-US";
@@ -165,7 +165,6 @@ export default function TomTom({
         })
         .then((data) => {
           console.log(data);
-          // console.log(data);
           const newData = data.map((i: any, key: any) => {
             let icon;
             let POI;
@@ -299,9 +298,10 @@ export default function TomTom({
           setTravelListQuery(newData);
         });
     }
-    if (queryingTravel.length > 2) {
+    if (travelLocalizationFrom.length > 2) {
       fetchData();
     }
+    console.log("fired");
   }, [debouncedSearch]);
 
   const handleClosingInfoAboutRoute = () => {
@@ -336,7 +336,7 @@ export default function TomTom({
             onClick={clearFromQuery}
             ref={clearFrom}
             className={
-              queryFrom.length > 1 && queryFrom !== null
+              travelLocalizationFrom.length > 1 && queryFrom !== null
                 ? "bg-white cursor-pointer absolute w-[40px] h-[40px] right-0 z-10 flex items-center duration-200 justify-center text-gray-300 mr-[5px] hover:text-gray-800"
                 : "hidden"
             }
@@ -347,7 +347,7 @@ export default function TomTom({
             ref={inputFrom}
             name="From"
             onBlur={handleHidingList}
-            value={queryingTravel}
+            value={travelLocalizationFrom}
             onFocus={handleShowingList}
             onChange={handleSearching}
             className="text-[15px] w-full min-h-[45px] outline-none rounded-[10px] pl-[5px] pr-[50px] overflow-ellipsis"
@@ -361,8 +361,8 @@ export default function TomTom({
           // onMouseDown={(e) => e.preventDefault()}
           ref={travelList}
           className={
-            queryingTravel.length > 2 && focused === true
-              ? "absolute w-[400px] top-[250px] border-2 border-yellow-500 rounded-[10px] bg-white z-30"
+            travelLocalizationFrom.length > 2 && focused === true
+              ? "absolute w-[400px] top-[225px] border-2 border-yellow-500 rounded-[10px] bg-white z-30"
               : "hidden overflow-hidden"
           }
         >

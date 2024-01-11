@@ -6,17 +6,17 @@ export async function Findme(newLatLangMarker: any) {
     `https://api.tomtom.com/search/2/search/${newLatLangMarker.lat},${newLatLangMarker.lng}.json?key=cjmuWSfVTrJfOGj7AcXvMLU8R8i1Q9cF&countrySet=PL,DE&limit=10&language=en-US`,
   );
   const data = await Localization.json();
-  // console.log(data)
   let finalAdress = "";
 
   //map results
   let Adress: any = "";
   await data?.results.map((i: any) => {
-    // console.log(i);
+    console.log(i);
     if (i.type === "Point Address" && Adress === "") {
       Adress = {
         adress: i.address.freeformAddress,
         lonlat: i.position,
+        commune: i.address.municipality,
       };
     }
   });

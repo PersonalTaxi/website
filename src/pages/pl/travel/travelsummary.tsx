@@ -51,7 +51,13 @@ export default function TravelSummary() {
   const ToMinutes: number = time[0] * 60 + parseInt(time[1]);
   const PickupTime = ToMinutes - howEarly;
   const PickupHour = Math.floor(PickupTime / 60);
-  const PickupMins = PickupTime % 60;
+  const PickupMins = () => {
+    if (PickupTime % 60 < 10) {
+      return `0${PickupTime % 60}`;
+    } else {
+      return PickupTime % 60;
+    }
+  };
 
   const CeckIfAllDataIsCollected = () => {
     if (travelLocalizationFrom === undefined) return false;
@@ -89,8 +95,6 @@ export default function TravelSummary() {
     let amount = finalTravelPrice * 100;
     let currency = currencyTXT;
     let crc = await fetch("/api/getcrc").then((res) => res.json());
-
-    // console.log(await crc.data);
 
     const querySign = async () => {
       const DatCRC = `{"sessionId":"${sessionId}","merchantId":${merchantId},"amount":${amount},"currency":"${currency}","crc":"${crc.data}"}`;
@@ -205,7 +209,7 @@ export default function TravelSummary() {
                   godzinie<b>{travelTime} </b> musimy wyjechać odpowiednio wcześniej dla będziemy po
                   Ciebie <b>{Localization}</b> o godzinie
                   <b>
-                    {PickupHour}:{PickupMins}.
+                    {PickupHour}:{PickupMins()}.
                   </b>
                 </p>
               </p>

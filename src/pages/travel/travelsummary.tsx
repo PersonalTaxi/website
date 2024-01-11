@@ -5,12 +5,14 @@ import Header from "../Header/header";
 import Footer from "../Footer/footer";
 import { AppContext } from "../_app";
 import RegisterInTravelDataBase from "@/components/registerintraveldatabase";
+import Travels from "../../data/travels.json";
 import { IoIosWarning } from "react-icons/io";
 import Link from "next/link";
 import { sha384 } from "crypto-hash";
 
 export default function TravelSummary() {
   const {
+    travelId,
     travelDestination,
     travelLocalizationFrom,
     setTravelLocalizationFrom,
@@ -46,15 +48,32 @@ export default function TravelSummary() {
 
   const router = useRouter();
 
+  const checkHowMuchEarlierWeNeedToLeaveOnLoad = () => {
+    let HowMuchEarlier = 0;
+    Travels.map((i) => {
+      if (i.id === travelId) {
+        HowMuchEarlier = i.earlier_by_mins;
+      }
+    });
+    return HowMuchEarlier;
+  };
+
   const [isDataCompleted, setIsDataCompleted] = useState(false);
   const time = travelTime.split(":");
   const ToMinutes: number = time[0] * 60 + parseInt(time[1]);
-  const PickupTime = ToMinutes - howEarly;
+  const PickupTime = ToMinutes - checkHowMuchEarlierWeNeedToLeaveOnLoad();
   const PickupHour = Math.floor(PickupTime / 60);
-  const PickupMins = PickupTime % 60;
+  const PickupMins = () => {
+    if (PickupTime % 60 < 10) {
+      return `0${PickupTime % 60}`;
+    } else {
+      return PickupTime % 60;
+    }
+  };
 
   const CeckIfAllDataIsCollected = () => {
-    if (travelLocalizationFrom === undefined) return false;
+    if (router.query.destination === "") return false;
+    if (travelLocalizationFrom === undefined || travelLocalizationFrom === "") return false;
     if (travelDate === undefined) return false;
     if (travelTime === undefined) return false;
     if (travelFirstName === undefined) return false;
@@ -68,11 +87,11 @@ export default function TravelSummary() {
     if (isDataCompleted === false) {
       setIsDataCompleted(true);
     }
-
-    console.log(travelPrice);
   };
 
   CeckIfAllDataIsCollected();
+
+  console.log(travelId);
 
   let Localization;
 
@@ -90,8 +109,6 @@ export default function TravelSummary() {
     let amount = finalTravelPrice * 100;
     let currency = currencyTXT;
     let crc = await fetch("/api/getcrc").then((res) => res.json());
-
-    // console.log(await crc.data);
 
     const querySign = async () => {
       const DatCRC = `{"sessionId":"${sessionId}","merchantId":${merchantId},"amount":${amount},"currency":"${currency}","crc":"${crc.data}"}`;
@@ -191,8 +208,8 @@ export default function TravelSummary() {
               <p className="mt-[5px]">
                 <p>1. We will drive you two-ways. </p>
                 <p>
-                  2. While your main tour we will be waiting for you. This tour should take aprox
-                  3:50 h.
+                  2. While your main tour we will be waiting for you.
+                  {/* This tour should take aprox 3:50 h. */}
                 </p>
                 <p>
                   3. You choosed that on this trip will go <b>{persons} </b>people. So we will go by{" "}
@@ -202,9 +219,9 @@ export default function TravelSummary() {
                 <p>
                   5. If you want to be in <b>{router.query.destination}</b> on <b>{travelDate}</b>{" "}
                   at <b>{travelTime} hour</b> we have to leave earlier enought so we will pick you
-                  up from <b>{travelLocalizationFrom}</b> on at{" "}
+                  up from <b>{Localization}</b> on at{" "}
                   <b>
-                    {PickupHour}:{PickupMins} hour.
+                    {PickupHour}:{PickupMins()} hour.
                   </b>
                 </p>
               </p>

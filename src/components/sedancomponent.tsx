@@ -51,7 +51,7 @@ export default function Sedancomponent() {
   return (
     <div className="w-full h-full flex border-blue-900">
       <div className="relative lg:w-5/12 w-1/2 h-full ">
-        <Image className="object-contain" src="/mercedes_new.png" fill alt="sedan"></Image>
+        <Image className="object-contain" src="/sedan_v.png" fill alt="sedan"></Image>
       </div>
       <div id="info-wrapper" className="lg:w-7/12 w-1/2">
         <div className="text-[15px] lg:text-[20px] font-[500] flex items-center">

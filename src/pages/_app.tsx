@@ -73,6 +73,8 @@ type QueryParams = {
   setMunicipalityTo: React.Dispatch<React.SetStateAction<any>>;
 
   //travels
+  travelId: any;
+  setTravelId: React.Dispatch<React.SetStateAction<any>>;
   travelDestination: any;
   setTravelDestination: React.Dispatch<React.SetStateAction<any>>;
   travelLocalizationFrom: any;
@@ -117,6 +119,8 @@ type QueryParams = {
   setFoundedLocalization: React.Dispatch<React.SetStateAction<any>>;
   foundedLocalizationLatLang: any;
   setFoundedLocalizationLatLang: React.Dispatch<React.SetStateAction<any>>;
+  travelMunicipality: any;
+  setTravelMunicipality: React.Dispatch<React.SetStateAction<any>>;
 };
 
 export const AppContext = createContext({} as QueryParams);
@@ -162,7 +166,8 @@ export default function App({ Component, pageProps }: AppProps) {
   const [currencyTXT, setCurrencyTXT] = useState("EUR");
 
   //travels
-  const [travelLocalizationFrom, setTravelLocalizationFrom] = useState("empty");
+  const [travelId, setTravelId] = useState("");
+  const [travelLocalizationFrom, setTravelLocalizationFrom] = useState("");
   const [travelDestination, setTravelDestination] = useState();
   const [travelLocalizationFromLatLang, setTravelLocalizationFromLatLang] = useState();
   const [travelDate, setTravelDate] = useState();
@@ -178,7 +183,8 @@ export default function App({ Component, pageProps }: AppProps) {
   const [travelPhone, setTravelPhone] = useState();
   const [travelPrice, setTravelPrice] = useState(600);
   const [finalTravelPrice, setFinalTravelPrice] = useState();
-  const [howEarly, setHowEarly] = useState();
+  const [howEarly, setHowEarly] = useState(30);
+  const [travelMunicipality, setTravelMunicipality] = useState();
 
   //validation
   const [isFormCompleted, setIsFromCompleted] = useState(false);
@@ -272,6 +278,8 @@ export default function App({ Component, pageProps }: AppProps) {
         travelDestination,
         setTravelDestination,
         //travel
+        travelId,
+        setTravelId,
         travelLocalizationFrom,
         setTravelLocalizationFrom,
         travelLocalizationFromLatLang,
@@ -312,6 +320,8 @@ export default function App({ Component, pageProps }: AppProps) {
         setFoundedLocalization,
         foundedLocalizationLatLang,
         setFoundedLocalizationLatLang,
+        travelMunicipality,
+        setTravelMunicipality,
       }}
     >
       <Component {...pageProps} />
