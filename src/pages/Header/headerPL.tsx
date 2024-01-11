@@ -57,9 +57,9 @@ export default function Header() {
           {/* <Link href="/pl/aboutus" className="cursor-pointer hover:text-yellow-500 duration-200">
             FAQ
           </Link> */}
-          {/* <Link href="/pl/travels" className="cursor-pointer hover:text-yellow-500 duration-200">
+          <Link href="/pl/travels" className="cursor-pointer hover:text-yellow-500 duration-200">
             Wycieczki
-          </Link> */}
+          </Link>
           <Link href="/policy" className="cursor-pointer hover:text-yellow-500 duration-200">
             Polityka Prywatności
           </Link>

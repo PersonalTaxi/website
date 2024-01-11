@@ -21,8 +21,6 @@ type QueryParams = {
   setFoundedLocalization: React.Dispatch<React.SetStateAction<any>>;
   foundedLocalizationLatLang: any;
   setFoundedLocalizationLatLang: React.Dispatch<React.SetStateAction<any>>;
-  travelMunicipalityFrom: any;
-  setTravelMunicipalityFrom: React.Dispatch<React.SetStateAction<any>>;
 };
 
 export default function LocalizationLoader({
