@@ -23,8 +23,6 @@ interface Props {
   setTravelLocalizationFromLatLang: React.Dispatch<React.SetStateAction<any>>;
   persons: any;
   setPersons: React.Dispatch<React.SetStateAction<any>>;
-  travelMunicipality: any;
-  setTravelMunicipality: React.Dispatch<React.SetStateAction<any>>;
 }
 export default function OrderingTravelParams({
   travelDate,
