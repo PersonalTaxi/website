@@ -7,10 +7,12 @@ import { AppContext } from "../../_app";
 import RegisterInTravelDataBase from "@/components/registerintraveldatabase";
 import { IoIosWarning } from "react-icons/io";
 import { sha384 } from "crypto-hash";
+import Travels from "../../../data/travels.json";
 import Link from "next/link";
 
 export default function TravelSummary() {
   const {
+    travelId,
     travelDestination,
     travelLocalizationFrom,
     setTravelLocalizationFrom,
@@ -46,10 +48,20 @@ export default function TravelSummary() {
 
   const router = useRouter();
 
+  const checkHowMuchEarlierWeNeedToLeaveOnLoad = () => {
+    let HowMuchEarlier = 0;
+    Travels.PL.map((i) => {
+      if (i.id === travelId) {
+        HowMuchEarlier = i.earlier_by_mins;
+      }
+    });
+    return HowMuchEarlier;
+  };
+
   const [isDataCompleted, setIsDataCompleted] = useState(false);
   const time = travelTime.split(":");
   const ToMinutes: number = time[0] * 60 + parseInt(time[1]);
-  const PickupTime = ToMinutes - howEarly;
+  const PickupTime = ToMinutes - checkHowMuchEarlierWeNeedToLeaveOnLoad();
   const PickupHour = Math.floor(PickupTime / 60);
   const PickupMins = () => {
     if (PickupTime % 60 < 10) {

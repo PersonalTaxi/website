@@ -50,7 +50,7 @@ export default function TravelSummary() {
 
   const checkHowMuchEarlierWeNeedToLeaveOnLoad = () => {
     let HowMuchEarlier = 0;
-    Travels.map((i) => {
+    Travels.PL.map((i) => {
       if (i.id === travelId) {
         HowMuchEarlier = i.earlier_by_mins;
       }
