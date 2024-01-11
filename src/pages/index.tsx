@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Ubuntu } from "next/font/google";
 import { Montserrat } from "next/font/google";
 import Header from "./Header/header";
