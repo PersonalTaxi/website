@@ -5,7 +5,7 @@ export async function VerifyTransactionAPI(req: NextApiRequest, res: NextApiResp
 
   const query = req.body;
 
-  let verifiedData = await fetch("https://sandbox.przelewy24.pl/api/v1/transaction/verify", {
+  let verifiedData = await fetch("https://secure.przelewy24.pl/api/v1/transaction/verify", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

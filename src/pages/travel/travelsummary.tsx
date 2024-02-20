@@ -170,7 +170,7 @@ export default function TravelSummary() {
     const token = await res.json();
     console.log(token.msg);
 
-    router.replace(`https://sandbox.przelewy24.pl/trnRequest/${token.msg.data.token}`);
+    router.replace(`https://secure.przelewy24.pl/trnRequest/${token.msg.data.token}`);
   };
 
   return (
