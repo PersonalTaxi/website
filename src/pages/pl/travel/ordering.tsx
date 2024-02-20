@@ -10,48 +10,48 @@ import LocalizationLoader from "@/components/localizationLoader";
 import { RiErrorWarningFill } from "react-icons/ri";
 
 export default function TravelOrderingPL() {
-const {
-  latLangFrom,
-  setlatLangFrom,
-  latLangTo,
-  setlatLangTo,
-  queryFrom,
-  setQueryFrom,
-  queryTo,
-  setQueryTo,
-  lookingForLocalization,
-  setLookingForLocalization,
-  foundedLocalization,
-  setFoundedLocalization,
-  foundedLocalizationLatLang,
-  setFoundedLocalizationLatLang,
-  travelId,
-  travelDestination,
-  setTravelDestination,
-  travelLocalizationFrom,
-  setTravelLocalizationFrom,
-  travelLocalizationFromLatLang,
-  setTravelLocalizationFromLatLang,
-  travelDate,
-  setTravelDate,
-  travelTime,
-  setTravelTime,
-  persons,
-  setPersons,
-  travelMassage,
-  setTravelMassage,
-  travelFirstName,
-  setTravelFirstName,
-  travelLastName,
-  setTravelLastName,
-  travelEmail,
-  setTravelEmail,
-  travelPrefixPhone,
-  setTravelPrefixPhone,
-  travelPhone,
-  setTravelPhone,
-  finalTravelPrice,
-} = useContext(AppContext);
+  const {
+    latLangFrom,
+    setlatLangFrom,
+    latLangTo,
+    setlatLangTo,
+    queryFrom,
+    setQueryFrom,
+    queryTo,
+    setQueryTo,
+    lookingForLocalization,
+    setLookingForLocalization,
+    foundedLocalization,
+    setFoundedLocalization,
+    foundedLocalizationLatLang,
+    setFoundedLocalizationLatLang,
+    travelId,
+    travelDestination,
+    setTravelDestination,
+    travelLocalizationFrom,
+    setTravelLocalizationFrom,
+    travelLocalizationFromLatLang,
+    setTravelLocalizationFromLatLang,
+    travelDate,
+    setTravelDate,
+    travelTime,
+    setTravelTime,
+    persons,
+    setPersons,
+    travelMassage,
+    setTravelMassage,
+    travelFirstName,
+    setTravelFirstName,
+    travelLastName,
+    setTravelLastName,
+    travelEmail,
+    setTravelEmail,
+    travelPrefixPhone,
+    setTravelPrefixPhone,
+    travelPhone,
+    setTravelPhone,
+    finalTravelPrice,
+  } = useContext(AppContext);
 
   const router = useRouter();
   const direction = router.query.destination;
@@ -148,7 +148,7 @@ const {
                 travelLocalizationFrom={travelLocalizationFrom}
                 setTravelLocalizationFrom={setTravelLocalizationFrom}
                 travelMassage={travelMassage}
-                setTravelMassage={travelMassage}
+                setTravelMassage={setTravelMassage}
                 travelLocalizationFromLatLang={travelLocalizationFromLatLang}
                 setTravelLocalizationFromLatLang={setTravelLocalizationFromLatLang}
                 persons={persons}

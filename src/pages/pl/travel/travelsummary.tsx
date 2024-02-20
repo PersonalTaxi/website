@@ -205,10 +205,7 @@ export default function TravelSummary() {
               <p className="mt-[10px] font-semibold">Jak to będzie wyglądać</p>
               <p className="mt-[5px]">
                 <p>1. Zawieziemy Cię w obie strony </p>
-                <p>
-                  2. Poczekamy na Ciebie podczas aż do zakończenia Twojej wycieczki, która powinna
-                  potrwać ok 3:50 h.git init git add
-                </p>
+                <p>2. Poczekamy na Ciebie aż do zakończenia Twojej wycieczki.</p>
                 <p>
                   3. Na wycieczkie jedzie łącznie <b>{persons} </b>osoby/osób. Dlatego pojedziecie
                   samochodem typu {travelCar}
@@ -218,8 +215,8 @@ export default function TravelSummary() {
                 </p>
                 <p>
                   5. Jeśli chcesz być w <b>{router.query.destination}</b> dnia <b>{travelDate}</b> o
-                  godzinie<b>{travelTime} </b> musimy wyjechać odpowiednio wcześniej dla będziemy po
-                  Ciebie <b>{Localization}</b> o godzinie
+                  godzinie <b>{travelTime} </b> musimy wyjechać odpowiednio wcześniej dlatego
+                  będziemy po Ciebie pod <b>{Localization}</b> o godzinie &nbsp;
                   <b>
                     {PickupHour}:{PickupMins()}.
                   </b>
@@ -227,7 +224,7 @@ export default function TravelSummary() {
               </p>
             </div>
             <div id="personal-data-travel" className="mt-[20px]">
-              <p className="font-bold mb-[10px]">Sprawdź czy Twje dane są poprawne.</p>
+              <p className="font-bold mb-[10px]">Sprawdź czy Twoje dane są poprawne.</p>
               <div id="name-and-forname">
                 <p>
                   <b>Imię i nazwisko: </b>

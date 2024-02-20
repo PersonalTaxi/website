@@ -39,6 +39,8 @@ export default function OrderingTravelParams({
   setPersons,
 }: Props) {
   const {
+    combi,
+    setCombi,
     travelId,
     setTravelId,
     travelPrice,
@@ -100,6 +102,10 @@ export default function OrderingTravelParams({
   const [detailsAboutTravel, setDetailsAboutTravel] = useState(getDataAboutTravel());
   const infoAboutCars: any = useRef();
   const infoAboutLocalization: any = useRef();
+
+  const changingCarType = () => {
+    setCombi(!combi);
+  };
 
   const handleDontKnowingAddress = () => {
     setLocalizationIsUnknow(!localizationIsUnknow);
@@ -329,6 +335,18 @@ export default function OrderingTravelParams({
                 onMouseEnter={showInfoAboutCars}
                 onMouseLeave={hideInfoAboutCars}
               />
+            </div>
+            <div id="input-continer" className="flex items-center justify-normal mt-[4px]">
+              <input
+                type="checkbox"
+                checked={combi === true ? true : false}
+                value={combi}
+                onChange={changingCarType}
+                className="cursor-pointer w-[20px] h-[20px]"
+              ></input>
+              <p className="leading-[10px] text-[14px] pl-[5px]">
+                {actualLanguage[0].Travel_order_combicar}
+              </p>
             </div>
             <div id="info-fro-driver-container" className="w-full h-auto mt-[30px]">
               <label className="text-[16px] mb-[3px]">

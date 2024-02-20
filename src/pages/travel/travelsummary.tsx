@@ -127,7 +127,7 @@ export default function TravelSummary() {
       email: travelEmail,
       country: "PL",
       language: "pl",
-      urlReturn: `http://personaltaxi.pl/ordering/verify?type=travel`,
+      urlReturn: `https://personaltaxi.pl/ordering/verify?type=travel`,
       urlStatus: "https://ptbackend.vercel.app/",
       sign: sign,
     });
@@ -137,7 +137,7 @@ export default function TravelSummary() {
       Travel_date: travelDate,
       Tour_start_at: travelTime,
       Pick_up_from_localization: travelLocalizationFrom,
-      Pick_up_at_hour: travelTime,
+      Pick_up_at_hour: `${PickupHour}:${PickupMins()}`,
       Tour_only_time: "working...",
       Travel_all_time: "working...",
       Drive_time_one_way: "working...",
@@ -147,11 +147,13 @@ export default function TravelSummary() {
       Phone_prefix: travelPrefixPhone,
       Phone: travelPhone,
       Description: "travel to " + travelDestination,
-      Country: "working...",
-      Price: 123,
+      Launguage: "working...",
+      People: persons,
+      Price: finalTravelPrice,
       Currency: currency,
-      Info_for_driver: "working...",
+      Info_for_driver: travelMassage,
       merchantId: 27407,
+      Car_type: travelCar,
       posId: 27407,
       sessionId: sessionId,
       orderId: "working...",
@@ -202,20 +204,20 @@ export default function TravelSummary() {
             <div>
               <p className="text-[24px] text-center w-full font-bold">Dear {travelFirstName}!</p>
               <p className="mt-[10px]">
-                You are about to go with us to {router.query.destination}!
+                You are about to go to <b>{router.query.destination}</b> with us!
               </p>
               <p className="mt-[10px] font-semibold">How it will looks like?</p>
               <p className="mt-[5px]">
                 <p>1. We will drive you two-ways. </p>
                 <p>
-                  2. While your main tour we will be waiting for you.
+                  2. We will be waiting for your through your main-travel.
                   {/* This tour should take aprox 3:50 h. */}
                 </p>
                 <p>
-                  3. You choosed that on this trip will go <b>{persons} </b>people. So we will go by{" "}
-                  {travelCar}
+                  3. You choosed that on this trip will go summary <b>{persons} </b>people. So we
+                  are going to drive by {travelCar}
                 </p>
-                <p>4. All tickets you have to buy on your own.</p>
+                <p>4. You have to buy all the tickets on your own.</p>
                 <p>
                   5. If you want to be in <b>{router.query.destination}</b> on <b>{travelDate}</b>{" "}
                   at <b>{travelTime} hour</b> we have to leave earlier enought so we will pick you

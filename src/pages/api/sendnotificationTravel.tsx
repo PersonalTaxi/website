@@ -14,12 +14,13 @@ export default async function SendnotificationTravel(
   res: NextApiResponse<Data>,
 ) {
   let transporter = await nodemailer.createTransport({
+    name: "domikorz.nazwa.pl",
     port: 465,
-    host: "mail-serwer141299.lh.pl",
-    // secure: true,
-    tls: {
-      ciphers: "SSLv3",
-    },
+    host: "domikorz.nazwa.pl",
+    secure: true,
+    // tls: {
+    //   ciphers: "SSLv3",
+    // },
     auth: {
       user: process.env.MAIL, // generated ethereal user
       pass: process.env.PASS, // generated ethereal password
@@ -37,14 +38,14 @@ export default async function SendnotificationTravel(
   });
 
   const mailData = {
-    from: "Opłacono kurs",
+    from: "Opłacono wycieczkę",
     to: "orders@personaltaxi.pl",
     subject: `Zamówienie wycieczki do ${req.body.travel_to} - ${req.body.first_name} ${req.body.last_name}`,
     text: "Hello. This email is for your email verification.",
     html:
       `<b>Wpłynęło i zostało opłacone zamówienie na obsługę wycieczki o nr id:${req.body.id}</b>` +
       `<br><br>` +
-      `<b>Dane klienta</b>` +
+      `<b>Dane klienta:</b>` +
       `<br><br>` +
       `Imię i nazwisko / firma: ${req.body.first_name} ${req.body.last_name}` +
       `<br>` +
@@ -52,14 +53,13 @@ export default async function SendnotificationTravel(
       `<br>` +
       `Telefon kontaktowy: ${req.body.phone}` +
       `<br><br>` +
-      `<br><br>` +
-      `<b>Szczegóły zamówienia</b>` +
+      `<b>Szczegóły zamówienia:</b>` +
       `<br><br>` +
       `Wycieczka do: ${req.body.travel_to}` +
       `<br>` +
-      `Odbędzie się dnia: ${req.body.date} i zaczyna (klient musi być na miejscu) o godzinie ${req.body.time}.` +
+      `Odbędzie się dnia: ${req.body.travel_date} i zaczyna (klient musi być na miejscu) o godzinie ${req.body.travel_starts_at}.` +
       `<br>` +
-      `Miejsce odbioru klienta: ${req.body.pick_up_from_localization} (Google Maps: ${req.body.geo})` +
+      `Miejsce odbioru klienta: ${req.body.pick_up_from_localization}` +
       `<br>` +
       `Godzina odbioru klienta: ${req.body.pick_up_at_hour}` +
       `<br>` +
@@ -71,9 +71,7 @@ export default async function SendnotificationTravel(
       `Wiadomość dla kierowcy: ${req.body.info_for_driver}` +
       `<br>` +
       `<br>` +
-      `Opis przedmiotów niestandardowych: ${req.body.info_for_driver}` +
-      `<br>` +
-      `Cena: ${req.body.price} zł` +
+      `Cena: ${req.body.price} ${req.body.currency}` +
       `<br>`,
   };
 

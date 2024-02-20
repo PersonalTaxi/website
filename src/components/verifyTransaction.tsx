@@ -45,7 +45,7 @@ export async function VerifyTransaction(
       await fetch("/api/sendnotificationTaxi", {
         method: "POST",
         headers: {
-          Accept: "application/json, text/plain, */*",
+          // Accept: "application/json, text/plain, */*",
           "Content-Type": "application/json",
         },
         body: dataForMail,
@@ -53,28 +53,32 @@ export async function VerifyTransaction(
     }
     if (TypeOfService === "travel") {
       dataForMail = await JSON.stringify({
-        travel_to: "lala",
-        travel_starts_at: "lala",
-        travel_date: "lala",
-        pick_up_from_localization: "lala",
-        pick_up_at_hour: "lala",
-        tour_only_time: "lala",
-        travel_all_time: "lala",
-        drive_time_one_way: "lala",
-        first_name: "String",
-        last_name: "String",
-        email: "String",
-        phone_prefix: "String",
-        phone: "String",
-        info_for_driver: "String",
-        language: Language,
-        currency: currencyTXT,
+        id: ObiectForMail.TravelData[0].id || "",
+        travel_to: ObiectForMail.TravelData[0].Travel_to || "",
+        travel_starts_at: ObiectForMail.TravelData[0].Pick_up_at_hour || "",
+        travel_date: ObiectForMail.TravelData[0].Travel_date,
+        pick_up_from_localization: ObiectForMail.TravelData[0].Pick_up_from_localization || "",
+        pick_up_at_hour: ObiectForMail.TravelData[0].Pick_up_at_hour || "",
+        tour_only_time: ObiectForMail.TravelData[0].Tour_only_time || "",
+        travel_all_time: ObiectForMail.TravelData[0].Travel_all_time || "",
+        drive_time_one_way: ObiectForMail.TravelData[0].Drive_time_one_way || "",
+        first_name: ObiectForMail.TravelData[0].First_name || "",
+        last_name: ObiectForMail.TravelData[0].Last_name || "",
+        email: ObiectForMail.TravelData[0].Email || "",
+        phone_prefix: ObiectForMail.TravelData[0].Phone_prefix || "",
+        phone: ObiectForMail.TravelData[0].Phone || "",
+        info_for_driver: ObiectForMail.TravelData[0].Info_for_driver || "",
+        people: ObiectForMail.TravelData[0].People || "",
+        price: ObiectForMail.TravelData[0].Price || "",
+        car: ObiectForMail.TravelData[0].Car_type || "",
+        language: Language || "",
+        currency: currencyTXT || "",
       });
 
       await fetch("/api/sendnotificationTravel", {
         method: "POST",
         headers: {
-          Accept: "application/json, text/plain, */*",
+          // Accept: "application/json, text/plain, */*",
           "Content-Type": "application/json",
         },
         body: dataForMail,
