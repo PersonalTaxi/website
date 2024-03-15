@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
-import HeaderPL from "../../Header/headerPL";
-import Footer from "../../Footer/footer";
+import HeaderPL from "../../../pages/Header/headerPL";
+import Footer from "../../../components/Footer/footer";
 import { AppContext } from "../../_app";
 import RegisterInTravelDataBase from "@/components/registerintraveldatabase";
 import { IoIosWarning } from "react-icons/io";

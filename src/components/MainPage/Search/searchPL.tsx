@@ -117,7 +117,7 @@ export default function SearchPL() {
     if (latLangFrom !== null && latLangTo !== null) {
       router.push(
         {
-          pathname: "/pl/ordering/summary",
+          pathname: "/pl/ordering/form",
           query: {
             passengers: people,
             car: type,

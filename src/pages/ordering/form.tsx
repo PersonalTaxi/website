@@ -9,14 +9,14 @@ import React, {
 } from "react";
 import { Montserrat } from "next/font/google";
 import { Ubuntu } from "next/font/google";
-import Chooseparams from "./chooseparams";
-import Header from "../Header/header";
-import Search from "../MainPage/Search/search";
+import Chooseparams from "../../components/chooseparams";
+import Header from "../../components/Header/header";
+import Search from "../../components/MainPage/Search/search";
 import Link from "next/link";
 import Head from "next/head";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { BiSolidMap } from "react-icons/bi";
-import Footer from "../Footer/footer";
+import Footer from "../../components/Footer/footer";
 import { AppContext } from "../_app";
 import LocalizationLoader from "@/components/localizationLoader";
 
@@ -88,14 +88,13 @@ export default function Summary() {
         <link rel="stylesheet" type="text/css" href="../assets/ui-library/icons-css/poi.css"></link>
       </Head>
       <Header />
-
       <div
         id="search-wrapper-ordering"
-        className='pt-[100px] relative h-[1700px] lg:h-auto bg-[url("/Main_theme.png")] bg-top bg-cover bg-no-repeat bg-fixed'
+        className='pt-[100px] relative h-[1700px] lg:h-auto bg-[url("/Main_theme.png")] bg-top bg-cover bg-no-repeat bg-fixed pb-[50px]'
       >
         <div className="absolute w-screen h-full bg-gray-900/[0.7] top-0"></div>
         <div
-          className={`w-screen  h-[350px] lg:h-[1200px] rounded-t-[40px] z-20 bottom-0 border-red-900`}
+          className={`w-screen  h-[350px] lg:h-auto rounded-t-[40px] z-20 bottom-0 border-red-900`}
         >
           <Search />
           <Chooseparams />

@@ -1,18 +1,19 @@
 import React, { useContext, useEffect, useReducer, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import Orderspacifications from "../MainPage/Search/orderpersonaldetails";
+import Orderspacifications from "./MainPage/Search/orderpersonaldetails";
 import { Ubuntu } from "next/font/google";
 import Sedan from "@/components/sedancomponent";
 import Van from "@/components/vancomponent";
 import { BsFillPersonFill, BsFillBagFill } from "react-icons/bs";
-import { AppContext } from "../_app";
+import { AppContext } from "../pages/_app";
 
 //icons
 import { MdFlightLand } from "react-icons/md";
 import { AiFillInfoCircle } from "react-icons/ai";
 import { AiOutlineClose } from "react-icons/ai";
 import Carcomponent from "@/components/carcomponent";
+import Premiumsedancomponent from "./premiumsedancomponent";
 
 const rubikFonts = Ubuntu({
   subsets: ["latin"],
@@ -109,7 +110,7 @@ export default function Chooseparams() {
     passenger = 1;
   }
 
-  let PersonsLeft = passenger - (cars.sedan * 4 + cars.van * 8);
+  // let PersonsLeft = passenger - (cars.sedan * 4 + cars.van * 8);
 
   const handleShowInfoAboutFlight = () => {
     handleFlightinfo.current.style.display = "block";
@@ -119,10 +120,14 @@ export default function Chooseparams() {
   };
 
   const handleOrdering = (e: any) => {
+    if (router.query.cartype === router.query.combi) {
+      setCombi(true);
+    }
+
     setWhatIsOrdering("Taxi transfer");
     e.preventDefault();
     // setCars(state);
-    setPrice(FinalPrice);
+    // setPrice(FinalPrice);
     router.replace({
       pathname: "/ordering/payment",
       query: { type: "taxi" },
@@ -152,8 +157,6 @@ export default function Chooseparams() {
     else setInfoForDriver(e.target.value);
   };
 
-  console.log(infoForDriver);
-
   useEffect(() => {
     let settingCars;
     if (parseInt(passengersFromQuery) < 5) {
@@ -173,22 +176,35 @@ export default function Chooseparams() {
     distanceAboveMin = calculateDistance - 20;
   }
 
+  const priceSedanPL = 129;
+  const priceSedanEUR = 30;
+  const pricePremiumPL = 169;
+  const pricePremiumEUR = 40;
+  const priceVanPL = 149;
+  const priceVanEUR = 35;
+
   let FinalPrice = 0;
 
   if (currencyTXT === "EUR") {
-    (FinalPrice =
-      (cars.van * 149 +
-        cars.van * distanceAboveMin * 7 +
-        (cars.sedan * 129 + cars.sedan * distanceAboveMin * 7)) /
-      4),
-      4;
-    setPrice(FinalPrice);
+    if (router.query.cartype === "ecosedan") {
+      FinalPrice = Math.round(priceSedanEUR + distanceAboveMin * 1.62);
+    }
+    if (router.query.cartype === "premium") {
+      FinalPrice = Math.round(pricePremiumEUR + distanceAboveMin * 1.62);
+    }
+    if (router.query.cartype === "van") {
+      FinalPrice = Math.round(priceVanEUR + distanceAboveMin * 1.62);
+    }
   } else {
-    FinalPrice =
-      cars.van * 149 +
-      cars.van * distanceAboveMin * 7 +
-      (cars.sedan * 129 + cars.sedan * distanceAboveMin * 7);
-    setPrice(FinalPrice);
+    if (router.query.cartype === "ecosedan") {
+      FinalPrice = priceSedanPL + distanceAboveMin * 7;
+    }
+    if (router.query.cartype === "premium") {
+      FinalPrice = pricePremiumPL + distanceAboveMin * 7;
+    }
+    if (router.query.cartype === "van") {
+      FinalPrice = priceVanPL + distanceAboveMin * 7;
+    }
   }
 
   // END OF CALCULATING
@@ -201,12 +217,12 @@ export default function Chooseparams() {
   };
 
   return (
-    <div className="relative bg-white mt-[90px] w-[95vw] lg:w-[1080px] mx-auto rounded-[10px] h-[1150px] lg:h-[900px] shadow-xl">
+    <div className="relative bg-white mt-[90px] w-[95vw] lg:w-[1080px] mx-auto rounded-[10px] h-auto lg:h-auto shadow-xl">
       <div className="w-[80%] h-[60px] flex items-end flex-col mx-auto">
         <p className="text-[12px]"> Step 2 of 3</p>
         <div className="bg-gradient-to-r from-yellow-500 from-0% via-white via-70% to-white to-100% w-full border border-yellow-500/[0.5] h-[20px] rounded-[5px] bg-"></div>
       </div>
-      {latLangFrom !== null &&
+      {/* {latLangFrom !== null &&
         latLangTo !== null &&
         PersonsLeft > 0 &&
         parseInt(passengersFromQuery) === people && (
@@ -214,43 +230,25 @@ export default function Chooseparams() {
             <AiFillInfoCircle />
             <p className="pl-[4px]">Find a seat(s) for {PersonsLeft} person(s) yet.</p>
           </div>
-        )}
+        )} */}
       <div
         id="choose-cars-wrapper"
         className=" rounded-[10px] flex w-[90vw] lg:w-[80%] mx-auto justify-between duration-200 mb-[12px] bg-white"
       >
         {/* Bloking to configure offer before chosing correct params */}
         {isFormCompleted !== "true" && (
-          <div className="bg-white/[0.85] absolute -left-[10px] lg:left-0 w-[95vw] lg:w-[1080px] h-[1000px] lg:h-[92%] z-20"></div>
+          <div className="bg-white/[0.85] absolute -left-[10px] lg:left-0 w-[95vw] lg:w-[1080px] h-[1000px] lg:h-[1180px] z-20"></div>
         )}
 
-        <div className="rounded-[10px] h-auto lg:h-auto w-full bg-white flex lg:justify-center ">
-          {router.query.car === "van" && <Van />}
-          {router.query.car === "sedan" && <Sedan />}
-          {router.query.car === "mixed" && <Carcomponent />}
+        <div className="flex flex-col rounded-[10px] h-auto lg:h-auto w-full bg-white lg:justify-center ">
+          <Sedan />
+          <div className="bg-gray-400 h-[1px] my-[20px]"></div>
+          <Premiumsedancomponent />
+          <div className="bg-gray-400 h-[1px] my-[20px]"></div>
+          <Van />
+          <div className="bg-gray-400 h-[1px] my-[20px]"></div>
         </div>
         {/* <div className="w-[1px] h-[100px] bg-gray-200 my-[10px]"></div> */}
-      </div>
-      <div
-        className={
-          cars.sedan > 0
-            ? "w-screen duration-200 h-[20px] mb-[10px]"
-            : "w-screen h-[0px] overflow-hidden duration-200"
-        }
-      >
-        {/* COMBI CAR CHECKBOX */}
-        <div className="w-[92vw] lg:w-[80%] h-[10px] mx-auto flex items-center">
-          <input
-            id="combi-type"
-            type="checkbox"
-            checked={combi}
-            onChange={handleCombiCheckBox}
-            className="w-[17px] h-[17px] accent-yellow-500 bg-white cursor-pointer"
-          ></input>
-          <label id="combi-type" className="ml-[4px] font-semibold text-[14px]">
-            I need a combi cab
-          </label>
-        </div>
       </div>
       {router.query.car === "mixed" && (
         <div className="w-[90vw] lg:w-[80%] mx-auto py-[20px] border-t border-b">
@@ -267,11 +265,11 @@ export default function Chooseparams() {
           </div>
         </div>
       )}
-      <form onSubmit={handleOrdering} className="w-[90vw] lg:w-[75%] h-[300px] mx-auto my-[10px]">
-        <p className="font-[700] text-[16px]">Order details:</p>
+      <form onSubmit={handleOrdering} className="w-[90vw] lg:w-[75%] h-auto mx-auto">
+        <p className="font-[700] text-[20px]">Order details:</p>
         <div id="form-wrapper" className="flex flex-col lg:flex-row">
           <div id="flight-messege-container" className="lg:w-1/2 lg:mt-[5px]">
-            <div className=" border-blue-900 w-full flex justify-between items-center mt-[20px] lg:px-[25px]">
+            <div className=" border-blue-900 w-full flex justify-between items-center mt-[20px] lg:pr-[25px]">
               <div className=" border-blue-900 w-full h-[40px] flex items-center">
                 <MdFlightLand className="h-[40px] w-[40px] px-[4px] text-yellow-500" />
                 <input
@@ -332,7 +330,7 @@ export default function Chooseparams() {
           </div>
         </div>
         <div className="">
-          {latLangFrom !== null &&
+          {/* {latLangFrom !== null &&
             latLangTo !== null &&
             PersonsLeft > 0 &&
             parseInt(passengersFromQuery) === people && (
@@ -343,11 +341,22 @@ export default function Chooseparams() {
                   // onMouseLeave={handleHidingingInfoAboutCorrectFromsBeforeOrdering}
                 ></div>
               </Link>
-            )}
+            )} */}
           <div className="flex flex-col w-full justify-center items-center">
-            <button className="float-right flex h-[50px] px-[10px] py-[5px] bg-yellow-500 text-white items-center justify-center rounded-[10px] border duration-200  border-yellow-500 hover:bg-white hover:text-yellow-500">
+            <button
+              disabled={
+                (router.query.cartype === "ecosedan" ||
+                  router.query.cartype === "premium" ||
+                  router.query.cartype === "van") &&
+                queryFrom !== "" &&
+                queryTo !== ""
+                  ? false
+                  : true
+              }
+              className="float-right flex h-[50px] px-[10px] py-[5px] bg-yellow-500 text-white items-center justify-center rounded-[10px] border duration-200  border-yellow-500 hover:bg-white hover:text-yellow-500"
+            >
               <p>
-                Start ordering for {price} {currencyTXT}
+                Start ordering for {FinalPrice} {currencyTXT}
               </p>
             </button>
             <div

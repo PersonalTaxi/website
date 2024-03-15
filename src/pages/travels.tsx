@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Head from "next/head";
 import Header from "./Header/header";
 import { useRouter } from "next/router";
-import Footer from "./Footer/footer";
+import Footer from "../components/Footer/footer";
 import Travelcomponent from "@/components/travelscomponents/travelcomponent";
 import TravelsList from "../data/travels.json";
 import Languages from "../data/languages.json";

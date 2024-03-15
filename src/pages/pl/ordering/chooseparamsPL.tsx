@@ -1,13 +1,7 @@
-import React, {
-  useContext,
-  useEffect,
-  useReducer,
-  useRef,
-  useState,
-} from "react";
+import React, { useContext, useEffect, useReducer, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import OrderspacificationsPL from "../../MainPage/Search/orderspecificationsPL";
+import OrderspacificationsPL from "../../../components/MainPage/Search/orderspecificationsPL";
 import { Ubuntu } from "next/font/google";
 import Sedan from "@/components/sedancomponent";
 import Van from "@/components/vancomponent";
@@ -197,9 +191,7 @@ export default function Chooseparams() {
         parseInt(passengersFromQuery) === people && (
           <div className="absolute bg-red-600 text-white w-[92vw] lg:w-[1080px] -top-[60px] left-0 right-0 mx-auto px-[4px] rounded-[3px] flex justify-center items-center h-[40px]">
             <AiFillInfoCircle />
-            <p className="pl-[4px]">
-              Find a seat(s) for {PersonsLeft} person(s) yet.
-            </p>
+            <p className="pl-[4px]">Find a seat(s) for {PersonsLeft} person(s) yet.</p>
           </div>
         )}
       <div
@@ -241,9 +233,7 @@ export default function Chooseparams() {
       </div>
       {router.query.car === "mixed" && (
         <div className="w-[90vw] lg:w-[80%] mx-auto py-[20px] border-t border-b">
-          <p className={`${rubikFonts.className} text-[20px]`}>
-            Choosed car(s) summary have:
-          </p>
+          <p className={`${rubikFonts.className} text-[20px]`}>Choosed car(s) summary have:</p>
           <div>
             <div id="seats-summary-wrapper" className=" flex items-center">
               <BsFillPersonFill className="text-yellow-500 w-[30px] h-[20px]" />
@@ -256,10 +246,7 @@ export default function Chooseparams() {
           </div>
         </div>
       )}
-      <form
-        onSubmit={handleOrdering}
-        className="w-[90vw] lg:w-[75%] h-[300px] mx-auto my-[10px]"
-      >
+      <form onSubmit={handleOrdering} className="w-[90vw] lg:w-[75%] h-[300px] mx-auto my-[10px]">
         <p className="font-[700] text-[16px]">Order details:</p>
         <div id="form-wrapper" className="flex flex-col lg:flex-row">
           <div id="flight-messege-container" className="lg:w-1/2 lg:mt-[5px]">
@@ -279,9 +266,9 @@ export default function Chooseparams() {
               >
                 <AiOutlineClose className="w-[20px] h-[20px] float-right" />
                 <p>
-                  By writing down number of your flight we will be able to
-                  monitoring departures time and get your from the airport at
-                  right time. After departure our waiting time is up to 60 mins.
+                  By writing down number of your flight we will be able to monitoring departures
+                  time and get your from the airport at right time. After departure our waiting time
+                  is up to 60 mins.
                 </p>
               </div>
               <div
@@ -293,9 +280,7 @@ export default function Chooseparams() {
               </div>
             </div>
             <div className=" border-blue-900 w-full h-[120px] flex items-start flex-col mt-[20px] px-[7px] lg:pr-[25px]">
-              <div className="text-[16px]">
-                FIll if you have any non-standard bags:
-              </div>
+              <div className="text-[16px]">FIll if you have any non-standard bags:</div>
               <textarea
                 value={unusualItems}
                 onChange={handleAddingUnusualItems}

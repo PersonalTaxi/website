@@ -1,8 +1,8 @@
 import { Ubuntu } from "next/font/google";
 import { Montserrat } from "next/font/google";
-import Header from "./Header/header";
+import Header from "../components/Header/header";
 import Head from "next/head";
-import Main from "./MainPage/main";
+import Main from "../components/MainPage/main";
 import LocalizationLoader from "@/components/localizationLoader";
 import { AppContext } from "./_app";
 import { useContext } from "react";

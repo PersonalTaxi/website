@@ -1,7 +1,7 @@
 import React, { useEffect, Component, useContext } from "react";
-import Carcomponents from "./chooseparams";
-import Header from "../Header/header";
-import Search from "../MainPage/Search/search";
+import Carcomponents from "../../components/chooseparams";
+import Header from "../../pages/Header/header";
+import Search from "../../components/MainPage/Search/search";
 import Head from "next/head";
 
 export default function Order() {

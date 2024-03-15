@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { RxHamburgerMenu } from "react-icons/rx";
 import Mobilemenu from "@/components/mobilemenu";
-import { AppContext } from "../_app";
+import { AppContext } from "@/pages/_app";
 
 export default function Header() {
   const [mobileMenuOpened, setMobileMenuOpened] = useState(false);

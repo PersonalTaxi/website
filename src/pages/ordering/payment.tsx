@@ -2,8 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Head from "next/head";
-import Footer from "../Footer/footer";
-import Header from "../Header/header";
+import Footer from "../../components/Footer/footer";
+import Header from "../../components/Header/header";
 import RegisterInTaxiDataBase from "@/components/registerintaxidatabase";
 import { sha384 } from "crypto-hash";
 import { AppContext } from "../_app";
@@ -219,6 +219,10 @@ export default function Payment() {
                   <div className="flex">
                     <p className="w-[140px] font-semibold pr-[5px]">Car type: </p>
                     <p className="">{carType}</p>
+                  </div>
+                  <div className="flex">
+                    <p className="w-[140px] font-semibold pr-[5px]">Combi: </p>
+                    <p className="">{combi == true ? "Yes" : "No"}</p>
                   </div>
                 </div>
               </div>

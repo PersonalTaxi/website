@@ -1,8 +1,8 @@
 import React from "react";
 import Head from "next/head";
-import Header from "../Header/header";
+import Header from "../../pages/Header/header";
 import Image from "next/image";
-import Footer from "../Footer/footer";
+import Footer from "../../components/Footer/footer";
 import AboutuscontentPL from "@/components/aboutuscontentPL";
 
 export default function AboutusPL() {
@@ -15,26 +15,14 @@ export default function AboutusPL() {
           name="viewport"
           content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
         ></meta>
-        <link
-          rel="stylesheet"
-          type="text/css"
-          href="/cdn.web-sdk-maps/maps.css"
-        ></link>
-        <link
-          rel="stylesheet"
-          type="text/css"
-          href="../assets/ui-library/index.css"
-        ></link>
+        <link rel="stylesheet" type="text/css" href="/cdn.web-sdk-maps/maps.css"></link>
+        <link rel="stylesheet" type="text/css" href="../assets/ui-library/index.css"></link>
         <link
           rel="stylesheet"
           type="text/css"
           href="/cdn.web-sdk-plugin-searchbox/SearchBox.css"
         ></link>
-        <link
-          rel="stylesheet"
-          type="text/css"
-          href="../assets/ui-library/icons-css/poi.css"
-        ></link>
+        <link rel="stylesheet" type="text/css" href="../assets/ui-library/icons-css/poi.css"></link>
       </Head>
       <Header />
       <div className='w-screen h-auto bg-[url("/Main_theme.png")] bg-top bg-cover bg-no-repeat flex items-center justify-center text-white relative'>
@@ -71,10 +59,9 @@ export default function AboutusPL() {
                 <p className="text-[40px]">Nasza misja</p>
                 <div className="w-[80px] h-[4px] bg-yellow-500 my-[10px]"></div>
                 <p className="text-[24px] leading-7 font-[300]">
-                  <b className="italic">&quot;Będziemy zawsze na czas&quot;.</b>{" "}
-                  Naszą misją jest zreazliować dla ciebie usługę transferu z
-                  najwyższą jakością. Po ponad tysiący zrealizowanych kursów
-                  doskonale wiemy czego potrzebują nasi klienci. Odpowiemy też
+                  <b className="italic">&quot;Będziemy zawsze na czas&quot;.</b> Naszą misją jest
+                  zreazliować dla ciebie usługę transferu z najwyższą jakością. Po ponad tysiący
+                  zrealizowanych kursów doskonale wiemy czego potrzebują nasi klienci. Odpowiemy też
                   na Twoje potrzeby. <br></br>
                   <br></br>Możesz na nas liczyć.
                 </p>
@@ -90,10 +77,9 @@ export default function AboutusPL() {
                 <p className="text-[40px]">Nasz zespoł</p>
                 <div className="w-[80px] h-[4px] bg-yellow-500 my-[10px]"></div>
                 <p className="text-[24px] leading-7 font-[300] lg:text-right">
-                  <b className="italic">&quot;Jesteśmy zawsze gotowi&quot;.</b>{" "}
-                  W naszym zespole mamy ponad 100 doświadczonych kierowców.Jeśli
-                  zdecydujesz się na współpracę z nami będziemy zawsze gotowi
-                  aby zrealizować Twoje zamówienie. <br></br>
+                  <b className="italic">&quot;Jesteśmy zawsze gotowi&quot;.</b> W naszym zespole
+                  mamy ponad 100 doświadczonych kierowców.Jeśli zdecydujesz się na współpracę z nami
+                  będziemy zawsze gotowi aby zrealizować Twoje zamówienie. <br></br>
                   <br></br>Nie ma co tego żadnych wątpliwości.
                 </p>
               </div>
@@ -117,9 +103,7 @@ export default function AboutusPL() {
         </div>
         {/* WHAT WE DO */}
         <div className="lg:w-[1100px] lg:h-[500px] h-[850px] mx-auto lg:py-[50px]">
-          <p className="text-[40px] text-center leading-9">
-            Oto co dla Ciebie zrobimy
-          </p>
+          <p className="text-[40px] text-center leading-9">Oto co dla Ciebie zrobimy</p>
           <div className="w-full h-full flex items-center">
             <AboutuscontentPL />
           </div>

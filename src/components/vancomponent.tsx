@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import Image from "next/image";
 import { BsFillPersonFill, BsFillBagFill, BsClockHistory } from "react-icons/bs";
 import { AiFillInfoCircle, AiOutlineClose } from "react-icons/ai";
@@ -7,13 +7,23 @@ import { BiTimer } from "react-icons/bi";
 import { FaSuitcaseRolling } from "react-icons/fa";
 import { RiSuitcase3Fill, RiPriceTag3Fill } from "react-icons/ri";
 import { AppContext } from "@/pages/_app";
+import { useRouter } from "next/router";
 
 export default function Sedancomponent() {
-  const { calculateDistance, cars, currencyTXT, setCurrencyTXT, price, setPrice } =
+  const { calculateDistance, cars, currencyTXT, setCurrencyTXT, price, setPrice, setCars } =
     useContext(AppContext);
+
+  const router = useRouter();
 
   const servies: any = useRef();
   const aboutCar: any = useRef();
+
+  const handleChosingCar = () => {
+    setCars("van");
+    setPrice(FinalPrice);
+    router.query.cartype = "van";
+    router.push(router, undefined, { scroll: false });
+  };
 
   const handleShowInfoAboutCar = () => {
     servies.current.style.display = "block";
@@ -29,14 +39,17 @@ export default function Sedancomponent() {
     distanceAboveMin = calculateDistance - 20;
   }
 
+  const pricePLN = 149;
+  const priceEUR = 35;
+
   let CountPrice = calculateDistance;
-  let FinalPrice;
+  let FinalPrice: any;
   if (currencyTXT === "EUR") {
-    (FinalPrice = (cars.van * 149 + cars.van * distanceAboveMin * 7) / 4), 4;
-    setPrice(FinalPrice);
+    FinalPrice = Math.round(priceEUR + distanceAboveMin * 1.62);
+    // setFinalPrice(FinalPrice);
   } else {
-    FinalPrice = cars.van * 149 + cars.van * distanceAboveMin * 7;
-    setPrice(FinalPrice);
+    FinalPrice = pricePLN + distanceAboveMin * 7;
+    // setFinalPrice(FinalPrice);
   }
 
   const handleChangeToPLN = () => {
@@ -113,7 +126,7 @@ export default function Sedancomponent() {
               className="bg-yellow-500 rounded-r-[5px] text-center text-white -ml-[15px] w-full"
             >
               <p className="text-[12px] lg:text-[16px] block">
-                final price {price} {currencyTXT}
+                final price {FinalPrice} {currencyTXT}
               </p>
               {currencyTXT === "EUR" && (
                 <p
@@ -131,6 +144,18 @@ export default function Sedancomponent() {
                   Switch to EUR
                 </p>
               )}
+              <div className="bg-white w-full flex justify-end">
+                <div
+                  // ref={eco}
+                  onClick={handleChosingCar}
+                  className={`cursor-pointer bg-blue-400 w-[200px] text-white rounded-[10px] text-center py-[3px] mt-[5px] ${
+                    router.query.cartype === "van" && "bg-yellow-500"
+                  }`}
+                >
+                  {router.query.cartype !== "van" && <p>Change to this car</p>}
+                  {router.query.cartype === "van" && <p>Choosed car</p>}
+                </div>
+              </div>
             </div>
           </div>
         </div>

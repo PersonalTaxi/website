@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Head from "next/head";
-import Header from "../Header/headerPL";
+import Header from "../../pages/Header/headerPL";
 import { useRouter } from "next/router";
-import Footer from "../Footer/footerPL";
+import Footer from "../../components/Footer/footerPL";
 import Travelcomponent from "@/components/travelscomponents/travelcomponent";
 import TravelsList from "../../data/travels.json";
 import Languages from "../../data/languages.json";

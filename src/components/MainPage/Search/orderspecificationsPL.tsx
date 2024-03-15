@@ -1,5 +1,5 @@
 import React, { useContext, useState, useRef } from "react";
-import { AppContext } from "../../_app";
+import { AppContext } from "../../../pages/_app";
 import Link from "next/link";
 import countries from "../../../data/countries.json";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
@@ -31,11 +31,7 @@ export default function Orderspacifications() {
     setEmail,
   } = useContext(AppContext);
 
-  const [data, setData] = useState([
-    { country: "Poland" },
-    { code: "+48" },
-    { emoji: "🇵🇱" },
-  ]);
+  const [data, setData] = useState([{ country: "Poland" }, { code: "+48" }, { emoji: "🇵🇱" }]);
 
   const handleAddingNewData = (i: any) => {
     setData([{ country: i.name }, { code: i.dial_code }, { emoji: i.emoji }]);
@@ -64,9 +60,7 @@ export default function Orderspacifications() {
     // As form element
     <div className="bg-white w-full lg:w-1/2 mx-auto mt-[20px] border-t pt-[15px]">
       <div className="w-full mx-auto">
-        <p className="lg:hidden mb-[25px] text-[20px] font-bold">
-          Kilka informacji o Tobie:
-        </p>
+        <p className="lg:hidden mb-[25px] text-[20px] font-bold">Kilka informacji o Tobie:</p>
         <div className="flex mb-[25px]">
           <div className="w-[70px] flex items-center">
             <input
@@ -125,11 +119,7 @@ export default function Orderspacifications() {
           ></input>
         </div>
         <div className="w-full flex items-start p-[5px]">
-          <input
-            type="checkbox"
-            required
-            className="w-[30px] h-[30px] mr-[5px]"
-          ></input>
+          <input type="checkbox" required className="w-[30px] h-[30px] mr-[5px]"></input>
           <p className="leading-4">
             Akceptuję
             <Link href="/policy" className="underline">

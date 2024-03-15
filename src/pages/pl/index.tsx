@@ -1,9 +1,9 @@
 import Image from "next/image";
 import { Ubuntu } from "next/font/google";
 import { Montserrat } from "next/font/google";
-import HeaderPL from ".././Header/headerPL";
+import HeaderPL from "@/components/Header/headerPL";
 import Head from "next/head";
-import MainPL from ".././MainPage/mainPL";
+import MainPL from "../../components/MainPage/mainPL";
 import LocalizationLoader from "@/components/localizationLoader";
 import { AppContext } from "../_app";
 import { useContext } from "react";

@@ -1,8 +1,8 @@
 import React from "react";
 import Head from "next/head";
-import HeaderPL from ".././Header/headerPL";
-import Faqelement from ".././Faq/faqelement";
-import Footer from ".././Footer/footer";
+import HeaderPL from "../../pages/Header/headerPL";
+import Faqelement from "../../components/Faq/faqelement";
+import Footer from "../../components/Footer/footer";
 
 export default function FaqPL() {
   return (

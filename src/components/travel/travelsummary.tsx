@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
-import Header from "../Header/header";
+import Header from "../../pages/Header/header";
 import Footer from "../Footer/footer";
-import { AppContext } from "../_app";
+import { AppContext } from "../../pages/_app";
 import RegisterInTravelDataBase from "@/components/registerintraveldatabase";
 import Travels from "../../data/travels.json";
 import { IoIosWarning } from "react-icons/io";

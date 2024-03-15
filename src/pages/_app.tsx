@@ -152,7 +152,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const [people, setPeople] = useState(2);
   const [latLangFrom, setlatLangFrom] = useState(null);
   const [latLangTo, setlatLangTo] = useState(null);
-  const [cars, setCars] = useState({ sedan: 0, van: 0 });
+  const [cars, setCars] = useState();
   const [calculateDistance, setCalculateDistance] = useState(null);
   const [flightNumber, setFlightNumber] = useState(null);
   const [infoForDriver, setInfoForDriver] = useState();

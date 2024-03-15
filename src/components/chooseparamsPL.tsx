@@ -1,54 +1,54 @@
 import React, { useContext, useEffect, useReducer, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import OrderspacificationsPL from "../MainPage/Search/orderspecificationsPL";
+import OrderspacificationsPL from "./MainPage/Search/orderspecificationsPL";
 import { Ubuntu } from "next/font/google";
 import SedanPL from "@/components/sedancomponentPL";
 import VanPL from "@/components/vancomponentPL";
 import { BsFillPersonFill, BsFillBagFill } from "react-icons/bs";
-import { AppContext } from "../_app";
+import { AppContext } from "../pages/_app";
 
 //icons
 import { MdFlightLand } from "react-icons/md";
 import { AiFillInfoCircle } from "react-icons/ai";
 import { AiOutlineClose } from "react-icons/ai";
-import CarcomponentPL from "@/components/carcomponentPL";
+import PremiumsedancomponentPL from "./premiumsedancomponentPL";
 
 const rubikFonts = Ubuntu({
   subsets: ["latin"],
   weight: ["300", "500", "700"],
 });
 
-function reducer(state: any, action: any) {
-  switch (action.type) {
-    case "increment-sedan":
-      // if(state.sedan >= 0)
-      return { sedan: state.sedan + 1, van: state.van };
+// function reducer(state: any, action: any) {
+//   switch (action.type) {
+//     case "increment-sedan":
+//       // if(state.sedan >= 0)
+//       return { sedan: state.sedan + 1, van: state.van };
 
-    case "decrement-sedan":
-      if (state.sedan > 0) {
-        3;
-        return { sedan: state.sedan - 1, van: state.van };
-      } else return state;
-    case "increment-van":
-      // if(state.van >= 0)
-      return { van: state.van + 1, sedan: state.sedan };
+//     case "decrement-sedan":
+//       if (state.sedan > 0) {
+//         3;
+//         return { sedan: state.sedan - 1, van: state.van };
+//       } else return state;
+//     case "increment-van":
+//       // if(state.van >= 0)
+//       return { van: state.van + 1, sedan: state.sedan };
 
-    case "decrement-van":
-      if (state.van > 0) {
-        return { van: state.van - 1, sedan: state.sedan };
-      }
+//     case "decrement-van":
+//       if (state.van > 0) {
+//         return { van: state.van - 1, sedan: state.sedan };
+//       }
 
-    case "resetCars":
-      if (action.pass.router > 4) {
-        return { van: (state.van = 1), sedan: (state.sedan = 0) };
-      } else {
-        return { van: (state.van = 0), sedan: (state.sedan = 1) };
-      }
+//     case "resetCars":
+//       if (action.pass.router > 4) {
+//         return { van: (state.van = 1), sedan: (state.sedan = 0) };
+//       } else {
+//         return { van: (state.van = 0), sedan: (state.sedan = 1) };
+//       }
 
-    //   return state;
-  }
-}
+//     //   return state;
+//   }
+// }
 
 export default function ChooseparamsPL() {
   const router = useRouter();
@@ -76,6 +76,8 @@ export default function ChooseparamsPL() {
     price,
     setPrice,
     setIsFromCompleted,
+    currencyTXT,
+    setCurrencyTXT,
     infoForDriver,
     setInfoForDriver,
     unusualItems,
@@ -109,8 +111,7 @@ export default function ChooseparamsPL() {
 
   // setCars(settingCars);
   //end of setting cars
-  let PersonsLeft = passenger - (cars.sedan * 4 + cars.van * 8);
-  console.log(PersonsLeft);
+  // let PersonsLeft = passenger - (cars.sedan * 4 + cars.van * 8);
 
   const handleShowInfoAboutFlight = () => {
     handleFlightinfo.current.style.display = "block";
@@ -120,6 +121,9 @@ export default function ChooseparamsPL() {
   };
 
   const handleOrdering = (e: any) => {
+    if (router.query.cartype === router.query.combi) {
+      setCombi(true);
+    }
     e.preventDefault();
     // setCars(state);
     setPrice(FinalPrice);
@@ -179,13 +183,20 @@ export default function ChooseparamsPL() {
 
   // END OF CALCULATING
 
+  const handleChangeToPLN = () => {
+    setCurrencyTXT("PLN");
+  };
+  const handleChangeToEUR = () => {
+    setCurrencyTXT("EUR");
+  };
+
   return (
-    <div className="relative bg-white mt-[90px] w-[95vw] lg:w-[1080px] mx-auto rounded-[10px] h-[1250px] lg:h-[900px] border">
+    <div className="relative bg-white mt-[90px] w-[95vw] lg:w-[1080px] mx-auto rounded-[10px] h-[1250px] lg:h-auto border">
       <div className="w-[80%] h-[60px] flex items-end flex-col mx-auto">
         <p className="text-[12px]"> Step 2 of 3</p>
         <div className="bg-gradient-to-r from-yellow-500 from-0% via-white via-70% to-white to-100% w-full border border-yellow-500/[0.5] h-[20px] rounded-[5px] bg-"></div>
       </div>
-      {latLangFrom !== null &&
+      {/* {latLangFrom !== null &&
         latLangTo !== null &&
         PersonsLeft > 0 &&
         parseInt(passengersFromQuery) === people && (
@@ -193,20 +204,23 @@ export default function ChooseparamsPL() {
             <AiFillInfoCircle />
             <p className="pl-[4px]">Znajdź miejsce dla {PersonsLeft} osób.</p>
           </div>
-        )}
+        )} */}
       <div
         id="choose-cars-wrapper"
         className=" rounded-[10px] flex w-[90vw] lg:w-[80%] mx-auto justify-between duration-200 mb-[12px] bg-white"
       >
         {/* Bloking to configure offer before chosing correct params */}
         {isFormCompleted !== "true" && (
-          <div className="bg-white/[0.85] absolute -left-[10px] lg:left-0 w-[95vw] lg:w-[1080px] h-[1000px] lg:h-[92%] z-20"></div>
+          <div className="bg-white/[0.85] absolute -left-[10px] lg:left-0 w-[95vw] lg:w-[1080px] h-[1000px] lg:h-auto z-20"></div>
         )}
 
-        <div className="rounded-[10px] h-auto lg:h-auto w-full bg-white flex lg:justify-center ">
-          {router.query.car === "van" && <VanPL />}
-          {router.query.car === "sedan" && <SedanPL />}
-          {router.query.car === "mixed" && <CarcomponentPL />}
+        <div className="rounded-[10px] h-auto lg:h-auto w-full bg-white flex lg:justify-center flex-col ">
+          <SedanPL />
+          <div className="bg-gray-400 h-[1px] my-[20px]"></div>
+          <PremiumsedancomponentPL />
+          <div className="bg-gray-400 h-[1px] my-[20px]"></div>
+          <VanPL />
+          <div className="bg-gray-400 h-[1px] my-[20px]"></div>
         </div>
         {/* <div className="w-[1px] h-[100px] bg-gray-200 my-[10px]"></div> */}
       </div>
@@ -246,11 +260,11 @@ export default function ChooseparamsPL() {
           </div>
         </div>
       )}
-      <form onSubmit={handleOrdering} className="w-[90vw] lg:w-[75%] h-[300px] mx-auto my-[10px]">
+      <form onSubmit={handleOrdering} className="w-[90vw] lg:w-[75%] h-auto mx-auto my-[10px]">
         <p className="font-[700] text-[16px]">Szczegóły zamówienia:</p>
         <div id="form-wrapper" className="flex flex-col lg:flex-row">
           <div id="flight-messege-container" className="lg:w-1/2 lg:mt-[5px]">
-            <div className=" border-blue-900 w-full flex justify-between items-center mt-[20px] lg:px-[25px]">
+            <div className=" border-blue-900 w-full flex justify-between items-center mt-[20px] lg:pr-[25px]">
               <div className=" border-blue-900 w-full h-[40px] flex items-center">
                 <MdFlightLand className="h-[40px] w-[40px] px-[4px] text-yellow-500" />
                 <input
@@ -310,7 +324,7 @@ export default function ChooseparamsPL() {
           </div>
         </div>
         <div className="">
-          {latLangFrom !== null &&
+          {/* {latLangFrom !== null &&
             latLangTo !== null &&
             PersonsLeft > 0 &&
             parseInt(passengersFromQuery) === people && (
@@ -321,10 +335,46 @@ export default function ChooseparamsPL() {
                   // onMouseLeave={handleHidingingInfoAboutCorrectFromsBeforeOrdering}
                 ></div>
               </Link>
-            )}
-          <button className="float-right flex h-[50px] px-[10px] py-[5px] bg-yellow-500 text-white items-center justify-center rounded-[10px] border duration-200  border-yellow-500 hover:bg-white hover:text-yellow-500">
-            <p>Złóż zamówienie ({FinalPrice} zł) </p>
-          </button>
+            )}{" "} */}
+          <div className="flex flex-col w-full justify-center items-center">
+            <button
+              disabled={
+                (router.query.cartype === "ecosedan" ||
+                  router.query.cartype === "premium" ||
+                  router.query.cartype === "van") &&
+                queryFrom !== "" &&
+                queryTo !== ""
+                  ? false
+                  : true
+              }
+              className="float-right flex h-[50px] px-[10px] py-[5px] bg-yellow-500 text-white items-center justify-center rounded-[10px] border duration-200  border-yellow-500 hover:bg-white hover:text-yellow-500"
+            >
+              <p>
+                Zamów za {FinalPrice} {currencyTXT}
+              </p>
+            </button>
+            <div
+              id="price"
+              className="bg-yellow-500 rounded-r-[5px] text-center text-white -ml-[15px] w-full"
+            >
+              {currencyTXT === "EUR" && (
+                <p
+                  className="text-[12px] bg-white text-black cursor-pointer"
+                  onClick={handleChangeToPLN}
+                >
+                  Zamień na PLN
+                </p>
+              )}
+              {currencyTXT === "PLN" && (
+                <p
+                  className="text-[12px] bg-white text-black cursor-pointer"
+                  onClick={handleChangeToEUR}
+                >
+                  Zamień na EUR
+                </p>
+              )}
+            </div>
+          </div>
         </div>
       </form>
     </div>

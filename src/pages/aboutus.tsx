@@ -2,7 +2,7 @@ import React from "react";
 import Head from "next/head";
 import Header from "./Header/header";
 import Image from "next/image";
-import Footer from "./Footer/footer";
+import Footer from "../components/Footer/footer";
 import Aboutuscontent from "@/components/aboutuscontent";
 
 export default function Aboutus() {
@@ -15,26 +15,14 @@ export default function Aboutus() {
           name="viewport"
           content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
         ></meta>
-        <link
-          rel="stylesheet"
-          type="text/css"
-          href="/cdn.web-sdk-maps/maps.css"
-        ></link>
-        <link
-          rel="stylesheet"
-          type="text/css"
-          href="../assets/ui-library/index.css"
-        ></link>
+        <link rel="stylesheet" type="text/css" href="/cdn.web-sdk-maps/maps.css"></link>
+        <link rel="stylesheet" type="text/css" href="../assets/ui-library/index.css"></link>
         <link
           rel="stylesheet"
           type="text/css"
           href="/cdn.web-sdk-plugin-searchbox/SearchBox.css"
         ></link>
-        <link
-          rel="stylesheet"
-          type="text/css"
-          href="../assets/ui-library/icons-css/poi.css"
-        ></link>
+        <link rel="stylesheet" type="text/css" href="../assets/ui-library/icons-css/poi.css"></link>
       </Head>
       <Header />
       <div className='w-screen h-auto bg-[url("/Main_theme.png")] bg-top bg-cover bg-no-repeat flex items-center justify-center text-white relative'>
@@ -71,12 +59,10 @@ export default function Aboutus() {
                 <p className="text-[40px]">Our mission</p>
                 <div className="w-[80px] h-[4px] bg-yellow-500 my-[10px]"></div>
                 <p className="text-[24px] leading-7 font-[300]">
-                  <b className="italic">
-                    &quot;We are going to be there in time&quot;.
-                  </b>
-                  Our mission is to serve you the best possible taxi service.
-                  After thousand courses we know what our customers need and
-                  want. We would like to meet your needs as well. <br></br>
+                  <b className="italic">&quot;We are going to be there in time&quot;.</b>
+                  Our mission is to serve you the best possible taxi service. After thousand courses
+                  we know what our customers need and want. We would like to meet your needs as
+                  well. <br></br>
                   <br></br>You can surely count on us.
                 </p>
               </div>
@@ -91,10 +77,9 @@ export default function Aboutus() {
                 <p className="text-[40px]">Our team</p>
                 <div className="w-[80px] h-[4px] bg-yellow-500 my-[10px]"></div>
                 <p className="text-[24px] leading-7 font-[300] lg:text-right">
-                  <b className="italic">&quot;We are always ready&quot;.</b> In
-                  our team we have more than 100 expirienced drivers. If you
-                  will decide to takie our cab and go with us we will be always
-                  able to serve your order. <br></br>
+                  <b className="italic">&quot;We are always ready&quot;.</b> In our team we have
+                  more than 100 expirienced drivers. If you will decide to takie our cab and go with
+                  us we will be always able to serve your order. <br></br>
                   <br></br>There is now doubt about that.
                 </p>
               </div>

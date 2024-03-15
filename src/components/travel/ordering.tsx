@@ -1,11 +1,11 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
-import Header from "../Header/header";
+import Header from "../../pages/Header/header";
 import Footer from "../Footer/footer";
-import { AppContext } from "../_app";
-import LocalizationLoader from "../../components/localizationLoader";
-import OrderingTravelParams from "../../components/travelscomponents/orderingtravelparams";
+import { AppContext } from "../../pages/_app";
+import LocalizationLoader from "../localizationLoader";
+import OrderingTravelParams from "../travelscomponents/orderingtravelparams";
 import OrderingTravelPersonalData from "@/components/travelscomponents/orderingtravelpersonaldata";
 import { RiErrorWarningFill } from "react-icons/ri";
 

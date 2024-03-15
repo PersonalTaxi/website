@@ -9,14 +9,14 @@ import React, {
 } from "react";
 import { Montserrat } from "next/font/google";
 import { Ubuntu } from "next/font/google";
-import ChooseparamsPL from "../../ordering/chooseparamsPL";
-import HeaderPL from "../../Header/headerPL";
-import SearchPL from "../../MainPage/Search/searchPL";
+import ChooseparamsPL from "../../../components/chooseparamsPL";
+import HeaderPL from "../../../components/Header/headerPL";
+import SearchPL from "../../../components/MainPage/Search/searchPL";
 import Link from "next/link";
 import Head from "next/head";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { BiSolidMap } from "react-icons/bi";
-import FooterPL from "../../Footer/footerPL";
+import FooterPL from "../../../components/Footer/footerPL";
 import { AppContext } from "../../_app";
 
 const rubikFonts = Ubuntu({
@@ -49,7 +49,7 @@ export default function Summary() {
     <div className={`${MontserratFont.className}`}>
       <Head>
         <meta http-equiv="X-UA-Compatible" content="IE=Edge"></meta>
-        <title>Twója najlepsza podróż</title>
+        <title>Twoja najlepsza podróż</title>
         <meta
           name="viewport"
           content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"

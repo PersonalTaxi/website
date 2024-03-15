@@ -9,8 +9,8 @@ import { RiSuitcase3Fill, RiPriceTag3Fill } from "react-icons/ri";
 import { AppContext } from "@/pages/_app";
 import { useRouter } from "next/router";
 
-export default function Sedancomponent() {
-  const { calculateDistance, cars, currencyTXT, setCurrencyTXT, price, setPrice } =
+export default function Premiumsedancomponent() {
+  const { calculateDistance, cars, currencyTXT, setCurrencyTXT, price, setPrice, setCars, combi } =
     useContext(AppContext);
 
   const router = useRouter();
@@ -19,8 +19,9 @@ export default function Sedancomponent() {
   const aboutCar: any = useRef();
 
   const handleChosingCar = () => {
+    setCars("premium");
     setPrice(FinalPrice);
-    router.query.cartype = "ecosedan";
+    router.query.cartype = "premium";
     router.push(router, undefined, { scroll: false });
   };
 
@@ -40,12 +41,11 @@ export default function Sedancomponent() {
     distanceAboveMin = calculateDistance - 20;
   }
 
-  const pricePLN = 129;
-  const priceEUR = 30;
+  const pricePLN = 169;
+  const priceEUR = 40;
 
   let CountPrice = calculateDistance;
   let FinalPrice: any;
-
   if (currencyTXT === "EUR") {
     FinalPrice = Math.round(priceEUR + distanceAboveMin * 1.62);
     // setFinalPrice(FinalPrice);
@@ -62,11 +62,11 @@ export default function Sedancomponent() {
   };
 
   const handleCombiCheckBox = () => {
-    if (router.query.combi === "ecocombi") {
+    if (router.query.combi === "premiumcombi") {
       router.query.combi = undefined;
       router.push(router, undefined, { scroll: false });
     } else {
-      router.query.combi = "ecocombi";
+      router.query.combi = "premiumcombi";
       router.push(router, undefined, { scroll: false });
     }
   };
@@ -75,13 +75,13 @@ export default function Sedancomponent() {
     <div className="w-full h-full flex border-blue-900">
       <div className="relative flex flex-col justify-end lg:w-5/12 w-1/2 h-full">
         <div className="relative w-full h-full">
-          <Image className="object-contain" src="/sedan_v.png" fill alt="sedan"></Image>
+          <Image className="object-contain" src="/mercedes.png" fill alt="sedan"></Image>
         </div>
         <div className="w-[92vw] lg:w-full h-[30px] mx-auto flex items-center">
           <input
             id="combi-type"
             type="checkbox"
-            checked={router.query.combi === "ecocombi" ? true : false}
+            checked={router.query.combi === "premiumcombi" ? true : false}
             onChange={handleCombiCheckBox}
             className="w-[17px] h-[17px] accent-yellow-500 bg-white cursor-pointer"
           ></input>
@@ -92,7 +92,7 @@ export default function Sedancomponent() {
       </div>
       <div id="info-wrapper" className="lg:w-7/12 w-1/2">
         <div className="text-[15px] lg:text-[20px] font-[500] flex items-center">
-          <p>Economic Sedan</p>
+          <p>Premium Sedan</p>
           <AiFillInfoCircle
             className="lg:hidden ml-[5px]"
             onMouseEnter={handleShowInfoAboutCar}
@@ -175,11 +175,11 @@ export default function Sedancomponent() {
                   // ref={eco}
                   onClick={handleChosingCar}
                   className={`cursor-pointer bg-blue-400 w-[200px] text-white rounded-[10px] text-center py-[3px] mt-[5px] ${
-                    router.query.cartype === "ecosedan" && "bg-yellow-500"
+                    router.query.cartype === "premium" && "bg-yellow-500"
                   }`}
                 >
-                  {router.query.cartype !== "ecosedan" && <p>Wybierz ten model</p>}
-                  {router.query.cartype === "ecosedan" && <p>Wybrany model</p>}
+                  {router.query.cartype !== "premium" && <p>Change to this car</p>}
+                  {router.query.cartype === "premium" && <p>Choosed car</p>}
                 </div>
               </div>
             </div>

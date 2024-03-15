@@ -1,8 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
-import HeaderPL from "../../Header/headerPL";
-import Footer from "../../Footer/footer";
+import HeaderPL from "../../../pages/Header/headerPL";
+import Footer from "../../../components/Footer/footer";
 import { AppContext } from "../../_app";
 import OrderingTravelParams from "../../../components/travelscomponents/orderingtravelparams";
 import Ordertravelperson from "@/components/travelscomponents/orderingtravelpersonaldata";

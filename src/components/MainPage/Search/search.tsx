@@ -118,28 +118,35 @@ export default function Search() {
     }
   };
 
-  const handleSendForm = (e: any) => {
+  const handleSendForm = async (e: any) => {
     e.preventDefault();
 
-    let type;
-    if (people < 5 && people > 0) {
-      type = "sedan";
-    }
-    if (people < 9 && people > 4) {
-      type = "van";
-    }
-    if (people > 8) {
-      type = "mixed";
-    }
+    // let type;
+    // if (people < 5 && people > 0) {
+    //   type = "sedan";
+    // }
+    // if (people < 9 && people > 4) {
+    //   type = "van";
+    // }
+    // if (people > 8) {
+    //   type = "mixed";
+    // }
     setSearchButtonWasClicked(true);
 
     if (latLangFrom !== null && latLangTo !== null) {
+      const path = () => {
+        if (router.asPath?.includes("/pl")) {
+          return "/pl/ordering/form";
+        } else {
+          return "/ordering/form";
+        }
+      };
+
       router.push(
         {
-          pathname: "/ordering/summary",
+          pathname: await path(),
           query: {
             passengers: people,
-            car: type,
           },
         },
         undefined,

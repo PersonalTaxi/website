@@ -1,5 +1,5 @@
 import React, { useContext, useState, useRef } from "react";
-import { AppContext } from "../../_app";
+import { AppContext } from "../../../pages/_app";
 import Link from "next/link";
 import countries from "../../../data/countries.json";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
@@ -62,7 +62,7 @@ export default function Orderspacifications() {
 
   return (
     // As form element
-    <div className="bg-white w-full lg:w-1/2 mx-auto mt-[20px] border-t pt-[15px]">
+    <div className="bg-white w-full lg:w-1/2 mx-auto mt-[20px] border-t md:border-t-0 pt-[15px]">
       <div className="w-full mx-auto">
         <p className="lg:hidden mb-[25px] text-[20px] font-bold">A few informations about you:</p>
         <div className="flex mb-[25px]">
