@@ -152,7 +152,7 @@ export default function Sedancomponent() {
                     router.query.cartype === "van" && "bg-yellow-500"
                   }`}
                 >
-                  {router.query.cartype !== "van" && <p>Change to this car</p>}
+                  {router.query.cartype !== "van" && <p>Choose this car</p>}
                   {router.query.cartype === "van" && <p>Choosed car</p>}
                 </div>
               </div>

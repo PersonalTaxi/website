@@ -178,7 +178,7 @@ export default function Premiumsedancomponent() {
                     router.query.cartype === "premium" && "bg-yellow-500"
                   }`}
                 >
-                  {router.query.cartype !== "premium" && <p>Change to this car</p>}
+                  {router.query.cartype !== "premium" && <p>Choose this car</p>}
                   {router.query.cartype === "premium" && <p>Choosed car</p>}
                 </div>
               </div>
