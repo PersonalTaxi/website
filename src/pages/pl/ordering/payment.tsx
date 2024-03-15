@@ -36,19 +36,6 @@ export default function Payment() {
     setCombi,
   } = useContext(AppContext);
 
-  // const CheckCarsOnLoad = () => {
-  //   if (cars.sedan === 1 && combi === false) {
-  //     return "Eco Sedan";
-  //   }
-  //   if (cars.sedan === 1 && combi === true) {
-  //     return "Eco Sedan, combi";
-  //   } else {
-  //     return "Mini Van";
-  //   }
-  // };
-
-  // const [carType, setCarType] = useState(CheckCarsOnLoad());
-
   const [data, setData] = useState();
   const [redirecting, setRedirecting] = useState(false);
 
@@ -59,8 +46,6 @@ export default function Payment() {
     let amount = price * 100;
     let currency = "PLN";
     let crc = await fetch("/api/getcrc").then((res) => res.json());
-
-    // console.log(await crc.data);
 
     const querySign = async () => {
       const DatCRC = `{"sessionId":"${sessionId}","merchantId":${merchantId},"amount":${amount},"currency":"${currency}","crc":"${crc.data}"}`;

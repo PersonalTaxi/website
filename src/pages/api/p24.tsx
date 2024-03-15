@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
 async function Handler(req: NextApiRequest, res: NextApiResponse) {
-  const P24 = process.env.P24_API;
+  const P24 = process.env.P24_API_PROD;
 
   try {
     let respond = await fetch("https://secure.przelewy24.pl/api/v1/transaction/register", {
