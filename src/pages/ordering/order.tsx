@@ -1,6 +1,6 @@
 import React, { useEffect, Component, useContext } from "react";
 import Carcomponents from "../../components/chooseparams";
-import Header from "../../pages/Header/header";
+import Header from "../../components/Header/header";
 import Search from "../../components/MainPage/Search/search";
 import Head from "next/head";
 
