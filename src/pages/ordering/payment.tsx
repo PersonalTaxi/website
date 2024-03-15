@@ -53,18 +53,18 @@ export default function Payment() {
     setCombi,
   } = useContext(AppContext);
 
-  const CheckCarsOnLoad = () => {
-    if (cars.sedan === 1 && combi === false) {
-      return "Eco Sedan";
-    }
-    if (cars.sedan === 1 && combi === true) {
-      return "Eco Sedan, combi";
-    } else {
-      return "Mini Van";
-    }
-  };
+  // const CheckCarsOnLoad = () => {
+  //   if (cars.sedan === 1 && combi === false) {
+  //     return "Eco Sedan";
+  //   }
+  //   if (cars.sedan === 1 && combi === true) {
+  //     return "Eco Sedan, combi";
+  //   } else {
+  //     return "Mini Van";
+  //   }
+  // };
 
-  const [carType, setCarType] = useState(CheckCarsOnLoad());
+  // const [carType, setCarType] = useState(CheckCarsOnLoad());
 
   const [data, setData] = useState();
   const [redirecting, setRedirecting] = useState(false);
@@ -218,7 +218,7 @@ export default function Payment() {
                   </div>
                   <div className="flex">
                     <p className="w-[140px] font-semibold pr-[5px]">Car type: </p>
-                    <p className="">{carType}</p>
+                    <p className="">{cars}</p>
                   </div>
                   <div className="flex">
                     <p className="w-[140px] font-semibold pr-[5px]">Combi: </p>
