@@ -90,12 +90,10 @@ export default function Summary() {
       <Header />
       <div
         id="search-wrapper-ordering"
-        className='pt-[100px] relative h-[1700px] lg:h-auto bg-[url("/Main_theme.png")] bg-top bg-cover bg-no-repeat bg-fixed pb-[50px]'
+        className='pt-[100px] relative h-auto lg:h-auto bg-[url("/Main_theme.png")] bg-top bg-cover bg-no-repeat bg-fixed pb-[50px]'
       >
         <div className="absolute w-screen h-full bg-gray-900/[0.7] top-0"></div>
-        <div
-          className={`w-screen  h-[350px] lg:h-auto rounded-t-[40px] z-20 bottom-0 border-red-900`}
-        >
+        <div className={`w-screen  h-auto lg:h-auto rounded-t-[40px] z-20 bottom-0 border-red-900`}>
           <Search />
           <Chooseparams />
         </div>

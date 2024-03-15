@@ -18,6 +18,14 @@
     },
     "typeRoots": ["/index.d.ts"]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/appcontext", "src/middleware.doc", "src/components/order/form.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/pages/appcontext",
+    "src/middleware.doc",
+    "src/components/order/form.tsx",
+    "src/pages/pl/ordering/chooseparamsPL.doc"
+  ],
   "exclude": ["node_modules"]
 }

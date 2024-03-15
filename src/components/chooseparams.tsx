@@ -20,36 +20,36 @@ const rubikFonts = Ubuntu({
   weight: ["300", "500", "700"],
 });
 
-function reducer(state: any, action: any) {
-  switch (action.type) {
-    case "increment-sedan":
-      // if(state.sedan >= 0)
-      return { sedan: state.sedan + 1, van: state.van };
+// function reducer(state: any, action: any) {
+//   switch (action.type) {
+//     case "increment-sedan":
+//       // if(state.sedan >= 0)
+//       return { sedan: state.sedan + 1, van: state.van };
 
-    case "decrement-sedan":
-      if (state.sedan > 0) {
-        3;
-        return { sedan: state.sedan - 1, van: state.van };
-      } else return state;
-    case "increment-van":
-      // if(state.van >= 0)
-      return { van: state.van + 1, sedan: state.sedan };
+//     case "decrement-sedan":
+//       if (state.sedan > 0) {
+//         3;
+//         return { sedan: state.sedan - 1, van: state.van };
+//       } else return state;
+//     case "increment-van":
+//       // if(state.van >= 0)
+//       return { van: state.van + 1, sedan: state.sedan };
 
-    case "decrement-van":
-      if (state.van > 0) {
-        return { van: state.van - 1, sedan: state.sedan };
-      }
+//     case "decrement-van":
+//       if (state.van > 0) {
+//         return { van: state.van - 1, sedan: state.sedan };
+//       }
 
-    case "resetCars":
-      if (action.pass.router > 4) {
-        return { van: (state.van = 1), sedan: (state.sedan = 0) };
-      } else {
-        return { van: (state.van = 0), sedan: (state.sedan = 1) };
-      }
+//     case "resetCars":
+//       if (action.pass.router > 4) {
+//         return { van: (state.van = 1), sedan: (state.sedan = 0) };
+//       } else {
+//         return { van: (state.van = 0), sedan: (state.sedan = 1) };
+//       }
 
-    //   return state;
-  }
-}
+//     //   return state;
+//   }
+// }
 
 export default function Chooseparams() {
   const router = useRouter();
@@ -94,10 +94,10 @@ export default function Chooseparams() {
   const InfoAbout: any = useRef();
   const handleFlightinfo: any = useRef();
 
-  const [prices, setPrices] = useState([
-    { name: "sedan", price: 129 },
-    { name: "van", price: 149 },
-  ]);
+  // const [prices, setPrices] = useState([
+  //   { name: "sedan", price: 129 },
+  //   { name: "van", price: 149 },
+  // ]);
 
   const passengersFromQuery: any = router.query.passengers;
 
@@ -237,7 +237,7 @@ export default function Chooseparams() {
       >
         {/* Bloking to configure offer before chosing correct params */}
         {isFormCompleted !== "true" && (
-          <div className="bg-white/[0.85] absolute -left-[10px] lg:left-0 w-[95vw] lg:w-[1080px] h-[1000px] lg:h-[1180px] z-20"></div>
+          <div className="bg-white/[0.85] absolute lg:left-0 w-[96%] lg:w-[1080px] h-[1510px] lg:h-[1180px] z-20"></div>
         )}
 
         <div className="flex flex-col rounded-[10px] h-auto lg:h-auto w-full bg-white lg:justify-center ">
@@ -250,7 +250,7 @@ export default function Chooseparams() {
         </div>
         {/* <div className="w-[1px] h-[100px] bg-gray-200 my-[10px]"></div> */}
       </div>
-      {router.query.car === "mixed" && (
+      {/* {router.query.car === "mixed" && (
         <div className="w-[90vw] lg:w-[80%] mx-auto py-[20px] border-t border-b">
           <p className={`${rubikFonts.className} text-[20px]`}>Choosed car(s) summary have:</p>
           <div>
@@ -264,7 +264,7 @@ export default function Chooseparams() {
             </div>
           </div>
         </div>
-      )}
+      )} */}
       <form onSubmit={handleOrdering} className="w-[90vw] lg:w-[75%] h-auto mx-auto">
         <p className="font-[700] text-[20px]">Order details:</p>
         <div id="form-wrapper" className="flex flex-col lg:flex-row">

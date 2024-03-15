@@ -84,8 +84,8 @@ export default function Premiumsedancomponent() {
             onChange={handleCombiCheckBox}
             className="w-[17px] h-[17px] accent-yellow-500 bg-white cursor-pointer"
           ></input>
-          <label id="combi-type" className="ml-[4px] font-semibold text-[14px]">
-            I need a combi cab
+          <label id="combi-type" className="ml-[4px] font-semibold text-[10px]">
+            Potrzebuję wersji combi
           </label>
         </div>
       </div>

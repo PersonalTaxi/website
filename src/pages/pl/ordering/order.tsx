@@ -1,5 +1,5 @@
 import React, { useEffect, Component, useContext } from "react";
-import Carcomponents from "./chooseparamsPL";
+import Carcomponents from "./chooseparamsPL.doc";
 import Header from "@/components/Header/header";
 import Search from "../../../components/MainPage/Search/search";
 import Head from "next/head";

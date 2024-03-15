@@ -176,10 +176,36 @@ export default function ChooseparamsPL() {
     distanceAboveMin = calculateDistance - 20;
   }
 
-  let FinalPrice =
-    cars.van * 149 +
-    cars.van * distanceAboveMin * 7 +
-    (cars.sedan * 129 + cars.sedan * distanceAboveMin * 7);
+  const priceSedanPL = 129;
+  const priceSedanEUR = 30;
+  const pricePremiumPL = 169;
+  const pricePremiumEUR = 40;
+  const priceVanPL = 149;
+  const priceVanEUR = 35;
+
+  let FinalPrice = 0;
+
+  if (currencyTXT === "EUR") {
+    if (router.query.cartype === "ecosedan") {
+      FinalPrice = Math.round(priceSedanEUR + distanceAboveMin * 1.62);
+    }
+    if (router.query.cartype === "premium") {
+      FinalPrice = Math.round(pricePremiumEUR + distanceAboveMin * 1.62);
+    }
+    if (router.query.cartype === "van") {
+      FinalPrice = Math.round(priceVanEUR + distanceAboveMin * 1.62);
+    }
+  } else {
+    if (router.query.cartype === "ecosedan") {
+      FinalPrice = priceSedanPL + distanceAboveMin * 7;
+    }
+    if (router.query.cartype === "premium") {
+      FinalPrice = pricePremiumPL + distanceAboveMin * 7;
+    }
+    if (router.query.cartype === "van") {
+      FinalPrice = priceVanPL + distanceAboveMin * 7;
+    }
+  }
 
   // END OF CALCULATING
 
@@ -191,7 +217,7 @@ export default function ChooseparamsPL() {
   };
 
   return (
-    <div className="relative bg-white mt-[90px] w-[95vw] lg:w-[1080px] mx-auto rounded-[10px] h-[1250px] lg:h-auto border">
+    <div className="relative bg-white mt-[90px] w-[95vw] lg:w-[1080px] mx-auto rounded-[10px] h-auto lg:h-auto border">
       <div className="w-[80%] h-[60px] flex items-end flex-col mx-auto">
         <p className="text-[12px]"> Step 2 of 3</p>
         <div className="bg-gradient-to-r from-yellow-500 from-0% via-white via-70% to-white to-100% w-full border border-yellow-500/[0.5] h-[20px] rounded-[5px] bg-"></div>
@@ -211,7 +237,7 @@ export default function ChooseparamsPL() {
       >
         {/* Bloking to configure offer before chosing correct params */}
         {isFormCompleted !== "true" && (
-          <div className="bg-white/[0.85] absolute -left-[10px] lg:left-0 w-[95vw] lg:w-[1080px] h-[1000px] lg:h-auto z-20"></div>
+          <div className="bg-white/[0.85] absolute left-0 w-[96%] lg:w-[1080px] h-[1520px] lg:h-auto z-20"></div>
         )}
 
         <div className="rounded-[10px] h-auto lg:h-auto w-full bg-white flex lg:justify-center flex-col ">
@@ -224,14 +250,14 @@ export default function ChooseparamsPL() {
         </div>
         {/* <div className="w-[1px] h-[100px] bg-gray-200 my-[10px]"></div> */}
       </div>
-      <div
+      {/* <div
         className={
           cars.sedan > 0
             ? "w-screen duration-200 h-[20px] mb-[10px]"
             : "w-screen h-[0px] overflow-hidden duration-200"
         }
       >
-        {/* COMBI CAR CHECKBOX */}
+        COMBI CAR CHECKBOX
         <div className="w-[92vw] lg:w-[80%] h-[10px] mx-auto flex items-center">
           <input
             id="combi-type"
@@ -244,7 +270,7 @@ export default function ChooseparamsPL() {
             Potrzebuję wersji combi
           </label>
         </div>
-      </div>
+      </div> */}
       {router.query.car === "mixed" && (
         <div className="w-[90vw] lg:w-[80%] mx-auto py-[20px] border-t border-b">
           <p className={`${rubikFonts.className} text-[20px]`}>Wybrane auta pozwolą;</p>

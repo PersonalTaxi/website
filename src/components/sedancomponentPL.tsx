@@ -85,8 +85,8 @@ export default function Sedancomponent() {
             onChange={handleCombiCheckBox}
             className="w-[17px] h-[17px] accent-yellow-500 bg-white cursor-pointer"
           ></input>
-          <label id="combi-type" className="ml-[4px] font-semibold text-[14px]">
-            I need a combi cab
+          <label id="combi-type" className="ml-[4px] font-semibold text-[10px]">
+            Potrzebuję wersji combi
           </label>
         </div>
       </div>
@@ -109,15 +109,15 @@ export default function Sedancomponent() {
             <div id="description-about-service" className="w-[300px] text-[12px] lg:text-[16px]">
               <div className="w-full flex items-center">
                 <BsClockHistory className="text-yellow-500" />
-                <p className="text-center pl-[5px]">Free waiting time</p>
+                <p className="text-center pl-[5px]">Bezpłatny czas oczekiwania</p>
               </div>
               <div className="w-full flex  items-center">
                 <MdMoneyOffCsred className="text-yellow-500" />
-                <p className=" text-center pl-[5px]">No hidden costs</p>
+                <p className=" text-center pl-[5px]">Brak ukrytych kosztów</p>
               </div>
               <div className="w-full flex  items-center">
                 <RiPriceTag3Fill className="text-yellow-500" />
-                <p className=" text-center pl-[5px]">Best price</p>
+                <p className=" text-center pl-[5px]">Najlepsza cena</p>
               </div>
             </div>
             <div
@@ -136,15 +136,15 @@ export default function Sedancomponent() {
             >
               <div className="w-full flex items-center">
                 <BsFillPersonFill className="text-yellow-500" />
-                <p className="text-center font-normal pl-[5px]">Seats for up to 4 people</p>
+                <p className="text-center font-normal pl-[5px]">transfer do 4 osób</p>
               </div>
               <div className="w-full flex  items-center">
                 <FaSuitcaseRolling className="text-yellow-500" />
-                <p className=" text-center pl-[5px]">Up to 4 medium suitcases</p>
+                <p className=" text-center pl-[5px]">do 4 średnich walizek</p>
               </div>
               <div className="w-full flex  items-center">
                 <RiSuitcase3Fill className="text-yellow-500" />
-                <p className=" text-center pl-[5px]">Up to 2 big suitcases</p>
+                <p className=" text-center pl-[5px]">do 2 dużych walizek</p>
               </div>
             </div>
             <div
