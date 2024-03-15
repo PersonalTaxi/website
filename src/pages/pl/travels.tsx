@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Head from "next/head";
-import Header from "../../pages/Header/headerPL";
+import HeaderPL from "../../components/Header/headerPL";
 import { useRouter } from "next/router";
 import Footer from "../../components/Footer/footerPL";
 import Travelcomponent from "@/components/travelscomponents/travelcomponent";
@@ -44,7 +44,7 @@ export default function Travels() {
         ></link>
         <link rel="stylesheet" type="text/css" href="../assets/ui-library/icons-css/poi.css"></link>
       </Head>
-      <Header />
+      <HeaderPL />
       <div className='w-screen lg:h-[300px] h-[150px] bg-[url("/travel_bg_top.png")] bg-top bg-cover bg-no-repeat flex items-center justify-center text-white relative'>
         <div className="absolute w-full h-full bg-gray-900/[0.7] z-0"></div>
         <div className="flex items-center justify-center flex-col w-[65%] z-10">

@@ -1,6 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import Header from "./Header/header";
+import Header from "../components/Header/header";
 import Image from "next/image";
 import Footer from "../components/Footer/footer";
 import Aboutuscontent from "@/components/aboutuscontent";

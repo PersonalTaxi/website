@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import Header from "./Header/header";
+import Header from "../components/Header/header";
 import Footer from "../components/Footer/footer";
 
 export default function Policy() {

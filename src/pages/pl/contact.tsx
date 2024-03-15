@@ -1,6 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import HeaderPL from "../../pages/Header/headerPL";
+import HeaderPL from "../../components/Header/headerPL";
 import Footer from "../../components/Footer/footer";
 import ContactformPL from "@/components/contactformPL";
 
