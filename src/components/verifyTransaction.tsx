@@ -9,7 +9,7 @@ export async function VerifyTransaction(
   currencyTXT: any,
   query: any,
 ) {
-  const P24 = process.env.P24_API;
+  const P24 = process.env.P24_API_PROD;
 
   let verifiedData = await fetch("/api/verifytransactionapi", {
     method: "POST",

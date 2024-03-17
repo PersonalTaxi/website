@@ -2,14 +2,18 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 async function Handler(req: NextApiRequest, res: NextApiResponse) {
   const P24 = process.env.P24_API_PROD;
+  const user = 27407;
+
+  const base64encodedData = Buffer.from(`${user}:${P24}`).toString("base64");
+
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  myHeaders.append("Authorization", `Basic ${base64encodedData}`);
 
   try {
     let respond = await fetch("https://secure.przelewy24.pl/api/v1/transaction/register", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Basic ${P24}`,
-      },
+      headers: myHeaders,
       body: req.body,
     });
 

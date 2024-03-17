@@ -44,7 +44,7 @@ export default function Payment() {
     const UniqeNumber = Date.now().toString();
     let sessionId = UniqeNumber;
     let amount = price * 100;
-    let currency = "PLN";
+    let currency = currencyTXT;
     let crc = await fetch("/api/getcrc").then((res) => res.json());
 
     const querySign = async () => {
@@ -59,7 +59,7 @@ export default function Payment() {
       posId: 27407,
       sessionId: sessionId,
       amount: amount,
-      currency: "PLN",
+      currency: currencyTXT,
       description: "ordering taxi",
       email: email,
       country: "PL",
@@ -80,7 +80,7 @@ export default function Payment() {
       description: "ordering taxi",
       country: "PL",
       price: price,
-      currency: "PLN",
+      currency: currencyTXT,
       infoForDriver: infoForDriver,
       unusualItems: unusualItems,
       merchantId: 27407,
@@ -93,7 +93,7 @@ export default function Payment() {
 
     setRedirecting(true);
 
-    let res = await fetch("/api/p24", {
+    let res = await fetch("/api/p24register", {
       method: "POST",
       body: query,
     });

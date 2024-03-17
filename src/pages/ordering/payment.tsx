@@ -53,19 +53,6 @@ export default function Payment() {
     setCombi,
   } = useContext(AppContext);
 
-  // const CheckCarsOnLoad = () => {
-  //   if (cars.sedan === 1 && combi === false) {
-  //     return "Eco Sedan";
-  //   }
-  //   if (cars.sedan === 1 && combi === true) {
-  //     return "Eco Sedan, combi";
-  //   } else {
-  //     return "Mini Van";
-  //   }
-  // };
-
-  // const [carType, setCarType] = useState(CheckCarsOnLoad());
-
   const [data, setData] = useState();
   const [redirecting, setRedirecting] = useState(false);
 
@@ -76,10 +63,9 @@ export default function Payment() {
     let amount = price * 100;
     let currency = currencyTXT;
     let crc = await fetch("/api/getcrc").then((res) => res.json());
+    console.log(crc);
 
     setRedirecting(true);
-
-    // console.log(await crc.data);
 
     const querySign = async () => {
       const DatCRC = `{"sessionId":"${sessionId}","merchantId":${merchantId},"amount":${amount},"currency":"${currency}","crc":"${crc.data}"}`;
@@ -118,6 +104,8 @@ export default function Payment() {
       sign: sign,
     });
 
+    console.log(query);
+
     //register order details in MongoDB
 
     const DataForDatabaseTaxi = JSON.stringify({
@@ -133,7 +121,7 @@ export default function Payment() {
       description: "Taxi order",
       country: "PL",
       price: price,
-      currency: "PLN",
+      currency: "EUR",
       flightNumber: flightNumber,
       infoForDriver: infoForDriver,
       unusualItems: unusualItems,
@@ -148,7 +136,7 @@ export default function Payment() {
 
     await RegisterInTaxiDataBase(DataForDatabaseTaxi);
 
-    let res = await fetch("/api/p24", {
+    let res = await fetch("/api/p24register", {
       method: "POST",
       body: query,
     });

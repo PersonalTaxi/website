@@ -1,15 +1,13 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
 export async function VerifyTransactionAPI(req: NextApiRequest, res: NextApiResponse) {
-  // console.log(process.env.P24_API);
-
   const query = req.body;
 
   let verifiedData = await fetch("https://secure.przelewy24.pl/api/v1/transaction/verify", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Basic ${process.env.P24_API}`,
+      Authorization: `Basic ${process.env.P24_API_PROD}`,
     },
     body: query,
   });
