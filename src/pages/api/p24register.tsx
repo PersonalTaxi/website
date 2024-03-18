@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 async function Handler(req: NextApiRequest, res: NextApiResponse) {
   const P24 = process.env.P24_API_PROD;
-  const user = 27407;
+  const user = process.env.P24_ID;
 
   const base64encodedData = Buffer.from(`${user}:${P24}`).toString("base64");
 
